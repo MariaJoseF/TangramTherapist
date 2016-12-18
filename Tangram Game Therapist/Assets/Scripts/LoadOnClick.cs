@@ -77,11 +77,6 @@ public class LoadOnClick : MonoBehaviour {
 
         Console.WriteLine("----------------- Call EXP3 algorithm -----------------");
 
-
-        Exp3 teste = new Exp3();
-        float[] rewards = { 2.0f, 0.0f, 1.0f, 2.0f, -5.0f, 1.0f, 0.0f, 10.0f, 0.0f };
-        teste.RunExp3(9, rewards, 0.07f, 200);
-
         Application.LoadLevel(2);
     }
 }
