@@ -1,0 +1,477 @@
+﻿{
+    "Puzzles" :[
+        {
+            "id" : 0,
+            "name" : "square",
+			"namept" : "um quadrado",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : 0, "posy" : -1.12, "solposx" : 0, "solposy" : -1.12, "rotation" : 0, "rotationy" : 0, "hardImage" : "1b", "pos1" : "em baixo", 
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 1, "relation" : "em baixo"},
+                	{ "id" : 1, "pieceid" : 4, "relation" : "em baixo"},
+                	{ "id" : 2, "pieceid" : 5, "relation" : "ao lado"},
+                	{ "id" : 3, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : 1.11, "posy" : 0.01, "solposx" : 1.12, "solposy" : 0, "rotation" : 90, "rotationy" : 0, "hardImage" : "1b", "pos1" : "à direita",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                	{ "id" : 1, "pieceid" : 3, "relation" : "ao lado"},
+                	{ "id" : 2, "pieceid" : 4, "relation" : "à direita"},
+                	{ "id" : 3, "pieceid" : 6, "relation" : "à direita"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : -1.66, "posy" : 1.66, "solposx" : -1.62, "solposy" : 1.622, "rotation" : 45, "rotationy" : 0, "hardImage" : "2c", "pos1" : "à esquerda", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 5, "relation" : "em cima"},
+                	{ "id" : 1, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : 1.11, "posy" : 1.68, "solposx" : 1.05, "solposy" : 1.577, "rotation" : 180, "rotationy" : 0, "hardImage" : "1b", "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 1, "relation" : "em cima"},
+                	{ "id" : 1, "pieceid" : 6, "relation" : "à direita"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : -0.57, "posy" : 0.01, "solposx" : -0.52, "solposy" : 0, "rotation" : 270, "rotationy" : 0, "hardImage" : "0", "pos1" : "à esquerda", "pos2" : "ao centro",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "em cima"},
+					{ "id" : 1, "pieceid" : 1, "relation" : "à esquerda"},
+                	{ "id" : 2, "pieceid" : 2, "relation" : "em baixo"},
+                	{ "id" : 3, "pieceid" : 5, "relation" : "à direita"},
+                	{ "id" : 4, "pieceid" : 6, "relation" : "ao lado"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : -1.67, "posy" : -0.56, "solposx" : -1.598, "solposy" : -0.527, "rotation" : 270, "rotationy" : 0, "hardImage" : "1b", "pos1" : "à esquerda",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+                	{ "id" : 1, "pieceid" : 2, "relation" : "em baixo"},
+                	{ "id" : 2, "pieceid" : 4, "relation" : "à esquerda"}] },
+                { "id" : 6, "type" : "square", "posx" : -0.01, "posy" : 1.11, "solposx" : 0, "solposy" : 1.06, "rotation" : 315, "rotationy" : 0, "hardImage" : "0", "pos1" : "ao centro", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "em cima"},
+                	{ "id" : 1, "pieceid" : 1, "relation" : "ao lado"},
+                	{ "id" : 2, "pieceid" : 2, "relation" : "à direita"},
+                	{ "id" : 3, "pieceid" : 3, "relation" : "à esquerda"},
+                	{ "id" : 4, "pieceid" : 4, "relation" : "em cima"}] }
+            ]
+        },
+        {
+            "id" : 1,
+            "name" : "boat",
+			"namept" : "um barco",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : 1.82, "posy" : -0.1, "solposx" : 1.73, "solposy" : -0.135, "rotation" : 0, "rotationy" : 0, "hardImage" : "2r", "pos1" : "à direita",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                	{ "id" : 1, "pieceid" : 2, "relation" : "em cima"},
+					{ "id" : 2, "pieceid" : 6, "relation" : "à direita"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : 0.69, "posy" : 1.03, "solposx" : 0.615, "solposy" : 0.98, "rotation" : 270, "rotationy" : 0, "hardImage" : "2l", "pos1": "ao centro", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 1, "relation" : "à esquerda"},
+                	{ "id" : 1, "pieceid" : 2, "relation" : "em cima"},
+                	{ "id" : 2, "pieceid" : 3, "relation" : "à direita"},
+                	{ "id" : 3, "pieceid" : 6, "relation" : "à direita"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : 0.045, "posy" : -2.44, "solposx" : 0.047, "solposy" : -2.388, "rotation" : 180, "rotationy" : 0, "hardImage" : "2l", "pos1" : "à direita", "pos2" : "em baixo",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "em baixo"},
+                	{ "id" : 1, "pieceid" : 1, "relation" : "em baixo"},
+                	{ "id" : 2, "pieceid" : 5, "relation" : "à direita"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : -1.3, "posy" : 0.76, "solposx" : -1.223, "solposy" : 0.7, "rotation" : 225, "rotationy" : 0, "hardImage" : "2l", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+                	{ "id" : 1, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : -2.85, "posy" : -0.8, "solposx" : -2.7, "solposy" : -0.776, "rotation" : 225, "rotationy" : 0, "hardImage" : "2r", "pos1" : "à esquerda",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 5, "relation" : "em cima"},
+                	{ "id" : 1, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : -1.53, "posy" : -2.468, "solposx" : -1.46, "solposy" : -2.35, "rotation" : 225, "rotationy" : 180, "hardImage" : "3b", "pos1" : "à esquerda", "pos2" : "em baixo",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 2, "relation" : "à esquerda"},
+                	{ "id" : 1, "pieceid" : 4, "relation" : "em baixo"},
+                	{ "id" : 2, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 6, "type" : "square", "posx" : -1.68, "posy" : -0.42, "solposx" : -1.592, "solposy" : -0.41, "rotation" : 180, "rotationy" : 0, "hardImage" : "2c", "pos2" : "ao centro",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+					{ "id" : 1, "pieceid" : 1, "relation" : "à esquerda"},
+                	{ "id" : 2, "pieceid" : 3, "relation" : "em baixo"},
+                	{ "id" : 3, "pieceid" : 4, "relation" : "à direita"},
+                	{ "id" : 4, "pieceid" : 5, "relation" : "em cima"}] }
+            ]
+        },
+        {
+            "id" : 2,
+            "name" : "cat",
+			"namept" : "um gato",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : -0.763, "posy" : -0.91, "solposx" : -0.763, "solposy" : -0.88, "rotation" : 270, "rotationy" : 0, "hardImage" : "2l", 
+                "edgesToCut":[
+                	{ "id" : 0, "edge" : "base", "posx" : 1.493, "posy" : -1.01, "scalex" : 0.3047067, "scaley" : 1 }
+                ], "pos1" : "ao centro",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 1, "relation" : "em cima"},
+                	{ "id" : 1, "pieceid" : 2, "relation" : "à direita"},
+                	{ "id" : 2, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : -0.43, "posy" : -3.29, "solposx" : -0.44, "solposy" : -3.1, "rotation" : 225, "rotationy" : 0, "hardImage" : "3", 
+                "edgesToCut":[
+                	{ "id" : 0, "edge" : "base", "posx" : 1.489, "posy" : -1.01, "scalex" : 0.295218, "scaley" : 1 }
+                ], "pos2" : "em baixo",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "em baixo"},
+                	{ "id" : 1, "pieceid" : 5, "relation" : "à esquerda"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : -2.63, "posy" : -0.264, "solposx" : -2.55, "solposy" : -0.256, "rotation" : 90, "rotationy" : 0, "hardImage" : "2c", "pos1" : "à esquerda",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+                	{ "id" : 1, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : -3.01, "posy" : 2.955, "solposx" : -2.848, "solposy" : 2.82, "rotation" : 270, "rotationy" : 0, "hardImage" : "2l", "pos1" : "à esquerda", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 4, "relation" : "à esquerda"},
+                	{ "id" : 1, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : -1.88, "posy" : 2.961, "solposx" : -1.81, "solposy" : 2.82, "rotation" : 90, "rotationy" : 0, "hardImage" : "2r", "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 3, "relation" : "à direita"},
+                	{ "id" : 1, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : 1.985, "posy" : -3.29, "solposx" : 1.89, "solposy" : -3.136, "rotation" : 225, "rotationy" : 0, "hardImage" : "4", "pos1" : "à direita", "pos2" : "em baixo",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 1, "relation" : "à direita"}] },
+                { "id" : 6, "type" : "square", "posx" : -2.45, "posy" : 1.85, "solposx" : -2.33, "solposy" : 1.757, "rotation" : 135, "rotationy" : 0, "hardImage" : "2c", "pos2" : "em cima",
+                "adjacent" : [
+                	{ "id" : 0, "pieceid" : 0, "relation" : "em cima"},
+                	{ "id" : 1, "pieceid" : 2, "relation" : "em cima"},
+                	{ "id" : 2, "pieceid" : 3, "relation" : "em baixo"},
+                	{ "id" : 3, "pieceid" : 4, "relation" : "em baixo"}] }
+            ]
+        },
+		{
+            "id" : 3,
+            "name" : "chair",
+			"namept" : "uma cadeira",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : 1.57, "posy" : -1.595, "solposx" : 1.465, "solposy" : -1.485, "rotation" : 225, "rotationy" : 0, "hardImage" : "2c", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "right", "posx" : 1.589, "posy" : -0.477, "scalex" : 0.3652735, "scaley" : 1 }
+                ], "pos1" : "à direita",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 5, "relation" : "em baixo"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : -1.568, "posy" : -1.568, "solposx" : -1.47, "solposy" : -1.537, "rotation" : 45, "rotationy" : 0, "hardImage" : "2c", "pos1" : "à esquerda",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 3, "relation" : "em cima"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : 1.555, "posy" : 2.37, "solposx" : 1.54, "solposy" : 2.257, "rotation" : 270, "rotationy" : 0, "hardImage" : "1b", "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 4, "relation" : "em baixo"},
+                    { "id" : 1, "pieceid" : 5, "relation" : "em cima"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : -1.19, "posy" : -3.55, "solposx" : -1.12, "solposy" : -3.39, "rotation" : 225, "rotationy" : 0, "hardImage" : "2c", "pos1" : "à esquerda", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "em baixo"},
+                    { "id" : 1, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : 1.97, "posy" : 3.55, "solposx" : 1.887, "solposy" : 3.395, "rotation" : 315, "rotationy" : 0, "hardImage" : "2c", "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 2, "relation" : "em cima"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : 1.58, "posy" : 0.79, "solposx" : 1.503, "solposy" : 0.752, "rotation" : 315, "rotationy" : 180, "hardImage" : "2vp", "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em baixo"}] },
+                { "id" : 6, "type" : "square", "posx" : 1.59, "posy" : -3.157, "solposx" : 1.517, "solposy" : -3.01, "rotation" : 180, "rotationy" : 0, "hardImage" : "3", "pos1" : "à direita", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "em baixo"},
+                    { "id" : 1, "pieceid" : 3, "relation" : "à direita"}] }
+            ]
+        },
+		{
+            "id" : 4,
+            "name" : "dog",
+            "namept" : "um cão",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : -2.45, "posy" : -0.62, "solposx" : -2.31, "solposy" : -0.565, "rotation" : 135, "rotationy" : 0, "hardImage" : "3", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "right", "posx" : 1.284, "posy" : -0.172, "scalex" : 0.5634521, "scaley" : 1 },
+                    { "id" : 1, "edge" : "base", "posx" : 1.488, "posy" : -1.01, "scalex" : 0.3067552, "scaley" : 1 }
+                ], "pos1" : "à direita",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à esquerda"},
+                    { "id" : 2, "pieceid" : 3, "relation" : "à direita"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : -0.1, "posy" : -0.29, "solposx" : -0.08, "solposy" : -0.24, "rotation" : 180, "rotationy" : 0, "hardImage" : "1b", "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à esquerda"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : 1.58, "posy" : -0.84, "solposx" : 1.533, "solposy" : -0.848, "rotation" : 225, "rotationy" : 0, "hardImage" : "2c", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "right", "posx" : 1.296, "posy" : -0.581, "scalex" : 0.2165265, "scaley" : 0.977 }
+                ], "pos1" : "à direita", "pos2" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 5, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : -3.795, "posy" : -1.9, "solposx" : -3.64, "solposy" : -1.81, "rotation" : 90, "rotationy" : 0, "hardImage" : "3", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "base", "posx" : -0.287, "posy" : -0.53, "scalex" : 0.693417, "scaley" : 0.952 }
+                ],"pos1" : "à esquerda", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à esquerda"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : 2.14, "posy" : 2.45, "solposx" : 2.04, "solposy" : 2.351, "rotation" : 0, "rotationy" : 0, "hardImage" : "3", "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : 2.11, "posy" : -2.207, "solposx" : 2.01, "solposy" : -2.1, "rotation" : 225, "rotationy" : 180, "hardImage" : "3l", "pos1" : "à direita", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 2, "relation" : "em baixo"}] },
+                { "id" : 6, "type" : "square", "posx" : 3.25, "posy" : 0.81, "solposx" : 3.1, "solposy" : 0.77, "rotation" : 135, "rotationy" : 0, "hardImage" : "4", "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à direita"},
+                    { "id" : 2, "pieceid" : 4, "relation" : "em baixo"}] }
+            ]
+        },
+		{
+            "id" : 5,
+            "name" : "fish",
+            "namept" : "um peixe",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : -1.17, "posy" : 0.8, "solposx" : -1.143, "solposy" : 0.795, "rotation" : 225, "rotationy" : 0, "hardImage" : "2l", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "left", "posx" : -1.865, "posy" : -0.753, "scalex" : 0.1857181, "scaley" : 1 }
+                ], "pos1" : "à esquerda", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à esquerda"},
+                    { "id" : 2, "pieceid" : 3, "relation" : "à esquerda"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : -1.17, "posy" : -0.79, "solposx" : -1.143, "solposy" : -0.778, "rotation" : 315, "rotationy" : 0, "hardImage" : "2r", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "right", "posx" : 1.864, "posy" : -0.752, "scalex" : 0.1864395, "scaley" : 1 }
+                ], "pos1" : "à esquerda", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "em baixo"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "à esquerda"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "à esquerda"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : 0.4, "posy" : 0.8, "solposx" : 0.435, "solposy" : 0.762, "rotation" : 270, "rotationy" : 0, "hardImage" : "1l", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "left", "posx" : -0.21, "posy" : 0.505, "scalex" : 0.2179525, "scaley" : 0.977 }
+                ], "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 3, "relation" : "em baixo"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "em cima"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : 0.2, "posy" : 2.375, "solposx" : 0.17, "solposy" : 2.255, "rotation" : 90, "rotationy" : 0, "hardImage" : "2r", "pos1" : "ao centro", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em cima"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : 0.2, "posy" : -2.37, "solposx" : 0.17, "solposy" : -2.255, "rotation" : 90, "rotationy" : 0, "hardImage" : "2l", "pos1" : "ao centro", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 5, "relation" : "em baixo"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : 0.415, "posy" : -0.785, "solposx" : 0.395, "solposy" : -0.745, "rotation" : 315, "rotationy" : 180, "hardImage" : "2bl", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "base", "posx" : -0.225, "posy" : -0.53, "scalex" : 0.3075069, "scaley" : 0.952381 }
+                ], "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em baixo"},
+                    { "id" : 2, "pieceid" : 4, "relation" : "em cima"},
+                    { "id" : 3, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 6, "type" : "square", "posx" : 2.42, "posy" : 0.06, "solposx" : 2.3, "solposy" : 0.06, "rotation" : 135, "rotationy" : 0, "hardImage" : "4", "pos1" : "à direita",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 5, "relation" : "à direita"}] }
+            ]
+        },
+		{
+            "id" : 6,
+            "name" : "horse",
+            "namept" : "um cavalo",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : 0.564, "posy" : -1.11, "solposx" : 0.49, "solposy" : -1.062, "rotation" : 270, "rotationy" : 0, "hardImage" : "3", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "base", "posx" : 1.187, "posy" : -1.01, "scalex" : 0.1608, "scaley" : 1 }
+                ], "pos1" : "à direita",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "à esquerda"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : -1.347, "posy" : 0.335, "solposx" : -1.307, "solposy" : 0.277, "rotation" : 315, "rotationy" : 0, "hardImage" : "2l", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "base", "posx" : 0.748, "posy" : -1.01, "scalex" : 0.6337, "scaley" : 1 },
+                    { "id" : 1, "edge" : "left", "posx" : -1.583, "posy" : -0.471, "scalex" : 0.3692, "scaley" : 1 }
+                ], "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 3, "relation" : "à direita"},
+                    { "id" : 2, "pieceid" : 4, "relation" : "em cima"},
+                    { "id" : 3, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : -2.127, "posy" : 3.46, "solposx" : -2.03, "solposy" : 3.36, "rotation" : 0, "rotationy" : 0, "hardImage" : "3", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "base", "posx" : -0.724, "posy" : -0.789, "scalex" : 0.5081, "scaley" : 0.977 }
+                ], "pos1" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : -3.7, "posy" : 0.54, "solposx" : -3.53, "solposy" : 0.54, "rotation" : 0, "rotationy" : 0, "hardImage" : "2l", "pos1" : "à esquerda",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à esquerda"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : -0.95, "posy" : -3.88, "solposx" : -0.889, "solposy" : -3.708, "rotation" : 225, "rotationy" : 0, "hardImage" : "3",
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "left", "posx" : -0.297, "posy" : 0.208, "scalex" : 0.4184, "scaley" : 0.952 }
+                ], "pos1" : "ao centro", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "em baixo"},
+                    { "id" : 1, "pieceid" : 1, "relation" : "em baixo"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : 3.25, "posy" : -1.909, "solposx" : 3.09, "solposy" : -1.819, "rotation" : 225, "rotationy" : 180, "hardImage" : "4", "pos1" : "à direita", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"}] },
+                { "id" : 6, "type" : "square", "posx" : -1.32, "posy" : 1.9, "solposx" : -1.26, "solposy" : 1.81, "rotation" : 90, "rotationy" : 0, "hardImage" : "2p", "pos1" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em baixo"}] }
+            ]
+        },
+		{
+            "id" : 7,
+            "name" : "house",
+            "namept" : "uma casa",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : 0.025, "posy" : -1.59, "solposx" : 0.025, "solposy" : -1.56, "rotation" : 0, "rotationy" : 0, "hardImage" : "1b", "pos1" : "em baixo", "pos2" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "em baixo"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à direita"},
+                    { "id" : 2, "pieceid" : 3, "relation" : "à esquerda"},
+                    { "id" : 3, "pieceid" : 4, "relation" : "à esquerda"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : -0.79, "posy" : 0.65, "solposx" : -0.75, "solposy" : 0.575, "rotation" : 0, "rotationy" : 0, "hardImage" : "3", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "base", "posx" : -1.739, "posy" : -1.01, "scalex" : 0.1806, "scaley" : 1 },
+                    { "id" : 1, "edge" : "right", "posx" : 0.3, "posy" : 0.812, "scalex" : 0.2122, "scaley" : 1 }
+                ], "pos1" : "à esquerda", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "à esquerda"},
+                    { "id" : 3, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : -1.62, "posy" : -1.03, "solposx" : -1.595, "solposy" : -0.948, "rotation" : 45, "rotationy" : 0, "hardImage" : "1l", "pos1" : "à esquerda", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 1, "relation" : "em baixo"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : 1.143, "posy" : -1.02, "solposx" : 1.09, "solposy" : -0.99, "rotation" : 180, "rotationy" : 0, "hardImage" : "0", "pos1" : "à direita", "pos2" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "em baixo"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : 1.72, "posy" : -1.58, "solposx" : 1.61, "solposy" : -1.505, "rotation" : 90, "rotationy" : 0, "hardImage" : "1b", "pos1" : "à direita", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 3, "relation" : "em baixo"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "em baixo"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : 1.44, "posy" : 0.33, "solposx" : 1.36, "solposy" : 0.32, "rotation" : 225, "rotationy" : 180, "hardImage" : "2br", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "right", "posx" : 1.349, "posy" : -0.278, "scalex" : 0.3383, "scaley" : 0.9523 }
+                ], "pos1" : "à direita", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 3, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 4, "relation" : "em cima"},
+                    { "id" : 3, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 6, "type" : "square", "posx" : 0.65, "posy" : 1.9, "solposx" : 0.62, "solposy" : 1.81, "rotation" : 0, "rotationy" : 0, "hardImage" : "3", "pos1" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 5, "relation" : "em cima"}] }
+            ]
+        },
+		{
+            "id" : 8,
+            "name" : "mountains",
+            "namept" : "umas montanhas",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : -2.38, "posy" : -1.11, "solposx" : -2.3, "solposy" : -1.02, "rotation" : 225, "rotationy" : 0, "hardImage" : "2r", "pos1" : "à esquerda",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 3, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 5, "relation" : "à esquerda"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "à esquerda"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : 2.38, "posy" : -1.11, "solposx" : 2.3, "solposy" : -1.02, "rotation" : 135, "rotationy" : 0, "hardImage" : "2l", "pos1" : "à direita",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 2, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "à direita"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "à direita"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : 0.81, "posy" : -0.33, "solposx" : 0.72, "solposy" : -0.31, "rotation" : 90, "rotationy" : 0, "hardImage" : "1r", "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "à direita"},
+                    { "id" : 3, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : -1.19, "posy" : -1.5, "solposx" : -1.15, "solposy" : -1.44, "rotation" : 135, "rotationy" : 0, "hardImage" : "1l", "pos1" : "ao centro", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "à esquerda"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "em baixo"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : 0.39, "posy" : -1.5, "solposx" : 0.36, "solposy" : -1.44, "rotation" : 135, "rotationy" : 0, "hardImage" : "1l", "pos1" : "ao centro", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em baixo"},
+                    { "id" : 2, "pieceid" : 3, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 5, "relation" : "à direita"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : -0.8, "posy" : -0.32, "solposx" : -0.76, "solposy" : -0.31, "rotation" : 315, "rotationy" : 0, "hardImage" : "1t", "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à esquerda"},
+                    { "id" : 2, "pieceid" : 3, "relation" : "em cima"},
+                    { "id" : 3, "pieceid" : 4, "relation" : "à esquerda"},
+                    { "id" : 4, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 6, "type" : "square", "posx" : -0.01, "posy" : 0.78, "solposx" : -0.01, "solposy" : 0.73, "rotation" : 315, "rotationy" : 0, "hardImage" : "2c", "pos1" : "em cima", "pos2" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 2, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "em cima"}] }
+            ]
+        },
+		{
+            "id" : 9,
+            "name" : "swan",
+            "namept" : "um cisne",
+            "difficulty" : "easy",
+            "Pieces":[
+                { "id" : 0, "type" : "bigTriangle", "posx" : -0.65, "posy" : -3.02, "solposx" : -0.59, "solposy" : -2.84, "rotation" : 135, "rotationy" : 0, "hardImage" : "2l", 
+                 "edgesToCut":[
+                    { "id" : 0, "edge" : "base", "posx" : -1.49, "posy" : -1.01, "scalex" : 0.3047, "scaley" : 1 }
+                ], "pos1" : "ao centro", "pos2" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "em baixo"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à direita"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 1, "type" : "bigTriangle", "posx" : 0.79, "posy" : -1.76, "solposx" : 0.75, "solposy" : -1.633, "rotation" : 180, "rotationy" : 0, "hardImage" : "2l", "pos1" : "à direita",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "à direita"},
+                    { "id" : 2, "pieceid" : 3, "relation" : "à direita"}] },
+                { "id" : 2, "type" : "mediumTriangle", "posx" : -2.23, "posy" : -2.22, "solposx" : -2.165, "solposy" : -2.125, "rotation" : 90, "rotationy" : 0, "hardImage" : "2c",
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "right", "posx" : 0.212, "posy" : 0.503, "scalex" : 0.2204, "scaley" : 0.9577 }
+                ], "pos1" : "à esquerda", "pos1" : "em baixo",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 3, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 3, "type" : "littleTriangle", "posx" : -2.01, "posy" : -0.65, "solposx" : -1.895, "solposy" : -0.625, "rotation" : 270, "rotationy" : 0, "hardImage" : "1b", "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 1, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 6, "relation" : "em baixo"}] },
+                { "id" : 4, "type" : "littleTriangle", "posx" : -1.84, "posy" : 2.63, "solposx" : -1.74, "solposy" : 2.495, "rotation" : 225, "rotationy" : 0, "hardImage" : "2r", "pos1" : "à esquerda", "pos2" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 5, "relation" : "à esquerda"},
+                    { "id" : 1, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 5, "type" : "trapezoid", "posx" : -0.88, "posy" : 2.125, "solposx" : -0.84, "solposy" : 2.03, "rotation" : 270, "rotationy" : 180, "hardImage" : "3r", 
+                "edgesToCut":[
+                    { "id" : 0, "edge" : "top", "posx" : 0.212, "posy" : 0.528, "scalex" : 0.3169, "scaley" : 0.9523 }
+                ], "pos1" : "em cima",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 4, "relation" : "à direita"},
+                    { "id" : 1, "pieceid" : 6, "relation" : "em cima"}] },
+                { "id" : 6, "type" : "square", "posx" : -1.45, "posy" : 0.46, "solposx" : -1.38, "solposy" : 0.44, "rotation" : 45, "rotationy" : 0, "hardImage" : "2p", "pos1" : "ao centro",
+                "adjacent" : [
+                    { "id" : 0, "pieceid" : 0, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 2, "relation" : "em cima"},
+                    { "id" : 2, "pieceid" : 3, "relation" : "em cima"},
+                    { "id" : 1, "pieceid" : 4, "relation" : "em baixo"},
+                    { "id" : 2, "pieceid" : 5, "relation" : "em baixo"}] }
+            ]
+        }
+    ]
+}
