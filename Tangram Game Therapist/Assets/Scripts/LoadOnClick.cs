@@ -79,7 +79,9 @@ public class LoadOnClick : MonoBehaviour {
 
 
         Exp3 teste = new Exp3();
-        //float[] rewards = { 2.0f, 0.0f, 1.0f, 2.0f, -5.0f, 1.0f, 0.0f, 10.0f, 0.0f };
+
+        //reward [0;1]
+        //float[] rewards = { 0.0f, 0.0f, 1.0f, 0.0f, 0.1f, 1.0f, 0.5f, 1.0f, 0.0f };
         //teste.RunExp3(9, rewards, 0.07f, 200);
 
         Application.LoadLevel(2);

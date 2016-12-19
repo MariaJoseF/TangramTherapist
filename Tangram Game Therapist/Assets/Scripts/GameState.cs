@@ -178,6 +178,10 @@ public class GameState : MonoBehaviour {
         {
             Therapist.Instance.HelpMotor();
             UtterancesManager.Instance.WriteJSON("HELP MOTOR");
+
+
+
+            print("Acabou de dar uma ajuda para o motor");
         }
 		stopped = DateTime.Now;
 		dragging = false;

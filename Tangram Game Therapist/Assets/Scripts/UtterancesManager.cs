@@ -915,7 +915,7 @@ public class UtterancesManager : MonoBehaviour {
 
     public void WriteJSON(string info)
     {
-        s.WriteJSON(DateTime.Now.ToString(), info);
+        s.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), info);
     }
 
     public void Dispose()
