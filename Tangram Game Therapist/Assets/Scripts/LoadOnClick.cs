@@ -24,7 +24,6 @@ public class LoadOnClick : MonoBehaviour {
 			soundButton.image.sprite = muteSprite;
 			muted = true;
 		}
-
 	}
 
     void Update() {

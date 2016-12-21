@@ -67,7 +67,6 @@ public class Therapist : MonoBehaviour {
 	void Update(){
 		if (currentState == null)
 			currentState = PlayState;
-		currentState.Update ();
 	}
 	
 	public void BeginFirstGame(){

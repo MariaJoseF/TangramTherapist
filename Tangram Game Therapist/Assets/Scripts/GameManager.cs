@@ -253,6 +253,10 @@ public class GameManager : MonoBehaviour {
         {
             UtterancesManager.Instance.WriteJSON("PLACED " + piece);
         }
+
+
+
+        print("-------- Para cada peça inserida no sitio certo --------");
     }
 
 	public string RandomValue(List<string> list){

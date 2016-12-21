@@ -103,10 +103,12 @@ public class SolutionManager : MonoBehaviour {
 			pieceSolutions.Remove (closestSolution.Key);
 			return closest;
 		} else if (notFound)
-			GameState.Instance.NotFoundTheRightSpot(piece, notFoundPlace, notFoundDistance); 
+			//GameState.Instance.NotFoundTheRightSpot(piece, notFoundPlace, notFoundDistance);
+            GameState.Instance.RunExp(piece, 2, notFoundPlace, notFoundDistance);
 		else if (incorrectAngle)
-			GameState.Instance.IncorrectAngle(piece, incorrectAnglePlace);
-		return closest;
+			//GameState.Instance.IncorrectAngle(piece, incorrectAnglePlace);
+            GameState.Instance.RunExp(piece, 3, incorrectAnglePlace);
+        return closest;
 	}
 
 	//Place the piece in the right spot
@@ -120,7 +122,8 @@ public class SolutionManager : MonoBehaviour {
 		source.PlayOneShot(piece.GetComponent<Piece>().anchorSound,1F);
         piece.FinalStopCountingTime();
         if (pieceSolutions.Count > 0)
-			GameState.Instance.FoundTheRightSpot (piece);
+			//GameState.Instance.FoundTheRightSpot (piece);
+            GameState.Instance.RunExp(piece, 1);
         IsGameFinished();
 	}
 

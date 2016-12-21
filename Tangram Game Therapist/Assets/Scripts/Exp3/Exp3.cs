@@ -3,25 +3,28 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MathNet.Numerics.LinearAlgebra;
 
 namespace Assets.Scripts.Exp3
 {
     class Exp3
     {
-        private float[,] Weights;
+        private float[,] Weights_;
+
+        private List<Elements> Weights;
+
         private float[,] Probabilities;
         private float[,] EstimatedRewards;
         private float[,] Rewards;
-        private int action = new int();
+        private int action = 0;
 
-        public void RunExp3(int num_actions, float [] reward_actions, float gamma, int iterations)
+        public int RunExp3(int num_actions, float [] reward_actions, float gamma)
         {
  
             Weights = new float[num_actions,iterations+1];
             Probabilities = new float[num_actions, iterations];
             EstimatedRewards = new float[num_actions, iterations];
             Rewards = new float[num_actions, iterations];
-            int action = 0;
             
             //initialize all weights to 1
             //Wi(1)= 1, for i=1,....,n
@@ -77,6 +80,7 @@ namespace Assets.Scripts.Exp3
                 }
             }
             Debug.Log(" ------------");
+            return action;
         }
 
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine.UI;
+using Assets.Scripts.Exp3;
 
 public class GameState : MonoBehaviour {
 	private static GameState instance = null;
@@ -23,7 +24,9 @@ public class GameState : MonoBehaviour {
     public PieceSolution showCluePiece;
     Piece vibratingPiece;
 
-	public struct PieceInfo
+    Exp3 ExpAlgorithm;
+
+    public struct PieceInfo
 	{
 		public string shape;
 		public string size;
@@ -34,8 +37,9 @@ public class GameState : MonoBehaviour {
 	public Dictionary<int, Piece> placedPieces = new Dictionary<int, Piece> ();
 	public Dictionary<int, Piece> notPlacedPieces = new Dictionary<int, Piece> ();
     List<Piece> allPieces = new List<Piece>();
+    private int action;
 
-	public static GameState Instance {
+    public static GameState Instance {
 		get { 
 			return instance; 
 		}
@@ -55,6 +59,7 @@ public class GameState : MonoBehaviour {
 	}
 	
 	void Update () {
+
         if (gameStarted)
         {
             DateTime now = DateTime.Now;
@@ -119,13 +124,15 @@ public class GameState : MonoBehaviour {
         DisableAllPieces();
 	}
 
-	public void EndGame(){
+    public void EndGame(){
 		gameStarted = false;
         playButtonInteractable = false;
 		Therapist.Instance.EndGame();
-	}
+        print("Acabou de dar uma ajuda para EndGame");
 
-	public void StartedMoving(Piece piece) {
+    }
+
+    public void StartedMoving(Piece piece) {
 		dragging = true;
         if (Therapist.Instance.currentPiece != piece){
             if (Therapist.Instance.currentPiece != null)
@@ -142,9 +149,43 @@ public class GameState : MonoBehaviour {
 		Therapist.Instance.currentPiece = null;
 		Therapist.Instance.currentPlace = null;
 		Therapist.Instance.GivePositiveFeedback ();
-		stopped = DateTime.Now;
+        print("Acabou de dar uma ajuda para GivePositiveFeedback");
+
+        stopped = DateTime.Now;
 		dragging = false;
 	}
+
+    public void RunExp(Piece piece_, int type_feedback, PieceSolution notFoundPlace = null, double notFoundDistance = 0)
+    {
+        switch (type_feedback)
+        {
+            case 1://FoundTheRightSpot
+                FoundTheRightSpot(piece_);
+                break;
+            case 2://NotFoundTheRightSpot
+                NotFoundTheRightSpot(piece_, notFoundPlace, notFoundDistance);
+                break;
+            case 3://IncorrectAngle
+                IncorrectAngle(piece_, notFoundPlace);
+                break;
+           default:
+                break;
+        }
+
+        float[] rewards = { 0.4f, 0.4f, 0.4f, 0.4f, 0.4f,
+         0.9f, 0.9f,0.9f,
+        0.2f, 0.2f,
+        0.5f, 0.0f,
+        0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f,
+        0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f};
+
+        action = ExpAlgorithm.RunExp3(27, rewards, 0.07f);
+        print("------------------ Action selected = " + action);
+
+    }
+
+
+
 
 	public void NotFoundTheRightSpot (Piece piece, PieceSolution place, double distance) {
         if (Therapist.Instance.currentPiece != piece && Therapist.Instance.currentPiece != null){
@@ -152,7 +193,11 @@ public class GameState : MonoBehaviour {
         }
 		Therapist.Instance.currentPiece = piece;
 
-		//Piece close with the right spot
+
+        print("--------- NotFoundTheRightSpot ---------");
+
+
+        //Piece close with the right spot
         if (distance < 1.7)
         {
             UtterancesManager.Instance.WriteJSON("CLOSE TRY " + piece.name);
@@ -161,6 +206,8 @@ public class GameState : MonoBehaviour {
             {
                 GameManager.Instance.closeTries++;
                 Therapist.Instance.HelpAdjustingPiece();
+                print("Acabou de dar uma ajuda para HelpAdjustingPiece");
+
             }
         }
         //Piece in the wrong spot
@@ -170,17 +217,15 @@ public class GameState : MonoBehaviour {
             Therapist.Instance.nFailedTries++;
             print(Therapist.Instance.nFailedTries + " feed negativo");
             UtterancesManager.Instance.WriteJSON("WRONG TRY " + Therapist.Instance.nFailedTries + " " + piece.name);
-
             Therapist.Instance.GiveNegativeFeedback();
+            print("Acabou de dar uma ajuda para GiveNegativeFeedback");
+
         }
         //Problems moving the piece
         else if (SolutionManager.Instance.DistanceBetweenPositions(piece.originalPosition, piece.Position) <= 1)
         {
             Therapist.Instance.HelpMotor();
             UtterancesManager.Instance.WriteJSON("HELP MOTOR");
-
-
-
             print("Acabou de dar uma ajuda para o motor");
         }
 		stopped = DateTime.Now;
@@ -191,7 +236,8 @@ public class GameState : MonoBehaviour {
 		Therapist.Instance.currentPiece = piece;
 		Therapist.Instance.currentPlace = place;
 		Therapist.Instance.GiveNegativeFeedback ();
-		Therapist.Instance.nWrongAngleTries++;
+        print("Acabou de dar uma ajuda para IncorrectAngle");
+        Therapist.Instance.nWrongAngleTries++;
 		stopped = DateTime.Now;
 		dragging = false;
 	}
@@ -346,8 +392,10 @@ public class GameState : MonoBehaviour {
                 showCluePiece.back.GetComponent<Renderer>().enabled = true;
             showCluePiece.back.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.25f);
             UtterancesManager.Instance.WriteJSON("SHOW GLOW CLUE " + showCluePiece.name);
+            print("Acabou de dar uma ajuda para ShowClue");
+
         }
-		clueShown = true;
+        clueShown = true;
 		clueTime = DateTime.Now;
     }
 	
