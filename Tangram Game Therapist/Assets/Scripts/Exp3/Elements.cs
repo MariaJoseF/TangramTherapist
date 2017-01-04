@@ -8,7 +8,8 @@ namespace Assets.Scripts.Exp3
     class Elements
     {
         private int time_index;
-        private float element;
+        private int element;
+        private float value;
 
         public int Time_index
         {
@@ -23,7 +24,7 @@ namespace Assets.Scripts.Exp3
             }
         }
 
-        public float Element
+        public int Element
         {
             get
             {
@@ -36,11 +37,24 @@ namespace Assets.Scripts.Exp3
             }
         }
 
-        
-        public Elements(int time, float elem)
+        public float Value
+        {
+            get
+            {
+                return value;
+            }
+
+            set
+            {
+                this.value = value;
+            }
+        }
+
+        public Elements(int time, int elem, float val)
         {
             time_index = time;
             element = elem;
+            value = val;
         }
     }
 }
