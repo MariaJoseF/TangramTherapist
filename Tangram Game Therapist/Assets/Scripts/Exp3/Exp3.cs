@@ -28,11 +28,15 @@ namespace Assets.Scripts.Exp3
 
             //initialize all weights to 1
             //Wi(1)= 1, for i=1,....,n
-            for (int i = 0; i < num_actions; i++)
+            if (iterations == 0)
             {
-                Weights.Add(new Elements(iterations, i, 1.0f));
-                //Weights[i, 0] = 1.0f;
+                for (int i = 0; i < num_actions; i++)
+                {
+                    Weights.Add(new Elements(iterations, i, 1.0f));
+                    //Weights[i, 0] = 1.0f;
+                }
             }
+           
 
             float sum_weights = 0.0f;
             //At time step t -> for each round t
@@ -121,7 +125,7 @@ namespace Assets.Scripts.Exp3
                 _weight = Weights.Find(x => (x.Time_index == iterations && x.Element == i));
                 _probabilities = Probabilities.Find(x => (x.Time_index == iterations && x.Element == i));
                 _EstRewards = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == i));
-                _weight_plus_one = Weights.Find(x => (x.Time_index == iterations && x.Element == i));
+                _weight_plus_one = Weights.Find(x => (x.Time_index == iterations + 1 && x.Element == i));
 
                 if (_weight != null)
                 {
