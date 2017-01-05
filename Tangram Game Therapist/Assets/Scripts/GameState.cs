@@ -24,7 +24,7 @@ public class GameState : MonoBehaviour {
     public PieceSolution showCluePiece;
     Piece vibratingPiece;
 
-    Exp3 ExpAlgorithm;
+    Exp3 ExpAlgorithm = new Exp3();
 
     public struct PieceInfo
 	{
@@ -179,8 +179,20 @@ public class GameState : MonoBehaviour {
         0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f,
         0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f};
 
-        action = ExpAlgorithm.RunExp3(27, rewards, 0.07f);
-        print("------------------ Action selected = " + action);
+        try
+        {
+            action = ExpAlgorithm.RunExp3(27, rewards, 0.07f);
+            print("------------------ Action selected = " + action);
+        }
+        catch (Exception e)
+        {
+
+            Debug.Log("Error : " + e.Message);
+        }
+        finally
+        {
+            Debug.Log("Finaly ExpAlgorithm.RunExp3(27, rewards, 0.07f);");
+        }
 
     }
 

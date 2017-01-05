@@ -56,5 +56,10 @@ namespace Assets.Scripts.Exp3
             element = elem;
             value = val;
         }
+
+        public override string ToString()
+        {
+            return "" + value;
+        }
     }
 }
