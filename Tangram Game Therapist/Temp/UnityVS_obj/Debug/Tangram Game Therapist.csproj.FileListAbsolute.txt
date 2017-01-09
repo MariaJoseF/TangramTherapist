@@ -1,0 +1,17 @@
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_obj\Debug\Tangram Game Therapist.csprojResolveAssemblyReference.cache
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\CookComputing.XmlRpcV2.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\LitJson.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\Mono.Cecil.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_bin\Debug\Mono.Cecil.xml
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll
+C:\Users\M@rie\Desktop\Git\Tangram Game Therapist\Temp\UnityVS_obj\Debug\Assembly-CSharp.pdb

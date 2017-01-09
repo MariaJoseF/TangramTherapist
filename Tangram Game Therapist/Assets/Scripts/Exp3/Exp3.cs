@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Assets.Scripts.Exp3
 {
@@ -14,7 +15,8 @@ namespace Assets.Scripts.Exp3
         private List<Elements> EstimatedRewards = new List<Elements>();
         private List<Elements> Rewards = new List<Elements>();
         private int action = 0;
-        int iterations = 0;
+        private int iterations = 0;
+        private string fileName = null;
 
         /// <summary>
         /// 
@@ -33,6 +35,9 @@ namespace Assets.Scripts.Exp3
                 for (int i = 0; i < num_actions; i++)
                 {
                     Weights.Add(new Elements(iterations, i, 1.0f));
+
+                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Weights[" + i + ", " + iterations + "] = " + Weights.LastIndexOf(new Elements(iterations, i, 1.0f)).ToString());
+
                     //Weights[i, 0] = 1.0f;
                 }
             }
@@ -42,7 +47,11 @@ namespace Assets.Scripts.Exp3
             //At time step t -> for each round t
             //for (int t = 0; t < iterations; t++)
             //{
-            Debug.Log(" ------ t = " + iterations + " ------");
+            //Debug.Log(" ------ t = " + iterations + " ------");
+
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), " ------ t = " + iterations + " ------");
+
+
             sum_weights = SumWeights(num_actions, iterations);
             //for each action i, set
             Elements _weight;
@@ -58,16 +67,25 @@ namespace Assets.Scripts.Exp3
 
                 prob = (1 - gamma) * (_weight.Value / sum_weights) + (gamma / num_actions);
                 Probabilities.Add(new Elements(iterations, i, prob));
-                Debug.Log("     Probabilities[i, t] = " + Probabilities.LastIndexOf(new Elements(iterations, i, prob)).ToString());
+
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Probabilities[" + i + ", " + iterations + "] = " + Probabilities.LastIndexOf(new Elements(iterations, i, prob)).ToString());
+
+                //Debug.Log("     Probabilities[i, t] = " + Probabilities.LastIndexOf(new Elements(iterations, i, prob)).ToString());
             }
 
             //Randomly draw an action according to p1(t), ...., pn(t)
             action = RandomPickAction(num_actions, iterations);
-            Debug.Log("     Action number = " + action);
+            //Debug.Log("     Action number = " + action);
+
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Action number = " + action);
+
+
             //observe the reward r(t)
 
             //Rewards[action, t] = reward_actions[action];
             Rewards.Add(new Elements(iterations, action, reward_actions[action]));
+
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + action + ", " + iterations + "] = " + Rewards.LastIndexOf(new Elements(iterations, action, reward_actions[action])).ToString());
 
             //update estimated reward   ^ri(t) 
 
@@ -89,7 +107,11 @@ namespace Assets.Scripts.Exp3
                     reward_prob = new Elements(iterations, j, (_reward.Value / _probabilities.Value));
                     EstimatedRewards.Add(reward_prob);
 
-                    Debug.Log("     EstimatedRewards[j, t]  = " + EstimatedRewards.LastIndexOf(reward_prob).ToString());
+
+                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.LastIndexOf(reward_prob).ToString());
+
+
+                    //Debug.Log("     EstimatedRewards[j, t]  = " + EstimatedRewards.LastIndexOf(reward_prob).ToString());
 
                     //Update weights
                     float ga_act = (gamma / num_actions);
@@ -101,6 +123,9 @@ namespace Assets.Scripts.Exp3
                     //Weights[action, t + 1] = _weights_action.Value * e_power;
                     _weight_plus_one = new Elements(iterations + 1, action, (_weight.Value * e_power));
                     Weights.Add(_weight_plus_one);
+
+
+                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + action + ", " + (iterations + 1) + "] = " + Weights.LastIndexOf(_weight_plus_one).ToString());
                 }
                 else
                 {
@@ -113,7 +138,11 @@ namespace Assets.Scripts.Exp3
                     Weights.Add(_weight_plus_one);
                 }
 
-                Debug.Log("     Weights[action, t + 1] = " + Weights.LastIndexOf(_weight_plus_one).ToString());
+
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + action + ", " + (iterations + 1) + "] = " + Weights.LastIndexOf(_weight_plus_one).ToString());
+
+
+                //Debug.Log("     Weights[action, t + 1] = " + Weights.LastIndexOf(_weight_plus_one).ToString());
             }
             //}
 
@@ -151,6 +180,15 @@ namespace Assets.Scripts.Exp3
                 //    "     Probabilities[" + i + ", " + iterations + "] = " + _probabilities.Value +
                 //    "     EstimatedRewards[" + i + ", " + iterations + "]  = " + _EstRewards.Value +
                 //    "     Weights[" + i + ", " + (iterations + 1) + "] = " + _weight_plus_one.Value;
+
+            
+                
+                
+                
+                //WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), text);
+
+
+
 
                 Debug.Log(text);
             }
@@ -199,5 +237,52 @@ namespace Assets.Scripts.Exp3
             }
             return sum_weights;
         }
+
+        private void WriteJSON(string timestamp, string info)
+        {
+
+            /********************************
+             */
+            string filePath = "c:";
+            Console.WriteLine(filePath);
+            try
+            {
+                if (!Directory.Exists(filePath))
+                {
+                    Directory.CreateDirectory(filePath);
+                    Console.WriteLine(filePath);
+                }
+
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            /********************************
+            */
+
+            if (fileName == null)
+            {
+                fileName = filePath + @"\Developer\Logs\EXP3\exp3_" + String.Format("{0:dd-MM-yyyy hh-mm-ss}", DateTime.Now) + ".txt";
+                Console.WriteLine(filePath + @"\" + String.Format("{0:dd-MM-yyyy hh-mm-ss}", DateTime.Now) + ".txt");
+                using (System.IO.StreamWriter file =
+                    new System.IO.StreamWriter(fileName))
+                {
+
+                    file.WriteLine(timestamp + " " + info);
+                }
+            }
+            else
+            {
+                using (System.IO.StreamWriter file =
+                        new System.IO.StreamWriter(fileName, true))
+                {
+
+                    file.WriteLine(timestamp + " " + info);
+                }
+            }
+        }
+
+
     }
 }

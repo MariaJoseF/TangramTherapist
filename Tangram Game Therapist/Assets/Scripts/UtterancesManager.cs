@@ -773,145 +773,145 @@ public class UtterancesManager : MonoBehaviour {
             return false;
     }
 
-    public void PGreeting()
-    {
-        s.PGreeting();
-    }
+    //public void PGreeting()
+    //{
+    //    s.PGreeting();
+    //}
 
-    public void PButtonHelp()
-    {
-        s.PButtonHelp();
-    }
+    //public void PButtonHelp()
+    //{
+    //    s.PButtonHelp();
+    //}
 
-    public void PFingerHelp()
-    {
-        s.PFingerHelp();
-    }
+    //public void PFingerHelp()
+    //{
+    //    s.PFingerHelp();
+    //}
 
-    public void PWin(string puzzle)
-    {
-        if (currentUtterance != null)
-        {
-            s.CancelUtterance(currentUtterance);
-        }
-        s.PWin(puzzle);
-    }
+    //public void PWin(string puzzle)
+    //{
+    //    if (currentUtterance != null)
+    //    {
+    //        s.CancelUtterance(currentUtterance);
+    //    }
+    //    s.PWin(puzzle);
+    //}
 
-    public void PChildTurn()
-    {
-        s.PChildTurn();
-    }
+    //public void PChildTurn()
+    //{
+    //    s.PChildTurn();
+    //}
 
-    public void PRobotTurn()
-    {
-        s.PRobotTurn();
-    }
+    //public void PRobotTurn()
+    //{
+    //    s.PRobotTurn();
+    //}
 
-    public void PRobotWin(string nPieces)
-    {
-        if (currentUtterance != null)
-        {
-            s.CancelUtterance(currentUtterance);
-        }
-        s.PRobotWin(nPieces);
-    }
+    //public void PRobotWin(string nPieces)
+    //{
+    //    if (currentUtterance != null)
+    //    {
+    //        s.CancelUtterance(currentUtterance);
+    //    }
+    //    s.PRobotWin(nPieces);
+    //}
 
-    public void PRobotReminder()
-    {
-        if (currentUtterance == null)
-            s.PRobotTurn();
-    }
+    //public void PRobotReminder()
+    //{
+    //    if (currentUtterance == null)
+    //        s.PRobotTurn();
+    //}
 
-    public bool PAskingPlace(string piece)
-    {
-        if (currentUtterance == null)
-        {
-            s.PAskingPlace(piece);
-            return true;
-        }
-        else
-            return false;
-    }
+    //public bool PAskingPlace(string piece)
+    //{
+    //    if (currentUtterance == null)
+    //    {
+    //        s.PAskingPlace(piece);
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
-    public bool PAskingRotate(string piece)
-    {
-        if (currentUtterance == null)
-        {
-            s.PAskingRotate(piece);
-            return true;
-        }
-        else
-            return false;
-    }
+    //public bool PAskingRotate(string piece)
+    //{
+    //    if (currentUtterance == null)
+    //    {
+    //        s.PAskingRotate(piece);
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
-    public void PAskingPlaceWin()
-    {
-        if (currentUtterance != null)
-        {
-            s.CancelUtterance(currentUtterance);
-        }
-        s.PAskingPlaceWin();
-    }
+    //public void PAskingPlaceWin()
+    //{
+    //    if (currentUtterance != null)
+    //    {
+    //        s.CancelUtterance(currentUtterance);
+    //    }
+    //    s.PAskingPlaceWin();
+    //}
 
-    public void PAskingRotateWin()
-    {
-        if (currentUtterance != null)
-        {
-            s.CancelUtterance(currentUtterance);
-        }
-        s.PAskingRotateWin();
-    }
+    //public void PAskingRotateWin()
+    //{
+    //    if (currentUtterance != null)
+    //    {
+    //        s.CancelUtterance(currentUtterance);
+    //    }
+    //    s.PAskingRotateWin();
+    //}
 
-    public void PAskingPlaceWrong(string piece)
-    {
-        if (currentUtterance != null)
-        {
-            s.CancelUtterance(currentUtterance);
-        }
-        s.PAskingPlaceWrong(piece);
-    }
+    //public void PAskingPlaceWrong(string piece)
+    //{
+    //    if (currentUtterance != null)
+    //    {
+    //        s.CancelUtterance(currentUtterance);
+    //    }
+    //    s.PAskingPlaceWrong(piece);
+    //}
 
-    public bool PAskingRotateWrong(string piece)
-    {
-        if (currentUtterance == null)
-        {
-            s.PAskingRotateWrong(piece);
-            return true;
-        }
-        else
-            return false;
-    }
+    //public bool PAskingRotateWrong(string piece)
+    //{
+    //    if (currentUtterance == null)
+    //    {
+    //        s.PAskingRotateWrong(piece);
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
-    public void PAskingQuit()
-    {
-        if (currentUtterance != null)
-        {
-            s.CancelUtterance(currentUtterance);
-        }
-        s.PAskingQuit();
-    }
+    //public void PAskingQuit()
+    //{
+    //    if (currentUtterance != null)
+    //    {
+    //        s.CancelUtterance(currentUtterance);
+    //    }
+    //    s.PAskingQuit();
+    //}
 
-    public bool PGivingPlace(string piece, string pos)
-    {
-        if (currentUtterance == null)
-        {
-            s.PGivingPlace(piece, pos);
-            return true;
-        }
-        else
-            return false;
-    }
+    //public bool PGivingPlace(string piece, string pos)
+    //{
+    //    if (currentUtterance == null)
+    //    {
+    //        s.PGivingPlace(piece, pos);
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
-    public bool PGivingRotate(string piece)
-    {
-        if (currentUtterance == null)
-        {
-            s.PGivingRotate(piece);
-            return true;
-        }
-        else
-            return false;
-    }
+    //public bool PGivingRotate(string piece)
+    //{
+    //    if (currentUtterance == null)
+    //    {
+    //        s.PGivingRotate(piece);
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
     public void WriteJSON(string info)
     {

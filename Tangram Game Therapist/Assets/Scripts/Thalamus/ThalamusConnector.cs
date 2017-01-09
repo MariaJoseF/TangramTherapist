@@ -646,309 +646,309 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PGreeting(string player)
-    {
-        try
-        {
-            _rpcProxy.PGreeting(player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("pgreeting exception finally");
-        }
-    }
+    //public void PGreeting(string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PGreeting(player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("pgreeting exception finally");
+    //    }
+    //}
 
-    public void PButtonHelp()
-    {
-        try
-        {
-            _rpcProxy.PButtonHelp();
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("pbuttonhelp exception finally");
-        }
-    }
+    //public void PButtonHelp()
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PButtonHelp();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("pbuttonhelp exception finally");
+    //    }
+    //}
 
-    public void PFingerHelp()
-    {
-        try
-        {
-            _rpcProxy.PFingerHelp();
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("pfingerhelp exception finally");
-        }
-    }
+    //public void PFingerHelp()
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PFingerHelp();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("pfingerhelp exception finally");
+    //    }
+    //}
 
-    public void PWin(string puzzle, string player)
-    {
-        try
-        {
-            _rpcProxy.PWin(puzzle, player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("pwin exception finally");
-        }
-    }
+    //public void PWin(string puzzle, string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PWin(puzzle, player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("pwin exception finally");
+    //    }
+    //}
 
-    public void PChildTurn(string player)
-    {
-        try
-        {
-            _rpcProxy.PChildTurn(player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("pchildturn exception finally");
-        }
-    }
+    //public void PChildTurn(string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PChildTurn(player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("pchildturn exception finally");
+    //    }
+    //}
 
-    public void PRobotTurn()
-    {
-        try
-        {
-            _rpcProxy.PRobotTurn();
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("probotturn exception finally");
-        }
-    }
+    //public void PRobotTurn()
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PRobotTurn();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("probotturn exception finally");
+    //    }
+    //}
 
-    public void PRobotDrag()
-    {
-        try
-        {
-            _rpcProxy.PRobotDrag();
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("probotfrag exception finally");
-        }
-    }
+    //public void PRobotDrag()
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PRobotDrag();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("probotfrag exception finally");
+    //    }
+    //}
 
-    public void PRobotRotDrag()
-    {
-        try
-        {
-            _rpcProxy.PRobotRotDrag();
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("probotrotdrag exception finally");
-        }
-    }
+    //public void PRobotRotDrag()
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PRobotRotDrag();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("probotrotdrag exception finally");
+    //    }
+    //}
 
-    public void PRobotWin(string nPieces, string player)
-    {
-        try
-        {
-            _rpcProxy.PRobotWin(nPieces, player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("probotwin exception finally");
-        }
-    }
+    //public void PRobotWin(string nPieces, string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PRobotWin(nPieces, player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("probotwin exception finally");
+    //    }
+    //}
 
-    public void PRobotReminder()
-    {
-        try
-        {
-            _rpcProxy.PRobotReminder();
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("probotreminder exception finally");
-        }
-    }
+    //public void PRobotReminder()
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PRobotReminder();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("probotreminder exception finally");
+    //    }
+    //}
 
-    public void PAskingPlace(string piece, string player)
-    {
-        try
-        {
-            _rpcProxy.PAskingPlace(piece, player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("paskingplace exception finally");
-        }
-    }
+    //public void PAskingPlace(string piece, string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PAskingPlace(piece, player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("paskingplace exception finally");
+    //    }
+    //}
 
-    public void PAskingRotate(string piece, string player)
-    {
-        try
-        {
-            _rpcProxy.PAskingRotate(piece, player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("paskingrotate exception finally");
-        }
-    }
+    //public void PAskingRotate(string piece, string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PAskingRotate(piece, player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("paskingrotate exception finally");
+    //    }
+    //}
 
-    public void PAskingPlaceWin(string player)
-    {
-        try
-        {
-            _rpcProxy.PAskingPlaceWin(player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("paskingplacewin exception finally");
-        }
-    }
+    //public void PAskingPlaceWin(string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PAskingPlaceWin(player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("paskingplacewin exception finally");
+    //    }
+    //}
 
-    public void PAskingRotateWin(string player)
-    {
-        try
-        {
-            _rpcProxy.PAskingRotateWin(player);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("paskingrotatewin exception finally");
-        }
-    }
+    //public void PAskingRotateWin(string player)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PAskingRotateWin(player);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("paskingrotatewin exception finally");
+    //    }
+    //}
 
-    public void PAskingPlaceWrong(string piece)
-    {
-        try
-        {
-            _rpcProxy.PAskingPlaceWrong(piece);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("paskingplacewrong exception finally");
-        }
-    }
+    //public void PAskingPlaceWrong(string piece)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PAskingPlaceWrong(piece);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("paskingplacewrong exception finally");
+    //    }
+    //}
 
-    public void PAskingRotateWrong(string piece)
-    {
-        try
-        {
-            _rpcProxy.PAskingRotateWrong(piece);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("paskingrotatewrong exception finally");
-        }
-    }
+    //public void PAskingRotateWrong(string piece)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PAskingRotateWrong(piece);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("paskingrotatewrong exception finally");
+    //    }
+    //}
 
-    public void PAskingQuit()
-    {
-        try
-        {
-            _rpcProxy.PAskingQuit();
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("paskingquit exception finally");
-        }
-    }
+    //public void PAskingQuit()
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PAskingQuit();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("paskingquit exception finally");
+    //    }
+    //}
 
-    public void PGivingPlace(string piece, string pos)
-    {
-        try
-        {
-            _rpcProxy.PGivingPlace(piece, pos);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("pgivingplace exception finally");
-        }
-    }
+    //public void PGivingPlace(string piece, string pos)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PGivingPlace(piece, pos);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("pgivingplace exception finally");
+    //    }
+    //}
 
-    public void PGivingRotate(string piece)
-    {
-        try
-        {
-            _rpcProxy.PGivingRotate(piece);
-        }
-        catch (Exception e)
-        {
-            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
-        }
-        finally
-        {
-            Debug.Log("pgivingrotate exception finally");
-        }
-    }
+    //public void PGivingRotate(string piece)
+    //{
+    //    try
+    //    {
+    //        _rpcProxy.PGivingRotate(piece);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+    //    }
+    //    finally
+    //    {
+    //        Debug.Log("pgivingrotate exception finally");
+    //    }
+    //}
 
     public void WriteJSON(string timestamp, string info)
     {
