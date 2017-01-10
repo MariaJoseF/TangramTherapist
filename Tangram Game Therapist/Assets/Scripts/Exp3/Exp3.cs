@@ -34,14 +34,12 @@ namespace Assets.Scripts.Exp3
             {
                 for (int i = 0; i < num_actions; i++)
                 {
-                    Weights.Add(new Elements(iterations, i, 1.0f));
-
-                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Weights[" + i + ", " + iterations + "] = " + Weights.LastIndexOf(new Elements(iterations, i, 1.0f)).ToString());
-
                     //Weights[i, 0] = 1.0f;
+                    Weights.Add(new Elements(iterations, i, 1.0f));
+                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Weights[" + i + ", " + iterations + "] = " + Weights.Find(x => (x.Time_index == iterations && x.Element == i)));
                 }
             }
-           
+
 
             float sum_weights = 0.0f;
             //At time step t -> for each round t
@@ -51,31 +49,25 @@ namespace Assets.Scripts.Exp3
 
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), " ------ t = " + iterations + " ------");
 
-
             sum_weights = SumWeights(num_actions, iterations);
             //for each action i, set
             Elements _weight;
             float prob;
             for (int i = 0; i < num_actions; i++)
             {
-                //pi(t) = (1-gamma) *[(Wi(t)/(Sum of i until n Wi(t))]+(gamma/n) 
-
-
-                // parts.Find(x => x.PartName.Contains("seat")));
+                //pi(t) = (1-gamma) *[(Wi(t)/(Sum of i until n Wi(t))]+(gamma/n); 
 
                 _weight = Weights.Find(x => (x.Time_index == iterations && x.Element == i));
 
                 prob = (1 - gamma) * (_weight.Value / sum_weights) + (gamma / num_actions);
                 Probabilities.Add(new Elements(iterations, i, prob));
 
-                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Probabilities[" + i + ", " + iterations + "] = " + Probabilities.LastIndexOf(new Elements(iterations, i, prob)).ToString());
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Probabilities[" + i + ", " + iterations + "] = " + Probabilities.Find(x => (x.Time_index == iterations && x.Element == i)));
 
-                //Debug.Log("     Probabilities[i, t] = " + Probabilities.LastIndexOf(new Elements(iterations, i, prob)).ToString());
             }
 
             //Randomly draw an action according to p1(t), ...., pn(t)
             action = RandomPickAction(num_actions, iterations);
-            //Debug.Log("     Action number = " + action);
 
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Action number = " + action);
 
@@ -85,7 +77,7 @@ namespace Assets.Scripts.Exp3
             //Rewards[action, t] = reward_actions[action];
             Rewards.Add(new Elements(iterations, action, reward_actions[action]));
 
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + action + ", " + iterations + "] = " + Rewards.LastIndexOf(new Elements(iterations, action, reward_actions[action])).ToString());
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == action)));
 
             //update estimated reward   ^ri(t) 
 
@@ -107,95 +99,36 @@ namespace Assets.Scripts.Exp3
                     reward_prob = new Elements(iterations, j, (_reward.Value / _probabilities.Value));
                     EstimatedRewards.Add(reward_prob);
 
-
-                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.LastIndexOf(reward_prob).ToString());
-
-
-                    //Debug.Log("     EstimatedRewards[j, t]  = " + EstimatedRewards.LastIndexOf(reward_prob).ToString());
-
                     //Update weights
                     float ga_act = (gamma / num_actions);
-                    _EstRewards = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == action));
+                    _EstRewards = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j));
                     float e_power = (float)Math.Exp(ga_act * _EstRewards.Value);
 
                     //Wt+1(at) = Wt(at) e^(n*^rat(t))
-                    _weight = Weights.Find(x => (x.Time_index == iterations && x.Element == action));
+                    _weight = Weights.Find(x => (x.Time_index == iterations && x.Element == j));
                     //Weights[action, t + 1] = _weights_action.Value * e_power;
-                    _weight_plus_one = new Elements(iterations + 1, action, (_weight.Value * e_power));
+                    _weight_plus_one = new Elements(iterations + 1, j, (_weight.Value * e_power));
                     Weights.Add(_weight_plus_one);
-
-
-                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + action + ", " + (iterations + 1) + "] = " + Weights.LastIndexOf(_weight_plus_one).ToString());
                 }
                 else
                 {
                     // ^ri(t) =0
                     //EstimatedRewards[j, t] = 0.0f;
                     EstimatedRewards.Add(new Elements(iterations, j, 0.0f));
+
                     //Wt+1(j) = Wt(j)
                     _weight = Weights.Find(x => (x.Time_index == iterations && x.Element == j));
-                    _weight_plus_one = new Elements(iterations + 1, action, (_weight.Value));
+                    _weight_plus_one = new Elements(iterations + 1, j, (_weight.Value));
                     Weights.Add(_weight_plus_one);
                 }
 
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j)));
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + j + ", " + (iterations + 1) + "] = " + Weights.Find(x => (x.Time_index == (iterations + 1) && x.Element == j)));
 
-                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + action + ", " + (iterations + 1) + "] = " + Weights.LastIndexOf(_weight_plus_one).ToString());
-
-
-                //Debug.Log("     Weights[action, t + 1] = " + Weights.LastIndexOf(_weight_plus_one).ToString());
             }
-            //}
 
-            //////////////////////
-            String text = "";
-            for (int i = 0; i < num_actions; i++)
-            {
-                //Debug.Log(" action = " + i);
-                _weight = Weights.Find(x => (x.Time_index == iterations && x.Element == i));
-                _probabilities = Probabilities.Find(x => (x.Time_index == iterations && x.Element == i));
-                _EstRewards = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == i));
-                _weight_plus_one = Weights.Find(x => (x.Time_index == iterations + 1 && x.Element == i));
-
-                if (_weight != null)
-                {
-                    text = "Weights[" + i + ", " + iterations + "] = " + _weight.Value;
-                }
-
-                if (_probabilities != null)
-                {
-                    text = text + "     Probabilities[" + i + ", " + iterations + "] = " + _probabilities.Value;
-                }
-
-                if (_EstRewards != null)
-                {
-                    text = text + "     EstimatedRewards[" + i + ", " + iterations + "]  = " + _EstRewards.Value;
-                }
-
-                if (_weight_plus_one != null)
-                {
-                    text = text + "     Weights[" + i + ", " + (iterations + 1) + "] = " + _weight_plus_one.Value;
-                }
-
-                //text = "Weights[" + i + ", " + iterations + "] = " + _weight.Value +
-                //    "     Probabilities[" + i + ", " + iterations + "] = " + _probabilities.Value +
-                //    "     EstimatedRewards[" + i + ", " + iterations + "]  = " + _EstRewards.Value +
-                //    "     Weights[" + i + ", " + (iterations + 1) + "] = " + _weight_plus_one.Value;
-
-            
-                
-                
-                
-                //WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), text);
-
-
-
-
-                Debug.Log(text);
-            }
-            //////////////////////
             iterations++;
 
-            Debug.Log(" ------------");
             return action;
         }
 

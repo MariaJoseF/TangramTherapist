@@ -87,62 +87,62 @@ public interface ITMessages
     [XmlRpcMethod]
     void HardClue(string player);
 
-    //[XmlRpcMethod]
-    //void PGreeting(string player);
+    [XmlRpcMethod]
+    void PGreeting(string player);
 
-    //[XmlRpcMethod]
-    //void PButtonHelp();
+    [XmlRpcMethod]
+    void PButtonHelp();
 
-    //[XmlRpcMethod]
-    //void PFingerHelp();
+    [XmlRpcMethod]
+    void PFingerHelp();
 
-    //[XmlRpcMethod]
-    //void PWin(string puzzle, string player);
+    [XmlRpcMethod]
+    void PWin(string puzzle, string player);
 
-    //[XmlRpcMethod]
-    //void PChildTurn(string player);
+    [XmlRpcMethod]
+    void PChildTurn(string player);
 
-    //[XmlRpcMethod]
-    //void PRobotTurn();
+    [XmlRpcMethod]
+    void PRobotTurn();
 
-    //[XmlRpcMethod]
-    //void PRobotDrag();
+    [XmlRpcMethod]
+    void PRobotDrag();
 
-    //[XmlRpcMethod]
-    //void PRobotRotDrag();
+    [XmlRpcMethod]
+    void PRobotRotDrag();
 
-    //[XmlRpcMethod]
-    //void PRobotWin(string nPieces, string player);
+    [XmlRpcMethod]
+    void PRobotWin(string nPieces, string player);
 
-    //[XmlRpcMethod]
-    //void PRobotReminder();
+    [XmlRpcMethod]
+    void PRobotReminder();
 
-    //[XmlRpcMethod]
-    //void PAskingPlace(string piece, string player);
+    [XmlRpcMethod]
+    void PAskingPlace(string piece, string player);
 
-    //[XmlRpcMethod]
-    //void PAskingRotate(string piece, string player);
+    [XmlRpcMethod]
+    void PAskingRotate(string piece, string player);
 
-    //[XmlRpcMethod]
-    //void PAskingPlaceWin(string player);
+    [XmlRpcMethod]
+    void PAskingPlaceWin(string player);
 
-    //[XmlRpcMethod]
-    //void PAskingRotateWin(string player);
+    [XmlRpcMethod]
+    void PAskingRotateWin(string player);
 
-    //[XmlRpcMethod]
-    //void PAskingPlaceWrong(string piece);
+    [XmlRpcMethod]
+    void PAskingPlaceWrong(string piece);
 
-    //[XmlRpcMethod]
-    //void PAskingRotateWrong(string piece);
+    [XmlRpcMethod]
+    void PAskingRotateWrong(string piece);
 
-    //[XmlRpcMethod]
-    //void PAskingQuit();
+    [XmlRpcMethod]
+    void PAskingQuit();
 
-    //[XmlRpcMethod]
-    //void PGivingPlace(string piece, string pos);
+    [XmlRpcMethod]
+    void PGivingPlace(string piece, string pos);
 
-    //[XmlRpcMethod]
-    //void PGivingRotate(string piece);
+    [XmlRpcMethod]
+    void PGivingRotate(string piece);
 
     [XmlRpcMethod]
     void WriteJSON(string timestamp, string info);

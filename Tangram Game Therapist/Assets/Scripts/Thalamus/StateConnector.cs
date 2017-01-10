@@ -158,100 +158,100 @@ public class StateConnector
         _thalamusConnector.HardClue(GameManager.Instance.playerName);
     }
 
-    //public void PGreeting()
-    //{
-    //    _thalamusConnector.PGreeting(GameManager.Instance.playerName);
-    //}
+    public void PGreeting()
+    {
+        _thalamusConnector.PGreeting(GameManager.Instance.playerName);
+    }
 
-    //public void PButtonHelp()
-    //{
-    //    _thalamusConnector.PButtonHelp();
-    //}
+    public void PButtonHelp()
+    {
+        _thalamusConnector.PButtonHelp();
+    }
 
-    //public void PFingerHelp()
-    //{
-    //    _thalamusConnector.PFingerHelp();
-    //}
+    public void PFingerHelp()
+    {
+        _thalamusConnector.PFingerHelp();
+    }
 
-    //public void PWin(string puzzle)
-    //{
-    //    _thalamusConnector.PWin(puzzle, GameManager.Instance.playerName);
-    //}
+    public void PWin(string puzzle)
+    {
+        _thalamusConnector.PWin(puzzle, GameManager.Instance.playerName);
+    }
 
-    //public void PChildTurn()
-    //{
-    //    _thalamusConnector.PChildTurn(GameManager.Instance.playerName);
-    //}
+    public void PChildTurn()
+    {
+        _thalamusConnector.PChildTurn(GameManager.Instance.playerName);
+    }
 
-    //public void PRobotTurn()
-    //{
-    //    _thalamusConnector.PRobotTurn();
-    //}
+    public void PRobotTurn()
+    {
+        _thalamusConnector.PRobotTurn();
+    }
 
-    //public void PRobotDrag()
-    //{
-    //    _thalamusConnector.PRobotDrag();
-    //}
+    public void PRobotDrag()
+    {
+        _thalamusConnector.PRobotDrag();
+    }
 
-    //public void PRobotRotDrag()
-    //{
-    //    _thalamusConnector.PRobotRotDrag();
-    //}
+    public void PRobotRotDrag()
+    {
+        _thalamusConnector.PRobotRotDrag();
+    }
 
-    //public void PRobotWin(string nPieces)
-    //{
-    //    _thalamusConnector.PRobotWin(nPieces, GameManager.Instance.playerName);
-    //}
+    public void PRobotWin(string nPieces)
+    {
+        _thalamusConnector.PRobotWin(nPieces, GameManager.Instance.playerName);
+    }
 
-    //public void PRobotReminder()
-    //{
-    //    _thalamusConnector.PRobotReminder();
-    //}
+    public void PRobotReminder()
+    {
+        _thalamusConnector.PRobotReminder();
+    }
 
-    //public void PAskingPlace(string piece)
-    //{
-    //    _thalamusConnector.PAskingPlace(piece, GameManager.Instance.playerName);
-    //}
+    public void PAskingPlace(string piece)
+    {
+        _thalamusConnector.PAskingPlace(piece, GameManager.Instance.playerName);
+    }
 
-    //public void PAskingRotate(string piece)
-    //{
-    //    _thalamusConnector.PAskingRotate(piece, GameManager.Instance.playerName);
-    //}
+    public void PAskingRotate(string piece)
+    {
+        _thalamusConnector.PAskingRotate(piece, GameManager.Instance.playerName);
+    }
 
-    //public void PAskingPlaceWin()
-    //{
-    //    _thalamusConnector.PAskingPlaceWin(GameManager.Instance.playerName);
-    //}
+    public void PAskingPlaceWin()
+    {
+        _thalamusConnector.PAskingPlaceWin(GameManager.Instance.playerName);
+    }
 
-    //public void PAskingRotateWin()
-    //{
-    //    _thalamusConnector.PAskingRotateWin(GameManager.Instance.playerName);
-    //}
+    public void PAskingRotateWin()
+    {
+        _thalamusConnector.PAskingRotateWin(GameManager.Instance.playerName);
+    }
 
-    //public void PAskingPlaceWrong(string piece)
-    //{
-    //    _thalamusConnector.PAskingPlaceWrong(piece);
-    //}
+    public void PAskingPlaceWrong(string piece)
+    {
+        _thalamusConnector.PAskingPlaceWrong(piece);
+    }
 
-    //public void PAskingRotateWrong(string piece)
-    //{
-    //    _thalamusConnector.PAskingRotateWrong(piece);
-    //}
+    public void PAskingRotateWrong(string piece)
+    {
+        _thalamusConnector.PAskingRotateWrong(piece);
+    }
 
-    //public void PAskingQuit()
-    //{
-    //    _thalamusConnector.PAskingQuit();
-    //}
+    public void PAskingQuit()
+    {
+        _thalamusConnector.PAskingQuit();
+    }
 
-    //public void PGivingPlace(string piece, string pos)
-    //{
-    //    _thalamusConnector.PGivingPlace(piece, pos);
-    //}
+    public void PGivingPlace(string piece, string pos)
+    {
+        _thalamusConnector.PGivingPlace(piece, pos);
+    }
 
-    //public void PGivingRotate(string piece)
-    //{
-    //    _thalamusConnector.PGivingRotate(piece);
-    //}
+    public void PGivingRotate(string piece)
+    {
+        _thalamusConnector.PGivingRotate(piece);
+    }
 
     public void WriteJSON(string timestamp, string info)
     {
