@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ButtonPiece.cs" />
     <Compile Include="Assets\Scripts\Dragable.cs" />
+    <Compile Include="Assets\Scripts\Exp3\Elements.cs" />
     <Compile Include="Assets\Scripts\Exp3\Exp3.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameState.cs" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine.UI;
+using Assets.Scripts.Exp3;
 
 public class GameState : MonoBehaviour {
 	private static GameState instance = null;
@@ -23,7 +24,10 @@ public class GameState : MonoBehaviour {
     public PieceSolution showCluePiece;
     Piece vibratingPiece;
 
-	public struct PieceInfo
+    Exp3 ExpAlgorithm = new Exp3();
+
+
+    public struct PieceInfo
 	{
 		public string shape;
 		public string size;
@@ -34,8 +38,9 @@ public class GameState : MonoBehaviour {
 	public Dictionary<int, Piece> placedPieces = new Dictionary<int, Piece> ();
 	public Dictionary<int, Piece> notPlacedPieces = new Dictionary<int, Piece> ();
     List<Piece> allPieces = new List<Piece>();
+    private int action;
 
-	public static GameState Instance {
+    public static GameState Instance {
 		get { 
 			return instance; 
 		}
@@ -146,7 +151,48 @@ public class GameState : MonoBehaviour {
 		dragging = false;
 	}
 
-	public void NotFoundTheRightSpot (Piece piece, PieceSolution place, double distance) {
+    public void RunExp(Piece piece_, int type_feedback, PieceSolution notFoundPlace = null, double notFoundDistance = 0)
+    {
+        switch (type_feedback)
+        {
+            case 1://FoundTheRightSpot
+                FoundTheRightSpot(piece_);
+                break;
+            case 2://NotFoundTheRightSpot
+                NotFoundTheRightSpot(piece_, notFoundPlace, notFoundDistance);
+                break;
+            case 3://IncorrectAngle
+                IncorrectAngle(piece_, notFoundPlace);
+                break;
+            default:
+                break;
+        }
+
+        float[] rewards = { 0.4f, 0.4f, 0.4f, 0.4f, 0.4f,
+         0.9f, 0.9f,0.9f,
+        0.2f, 0.2f,
+        0.5f, 0.0f,
+        0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f,
+        0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f};
+
+        try
+        {
+            action = ExpAlgorithm.RunExp3(27, rewards, 0.07f);
+            print("------------------ Action selected = " + action);
+        }
+        catch (Exception e)
+        {
+
+            Debug.Log("Error : " + e.Message);
+        }
+        finally
+        {
+            Debug.Log("Finaly ExpAlgorithm.RunExp3(27, rewards, 0.07f);");
+        }
+
+    }
+
+    public void NotFoundTheRightSpot (Piece piece, PieceSolution place, double distance) {
         if (Therapist.Instance.currentPiece != piece && Therapist.Instance.currentPiece != null){
             Therapist.Instance.currentPiece.StopCountingTime();
         }
