@@ -83,11 +83,11 @@ public class Therapist : MonoBehaviour {
 	}
 
 	public void HelpMotor(){
-		currentState.HelpMotor ();
+		//currentState.HelpMotor ();
 	}
 
 	public void HelpAdjustingPiece() {
-		currentState.HelpAdjustingPiece ();
+		//currentState.HelpAdjustingPiece ();
 	}
 
 	public void GivePositiveFeedback() {
@@ -96,46 +96,46 @@ public class Therapist : MonoBehaviour {
 		showedHardClue = false;
 		currentPiece = null;
 		previousState = null;
-		currentState.GivePositiveFeedback ();
+		//currentState.GivePositiveFeedback ();
 	}
 
 	public void GiveNegativeFeedback() {
-		currentState.GiveNegativeFeedback ();
+		//currentState.GiveNegativeFeedback ();
 		if(previousState != null)
 			currentState = previousState;
 		else currentState = PlayState;
 	}
 
 	public void StartedMoving (bool correctAngle){
-		currentState.StartedMoving (correctAngle);
+		//currentState.StartedMoving (correctAngle);
 	}
 
 	public void FirstIdlePrompt(){
-		currentState.FirstIdlePrompt();
+		//currentState.FirstIdlePrompt();
 	}
 
 	public void FirstAnglePrompt(){
-		currentState.FirstAnglePrompt();
+		//currentState.FirstAnglePrompt();
 	}
 
 	public void FirstPlacePrompt(){
-		currentState.FirstPlacePrompt();
+		//currentState.FirstPlacePrompt();
 	}
 
 	public void SecondAnglePrompt(){
-		currentState.SecondAnglePrompt();
+		//currentState.SecondAnglePrompt();
 	}
 
 	public void SecondPrompt(){
-		currentState.SecondPrompt();
+		//currentState.SecondPrompt();
 	}
 
 	public void ThirdAnglePrompt(){
-		currentState.ThirdAnglePrompt();
+		//currentState.ThirdAnglePrompt();
 	}
 
 	public void ThirdPrompt(){
-		currentState.ThirdPrompt();
+		//currentState.ThirdPrompt();
 	}
 
     public void Quit()

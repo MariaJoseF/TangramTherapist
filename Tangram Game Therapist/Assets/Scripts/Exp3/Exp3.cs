@@ -37,6 +37,9 @@ namespace Assets.Scripts.Exp3
                     //Weights[i, 0] = 1.0f;
                     Weights.Add(new Elements(iterations, i, 1.0f));
                     WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Weights[" + i + ", " + iterations + "] = " + Weights.Find(x => (x.Time_index == iterations && x.Element == i)));
+
+
+                    UtterancesManager.Instance.WriteJSON("EXP3 Weights[" + i + ", " + iterations + "] = " + Weights.Find(x => (x.Time_index == iterations && x.Element == i)));
                 }
             }
 
@@ -48,6 +51,7 @@ namespace Assets.Scripts.Exp3
             //Debug.Log(" ------ t = " + iterations + " ------");
 
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), " ------ t = " + iterations + " ------");
+            UtterancesManager.Instance.WriteJSON("EXP3  ------ t = " + iterations + " ------");
 
             sum_weights = SumWeights(num_actions, iterations);
             //for each action i, set
@@ -63,14 +67,14 @@ namespace Assets.Scripts.Exp3
                 Probabilities.Add(new Elements(iterations, i, prob));
 
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Probabilities[" + i + ", " + iterations + "] = " + Probabilities.Find(x => (x.Time_index == iterations && x.Element == i)));
-
+                UtterancesManager.Instance.WriteJSON("EXP3      Probabilities[" + i + ", " + iterations + "] = " + Probabilities.Find(x => (x.Time_index == iterations && x.Element == i)));
             }
 
             //Randomly draw an action according to p1(t), ...., pn(t)
             action = RandomPickAction(num_actions, iterations);
 
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Action number = " + action);
-
+            UtterancesManager.Instance.WriteJSON("EXP3      Action number = " + action);
 
             //observe the reward r(t)
 
@@ -78,6 +82,7 @@ namespace Assets.Scripts.Exp3
             Rewards.Add(new Elements(iterations, action, reward_actions[action]));
 
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == action)));
+            UtterancesManager.Instance.WriteJSON("EXP3 Rewards[" + action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == action)));
 
             //update estimated reward   ^ri(t) 
 
@@ -124,7 +129,8 @@ namespace Assets.Scripts.Exp3
 
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j)));
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + j + ", " + (iterations + 1) + "] = " + Weights.Find(x => (x.Time_index == (iterations + 1) && x.Element == j)));
-
+                UtterancesManager.Instance.WriteJSON("EXP3      EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j)));
+                UtterancesManager.Instance.WriteJSON("EXP3      Weights[" + j + ", " + (iterations + 1) + "] = " + Weights.Find(x => (x.Time_index == (iterations + 1) && x.Element == j)));
             }
 
             iterations++;
