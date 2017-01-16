@@ -188,6 +188,9 @@ public class GameState : MonoBehaviour
 
         try
         {
+            action = -1;//No action selected yet
+
+
             action = ExpAlgorithm.RunExp3(19, rewards, 0.07f);
             print("------------------ Action selected = " + action);
 
@@ -223,13 +226,13 @@ public class GameState : MonoBehaviour
                     break;
                 case 6:// -> first button angle prompt
                        // Therapist.Instance.FirstAnglePromptState.RepeatPrompt();
-                    UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                    UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(piece_.name));
                     //                    UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     break;
                 case 7:// -> second angle prompt
                        //Therapist.Instance.SecondAnglePromptState.SecondAnglePrompt();
-                    UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                    UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(piece_.name));
                     //                    UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     break;
@@ -242,7 +245,7 @@ public class GameState : MonoBehaviour
 
                     rotationDirection = CalculateDirectionOfRotation(currentPiece, currentPlace);
 
-                    UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection);
+                    UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(piece_.name), rotationDirection);
                     break;
                 case 9:// -> second button angle prompt
                        //Therapist.Instance.SecondAnglePromptState.SecondAnglePrompt();
@@ -274,7 +277,13 @@ public class GameState : MonoBehaviour
                     currentPiece = piece_;
                    // currentPiece = Therapist.Instance.currentPiece;
                     currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-                    UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2);
+
+
+                    string a = currentPlace.relPos.pos2;
+
+
+
+                    UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(piece_.name), currentPlace.relPos.pos2);
                     break;
                 case 15:// -> sec_2position prompt
                         //Therapist.Instance.SecondPromptState.SecondPrompt();
