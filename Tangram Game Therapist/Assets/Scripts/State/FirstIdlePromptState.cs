@@ -37,7 +37,7 @@ public class FirstIdlePromptState : State {
 		}
 	}
 
-	void RepeatPrompt(){
+	public void RepeatPrompt(){//não devia ser public
         lastPromptTime = DateTime.Now;
 
         if (repeatHardClue || (Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard 

@@ -82,4 +82,7 @@ public class FinalState : State {
 	public void ThirdAnglePrompt(){
 	}
 
+    public void RepeatPrompt()//não existia acrescentei
+    {
+    }
 }

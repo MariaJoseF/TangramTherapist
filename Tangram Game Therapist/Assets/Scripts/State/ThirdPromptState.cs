@@ -33,7 +33,7 @@ public class ThirdPromptState : State {
 		}   
 	}
 
-	void RepeatPrompt(){
+	public void RepeatPrompt(){//não devia ser public
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;

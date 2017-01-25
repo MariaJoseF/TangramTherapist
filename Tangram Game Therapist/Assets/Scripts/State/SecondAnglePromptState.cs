@@ -97,7 +97,7 @@ public class SecondAnglePromptState : State {
 		}
 	}
 	
-	void RepeatPrompt(){
+	public void RepeatPrompt(){//não é suposto ser public
         Therapist.Instance.nWrongAngleTries = 0;
         Therapist.Instance.nFailedTries = 0;
         lastPromptTime = DateTime.Now;

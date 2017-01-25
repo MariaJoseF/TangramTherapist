@@ -25,7 +25,34 @@ namespace Assets.Scripts.Exp3
         /// <param name="reward_actions"></param>
         /// <param name="gamma"></param>
         /// <returns></returns>
-        public int RunExp3(int num_actions, float[] reward_actions, float gamma)
+        /// 
+
+        private int num_actions;
+        private float[] reward_actions;
+        private float gamma;
+
+        public int Action
+        {
+            get
+            {
+                return action;
+            }
+
+            set
+            {
+                action = value;
+            }
+        }
+
+        public Exp3(int num_actions_, float[] reward_actions_, float gamma_)
+        {
+            num_actions = num_actions_;
+            reward_actions = reward_actions_;
+            gamma = gamma_;
+        }
+
+ 
+        public int RunExp3()
         {
 
             //initialize all weights to 1
@@ -71,18 +98,18 @@ namespace Assets.Scripts.Exp3
             }
 
             //Randomly draw an action according to p1(t), ...., pn(t)
-            action = RandomPickAction(num_actions, iterations);
+            Action = RandomPickAction(num_actions, iterations);
 
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Action number = " + action);
-            UtterancesManager.Instance.WriteJSON("EXP3      Action number = " + action);
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Action number = " + Action);
+            UtterancesManager.Instance.WriteJSON("EXP3      Action number = " + Action);
 
             //observe the reward r(t)
 
             //Rewards[action, t] = reward_actions[action];
-            Rewards.Add(new Elements(iterations, action, reward_actions[action]));
+            Rewards.Add(new Elements(iterations, Action, reward_actions[Action]));
 
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == action)));
-            UtterancesManager.Instance.WriteJSON("EXP3 Rewards[" + action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == action)));
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + Action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == Action)));
+            UtterancesManager.Instance.WriteJSON("EXP3 Rewards[" + Action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == Action)));
 
             //update estimated reward   ^ri(t) 
 
@@ -95,7 +122,7 @@ namespace Assets.Scripts.Exp3
             for (int j = 0; j < num_actions; j++)
             {
                 //if a(t)=i
-                if (action == j)
+                if (Action == j)
                 {
                     //^ri(t)  = r(t)/pi(t)
                     // EstimatedRewards[j, t] = Rewards[j, t] / Probabilities[j, t];
@@ -135,7 +162,7 @@ namespace Assets.Scripts.Exp3
 
             iterations++;
 
-            return action;
+            return Action;
         }
 
 
@@ -155,7 +182,7 @@ namespace Assets.Scripts.Exp3
                 selected_action = i;
                 _probabilities = Probabilities.Find(x => (x.Time_index == time_ && x.Element == i));
                 sum_prob = sum_prob + _probabilities.Value;
-                Debug.Log("         sum_prob = " + sum_prob);
+               // Debug.Log("         sum_prob = " + sum_prob);
                 if (sum_prob >= dou_)
                 {
                     break;

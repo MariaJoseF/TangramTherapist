@@ -34,4 +34,6 @@ public interface State {
 	void ThirdPrompt();
 
 	void Update();
+
+    void RepeatPrompt();//acrescentei este
 }

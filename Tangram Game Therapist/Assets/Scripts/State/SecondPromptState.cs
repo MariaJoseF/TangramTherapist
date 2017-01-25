@@ -57,7 +57,7 @@ public class SecondPromptState : State {
 		}
 	}
 	
-	void RepeatPrompt(){
+	public void RepeatPrompt(){//não devia ser public
 		lastPromptTime = DateTime.Now;
         Therapist.Instance.nWrongAngleTries = 0;
         Therapist.Instance.nFailedTries = 0;

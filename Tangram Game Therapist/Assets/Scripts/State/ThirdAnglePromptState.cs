@@ -32,7 +32,7 @@ public class ThirdAnglePromptState : State {
 		}   
 	}
 
-	void RepeatPrompt(){
+	public void RepeatPrompt(){//não é suposto ser public
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;

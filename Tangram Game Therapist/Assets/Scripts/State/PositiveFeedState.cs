@@ -75,4 +75,8 @@ public class PositiveFeedState : State {
 
 	public void Update(){		
 	}
+
+    public void RepeatPrompt()//não existia acrescentei
+    {
+    }
 }

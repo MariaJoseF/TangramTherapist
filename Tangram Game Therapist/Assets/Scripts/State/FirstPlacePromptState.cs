@@ -54,7 +54,7 @@ public class FirstPlacePromptState : State {
 		Therapist.Instance.previousState = null;
 	}
 
-	void RepeatPrompt(){
+	public void RepeatPrompt(){//não devia ser public
         Therapist.Instance.nFailedTries = 0;
         lastPromptTime = DateTime.Now;
         repeatPrompt = false;

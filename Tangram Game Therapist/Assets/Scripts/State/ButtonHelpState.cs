@@ -64,4 +64,8 @@ public class ButtonHelpState : State {
 
 	public void Update(){		
 	}
+
+    public void RepeatPrompt()//não existia acrescentei
+    {
+    }
 }

@@ -85,4 +85,8 @@ public class InitialHelpState : State {
 
 	public void Update(){		
 	}
+
+    public void RepeatPrompt()//não existia acrescentei
+    {
+    }
 }

@@ -55,4 +55,8 @@ public class GreetingState : State {
 
 	public void Update(){		
 	}
+
+    public void RepeatPrompt()//não existia acrescentei
+    {
+    }
 }
