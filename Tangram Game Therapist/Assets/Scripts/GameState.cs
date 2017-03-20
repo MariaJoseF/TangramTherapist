@@ -158,8 +158,16 @@ public class GameState : MonoBehaviour
     {
         Therapist.Instance.currentPiece = null;
         Therapist.Instance.currentPlace = null;
-        Therapist.Instance.GivePositiveFeedback();
-        stopped = DateTime.Now;
+
+
+
+        ///////////// teste ///////////// 
+        // old verson        Therapist.Instance.GivePositiveFeedback();
+        Therapist.Instance.Feedback();
+
+                ///////////// ///////////// ///////////// 
+
+                stopped = DateTime.Now;
         dragging = false;
     }
 
