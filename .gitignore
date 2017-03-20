@@ -245,4 +245,5 @@ ModelManifest.xml
 
 
 #ignore the  folder Library from the project
-/Tangram Game Therapist/Library/
+
+Library/
