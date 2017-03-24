@@ -26,7 +26,16 @@ public class SecondPromptState : State {
         Therapist.Instance.nFailedTries = 0;
 		lastPromptTime = DateTime.Now;
         nPrompts = 0;
-        currentPiece = Therapist.Instance.currentPiece;
+
+        if (Therapist.Instance.currentPiece == null)
+        {
+            currentPiece = Therapist.Instance.lastPieceUsed;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
+
 
 		if (nPrompts == 0) {
 			random = UnityEngine.Random.Range(0, 3);
@@ -88,7 +97,20 @@ public class SecondPromptState : State {
 	}
 
     void InitializeParameters() {
-        currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.currentPiece);
+
+
+
+        if (Therapist.Instance.currentPiece == null)
+        {
+            currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.lastPieceUsed);
+        }
+        else
+        {
+            currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.currentPiece);
+        }
+
+
+
         Therapist.Instance.currentPlace = currentPlace;
 
         if (currentPlace == null)

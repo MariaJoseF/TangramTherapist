@@ -29,8 +29,58 @@ public class GameManager : MonoBehaviour {
 			return instance; 
 		}
 	}
-	
-	void Awake () {
+
+
+    /// <summary>
+    /// /////////////////
+    /// </summary>
+    /// 
+
+
+    public string CurrentPuzzle
+    {
+        get
+        {
+            return currentPuzzle;
+        }
+
+    }
+
+    public float DistanceThreshold
+    {
+        get
+        {
+            return distanceThreshold;
+        }
+
+    }
+
+    public string RotationMode_
+    {
+        get
+        {
+            return rotationMode.ToString();
+        }
+
+    }
+
+    public string Difficulty_
+    {
+        get
+        {
+            return difficulty.ToString();
+        }
+
+    }
+
+
+    /// <summary>
+    /// ///////////////////
+    /// </summary>
+    /// 
+
+
+    void Awake () {
 		DontDestroyOnLoad(gameObject);
 
 		//Check if instance already exists
@@ -70,7 +120,7 @@ public class GameManager : MonoBehaviour {
 			distanceThreshold = 4;
 			difficulty = SolutionManager.Difficulty.easy;
 			rotationMode = SceneProperties.RotationMode.simple;
-			usedPuzzles.Add (currentPuzzle);
+			usedPuzzles.Add (CurrentPuzzle);
 			nSimpleGames++;
 
 		} else {
@@ -82,13 +132,13 @@ public class GameManager : MonoBehaviour {
             //Already played with all puzzles
             if (usedPuzzles.Count == puzzles.Count)
             {
-                List<string> usablePuzzles = puzzles.Where((c, i) => c != currentPuzzle).ToList();
+                List<string> usablePuzzles = puzzles.Where((c, i) => c != CurrentPuzzle).ToList();
                 currentPuzzle = RandomValue(usablePuzzles);
             }
             else
             {
                 currentPuzzle = RandomValue(puzzles.Except(usedPuzzles).ToList());
-                usedPuzzles.Add(currentPuzzle);
+                usedPuzzles.Add(CurrentPuzzle);
             }
 
             if (quit)
@@ -108,12 +158,12 @@ public class GameManager : MonoBehaviour {
 
 	float DecideThreshold(){
 		float threshold;
-        if (closeTries > 20 && distanceThreshold < 4)
-            threshold = distanceThreshold + 1;
-        else if (closeTries <= 15 && distanceThreshold > 1)
-            threshold = distanceThreshold - 1;
+        if (closeTries > 20 && DistanceThreshold < 4)
+            threshold = DistanceThreshold + 1;
+        else if (closeTries <= 15 && DistanceThreshold > 1)
+            threshold = DistanceThreshold - 1;
 		else
-            threshold = distanceThreshold;
+            threshold = DistanceThreshold;
 
 		return threshold;
 	}

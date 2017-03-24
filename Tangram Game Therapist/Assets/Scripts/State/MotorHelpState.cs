@@ -11,11 +11,11 @@ public class MotorHelpState : State {
 
 	public void HelpMotor(){
 		nHelpRequests++;
-		if (nHelpRequests >= 3) {
+		//if (nHelpRequests >= 3) {
             UtterancesManager.Instance.MotorHelp();
 
-			nHelpRequests = 0;
-		}
+		//	nHelpRequests = 0;
+		//}
 		Therapist.Instance.currentState = Therapist.Instance.previousState;
 		Therapist.Instance.previousState = null;
 	}

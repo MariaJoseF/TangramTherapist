@@ -17,10 +17,23 @@ public class ThirdAnglePromptState : State {
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
-        currentPiece = Therapist.Instance.currentPiece;
+
+        if (Therapist.Instance.currentPiece == null)
+        {
+            currentPiece = Therapist.Instance.lastPieceUsed;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
+
+       
 
 		if (nPrompts == 0) {
-            if (!UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name))) {
+            //if (!UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name))) {
+            if (!UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
+            {
+
                 repeatPrompt = true;
                 repeatPromptTime = DateTime.Now;
                 nPrompts = 0;

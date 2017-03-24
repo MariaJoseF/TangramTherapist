@@ -49,7 +49,7 @@ public class Therapist : MonoBehaviour
         0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f};
 
     Exp3 AlgorithmEXP3 = new Exp3(19, rewards, 0.07f);
-
+    public Piece lastPieceUsed;
 
 
     /// 
@@ -112,14 +112,12 @@ public class Therapist : MonoBehaviour
 
     public void HelpMotor()
     {
-        //currentState.HelpMotor ();
-        RunEXP_Action();
+        currentState.HelpMotor();
     }
 
     public void HelpAdjustingPiece()
     {
-        //currentState.HelpAdjustingPiece ();
-        RunEXP_Action();
+        currentState.HelpAdjustingPiece();
     }
 
     public void GivePositiveFeedback()
@@ -129,14 +127,12 @@ public class Therapist : MonoBehaviour
         showedHardClue = false;
         currentPiece = null;
         previousState = null;
-        currentState.GivePositiveFeedback ();
-        //RunEXP_Action();
+        currentState.GivePositiveFeedback();
     }
 
     public void GiveNegativeFeedback()
     {
-        //currentState.GiveNegativeFeedback ();
-        RunEXP_Action();
+        currentState.GiveNegativeFeedback();
         if (previousState != null)
             currentState = previousState;
         else currentState = PlayState;
@@ -149,189 +145,46 @@ public class Therapist : MonoBehaviour
 
     public void FirstIdlePrompt()
     {
-        //currentState.FirstIdlePrompt();
-        RunEXP_Action();
+        currentState.FirstIdlePrompt();
+
     }
 
     public void FirstAnglePrompt()
     {
-        //currentState.FirstAnglePrompt();
-        RunEXP_Action();
+        currentState.FirstAnglePrompt();
+
     }
 
     public void FirstPlacePrompt()
     {
-        //currentState.FirstPlacePrompt();
-        RunEXP_Action();
+        currentState.FirstPlacePrompt();
+
     }
 
     public void SecondAnglePrompt()
     {
-        //currentState.SecondAnglePrompt();
-        RunEXP_Action();
+        currentState.SecondAnglePrompt();
+
     }
 
     public void SecondPrompt()
     {
-        //currentState.SecondPrompt();
-        RunEXP_Action();
+        currentState.SecondPrompt();
+
     }
 
     public void ThirdAnglePrompt()
     {
-        //currentState.ThirdAnglePrompt();
-        RunEXP_Action();
+        currentState.ThirdAnglePrompt();
+
     }
 
     public void ThirdPrompt()
     {
-        //currentState.ThirdPrompt();
-        RunEXP_Action();
+        currentState.ThirdPrompt();
+
     }
 
-
-    public void RunEXP_Action()
-    {
-        try
-        {
-            //GameState.Instance.showHardClue = true;
-
-            switch (AlgorithmEXP31.Action)
-            {
-                case 0:// -> motor_help
-                    MotorHelpState.HelpMotor();
-                    UtterancesManager.Instance.MotorHelp();
-                    break;
-                case 1:// -> close_help
-                    FitHelpState.HelpAdjustingPiece();
-                    UtterancesManager.Instance.CloseHelp();
-                    break;
-                case 2:// -> positive feedback
-
-                    currentState.GivePositiveFeedback();
-
-
-
-
-                    // PositiveFeedState.GivePositiveFeedback();
-                    // UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count));
-                    break;
-                case 3:// -> negative feedback
-                    NegativeFeedState.GiveNegativeFeedback();
-                    UtterancesManager.Instance.NegativeFeedback();
-                    break;
-                case 4:// -> first angle prompt
-                    FirstAnglePromptState.FirstAnglePrompt();
-                    //UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(piece_.name));
-                    UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-
-                    break;
-                case 5:// -> first finger angle prompt
-                    FirstAnglePromptState.RepeatPrompt();
-                    UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(currentPiece.name));
-                    //  GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)
-                    break;
-                case 6:// -> first button angle prompt
-                    FirstAnglePromptState.RepeatPrompt();
-                    UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(currentPiece.name));
-                    //                    UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-
-                    break;
-                case 7:// -> second angle prompt
-                    SecondAnglePromptState.SecondAnglePrompt();
-                    UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    //                    UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-
-                    break;
-                case 8:// -> second finger angle prompt
-                    Therapist.Instance.SecondAnglePromptState.SecondAnglePrompt();
-
-                    // currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-
-                    //rotationDirection = CalculateDirectionOfRotation(currentPiece, currentPlace);
-
-                    //UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(currentPiece.name), rotationDirection);
-                    break;
-                case 9:// -> second button angle prompt
-                    SecondAnglePromptState.SecondAnglePrompt();
-                    //UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
-                    //                    UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
-                    break;
-                case 10:// -> third angle prompt
-                    ThirdAnglePromptState.ThirdAnglePrompt();
-                    UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    // UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-                    break;
-                case 11:// -> stop angle prompt
-                        // ThirdAnglePromptState.StartedMoving(true);
-                        // UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-                    UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    break;
-                case 12:// -> idle prompt
-                    FirstIdlePromptState.FirstIdlePrompt();
-                    UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    //UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-                    break;
-                case 13:// -> place prompt
-                    FirstPlacePromptState.FirstPlacePrompt();
-                    UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    //                    UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-                    break;
-                case 14:// -> sec_1position prompt
-                    SecondPromptState.SecondPrompt();
-                    // currentPiece = Therapist.Instance.currentPiece;
-                    currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-
-
-                    string a = currentPlace.relPos.pos2;
-
-
-
-                    UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos2);
-                    break;
-                case 15:// -> sec_2position prompt
-                    SecondPromptState.SecondPrompt();
-
-                    // currentPiece = Therapist.Instance.currentPiece;
-                    //currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-                    // UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2);
-                    break;
-                case 16:// -> sec_place prompt
-                    SecondPromptState.SecondPrompt();
-                    //currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-                    //adjacentPieces = new Dictionary<int, String>(currentPlace.relPos.adjacentPieces);
-                    //availableAdjacentPieces = new Dictionary<int, string>(IntersectDictionaries(adjacentPieces, GameState.Instance.placedPieces));
-
-                    //int pieceId = GameState.Instance.RandomKeys(availableAdjacentPieces).First();
-                    //string piece = SolutionManager.Instance.FindMatchIdName(pieceId);
-                    //string relativePosition = availableAdjacentPieces[pieceId];
-
-                    //UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece));
-                    break;
-                case 17:// -> third prompt
-                    ThirdPromptState.ThirdPrompt();
-                    UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    break;
-                case 18:// -> hard_clue prompt
-                    GameState.Instance.showHardClue = true;
-                    //UtterancesManager.Instance.HardClue(3f);
-                    break;
-
-            }
-
-            AlgorithmEXP31.Action = -1;
-
-        }
-        catch (Exception e)
-        {
-            Debug.Log("Error : " + e.Message);
-            UtterancesManager.Instance.WriteJSON("Error : " + e.Message + " action = " + AlgorithmEXP31.Action);
-        }
-        finally
-        {
-            Debug.Log("Finaly ExpAlgorithm.RunExp3(17, rewards, 0.07f);");
-        }
-    }
 
     public void Feedback()
     {
@@ -339,132 +192,118 @@ public class Therapist : MonoBehaviour
 
         try
         {
-
-
-            currentState.GivePositiveFeedback();
-
-
-            //GameState.Instance.showHardClue = true;
-
             switch (AlgorithmEXP31.Action)
             {
                 case 0:// -> motor_help
-                    MotorHelpState.HelpMotor();
-                    UtterancesManager.Instance.MotorHelp();
+                    Console.WriteLine("motor_help");
+                    HelpMotor();
                     break;
                 case 1:// -> close_help
-                    FitHelpState.HelpAdjustingPiece();
-                    UtterancesManager.Instance.CloseHelp();
+                    Console.WriteLine("close_help");
+                    HelpAdjustingPiece();
                     break;
                 case 2:// -> positive feedback
-
-                    currentState.GivePositiveFeedback();
-
-
-
-
-                    // PositiveFeedState.GivePositiveFeedback();
-                    // UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count));
+                    Console.WriteLine("positive feedback");
+                    GivePositiveFeedback();
                     break;
                 case 3:// -> negative feedback
-                    NegativeFeedState.GiveNegativeFeedback();
-                    UtterancesManager.Instance.NegativeFeedback();
+                    Console.WriteLine("negative feedback");
+                    GiveNegativeFeedback();
                     break;
                 case 4:// -> first angle prompt
-                    FirstAnglePromptState.FirstAnglePrompt();
-                    //UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(piece_.name));
-                    UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-
+                    Console.WriteLine("first angle prompt");
+                    FirstAnglePrompt();
                     break;
                 case 5:// -> first finger angle prompt
-                    FirstAnglePromptState.RepeatPrompt();
-                    UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(currentPiece.name));
-                    //  GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)
+                    Console.WriteLine("first finger angle prompt");
+                    FirstAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     break;
                 case 6:// -> first button angle prompt
-                    FirstAnglePromptState.RepeatPrompt();
-                    UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(currentPiece.name));
-                    //                    UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-
+                    Console.WriteLine("first button angle prompt");
+                    FirstAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     break;
                 case 7:// -> second angle prompt
-                    SecondAnglePromptState.SecondAnglePrompt();
-                    UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    //                    UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                    Console.WriteLine("second angle prompt");
 
+
+                    // tenho que saber qual é a peça que está selecionada neste momento está a enviar null :s
+
+
+                    SecondAnglePrompt();
                     break;
                 case 8:// -> second finger angle prompt
-                    Therapist.Instance.SecondAnglePromptState.SecondAnglePrompt();
-
-                    // currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-
-                    //rotationDirection = CalculateDirectionOfRotation(currentPiece, currentPlace);
-
-                    //UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(currentPiece.name), rotationDirection);
+                    Console.WriteLine("second finger angle prompt");
+                    SecondAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     break;
                 case 9:// -> second button angle prompt
-                    SecondAnglePromptState.SecondAnglePrompt();
-                    //UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
-                    //                    UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
+                    Console.WriteLine("second button angle prompt");
+                    SecondAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     break;
                 case 10:// -> third angle prompt
-                    ThirdAnglePromptState.ThirdAnglePrompt();
-                    UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    // UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                    Console.WriteLine(" third angle prompt");
+                    ThirdAnglePrompt();
                     break;
                 case 11:// -> stop angle prompt
-                        // ThirdAnglePromptState.StartedMoving(true);
-                        // UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-                    UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name));
+                    Console.WriteLine("stop angle prompt");
+
+
+                    UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
+
+                    //ver se descubro o nome
+
+
+
+
+
                     break;
                 case 12:// -> idle prompt
-                    FirstIdlePromptState.FirstIdlePrompt();
-                    UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    //UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                    Console.WriteLine("idle prompt");
+                    FirstIdlePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    //nºao sei se é aqui
                     break;
                 case 13:// -> place prompt
-                    FirstPlacePromptState.FirstPlacePrompt();
-                    UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(currentPiece.name));
-                    //                    UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                    Console.WriteLine("place prompt");
+                    FirstPlacePrompt();
                     break;
                 case 14:// -> sec_1position prompt
-                    SecondPromptState.SecondPrompt();
-                    // currentPiece = Therapist.Instance.currentPiece;
-                    currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
+                    Console.WriteLine("sec_1position prompt");
+
+                    // currentPiece;
+
+                    //tenho que adicionar a peça que estou a usar
 
 
-                    string a = currentPlace.relPos.pos2;
 
-
-
-                    UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos2);
+                    SecondPrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     break;
                 case 15:// -> sec_2position prompt
-                    SecondPromptState.SecondPrompt();
+                    Console.WriteLine("sec_2position prompt");
 
-                    // currentPiece = Therapist.Instance.currentPiece;
-                    //currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-                    // UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2);
+                   // currentPiece;
+
+                    //tenho que adicionar a peça que estou a usar
+
+
+                    SecondPrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     break;
                 case 16:// -> sec_place prompt
-                    SecondPromptState.SecondPrompt();
-                    //currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-                    //adjacentPieces = new Dictionary<int, String>(currentPlace.relPos.adjacentPieces);
-                    //availableAdjacentPieces = new Dictionary<int, string>(IntersectDictionaries(adjacentPieces, GameState.Instance.placedPieces));
+                    Console.WriteLine("sec_place prompt");
 
-                    //int pieceId = GameState.Instance.RandomKeys(availableAdjacentPieces).First();
-                    //string piece = SolutionManager.Instance.FindMatchIdName(pieceId);
-                    //string relativePosition = availableAdjacentPieces[pieceId];
+                    //currentPiece;
 
-                    //UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece));
+                    //tenho que adicionar a peça que estou a usar
+
+
+
+                    SecondPrompt();
                     break;
                 case 17:// -> third prompt
-                    ThirdPromptState.ThirdPrompt();
-                    UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(currentPiece.name));
+                    Console.WriteLine("third prompt");
+                    ThirdPrompt();
                     break;
                 case 18:// -> hard_clue prompt
-                    GameState.Instance.showHardClue = true;
-                    //UtterancesManager.Instance.HardClue(3f);
+                    Console.WriteLine("hard_clue prompt");
+                    showedHardClue = true;//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     break;
 
             }
@@ -482,8 +321,6 @@ public class Therapist : MonoBehaviour
             Debug.Log("Finaly ExpAlgorithm.RunExp3(17, rewards, 0.07f);");
         }
 
-
-        throw new NotImplementedException();
     }
 
     public void Quit()

@@ -160,14 +160,14 @@ public class GameState : MonoBehaviour
         Therapist.Instance.currentPlace = null;
 
 
-
+        Therapist.Instance.lastPieceUsed = piece;
         ///////////// teste ///////////// 
         // old verson        Therapist.Instance.GivePositiveFeedback();
         Therapist.Instance.Feedback();
 
-                ///////////// ///////////// ///////////// 
+        ///////////// ///////////// ///////////// 
 
-                stopped = DateTime.Now;
+        stopped = DateTime.Now;
         dragging = false;
     }
 
@@ -228,7 +228,7 @@ public class GameState : MonoBehaviour
         //                    break;
         //                case 5:// -> first finger angle prompt
         //                    //Therapist.Instance.FirstAnglePromptState.RepeatPrompt();
-                            UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(piece_.name));
+        //                     UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(piece_.name));
         //                  //  GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)
         //                    break;
         //                case 6:// -> first button angle prompt
@@ -421,7 +421,13 @@ public class GameState : MonoBehaviour
             if (Therapist.Instance.nFailedTries >= 2)
             {
                 GameManager.Instance.closeTries++;
-                Therapist.Instance.HelpAdjustingPiece();
+
+
+                ///////////// teste ///////////// 
+
+                Therapist.Instance.Feedback();
+                ///old version Therapist.Instance.HelpAdjustingPiece();
+                ///////////// ///////////// ///////////// 
             }
         }
         //Piece in the wrong spot
@@ -432,12 +438,26 @@ public class GameState : MonoBehaviour
             print(Therapist.Instance.nFailedTries + " feed negativo");
             UtterancesManager.Instance.WriteJSON("WRONG TRY " + Therapist.Instance.nFailedTries + " " + piece.name);
 
-            Therapist.Instance.GiveNegativeFeedback();
+
+
+            ///////////// teste ///////////// 
+
+            Therapist.Instance.Feedback();
+            ///old version Therapist.Instance.GiveNegativeFeedback();
+            ///////////// ///////////// ///////////// 
+
         }
         //Problems moving the piece
         else if (SolutionManager.Instance.DistanceBetweenPositions(piece.originalPosition, piece.Position) <= 1)
         {
-            Therapist.Instance.HelpMotor();
+
+
+            ///////////// teste ///////////// 
+
+            Therapist.Instance.Feedback();
+            ///old version Therapist.Instance.HelpMotor();
+            ///////////// ///////////// ///////////// 
+
             UtterancesManager.Instance.WriteJSON("HELP MOTOR");
         }
         stopped = DateTime.Now;
@@ -448,7 +468,14 @@ public class GameState : MonoBehaviour
     {
         Therapist.Instance.currentPiece = piece;
         Therapist.Instance.currentPlace = place;
-        Therapist.Instance.GiveNegativeFeedback();
+
+        ///////////// teste ///////////// 
+
+        Therapist.Instance.Feedback();
+        ///old version  Therapist.Instance.GiveNegativeFeedback();
+        ///////////// ///////////// ///////////// 
+
+
         Therapist.Instance.nWrongAngleTries++;
         stopped = DateTime.Now;
         dragging = false;

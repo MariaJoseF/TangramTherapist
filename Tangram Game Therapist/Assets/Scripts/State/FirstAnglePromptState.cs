@@ -20,7 +20,16 @@ public class FirstAnglePromptState : State
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
-        currentPiece = Therapist.Instance.currentPiece;
+
+
+        if (Therapist.Instance.currentPiece == null)
+        {
+            currentPiece = Therapist.Instance.lastPieceUsed;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
 
         if (nPrompts == 0)
         {
