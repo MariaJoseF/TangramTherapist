@@ -164,7 +164,8 @@ public class SecondAnglePromptState : State
                 repeatAngleHelp = false;
                 if (rotationMode == SceneProperties.RotationMode.button)
                 {
-                    if (!UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks)))
+                    //  if (!UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks)))
+                    if (!UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks)))
                     {
                         repeatAngleHelp = true;
                         repeatPromptTime = DateTime.Now;
@@ -177,7 +178,8 @@ public class SecondAnglePromptState : State
                 }
                 else
                 {
-                    if (!UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection))
+                    //  if (!UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection))
+                    if (!UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(currentPiece.name), rotationDirection))
                     {
                         repeatAngleHelp = true;
                         repeatPromptTime = DateTime.Now;

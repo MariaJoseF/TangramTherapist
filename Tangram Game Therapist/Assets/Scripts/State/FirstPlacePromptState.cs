@@ -8,6 +8,7 @@ public class FirstPlacePromptState : State
     public DateTime lastPromptTime, repeatPromptTime;
     public int nPrompts;
     bool repeatHardClue = false, repeatPrompt = false;
+    Piece currentPiece;
 
     public FirstPlacePromptState()
     {
@@ -19,6 +20,18 @@ public class FirstPlacePromptState : State
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         nPrompts = 0;
+
+
+
+        if (Therapist.Instance.currentPiece == null)
+        {
+            currentPiece = Therapist.Instance.lastPieceUsed;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
+
 
         if (nPrompts == 0 && Therapist.Instance.previousState != Therapist.Instance.FirstIdlePromptState
             && Therapist.Instance.previousState != Therapist.Instance.SecondAnglePromptState
@@ -44,9 +57,10 @@ public class FirstPlacePromptState : State
             {
                 repeatPrompt = false;
                 repeatHardClue = false;
-                if (!UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
-                {
-                    repeatPrompt = true;
+               // if (!UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
+                    if (!UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
+                    {
+                        repeatPrompt = true;
                     repeatPromptTime = DateTime.Now;
                     nPrompts = 0;
                 }
@@ -83,9 +97,10 @@ public class FirstPlacePromptState : State
         {
             repeatPrompt = false;
             repeatHardClue = false;
-            if (!UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
-            {
-                repeatPrompt = true;
+          //  if (!UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
+                if (!UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
+                {
+                    repeatPrompt = true;
                 repeatPromptTime = DateTime.Now;
             }
             else

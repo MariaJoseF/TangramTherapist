@@ -103,9 +103,10 @@ public class FirstAnglePromptState : State
             {
                 repeatPrompt = false;
                 repeatHardClue = false;
-                if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
-                {
-                    Debug.Log("nao consegui chamar repeat do 1st angle");
+              //  if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
+                    if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
+                    {
+                        Debug.Log("nao consegui chamar repeat do 1st angle");
                     repeatPrompt = true;
                     repeatPromptTime = DateTime.Now;
                 }
