@@ -197,13 +197,39 @@ public class FirstIdlePromptState : State {
 	
 	public void BeginNextGame(){
 	}
-	
-	public void ThirdPrompt(){
-	}
 
-	public void SecondAnglePrompt(){	
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void ThirdPrompt()
+    {
+
+        /////////
+
+        Therapist.Instance.currentState = Therapist.Instance.ThirdPromptState;
+        Therapist.Instance.ThirdPrompt();
+
+        /////////
+
+    }
+    public void SecondAnglePrompt()
+    {
+
+        /////////
+
+        Therapist.Instance.currentState = Therapist.Instance.SecondAnglePromptState;
+        Therapist.Instance.SecondAnglePrompt();
+
+        /////////
+
+    }
+    public void ThirdAnglePrompt()
+    {
+
+        /////////
+
+        Therapist.Instance.currentState = Therapist.Instance.ThirdAnglePromptState;
+        Therapist.Instance.ThirdAnglePrompt();
+
+        /////////
+
+    }
+
 }

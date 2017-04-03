@@ -227,21 +227,57 @@ public class ThirdPromptState : State
 
     public void FirstIdlePrompt()
     {
+
+        //////////////////
+
+        Therapist.Instance.currentState = Therapist.Instance.FirstIdlePromptState;
+        Therapist.Instance.FirstIdlePrompt();
+
+        /////////////
     }
 
     public void FirstAnglePrompt()
     {
+
+        ////////////////
+
+        Therapist.Instance.currentState = Therapist.Instance.FirstAnglePromptState;
+        Therapist.Instance.FirstAnglePrompt();
+
+        ////////////////
     }
 
     public void FirstPlacePrompt()
     {
+
+        /////////////
+
+        Therapist.Instance.currentState = Therapist.Instance.FirstPlacePromptState;
+        Therapist.Instance.FirstPlacePrompt();
+
+        /////////////
     }
 
     public void SecondPrompt()
     {
+        ////////
+
+        Therapist.Instance.currentState = Therapist.Instance.SecondPromptState;
+        Therapist.Instance.SecondPrompt();
+
+        ////////
+
     }
 
     public void ThirdAnglePrompt()
     {
+
+        //////
+
+        Therapist.Instance.currentState = Therapist.Instance.ThirdAnglePromptState;
+        Therapist.Instance.ThirdAnglePrompt();
+
+        //////
+
     }
 }

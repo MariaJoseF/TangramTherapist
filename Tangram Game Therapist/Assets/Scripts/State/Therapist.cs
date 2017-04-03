@@ -246,14 +246,14 @@ public class Therapist : MonoBehaviour
                 case 11:// -> stop angle prompt
                     Console.WriteLine("stop angle prompt");
 
-
-                    UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
-
-                    //ver se descubro o nome
-
-
-
-
+                    if (currentPiece == null)
+                    {
+                        UtterancesManager.Instance.StopAnglePrompt(lastPieceUsed.ToString());
+                    }
+                    else
+                    {
+                        UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
+                    }
 
                     break;
                 case 12:// -> idle prompt

@@ -57,7 +57,8 @@ public class FirstAnglePromptState : State
                 {
                     repeatPrompt = false;
                     repeatHardClue = false;
-                    if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
+                    // if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
+                    if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
                     {
                         repeatPrompt = true;
                         repeatPromptTime = DateTime.Now;
@@ -74,7 +75,7 @@ public class FirstAnglePromptState : State
         Therapist.Instance.previousState = null;
     }
 
-   public void RepeatPrompt()//não é suposto ter public aqui
+    public void RepeatPrompt()//não é suposto ter public aqui
     {
         Therapist.Instance.nWrongAngleTries = 0;
         lastPromptTime = DateTime.Now;
@@ -153,7 +154,15 @@ public class FirstAnglePromptState : State
 
     void ChangedPiece()
     {
-        currentPiece = Therapist.Instance.currentPiece;
+        if (Therapist.Instance.currentPiece == null)
+        {
+            currentPiece = Therapist.Instance.lastPieceUsed;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
+
         lastPromptTime = DateTime.Now;
         PieceSolution currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
         Therapist.Instance.currentPlace = currentPlace;
@@ -325,17 +334,49 @@ public class FirstAnglePromptState : State
 
     public void FirstIdlePrompt()
     {
+
+        /////////
+
+        Therapist.Instance.currentState = Therapist.Instance.FirstIdlePromptState;
+        Therapist.Instance.FirstIdlePrompt();
+
+        /////////
+
     }
 
     public void SecondPrompt()
     {
-    }
 
+        /////////
+
+        Therapist.Instance.currentState = Therapist.Instance.SecondPromptState;
+        Therapist.Instance.SecondPrompt();
+
+        /////////
+
+    }
     public void ThirdPrompt()
     {
+
+        /////////
+
+        Therapist.Instance.currentState = Therapist.Instance.ThirdPromptState;
+        Therapist.Instance.ThirdPrompt();
+
+        /////////
+
     }
 
     public void ThirdAnglePrompt()
     {
+
+        /////////
+
+        Therapist.Instance.currentState = Therapist.Instance.ThirdAnglePromptState;
+        Therapist.Instance.ThirdAnglePrompt();
+
+        /////////
+
     }
+
 }

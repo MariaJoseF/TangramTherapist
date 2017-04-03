@@ -116,7 +116,16 @@ public class ThirdAnglePromptState : State {
 	}
 
     void ChangedPiece(){
-        currentPiece = Therapist.Instance.currentPiece;
+       
+        if (Therapist.Instance.currentPiece == null)
+        {
+            currentPiece = Therapist.Instance.lastPieceUsed;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
+
         lastPromptTime = DateTime.Now;
         PieceSolution currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
         Therapist.Instance.currentPlace = currentPlace;
@@ -215,11 +224,30 @@ public class ThirdAnglePromptState : State {
 	}
 
 	public void FirstIdlePrompt(){
-	}
+
+        //////////////////
+
+        Therapist.Instance.currentState = Therapist.Instance.FirstIdlePromptState;
+        Therapist.Instance.FirstIdlePrompt();
+
+        /////////////
+    }
 
 	public void SecondAnglePrompt(){
-	}
+        ///////////////
+
+        Therapist.Instance.currentState = Therapist.Instance.SecondAnglePromptState;
+        Therapist.Instance.SecondAnglePrompt();
+
+        ///////////////
+    }
 	
 	public void ThirdPrompt(){
-	}
+        ///////////////////
+
+        Therapist.Instance.currentState = Therapist.Instance.ThirdPromptState;
+        Therapist.Instance.ThirdPrompt();
+
+        ///////////////////
+    }
 }
