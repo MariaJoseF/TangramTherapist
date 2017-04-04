@@ -30,15 +30,25 @@ public class SecondPromptState : State
         lastPromptTime = DateTime.Now;
         nPrompts = 0;
 
+        //if (Therapist.Instance.currentPiece == null)
+        //{
+        //    currentPiece = Therapist.Instance.lastPieceUsed;
+        //}
+        //else
+        //{
+        //    currentPiece = Therapist.Instance.currentPiece;
+        //}
+
+        /////////////////////////////////////////////////////
+
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPiece = Therapist.Instance.lastPieceUsed;
-        }
-        else
-        {
-            currentPiece = Therapist.Instance.currentPiece;
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+            currentPiece = piece;
         }
 
+        /////////////////////////////////////////////////////
 
         if (nPrompts == 0)
         {
@@ -108,7 +118,9 @@ public class SecondPromptState : State
 
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.lastPieceUsed);
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+            currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.currentPiece);
         }
         else
         {
@@ -150,10 +162,10 @@ public class SecondPromptState : State
                 string piece = SolutionManager.Instance.FindMatchIdName(pieceId);
                 string relativePosition = availableAdjacentPieces[pieceId];
                 Debug.Log("id " + pieceId + " relative position " + relativePosition + " piece " + piece);
-             //   if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
-                    if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
-                    {
-                        repeatPrompt = true;
+                //   if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
+                if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
+                {
+                    repeatPrompt = true;
                     repeatPromptTime = DateTime.Now;
                     return;
                 }
@@ -171,10 +183,10 @@ public class SecondPromptState : State
                 if (currentPlace.relPos.pos1 == null)
                 {
                     Debug.Log("id " + currentPlace.name + " position " + currentPlace.relPos.pos2);
-                   // if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2))
-                        if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos2))
-                        {
-                            repeatRelativePosition = true;
+                    // if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2))
+                    if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos2))
+                    {
+                        repeatRelativePosition = true;
                         repeatPromptTime = DateTime.Now;
                         return;
                     }
@@ -184,10 +196,10 @@ public class SecondPromptState : State
                 else if (currentPlace.relPos.pos2 == null)
                 {
                     Debug.Log("id " + currentPlace.name + " position " + currentPlace.relPos.pos1);
-                   // if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1))
-                        if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos1))
-                        {
-                            repeatRelativePosition = true;
+                    // if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1))
+                    if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos1))
+                    {
+                        repeatRelativePosition = true;
                         repeatPromptTime = DateTime.Now;
                         return;
                     }
@@ -197,10 +209,10 @@ public class SecondPromptState : State
                 else
                 {
                     Debug.Log("id " + currentPlace.name + " position1 " + currentPlace.relPos.pos1 + " position2 " + currentPlace.relPos.pos2);
-                  //  if (!UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2))
-                        if (!UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2))
-                        {
-                            repeatRelativePosition = true;
+                    //  if (!UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2))
+                    if (!UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2))
+                    {
+                        repeatRelativePosition = true;
                         repeatPromptTime = DateTime.Now;
                         return;
                     }

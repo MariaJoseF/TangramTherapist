@@ -28,14 +28,31 @@ public class SecondAnglePromptState : State
         lastPromptTime = DateTime.Now;
         nPrompts = 0;
 
+        //if (Therapist.Instance.currentPiece == null)
+        //{
+        //    currentPiece = Therapist.Instance.lastPieceUsed;
+        //}
+        //else
+        //{
+        //    currentPiece = Therapist.Instance.currentPiece;
+        //}
+
+        /////////////////////////////////////////////////////
+
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPiece = Therapist.Instance.lastPieceUsed;
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+
+            currentPiece = piece;
         }
         else
         {
             currentPiece = Therapist.Instance.currentPiece;
         }
+
+        /////////////////////////////////////////////////////
+
 
         if (nPrompts == 0)
         {
@@ -197,14 +214,25 @@ public class SecondAnglePromptState : State
     void InitializeParameters()
     {
 
+        //if (Therapist.Instance.currentPiece == null)
+        //{
+        //    currentPiece = Therapist.Instance.lastPieceUsed;
+        //}
+        //else
+        //{
+        //    currentPiece = Therapist.Instance.currentPiece;
+        //}
+
+
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPiece = Therapist.Instance.lastPieceUsed;
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+
+            currentPiece = piece;
         }
-        else
-        {
-            currentPiece = Therapist.Instance.currentPiece;
-        }
+
+        /////////////////////////////////////////////////////
 
         rotationMode = Therapist.Instance.currentGame.rotationMode;
         currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);

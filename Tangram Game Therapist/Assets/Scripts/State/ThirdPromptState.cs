@@ -25,14 +25,26 @@ public class ThirdPromptState : State
         if (nPrompts == 0)
         {
 
+            //if (Therapist.Instance.currentPiece == null)
+            //{
+            //    currentPiece = Therapist.Instance.lastPieceUsed;
+            //}
+            //else
+            //{
+            //    currentPiece = Therapist.Instance.currentPiece;
+            //}
+
+            /////////////////////////////////////////////////////
+
             if (Therapist.Instance.currentPiece == null)
             {
-                currentPiece = Therapist.Instance.lastPieceUsed;
+                Piece piece = GameState.Instance.FindNewPiece();
+                Therapist.Instance.currentPiece = piece;
+
+                currentPiece = piece;
             }
-            else
-            {
-                currentPiece = Therapist.Instance.currentPiece;
-            }
+
+            /////////////////////////////////////////////////////
 
             //if (!UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name))){
             if (!UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(currentPiece.name)))
@@ -73,7 +85,9 @@ public class ThirdPromptState : State
         PieceSolution currentPlace;
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.lastPieceUsed);
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+            currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.currentPiece);
 
         }
         else

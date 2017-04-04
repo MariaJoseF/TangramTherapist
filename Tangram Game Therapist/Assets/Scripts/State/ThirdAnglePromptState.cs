@@ -2,34 +2,48 @@
 using System.Collections;
 using System;
 
-public class ThirdAnglePromptState : State {
+public class ThirdAnglePromptState : State
+{
 
     public DateTime lastPromptTime, repeatPromptTime;
     public int nPrompts;
     bool finalPrompt = false, repeatPrompt = false, rightAnglePiece = false;
     Piece currentPiece;
 
-	public ThirdAnglePromptState () {
-	}
+    public ThirdAnglePromptState()
+    {
+    }
 
-	public void ThirdAnglePrompt(){
-		lastPromptTime = DateTime.Now;
+    public void ThirdAnglePrompt()
+    {
+        lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
 
+        //if (Therapist.Instance.currentPiece == null)
+        //{
+        //    currentPiece = Therapist.Instance.lastPieceUsed;
+        //}
+        //else
+        //{
+        //    currentPiece = Therapist.Instance.currentPiece;
+        //}
+
+        /////////////////////////////////////////////////////
+
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPiece = Therapist.Instance.lastPieceUsed;
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+
+            currentPiece = piece;
         }
-        else
+
+        /////////////////////////////////////////////////////
+
+        if (nPrompts == 0)
         {
-            currentPiece = Therapist.Instance.currentPiece;
-        }
-
-       
-
-		if (nPrompts == 0) {
             //if (!UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name))) {
             if (!UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
             {
@@ -38,62 +52,75 @@ public class ThirdAnglePromptState : State {
                 repeatPromptTime = DateTime.Now;
                 nPrompts = 0;
             }
-            else {
+            else
+            {
                 repeatPrompt = false;
                 nPrompts = 1;
             }
-		}   
-	}
+        }
+    }
 
-	public void RepeatPrompt(){//não é suposto ser public
+    public void RepeatPrompt()
+    {//não é suposto ser public
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
 
-        if (!UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name))){
+        if (!UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
+        {
             repeatPrompt = true;
             repeatPromptTime = DateTime.Now;
         }
-        else {
+        else
+        {
             repeatPrompt = false;
             nPrompts++;
         }
-	}
+    }
 
-	
-	public void StartedMoving (bool correctAngle){
-		//lastPromptTime = DateTime.Now;
-        if (finalPrompt){
+
+    public void StartedMoving(bool correctAngle)
+    {
+        //lastPromptTime = DateTime.Now;
+        if (finalPrompt)
+        {
             finalPrompt = false;
             nPrompts = 1;
         }
-		if (correctAngle) {
-			Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
+        if (correctAngle)
+        {
+            Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
             UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-			Therapist.Instance.previousState = Therapist.Instance.currentState;
-			Therapist.Instance.nFailedTries = 0;
-			Therapist.Instance.nWrongAngleTries = 0;
-			FirstPlacePrompt();
-		}
-	}
-	
-	public void Update(){
-		if (nPrompts > 0 && !rightAnglePiece) {
-			if ((repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4) 
-                || (DateTime.Now - lastPromptTime).TotalSeconds > 25 || Therapist.Instance.nFailedTries >= 2 
-			    || Therapist.Instance.nWrongAngleTries >= 2) {
-                if (repeatPrompt || nPrompts < 3) {
-					RepeatPrompt ();
+            Therapist.Instance.previousState = Therapist.Instance.currentState;
+            Therapist.Instance.nFailedTries = 0;
+            Therapist.Instance.nWrongAngleTries = 0;
+            FirstPlacePrompt();
+        }
+    }
+
+    public void Update()
+    {
+        if (nPrompts > 0 && !rightAnglePiece)
+        {
+            if ((repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4)
+                || (DateTime.Now - lastPromptTime).TotalSeconds > 25 || Therapist.Instance.nFailedTries >= 2
+                || Therapist.Instance.nWrongAngleTries >= 2)
+            {
+                if (repeatPrompt || nPrompts < 3)
+                {
+                    RepeatPrompt();
                     return;
-				} else if (!rightAnglePiece && nPrompts >= 3) {
+                }
+                else if (!rightAnglePiece && nPrompts >= 3)
+                {
                     UtterancesManager.Instance.Quit();
                     Therapist.Instance.nFailedTries = 0;
                     Therapist.Instance.nWrongAngleTries = 0;
-					finalPrompt = true;
-					lastPromptTime = DateTime.Now;
-				}
-			}
-		}
+                    finalPrompt = true;
+                    lastPromptTime = DateTime.Now;
+                }
+            }
+        }
         else if ((repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4))
         {
             ThirdAnglePrompt();
@@ -113,18 +140,31 @@ public class ThirdAnglePromptState : State {
         }
         if ((rightAnglePiece && (DateTime.Now - lastPromptTime).TotalSeconds > 5) || Therapist.Instance.nFailedTries > 3)
             SecondPrompt();
-	}
+    }
 
-    void ChangedPiece(){
-       
+    void ChangedPiece()
+    {
+
+        //if (Therapist.Instance.currentPiece == null)
+        //{
+        //    currentPiece = Therapist.Instance.lastPieceUsed;
+        //}
+        //else
+        //{
+        //    currentPiece = Therapist.Instance.currentPiece;
+        //}
+
+        /////////////////////////////////////////////////////
+
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPiece = Therapist.Instance.lastPieceUsed;
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+
+            currentPiece = piece;
         }
-        else
-        {
-            currentPiece = Therapist.Instance.currentPiece;
-        }
+
+        /////////////////////////////////////////////////////
 
         lastPromptTime = DateTime.Now;
         PieceSolution currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
@@ -140,90 +180,101 @@ public class ThirdAnglePromptState : State {
             rightAnglePiece = false;
     }
 
-	public void EndGame(){
+    public void EndGame()
+    {
         repeatPrompt = false;
         rightAnglePiece = false;
-		nPrompts = 0;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
+        nPrompts = 0;
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
         Debug.Log("3rd angle finalPrompt -> quit");
-		Therapist.Instance.currentState = Therapist.Instance.FinalState;
-		Therapist.Instance.EndGame ();
-	}
+        Therapist.Instance.currentState = Therapist.Instance.FinalState;
+        Therapist.Instance.EndGame();
+    }
 
-	public void HelpMotor(){
+    public void HelpMotor()
+    {
         repeatPrompt = false;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
-		lastPromptTime = DateTime.Now;
-		Therapist.Instance.previousState = Therapist.Instance.currentState;
-		Therapist.Instance.currentState = Therapist.Instance.MotorHelpState;
-		Therapist.Instance.HelpMotor ();
-	}
-	
-	public void HelpAdjustingPiece() {
-        repeatPrompt = false;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
-		lastPromptTime = DateTime.Now;
-		Therapist.Instance.previousState = Therapist.Instance.currentState;
-		Therapist.Instance.currentState = Therapist.Instance.FitHelpState;
-		Therapist.Instance.HelpAdjustingPiece ();
-	}
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
+        lastPromptTime = DateTime.Now;
+        Therapist.Instance.previousState = Therapist.Instance.currentState;
+        Therapist.Instance.currentState = Therapist.Instance.MotorHelpState;
+        Therapist.Instance.HelpMotor();
+    }
 
-	public void GivePositiveFeedback() {
+    public void HelpAdjustingPiece()
+    {
         repeatPrompt = false;
-        rightAnglePiece = false;
-		nPrompts = 0;
-		Therapist.Instance.currentState = Therapist.Instance.PositiveFeedState;
-		Therapist.Instance.GivePositiveFeedback ();
-	}
-	
-	public void GiveNegativeFeedback() {
-		Therapist.Instance.previousState = Therapist.Instance.ThirdAnglePromptState;
-		Therapist.Instance.currentState = Therapist.Instance.NegativeFeedState;
-		Debug.Log("3angle state-> neg feed");
-		Therapist.Instance.GiveNegativeFeedback ();
-	}
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
+        lastPromptTime = DateTime.Now;
+        Therapist.Instance.previousState = Therapist.Instance.currentState;
+        Therapist.Instance.currentState = Therapist.Instance.FitHelpState;
+        Therapist.Instance.HelpAdjustingPiece();
+    }
 
-	public void FirstAnglePrompt(){
+    public void GivePositiveFeedback()
+    {
         repeatPrompt = false;
         rightAnglePiece = false;
-		nPrompts = 0;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
-		Therapist.Instance.currentState = Therapist.Instance.FirstAnglePromptState;
-		Therapist.Instance.FirstAnglePrompt ();	
-	}
+        nPrompts = 0;
+        Therapist.Instance.currentState = Therapist.Instance.PositiveFeedState;
+        Therapist.Instance.GivePositiveFeedback();
+    }
 
-	public void FirstPlacePrompt(){
+    public void GiveNegativeFeedback()
+    {
+        Therapist.Instance.previousState = Therapist.Instance.ThirdAnglePromptState;
+        Therapist.Instance.currentState = Therapist.Instance.NegativeFeedState;
+        Debug.Log("3angle state-> neg feed");
+        Therapist.Instance.GiveNegativeFeedback();
+    }
+
+    public void FirstAnglePrompt()
+    {
         repeatPrompt = false;
         rightAnglePiece = false;
-		nPrompts = 0;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
-		Therapist.Instance.previousState = Therapist.Instance.currentState;
-		Therapist.Instance.currentState = Therapist.Instance.FirstPlacePromptState;
-		Therapist.Instance.FirstPlacePrompt ();	
-	}
+        nPrompts = 0;
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
+        Therapist.Instance.currentState = Therapist.Instance.FirstAnglePromptState;
+        Therapist.Instance.FirstAnglePrompt();
+    }
 
-    public void SecondPrompt(){
+    public void FirstPlacePrompt()
+    {
+        repeatPrompt = false;
+        rightAnglePiece = false;
+        nPrompts = 0;
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
+        Therapist.Instance.previousState = Therapist.Instance.currentState;
+        Therapist.Instance.currentState = Therapist.Instance.FirstPlacePromptState;
+        Therapist.Instance.FirstPlacePrompt();
+    }
+
+    public void SecondPrompt()
+    {
         repeatPrompt = false;
         rightAnglePiece = false;
         nPrompts = 0;
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
         Therapist.Instance.currentState = Therapist.Instance.SecondPromptState;
-        Therapist.Instance.SecondPrompt();	
+        Therapist.Instance.SecondPrompt();
     }
 
-	public void BeginFirstGame(){
-	}
-	
-	public void BeginNextGame(){
-	}
+    public void BeginFirstGame()
+    {
+    }
 
-	public void FirstIdlePrompt(){
+    public void BeginNextGame()
+    {
+    }
+
+    public void FirstIdlePrompt()
+    {
 
         //////////////////
 
@@ -233,7 +284,8 @@ public class ThirdAnglePromptState : State {
         /////////////
     }
 
-	public void SecondAnglePrompt(){
+    public void SecondAnglePrompt()
+    {
         ///////////////
 
         Therapist.Instance.currentState = Therapist.Instance.SecondAnglePromptState;
@@ -241,8 +293,9 @@ public class ThirdAnglePromptState : State {
 
         ///////////////
     }
-	
-	public void ThirdPrompt(){
+
+    public void ThirdPrompt()
+    {
         ///////////////////
 
         Therapist.Instance.currentState = Therapist.Instance.ThirdPromptState;

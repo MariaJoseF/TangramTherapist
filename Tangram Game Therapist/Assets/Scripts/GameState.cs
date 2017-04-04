@@ -160,7 +160,7 @@ public class GameState : MonoBehaviour
         Therapist.Instance.currentPlace = null;
 
 
-        Therapist.Instance.lastPieceUsed = piece;
+        //Therapist.Instance.lastPieceUsed = piece;
         ///////////// teste ///////////// 
         // old verson        Therapist.Instance.GivePositiveFeedback();
 
@@ -199,10 +199,6 @@ public class GameState : MonoBehaviour
         return number;
     }
 
-    PieceSolution currentPlace;
-    Piece currentPiece;
-    string rotationDirection;
-
     string StringNumberOfClicks(int clicks)
     {
         string number;
@@ -217,27 +213,10 @@ public class GameState : MonoBehaviour
 
     string CalculateDirectionOfRotation(Piece currentPiece, PieceSolution currentPlace)
     {
-        //Isto não funciona mt bem, mas está quase feito. será que faz sentido usar isto?
-        /*string currentDirection;
-		int variation;
-		if (currentPiece.rotation > 180) 
-			variation = ((int)currentPiece.rotation - 260) - (int)currentPlace.rotation;
-		else 
-			variation = (int)currentPiece.rotation - (int)currentPlace.rotation;
 
-		if (variation < 0)
-			currentDirection = "esquerda";
-		else
-			currentDirection = "direita";
-		
-		return currentDirection;*/
         int rand = UnityEngine.Random.Range(0, 2);
         return (rand == 0 ? "isquerda" : "direita");
     }
-
-    /// 
-    /// 
-    ///
 
     public void NotFoundTheRightSpot(Piece piece, PieceSolution place, double distance)
     {

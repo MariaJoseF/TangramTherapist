@@ -22,14 +22,26 @@ public class FirstAnglePromptState : State
         nPrompts = 0;
 
 
+        //if (Therapist.Instance.currentPiece == null)
+        //{
+        //    currentPiece = Therapist.Instance.lastPieceUsed;
+        //}
+        //else
+        //{
+        //    currentPiece = Therapist.Instance.currentPiece;
+        //}
+
+        /////////////////////////////////////////////////////
+
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPiece = Therapist.Instance.lastPieceUsed;
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+
+            currentPiece = piece;
         }
-        else
-        {
-            currentPiece = Therapist.Instance.currentPiece;
-        }
+
+        /////////////////////////////////////////////////////
 
         if (nPrompts == 0)
         {
@@ -103,10 +115,10 @@ public class FirstAnglePromptState : State
             {
                 repeatPrompt = false;
                 repeatHardClue = false;
-              //  if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
-                    if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
-                    {
-                        Debug.Log("nao consegui chamar repeat do 1st angle");
+                //  if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
+                if (!UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(currentPiece.name)))
+                {
+                    Debug.Log("nao consegui chamar repeat do 1st angle");
                     repeatPrompt = true;
                     repeatPromptTime = DateTime.Now;
                 }
@@ -155,14 +167,26 @@ public class FirstAnglePromptState : State
 
     void ChangedPiece()
     {
+        //if (Therapist.Instance.currentPiece == null)
+        //{
+        //    currentPiece = Therapist.Instance.lastPieceUsed;
+        //}
+        //else
+        //{
+        //    currentPiece = Therapist.Instance.currentPiece;
+        //}
+
+        /////////////////////////////////////////////////////
+
         if (Therapist.Instance.currentPiece == null)
         {
-            currentPiece = Therapist.Instance.lastPieceUsed;
+            Piece piece = GameState.Instance.FindNewPiece();
+            Therapist.Instance.currentPiece = piece;
+
+            currentPiece = piece;
         }
-        else
-        {
-            currentPiece = Therapist.Instance.currentPiece;
-        }
+
+        /////////////////////////////////////////////////////
 
         lastPromptTime = DateTime.Now;
         PieceSolution currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);

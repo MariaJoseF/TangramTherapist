@@ -49,7 +49,7 @@ public class Therapist : MonoBehaviour
         0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f};
 
     Exp3 AlgorithmEXP3 = new Exp3(19, rewards, 0.07f);
-    public Piece lastPieceUsed;
+    // public Piece lastPieceUsed;
 
 
     /// 
@@ -239,8 +239,6 @@ public class Therapist : MonoBehaviour
                     Console.WriteLine("second angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondAnglePrompt");
 
-
-
                     // tenho que saber qual é a peça que está selecionada neste momento está a enviar null :s
 
 
@@ -269,14 +267,22 @@ public class Therapist : MonoBehaviour
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> StopAnglePrompt");
 
 
+                    //if (currentPiece == null)
+                    //{
+                    //    UtterancesManager.Instance.StopAnglePrompt(lastPieceUsed.ToString());
+                    //}
+                    //else
+                    //{
+                    //    UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
+                    //}
+
                     if (currentPiece == null)
                     {
-                        UtterancesManager.Instance.StopAnglePrompt(lastPieceUsed.ToString());
-                    }
-                    else
-                    {
+                        Piece piece = GameState.Instance.FindNewPiece();
+                        currentPiece = piece;
                         UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
                     }
+
 
                     break;
                 case 12:// -> idle prompt
