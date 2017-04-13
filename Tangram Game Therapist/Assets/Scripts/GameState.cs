@@ -162,11 +162,11 @@ public class GameState : MonoBehaviour
 
         //Therapist.Instance.lastPieceUsed = piece;
         ///////////// teste ///////////// 
-        // old verson        Therapist.Instance.GivePositiveFeedback();
+        Therapist.Instance.GivePositiveFeedback();
 
-        UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> PositiveFeedback");
+        //UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> PositiveFeedback");
 
-        Therapist.Instance.Feedback();
+        //Therapist.Instance.Feedback();
 
         ///////////// ///////////// ///////////// 
 
@@ -255,10 +255,10 @@ public class GameState : MonoBehaviour
 
 
             ///////////// teste ///////////// 
-            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> NegativeFeedback");
+            //UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> NegativeFeedback");
 
-            Therapist.Instance.Feedback();
-            ///old version Therapist.Instance.GiveNegativeFeedback();
+            //Therapist.Instance.Feedback();
+            Therapist.Instance.GiveNegativeFeedback();
             ///////////// ///////////// ///////////// 
 
         }
