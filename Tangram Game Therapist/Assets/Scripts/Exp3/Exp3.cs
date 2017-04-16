@@ -49,12 +49,12 @@ namespace Assets.Scripts.Exp3
             gamma = gamma_;
         }
 
- 
+
         public int RunExp3()
         {
 
 
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"),"-------------------- PLAYER: " + GameManager.Instance.playerName + " PUZZLE: " + GameManager.Instance.CurrentPuzzle + " DIFICULDADE: " + GameManager.Instance.Difficulty_ + " MODO ROTAÇAO: " + GameManager.Instance.RotationMode_ + " THRESHOLD: " + GameManager.Instance.DistanceThreshold + " --------------------");
+        //    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "-------------------- PLAYER: " + GameManager.Instance.playerName + " PUZZLE: " + GameManager.Instance.CurrentPuzzle + " DIFICULDADE: " + GameManager.Instance.Difficulty_ + " MODO ROTAÇAO: " + GameManager.Instance.RotationMode_ + " THRESHOLD: " + GameManager.Instance.DistanceThreshold + " --------------------");
 
 
 
@@ -66,10 +66,10 @@ namespace Assets.Scripts.Exp3
                 {
                     //Weights[i, 0] = 1.0f;
                     Weights.Add(new Elements(iterations, i, 1.0f));
-                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Weights[" + i + ", " + iterations + "] = " + Weights.Find(x => (x.Time_index == iterations && x.Element == i)));
+       //             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Weights[" + i + ", " + iterations + "] = " + Weights.Find(x => (x.Time_index == iterations && x.Element == i)));
 
 
-                   // UtterancesManager.Instance.WriteJSON("EXP3 Weights[" + i + ", " + iterations + "] = " + Weights.Find(x => (x.Time_index == iterations && x.Element == i)));
+                    // UtterancesManager.Instance.WriteJSON("EXP3 Weights[" + i + ", " + iterations + "] = " + Weights.Find(x => (x.Time_index == iterations && x.Element == i)));
                 }
             }
 
@@ -80,8 +80,9 @@ namespace Assets.Scripts.Exp3
             //{
             //Debug.Log(" ------ t = " + iterations + " ------");
 
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), " ------ t = " + iterations + " ------");
-           // UtterancesManager.Instance.WriteJSON("EXP3  ------ t = " + iterations + " ------");
+      //      WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), " ------ t = " + iterations + " ------");
+        
+            // UtterancesManager.Instance.WriteJSON("EXP3  ------ t = " + iterations + " ------");
 
             sum_weights = SumWeights(num_actions, iterations);
             //for each action i, set
@@ -96,23 +97,26 @@ namespace Assets.Scripts.Exp3
                 prob = (1 - gamma) * (_weight.Value / sum_weights) + (gamma / num_actions);
                 Probabilities.Add(new Elements(iterations, i, prob));
 
-                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Probabilities[" + i + ", " + iterations + "] = " + Probabilities.Find(x => (x.Time_index == iterations && x.Element == i)));
-              //  UtterancesManager.Instance.WriteJSON("EXP3      Probabilities[" + i + ", " + iterations + "] = " + Probabilities.Find(x => (x.Time_index == iterations && x.Element == i)));
+           //     WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Probabilities[" + i + ", " + iterations + "] = " + Probabilities.Find(x => (x.Time_index == iterations && x.Element == i)));
+             
+            //  UtterancesManager.Instance.WriteJSON("EXP3      Probabilities[" + i + ", " + iterations + "] = " + Probabilities.Find(x => (x.Time_index == iterations && x.Element == i)));
             }
 
             //Randomly draw an action according to p1(t), ...., pn(t)
             Action = RandomPickAction(num_actions, iterations);
 
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Action number = " + Action);
-           // UtterancesManager.Instance.WriteJSON("EXP3      Action number = " + Action);
+          //  WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Action number = " + Action);
+            
+            // UtterancesManager.Instance.WriteJSON("EXP3      Action number = " + Action);
 
             //observe the reward r(t)
 
             //Rewards[action, t] = reward_actions[action];
             Rewards.Add(new Elements(iterations, Action, reward_actions[Action]));
 
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + Action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == Action)));
-        //    UtterancesManager.Instance.WriteJSON("EXP3 Rewards[" + Action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == Action)));
+            //WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "Rewards[" + Action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == Action)));
+           
+            //    UtterancesManager.Instance.WriteJSON("EXP3 Rewards[" + Action + ", " + iterations + "] = " + Rewards.Find(x => (x.Time_index == iterations && x.Element == Action)));
 
             //update estimated reward   ^ri(t) 
 
@@ -157,15 +161,37 @@ namespace Assets.Scripts.Exp3
                     Weights.Add(_weight_plus_one);
                 }
 
-                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j)));
-                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + j + ", " + (iterations + 1) + "] = " + Weights.Find(x => (x.Time_index == (iterations + 1) && x.Element == j)));
-          //      UtterancesManager.Instance.WriteJSON("EXP3      EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j)));
-          //      UtterancesManager.Instance.WriteJSON("EXP3      Weights[" + j + ", " + (iterations + 1) + "] = " + Weights.Find(x => (x.Time_index == (iterations + 1) && x.Element == j)));
+            //    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j)));
+               // WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "     Weights[" + j + ", " + (iterations + 1) + "] = " + Weights.Find(x => (x.Time_index == (iterations + 1) && x.Element == j)));
+                
+            //      UtterancesManager.Instance.WriteJSON("EXP3      EstimatedRewards[" + j + ", " + iterations + "] = " + EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == j)));
+                //      UtterancesManager.Instance.WriteJSON("EXP3      Weights[" + j + ", " + (iterations + 1) + "] = " + Weights.Find(x => (x.Time_index == (iterations + 1) && x.Element == j)));
             }
 
+
+            SaveData();
             iterations++;
 
             return Action;
+        }
+
+        private void SaveData()
+        {
+            if (iterations == 0)
+            {
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";PLAYER;PUZZLE; DIFICULDADE;MODO ROTAÇAO;THRESHOLD;ACTION;TIME_t;WEIGHT;PROBABILITY;ESTIMATED_REWARD;SELECTED_ACTION");
+            }
+
+
+            for (int i = 0; i < num_actions; i++)
+            {
+                var weigth = Weights.Find(x => (x.Time_index == iterations && x.Element == i));
+                var probability = Probabilities.Find(x => (x.Time_index == iterations && x.Element == i));
+                var estimeted_reward = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == i));
+
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" +
+                 i +";" + iterations +";" + weigth + ";" + probability + ";" +estimeted_reward + ";" +Action);
+            }
         }
 
 
@@ -185,7 +211,7 @@ namespace Assets.Scripts.Exp3
                 selected_action = i;
                 _probabilities = Probabilities.Find(x => (x.Time_index == time_ && x.Element == i));
                 sum_prob = sum_prob + _probabilities.Value;
-               // Debug.Log("         sum_prob = " + sum_prob);
+                // Debug.Log("         sum_prob = " + sum_prob);
                 if (sum_prob >= dou_)
                 {
                     break;
@@ -220,7 +246,7 @@ namespace Assets.Scripts.Exp3
                 {
                     Directory.CreateDirectory(filePath);
                     Console.WriteLine(filePath);
-               }
+                }
 
             }
             catch (IOException ex)

@@ -286,10 +286,10 @@ public class GameState : MonoBehaviour
         Therapist.Instance.currentPlace = place;
 
         ///////////// teste ///////////// 
-        UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> NegativeFeedback");
+        //UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> NegativeFeedback");
 
-        Therapist.Instance.Feedback();
-        ///old version  Therapist.Instance.GiveNegativeFeedback();
+        //Therapist.Instance.Feedback();
+        Therapist.Instance.GiveNegativeFeedback();
         ///////////// ///////////// ///////////// 
 
 

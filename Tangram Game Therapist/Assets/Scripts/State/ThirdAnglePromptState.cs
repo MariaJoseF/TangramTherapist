@@ -39,6 +39,10 @@ public class ThirdAnglePromptState : State
 
             currentPiece = piece;
         }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
 
         /////////////////////////////////////////////////////
 
@@ -162,6 +166,10 @@ public class ThirdAnglePromptState : State
             Therapist.Instance.currentPiece = piece;
 
             currentPiece = piece;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
         }
 
         /////////////////////////////////////////////////////

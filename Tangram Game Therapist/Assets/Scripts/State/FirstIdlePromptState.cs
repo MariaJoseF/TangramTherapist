@@ -28,6 +28,10 @@ public class FirstIdlePromptState : State
                 Piece piece = GameState.Instance.FindNewPiece();
                 Therapist.Instance.currentPiece = piece;
             }
+            else
+            {
+                currentPiece = Therapist.Instance.currentPiece;
+            }
 
             if (!UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))
             {
@@ -68,10 +72,15 @@ public class FirstIdlePromptState : State
         {
             repeatPrompt = false;
             repeatHardClue = false;
+
             if (Therapist.Instance.currentPiece == null)
             {
                 Piece piece = GameState.Instance.FindNewPiece();
                 Therapist.Instance.currentPiece = piece;
+            }
+            else
+            {
+                currentPiece = Therapist.Instance.currentPiece;
             }
 
             if (!UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)))

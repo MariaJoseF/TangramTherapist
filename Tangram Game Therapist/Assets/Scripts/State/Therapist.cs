@@ -280,9 +280,10 @@ public class Therapist : MonoBehaviour
                     {
                         Piece piece = GameState.Instance.FindNewPiece();
                         currentPiece = piece;
-                        UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
+                        
                     }
 
+UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
 
                     break;
                 case 12:// -> idle prompt

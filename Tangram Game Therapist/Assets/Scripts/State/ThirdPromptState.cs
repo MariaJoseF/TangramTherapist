@@ -43,6 +43,10 @@ public class ThirdPromptState : State
 
                 currentPiece = piece;
             }
+            else
+            {
+                currentPiece = Therapist.Instance.currentPiece;
+            }
 
             /////////////////////////////////////////////////////
 

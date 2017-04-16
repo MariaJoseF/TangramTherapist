@@ -74,9 +74,6 @@ public class LoadOnClick : MonoBehaviour {
         GameManager.Instance.BeginGame(muted);
         previousLevel = 1;
 
-
-        Console.WriteLine("----------------- Call EXP3 algorithm -----------------");
-
         Application.LoadLevel(2);
     }
 }

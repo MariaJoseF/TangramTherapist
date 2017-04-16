@@ -41,6 +41,10 @@ public class FirstPlacePromptState : State
 
             currentPiece = piece;
         }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
 
         /////////////////////////////////////////////////////
 

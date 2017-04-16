@@ -40,6 +40,10 @@ public class FirstAnglePromptState : State
 
             currentPiece = piece;
         }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
+        }
 
         /////////////////////////////////////////////////////
 
@@ -184,6 +188,10 @@ public class FirstAnglePromptState : State
             Therapist.Instance.currentPiece = piece;
 
             currentPiece = piece;
+        }
+        else
+        {
+            currentPiece = Therapist.Instance.currentPiece;
         }
 
         /////////////////////////////////////////////////////
