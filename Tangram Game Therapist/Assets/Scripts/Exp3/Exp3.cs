@@ -156,14 +156,14 @@ namespace Assets.Scripts.Exp3
         {
             if (iterations == 0)
             {
-                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";PLAYER;PUZZLE; DIFICULDADE;MODO ROTAÇAO;THRESHOLD;ACTION;TIME_t;WEIGHT;PROBABILITY;ESTIMATED_REWARD;SELECTED_ACTION");
+                WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;WEIGHT;PROBABILITY;ESTIMATED_REWARD;SELECTED_ACTION");
             }
 
             for (int i = 0; i < num_actions; i++)
             {
-                var weigth = Weights.Find(x => (x.Time_index == iterations && x.Element == i));
-                var probability = Probabilities.Find(x => (x.Time_index == iterations && x.Element == i));
-                var estimeted_reward = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == i));
+                Elements weigth = Weights.Find(x => (x.Time_index == iterations && x.Element == i));
+                Elements probability = Probabilities.Find(x => (x.Time_index == iterations && x.Element == i));
+                Elements estimeted_reward = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == i));
 
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" +
                  i + ";" + iterations + ";" + weigth + ";" + probability + ";" + estimeted_reward + ";" + Action);

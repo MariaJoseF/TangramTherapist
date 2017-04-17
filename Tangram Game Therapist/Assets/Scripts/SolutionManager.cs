@@ -118,14 +118,17 @@ public class SolutionManager : MonoBehaviour
         }
         else if (notFound)
         {
-            Therapist.Instance.AlgorithmEXP31.RunExp3();
+            //Therapist.Instance.AlgorithmEXP3_.RunExp3();
+            Therapist.Instance.AlgorithmUCB_.RunUCB();
             GameState.Instance.NotFoundTheRightSpot(piece, notFoundPlace, notFoundDistance);
             //GameState.Instance.RunExp(piece, 2, notFoundPlace, notFoundDistance);
-            
+
         }
         else if (incorrectAngle)
         {
-            Therapist.Instance.AlgorithmEXP31.RunExp3();
+            // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+            Therapist.Instance.AlgorithmUCB_.RunUCB();
+
             GameState.Instance.IncorrectAngle(piece, incorrectAnglePlace);
             // GameState.Instance.RunExp(piece, 3, incorrectAnglePlace);
         }
@@ -145,7 +148,9 @@ public class SolutionManager : MonoBehaviour
         piece.FinalStopCountingTime();
         if (pieceSolutions.Count > 0)
         {
-            Therapist.Instance.AlgorithmEXP31.RunExp3();
+            //Therapist.Instance.AlgorithmEXP3_.RunExp3();
+            Therapist.Instance.AlgorithmUCB_.RunUCB();
+
             GameState.Instance.FoundTheRightSpot(piece);
             //GameState.Instance.RunExp(piece, 1);
         }
@@ -193,7 +198,9 @@ public class SolutionManager : MonoBehaviour
                     gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     UtterancesManager.Instance.WriteJSON("SHOW HARD CLUE");
 
-                    Therapist.Instance.AlgorithmEXP31.RunExp3();
+                    Therapist.Instance.AlgorithmUCB_.RunUCB();
+
+                    //Therapist.Instance.AlgorithmEXP3_.RunExp3();
                 }
             }
         }

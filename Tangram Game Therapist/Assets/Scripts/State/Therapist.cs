@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using Assets.Scripts.Exp3;
+using Assets.Scripts.UCB;
 
 public class Therapist : MonoBehaviour
 {
@@ -49,6 +50,8 @@ public class Therapist : MonoBehaviour
         0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f};
 
     Exp3 AlgorithmEXP3 = new Exp3(19, rewards, 0.07f);
+    UCB AlgorithmUCB = new UCB(19, rewards);
+
     // public Piece lastPieceUsed;
 
 
@@ -188,11 +191,11 @@ public class Therapist : MonoBehaviour
 
     public void Feedback()
     {
-
-
         try
         {
-            switch (AlgorithmEXP31.Action)
+            //  switch (AlgorithmEXP3_.Action)
+            switch (AlgorithmUCB_.Action)
+
             {
                 case 0:// -> motor_help
                     Console.WriteLine("motor_help");
@@ -280,10 +283,10 @@ public class Therapist : MonoBehaviour
                     {
                         Piece piece = GameState.Instance.FindNewPiece();
                         currentPiece = piece;
-                        
+
                     }
 
-UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
+                    UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
 
                     break;
                 case 12:// -> idle prompt
@@ -353,13 +356,13 @@ UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
 
             }
 
-            AlgorithmEXP31.Action = -1;
+            AlgorithmEXP3_.Action = -1;
 
         }
         catch (Exception e)
         {
             Debug.Log("Error : " + e.Message);
-            UtterancesManager.Instance.WriteJSON("Error : " + e.Message + " action = " + AlgorithmEXP31.Action);
+            UtterancesManager.Instance.WriteJSON("Error : " + e.Message + " action = " + AlgorithmEXP3_.Action);
         }
         finally
         {
@@ -589,7 +592,7 @@ UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
         }
     }
 
-    internal Exp3 AlgorithmEXP31
+    internal Exp3 AlgorithmEXP3_
     {
         get
         {
@@ -599,6 +602,19 @@ UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
         set
         {
             AlgorithmEXP3 = value;
+        }
+    }
+
+    internal UCB AlgorithmUCB_
+    {
+        get
+        {
+            return AlgorithmUCB;
+        }
+
+        set
+        {
+            AlgorithmUCB = value;
         }
     }
 }
