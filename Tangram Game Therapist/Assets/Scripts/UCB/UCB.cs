@@ -13,7 +13,7 @@ namespace Assets.Scripts.UCB
         private List<Elements> A_t = new List<Elements>();
         private int actionSelected = 0;
         private string fileName = null;
-        private int iterations = 0;
+        private int iterations = 1;
         private int number_actions;
         private float[] reward_actions;
 
@@ -38,7 +38,7 @@ namespace Assets.Scripts.UCB
 
         public int RunUCB()
         {
-            if (iterations == 0)
+            if (iterations == 1)
             {
                 for (int i = 0; i < number_actions; i++)
                 {
@@ -74,7 +74,7 @@ namespace Assets.Scripts.UCB
                 }
             }
 
-            actionSelected = Convert.ToInt32(aux_max[1]);
+            actionSelected = Convert.ToInt32(aux_max[0]);
 
             //update number of times action i was played
             Elements _action = PlayedActions.Find(x => (x.Action == actionSelected));
@@ -94,7 +94,7 @@ namespace Assets.Scripts.UCB
 
         private void SaveData()
         {
-            if (iterations == 0)
+            if (iterations == 1)
             {
                 WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;UCB;AVG_REWARD;PLAYED_ACTIONS;SELECTED_ACTION");
             }
@@ -102,11 +102,11 @@ namespace Assets.Scripts.UCB
             for (int i = 0; i < number_actions; i++)
             {
                 Elements _A_t = A_t.Find(x => (x.Time_index == iterations && x.Action == i));
-                Elements _playedActions = PlayedActions.Find(x => (x.Time_index == iterations && x.Action == i));
-                Elements _avgRewards = AvgReceivedRewards.Find(x => (x.Time_index == iterations && x.Action == i));
+                Elements _playedActions = PlayedActions.Find(x => (x.Action == i));
+                Elements _avgRewards = AvgReceivedRewards.Find(x => (x.Action == i));
 
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" +
-                    i + ";" + iterations + ";" + _A_t.Value + ";" + _avgRewards.Value + ";" + _playedActions.Value + ";" + actionSelected);
+                    i + ";" + iterations + ";" + _A_t + ";" + _avgRewards + ";" + _playedActions + ";" + actionSelected);
 
             }
         }
