@@ -194,8 +194,9 @@ public class Therapist : MonoBehaviour
         try
         {
             //  switch (AlgorithmEXP3_.Action)
-            switch (AlgorithmUCB_.Action)
-
+            //    switch (AlgorithmUCB_.Action)
+            int i = 17;
+            switch (i)
             {
                 case 0:// -> motor_help
                     Console.WriteLine("motor_help");
@@ -344,13 +345,39 @@ public class Therapist : MonoBehaviour
                     Console.WriteLine("third prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdPrompt");
 
+
+                    if (currentPiece == null)
+                    {
+                        Piece piece = GameState.Instance.FindNewPiece();
+                        currentPiece = piece;
+
+                    }
+
+                    currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
+
+
+
                     ThirdPrompt();
                     break;
                 case 18:// -> hard_clue prompt
                     Console.WriteLine("hard_clue prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HardClue");
 
-                    showedHardClue = true;//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    if (currentPiece == null)
+                    {
+                        Piece piece = GameState.Instance.FindNewPiece();
+                        currentPiece = piece;
+
+                    }
+
+                    currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
+
+
+
+                   // Version bem o que pôr aqui pois nãoa cho que esta seja a hard clue
+
+
+                    //   showedHardClue = true;//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     ThirdPrompt();
                     break;
 

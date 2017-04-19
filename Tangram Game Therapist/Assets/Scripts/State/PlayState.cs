@@ -14,18 +14,28 @@ public class PlayState : State
         if ((DateTime.Now - GameState.Instance.stopped).TotalSeconds > 15 && !GameState.Instance.dragging)
         {
             Debug.Log("PLAY -> 1st idle");
-            FirstIdlePrompt();
+            // FirstIdlePrompt();
+            CallFeedback();
         }
         if (Therapist.Instance.nFailedTries >= 2)
         {
             Debug.Log(Therapist.Instance.nFailedTries + " tentativas erradas");
-            FirstPlacePrompt();
+            //FirstPlacePrompt();
+            CallFeedback();
         }
         if (Therapist.Instance.nWrongAngleTries >= 2)
         {
             Debug.Log(Therapist.Instance.nWrongAngleTries + " x angulo erradas");
-            FirstAnglePrompt();
+            //FirstAnglePrompt();
+            CallFeedback();
         }
+    }
+
+    private void CallFeedback()
+    {
+        // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+        Therapist.Instance.AlgorithmUCB_.RunUCB();
+        Therapist.Instance.Feedback();
     }
 
     public void StartedMoving(bool correctAngle)

@@ -11,6 +11,9 @@ namespace Assets.Scripts.UCB
         private List<Elements> PlayedActions = new List<Elements>();
         private List<Elements> AvgReceivedRewards = new List<Elements>();
         private List<Elements> A_t = new List<Elements>();
+
+        private List<Elements> Rewards = new List<Elements>();
+
         private int actionSelected = 0;
         private string fileName = null;
         private int iterations = 1;
