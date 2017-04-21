@@ -65,4 +65,8 @@ public class StartState : State {
     public void RepeatPrompt()//não existia acrescentei
     {
     }
+
+    public void HardCluePrompt()
+    {
+    }
 }

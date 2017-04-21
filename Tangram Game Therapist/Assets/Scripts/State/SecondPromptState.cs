@@ -267,6 +267,9 @@ public class SecondPromptState : State
                 || (goToSecondAnglePrompt && (DateTime.Now - goToSecondAnglePromptTime).TotalSeconds > 5))
             {
                 SecondAnglePrompt();
+
+
+
                 Debug.Log("2nd prompt -> 2ndAngle");
                 return;
             }
@@ -281,6 +284,9 @@ public class SecondPromptState : State
                 else if (nPrompts >= 2)
                 {
                     Debug.Log("2nd prompt -> vai para o terceiro estado");
+
+
+
                     ThirdPrompt();
                     return;
                 }
@@ -443,5 +449,9 @@ public class SecondPromptState : State
 
         //////////
 
+    }
+
+    public void HardCluePrompt()
+    {
     }
 }

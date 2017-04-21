@@ -169,4 +169,8 @@ public class FingerHelpState : State
     public void RepeatPrompt()//não existia acrescentei
     {
     }
+
+    public void HardCluePrompt()
+    {
+    }
 }

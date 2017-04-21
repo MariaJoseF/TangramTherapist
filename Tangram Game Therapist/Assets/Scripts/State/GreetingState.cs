@@ -59,4 +59,8 @@ public class GreetingState : State {
     public void RepeatPrompt()//não existia acrescentei
     {
     }
+
+    public void HardCluePrompt()
+    {
+    }
 }

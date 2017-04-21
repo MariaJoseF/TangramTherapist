@@ -36,4 +36,6 @@ public interface State {
 	void Update();
 
     void RepeatPrompt();//acrescentei este
+
+    void HardCluePrompt();//acrescentei este
 }

@@ -162,4 +162,7 @@ public class MotorHelpState : State
     {
     }
 
+    public void HardCluePrompt()
+    {
+    }
 }

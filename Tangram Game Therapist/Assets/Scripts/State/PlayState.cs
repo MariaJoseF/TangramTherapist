@@ -140,4 +140,10 @@ public class PlayState : State
     {
     }
 
+    public void HardCluePrompt()
+    {
+        Therapist.Instance.currentState = Therapist.Instance.HardClueState;
+        Therapist.Instance.HardCluePrompt();
+    }
+
 }

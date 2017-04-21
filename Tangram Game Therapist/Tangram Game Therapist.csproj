@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\State\FirstPlacePromptState.cs" />
     <Compile Include="Assets\Scripts\State\FitHelpState.cs" />
     <Compile Include="Assets\Scripts\State\GreetingState.cs" />
+    <Compile Include="Assets\Scripts\State\HardClue.cs" />
     <Compile Include="Assets\Scripts\State\InitialHelpState.cs" />
     <Compile Include="Assets\Scripts\State\MotorHelpState.cs" />
     <Compile Include="Assets\Scripts\State\NegativeFeedState.cs" />

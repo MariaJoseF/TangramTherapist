@@ -89,4 +89,8 @@ public class InitialHelpState : State {
     public void RepeatPrompt()//não existia acrescentei
     {
     }
+
+    public void HardCluePrompt()
+    {
+    }
 }

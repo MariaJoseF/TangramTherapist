@@ -107,29 +107,34 @@ public class FirstIdlePromptState : State
             {
                 if (repeatHardClue || repeatPrompt || nPrompts < 2)
                 {
+                    CallFeedback();
                     RepeatPrompt();
                 }
                 else if (nPrompts >= 2)
                 {
                     Debug.Log("1st idle -> vai para o segundo estado");
-                    SecondPrompt();
+                    CallFeedback();
+                    // SecondPrompt();
                     return;
                 }
             }
             if (Therapist.Instance.nFailedTries >= 2)
             {
-                FirstPlacePrompt();
+                CallFeedback();
+                //FirstPlacePrompt();
                 return;
             }
             if (Therapist.Instance.nWrongAngleTries >= 2)
             {
-                FirstAnglePrompt();
+                CallFeedback();
+                // FirstAnglePrompt();
                 return;
             }
         }
         else if (repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4)
         {
-            FirstIdlePrompt();
+            CallFeedback();
+            // FirstIdlePrompt();
         }
 
         if (vibratePiece)
@@ -137,6 +142,14 @@ public class FirstIdlePromptState : State
             GameState.Instance.VibratePiece(currentPiece);
             vibratePiece = false;
         }
+    }
+
+
+    private void CallFeedback()
+    {
+        // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+        Therapist.Instance.AlgorithmUCB_.RunUCB();
+        Therapist.Instance.Feedback();
     }
 
     public void GivePositiveFeedback()
@@ -268,6 +281,10 @@ public class FirstIdlePromptState : State
 
         /////////
 
+    }
+
+    public void HardCluePrompt()
+    {
     }
 
 }

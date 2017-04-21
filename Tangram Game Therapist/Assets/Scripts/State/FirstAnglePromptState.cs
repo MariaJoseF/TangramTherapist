@@ -221,29 +221,23 @@ public class FirstAnglePromptState : State
             {
                 if (repeatAngleHelp || repeatHardClue || repeatPrompt || nPrompts < 1)
                 {
-                    Therapist.Instance.AlgorithmUCB_.RunUCB();
-
-                    // Therapist.Instance.AlgorithmEXP3_.RunExp3();
+                    CallFeedback();
                     RepeatPrompt();
                     return;
                 }
                 else if (!rightAnglePiece && nPrompts >= 1)
                 {
                     Debug.Log("1st angle -> vai para o segundo estado");
-                    Therapist.Instance.AlgorithmUCB_.RunUCB();
-
-                    // Therapist.Instance.AlgorithmEXP3_.RunExp3();
-                    SecondAnglePrompt();
+                    CallFeedback();
+                    //SecondAnglePrompt();
                     return;
                 }
             }
         }
         else if ((repeatHardClue || repeatPrompt) && (DateTime.Now - repeatPromptTime).TotalSeconds > 4)
         {
-            Therapist.Instance.AlgorithmUCB_.RunUCB();
-
-            //Therapist.Instance.AlgorithmEXP3_.RunExp3();
-            FirstAnglePrompt();
+            CallFeedback();
+            // FirstAnglePrompt();
         }
 
         if (Therapist.Instance.currentPiece != currentPiece)
@@ -252,12 +246,19 @@ public class FirstAnglePromptState : State
         }
         if ((rightAnglePiece && (DateTime.Now - lastPromptTime).TotalSeconds > 5) || Therapist.Instance.nFailedTries > 3)
         {
-            // Therapist.Instance.AlgorithmEXP3_.RunExp3();
-            Therapist.Instance.AlgorithmUCB_.RunUCB();
+            CallFeedback();
 
-            FirstPlacePrompt();
+            // FirstPlacePrompt();
         }
 
+    }
+
+
+    private void CallFeedback()
+    {
+        // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+        Therapist.Instance.AlgorithmUCB_.RunUCB();
+        Therapist.Instance.Feedback();
     }
 
     public void StartedMoving(bool correctAngle)
@@ -418,4 +419,7 @@ public class FirstAnglePromptState : State
 
     }
 
+    public void HardCluePrompt()
+    {
+    }
 }

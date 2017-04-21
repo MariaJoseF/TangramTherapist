@@ -311,4 +311,8 @@ public class ThirdAnglePromptState : State
 
         ///////////////////
     }
+
+    public void HardCluePrompt()
+    {
+    }
 }

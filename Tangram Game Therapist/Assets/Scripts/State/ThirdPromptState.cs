@@ -298,4 +298,9 @@ public class ThirdPromptState : State
         //////
 
     }
+
+    public void HardCluePrompt()
+    {
+    }
+
 }

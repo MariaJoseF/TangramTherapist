@@ -31,6 +31,7 @@ public class Therapist : MonoBehaviour
     State secondPromptState = new SecondPromptState();
     State thirdAnglePromptState = new ThirdAnglePromptState();
     State thirdPromptState = new ThirdPromptState();
+    State hardClueState = new HardClueState();
 
     public State currentState = greetingState;
     public State previousState;
@@ -189,14 +190,22 @@ public class Therapist : MonoBehaviour
     }
 
 
+    public void HardCluePrompt()
+    {
+        currentState.HardCluePrompt();
+
+    }
+
     public void Feedback()
     {
         try
         {
+
+            showedHardClue = false;
             //  switch (AlgorithmEXP3_.Action)
-            //    switch (AlgorithmUCB_.Action)
-            int i = 17;
-            switch (i)
+            switch (AlgorithmUCB_.Action)
+            //  int i = 18;
+            //  switch (i)
             {
                 case 0:// -> motor_help
                     Console.WriteLine("motor_help");
@@ -332,30 +341,19 @@ public class Therapist : MonoBehaviour
                     Console.WriteLine("sec_place prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecPlacePrompt");
 
-
-                    //currentPiece;
-
-                    //tenho que adicionar a peça que estou a usar
-
-
-
                     SecondPrompt();
                     break;
                 case 17:// -> third prompt
                     Console.WriteLine("third prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdPrompt");
 
-
                     if (currentPiece == null)
                     {
                         Piece piece = GameState.Instance.FindNewPiece();
                         currentPiece = piece;
-
                     }
 
                     currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
-
-
 
                     ThirdPrompt();
                     break;
@@ -363,22 +361,24 @@ public class Therapist : MonoBehaviour
                     Console.WriteLine("hard_clue prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HardClue");
 
+
                     if (currentPiece == null)
                     {
                         Piece piece = GameState.Instance.FindNewPiece();
                         currentPiece = piece;
-
                     }
 
                     currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
 
-
-
-                   // Version bem o que pôr aqui pois nãoa cho que esta seja a hard clue
-
-
-                    //   showedHardClue = true;//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     ThirdPrompt();
+
+
+                    //    UtterancesManager.Instance.HardClue(0.4f);
+                    //   HardCluePrompt();
+                    //  repeatHardClue = true;
+
+                    // repeatPromptTime = DateTime.Now;
+
                     break;
 
             }
@@ -642,6 +642,19 @@ public class Therapist : MonoBehaviour
         set
         {
             AlgorithmUCB = value;
+        }
+    }
+
+    public State HardClueState
+    {
+        get
+        {
+            return hardClueState;
+        }
+
+        set
+        {
+            hardClueState = value;
         }
     }
 }

@@ -293,4 +293,8 @@ public class FirstPlacePromptState : State
 
     }
 
+
+    public void HardCluePrompt()
+    {
+    }
 }
