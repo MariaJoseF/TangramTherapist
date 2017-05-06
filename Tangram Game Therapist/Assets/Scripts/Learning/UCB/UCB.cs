@@ -43,6 +43,12 @@ namespace Assets.Scripts.UCB
         {
             if (iterations == 1)
             {
+                Console.WriteLine("All numbers between 0 and 20 in random order:");
+                foreach (int i in UniqueRandom(0, 20))
+                {
+                    Console.WriteLine(i);
+                }
+
                 for (int i = 0; i < number_actions; i++)
                 {
                     PlayedActions.Add(new Elements(i, 1.0f));
@@ -95,6 +101,27 @@ namespace Assets.Scripts.UCB
             return actionSelected;
         }
 
+        private void UpdateReward(int action, int reward_rating)
+        {
+            int A = 1, B = 5;
+            float res_reward = 0.0f;
+
+            if (reward_rating < A)
+            {
+                res_reward = 0.1f;
+            }
+            else if (reward_rating >= A && reward_rating < B)
+            {
+                res_reward = (reward_rating - A) / (B - A);
+            }
+            else // reward_rating >= B
+            {
+                res_reward = 0.9f;
+            }
+
+            reward_actions[action] = res_reward;
+        }
+
         private void SaveData()
         {
             if (iterations == 1)
@@ -111,6 +138,25 @@ namespace Assets.Scripts.UCB
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" +
                     i + ";" + iterations + ";" + _A_t + ";" + _avgRewards + ";" + _playedActions + ";" + actionSelected);
 
+            }
+        }
+
+        /// <summary>
+        /// Returns all numbers, between min and max inclusive, once in a random sequence.
+        /// </summary>
+        IEnumerable<int> UniqueRandom(int minInclusive, int maxInclusive)
+        {
+            List<int> candidates = new List<int>();
+            for (int i = minInclusive; i <= maxInclusive; i++)
+            {
+                candidates.Add(i);
+            }
+            Random rnd = new Random();
+            while (candidates.Count > 0)
+            {
+                int index = rnd.Next(candidates.Count);
+                yield return candidates[index];
+                candidates.RemoveAt(index);
             }
         }
 

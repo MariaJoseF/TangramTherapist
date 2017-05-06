@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 using Assets.Scripts.Exp3;
+using Assets.Scripts.Learning;
 
 public class LoadOnClick : MonoBehaviour {
 	
@@ -46,7 +47,16 @@ public class LoadOnClick : MonoBehaviour {
     {
         GameManager.Instance.playerName = playerName;
         Application.LoadLevel(1);
+
+        Ratings r = new Ratings();
+        r.form_Feedback.ShowDialog();
         Therapist.Instance.BeginFirstGame();
+        r.Button_1.Visible = true;
+        r.Button_2.Visible = true;
+        r.Button_3.Visible = true;
+        r.Button_4.Visible = true;
+        r.Button_5.Visible = true;
+        r.form_Feedback.ShowDialog();
     }
 
     public void SavePlayerName()
