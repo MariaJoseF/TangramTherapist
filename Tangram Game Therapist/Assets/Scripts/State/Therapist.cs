@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using Assets.Scripts.Exp3;
 using Assets.Scripts.UCB;
+using Assets.Scripts.Learning;
 
 public class Therapist : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class Therapist : MonoBehaviour
     public bool showedHardClue = false;
     DateTime gameEndedTime;
 
-
+    
 
     /// 
     /// //////////////////////
@@ -52,6 +53,8 @@ public class Therapist : MonoBehaviour
 
     Exp3 AlgorithmEXP3 = new Exp3(19, rewards, 0.07f);
     UCB AlgorithmUCB = new UCB(19, rewards);
+Ratings ratingsFeedback = new Ratings();
+    String action_name = "";
 
     // public Piece lastPieceUsed;
 
@@ -198,55 +201,68 @@ public class Therapist : MonoBehaviour
 
     public void Feedback()
     {
+        bool give_Feedback = false;
         try
         {
 
             showedHardClue = false;
             //  switch (AlgorithmEXP3_.Action)
             switch (AlgorithmUCB_.Action)
-            //  int i = 18;
-            //  switch (i)
             {
                 case 0:// -> motor_help
                     Console.WriteLine("motor_help");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HelpMotor");
                     HelpMotor();
+                    give_Feedback = true;
+                    action_name = "Motor Help prompt";
                     break;
                 case 1:// -> close_help
                     Console.WriteLine("close_help");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HelpAdjustingPiece");
 
                     HelpAdjustingPiece();
+                    give_Feedback = true;
+                    action_name = "Close Help prompt";
                     break;
                 case 2:// -> positive feedback
                     Console.WriteLine("positive feedback");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> PositiveFeedback");
 
                     GivePositiveFeedback();
+                    give_Feedback = true;
+                    action_name = "Positive prompt";
                     break;
                 case 3:// -> negative feedback
                     Console.WriteLine("negative feedback");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> NegativeFeedback");
 
                     GiveNegativeFeedback();
+                    give_Feedback = true;
+                    action_name = "Negative prompt";
                     break;
                 case 4:// -> first angle prompt
                     Console.WriteLine("first angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstAnglePrompt");
 
                     FirstAnglePrompt();
+                    give_Feedback = true;
+                    action_name = "First Angle prompt";
                     break;
                 case 5:// -> first finger angle prompt
                     Console.WriteLine("first finger angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstFingerAnglePrompt");
 
                     FirstAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    give_Feedback = true;
+                    action_name = "First Finger Angle prompt";
                     break;
                 case 6:// -> first button angle prompt
                     Console.WriteLine("first button angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstButtonAnglePrompt");
 
                     FirstAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    give_Feedback = true;
+                    action_name = "First Button Angle prompt";
                     break;
                 case 7:// -> second angle prompt
                     Console.WriteLine("second angle prompt");
@@ -256,24 +272,32 @@ public class Therapist : MonoBehaviour
 
 
                     SecondAnglePrompt();
+                    give_Feedback = true;
+                    action_name = "Second Angle prompt";
                     break;
                 case 8:// -> second finger angle prompt
                     Console.WriteLine("second finger angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondFingerAnglePrompt");
 
                     SecondAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    give_Feedback = true;
+                    action_name = "Second Finger Angle prompt";
                     break;
                 case 9:// -> second button angle prompt
                     Console.WriteLine("second button angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondButtonAnglePrompt");
 
                     SecondAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    give_Feedback = true;
+                    action_name = "Second Button Angle prompt";
                     break;
                 case 10:// -> third angle prompt
                     Console.WriteLine(" third angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdAnglePrompt");
 
                     ThirdAnglePrompt();
+                    give_Feedback = true;
+                    action_name = "Third Angle prompt";
                     break;
                 case 11:// -> stop angle prompt
                     Console.WriteLine("stop angle prompt");
@@ -297,20 +321,24 @@ public class Therapist : MonoBehaviour
                     }
 
                     UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
-
+                    give_Feedback = true;
+                    action_name = "Stop Angle prompt";
                     break;
                 case 12:// -> idle prompt
                     Console.WriteLine("idle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstIdlePrompt");
 
                     FirstIdlePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
-                    //nºao sei se é aqui
+                    give_Feedback = true;
+                    action_name = "Idle prompt";
                     break;
                 case 13:// -> place prompt
                     Console.WriteLine("place prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstPlacePrompt");
 
                     FirstPlacePrompt();
+                    give_Feedback = true;
+                    action_name = "Place prompt";
                     break;
                 case 14:// -> sec_1position prompt
                     Console.WriteLine("sec_1position prompt");
@@ -324,6 +352,8 @@ public class Therapist : MonoBehaviour
 
 
                     SecondPrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    give_Feedback = true;
+                    action_name = "Second 1 Position prompt";
                     break;
                 case 15:// -> sec_2position prompt
                     Console.WriteLine("sec_2position prompt");
@@ -336,12 +366,16 @@ public class Therapist : MonoBehaviour
 
 
                     SecondPrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
+                    give_Feedback = true;
+                    action_name = "Second 2 Position prompt";
                     break;
                 case 16:// -> sec_place prompt
                     Console.WriteLine("sec_place prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecPlacePrompt");
 
                     SecondPrompt();
+                    give_Feedback = true;
+                    action_name = "Second Place prompt";
                     break;
                 case 17:// -> third prompt
                     Console.WriteLine("third prompt");
@@ -356,6 +390,8 @@ public class Therapist : MonoBehaviour
                     currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
 
                     ThirdPrompt();
+                    give_Feedback = true;
+                    action_name = "Third prompt";
                     break;
                 case 18:// -> hard_clue prompt
                     Console.WriteLine("hard_clue prompt");
@@ -371,7 +407,8 @@ public class Therapist : MonoBehaviour
                     currentPlace = GameState.Instance.FindTheCorrectPlace(currentPiece);
 
                     ThirdPrompt();
-
+                    give_Feedback = true;
+                    action_name = "Hard Clue prompt";
 
                     //    UtterancesManager.Instance.HardClue(0.4f);
                     //   HardCluePrompt();
@@ -383,7 +420,43 @@ public class Therapist : MonoBehaviour
 
             }
 
+            if (give_Feedback)
+            {
+
+                ratingsFeedback.Button_1.Enabled = true;
+                ratingsFeedback.Button_2.Enabled = true;
+                ratingsFeedback.Button_3.Enabled = true;
+                ratingsFeedback.Button_4.Enabled = true;
+                ratingsFeedback.Button_5.Enabled = true;
+
+                ratingsFeedback.Label1.Text = "Feedback " + action_name;
+
+                ratingsFeedback.Button_1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+                ratingsFeedback.Button_2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+                ratingsFeedback.Button_3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+                ratingsFeedback.Button_4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+                ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+             
+                ratingsFeedback.form_Feedback.Show();
+                give_Feedback = false;
+            }
+            else
+            {
+                ratingsFeedback.Button_1.Enabled = false;
+                ratingsFeedback.Button_2.Enabled = false;
+                ratingsFeedback.Button_3.Enabled = false;
+                ratingsFeedback.Button_4.Enabled = false;
+                ratingsFeedback.Button_5.Enabled = false;
+
+                ratingsFeedback.Button_1.BackColor = System.Drawing.SystemColors.Control;
+                ratingsFeedback.Button_2.BackColor = System.Drawing.SystemColors.Control;
+                ratingsFeedback.Button_3.BackColor = System.Drawing.SystemColors.Control;
+                ratingsFeedback.Button_4.BackColor = System.Drawing.SystemColors.Control;
+                ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.Control;
+            }
+
             AlgorithmEXP3_.Action = -1;
+            action_name = "";
 
         }
         catch (Exception e)
@@ -655,6 +728,19 @@ public class Therapist : MonoBehaviour
         set
         {
             hardClueState = value;
+        }
+    }
+
+    public Ratings RatingsFeedback
+    {
+        get
+        {
+            return ratingsFeedback;
+        }
+
+        set
+        {
+            ratingsFeedback = value;
         }
     }
 }

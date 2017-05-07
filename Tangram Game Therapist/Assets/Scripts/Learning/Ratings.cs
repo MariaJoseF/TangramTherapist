@@ -16,6 +16,7 @@ namespace Assets.Scripts.Learning
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+
         public Form form_Feedback;
 
         public Button Button_1
@@ -83,6 +84,19 @@ namespace Assets.Scripts.Learning
             }
         }
 
+        public Label Label1
+        {
+            get
+            {
+                return label1;
+            }
+
+            set
+            {
+                label1 = value;
+            }
+        }
+
         public Ratings()
         {
             form_Feedback = new Form();
@@ -115,7 +129,7 @@ namespace Assets.Scripts.Learning
             this.Bt_1.TabIndex = 0;
             this.Bt_1.Text = "1";
             this.Bt_1.UseVisualStyleBackColor = true;
-            this.Bt_1.Visible = false;
+            this.Bt_1.Enabled = false;
             this.Bt_1.Click += new System.EventHandler(this.Bt_1_Click);
             // 
             // Bt_2
@@ -126,7 +140,7 @@ namespace Assets.Scripts.Learning
             this.Bt_2.TabIndex = 1;
             this.Bt_2.Text = "2";
             this.Bt_2.UseVisualStyleBackColor = true;
-            this.Bt_2.Visible = false;
+            this.Bt_2.Enabled = false;
             this.Bt_2.Click += new System.EventHandler(this.Bt_2_Click);
             // 
             // Bt_3
@@ -137,7 +151,7 @@ namespace Assets.Scripts.Learning
             this.Bt_3.TabIndex = 2;
             this.Bt_3.Text = "3";
             this.Bt_3.UseVisualStyleBackColor = true;
-            this.Bt_3.Visible = false;
+            this.Bt_3.Enabled = false;
             this.Bt_3.Click += new System.EventHandler(this.Bt_3_Click);
             // 
             // Bt_4
@@ -148,7 +162,7 @@ namespace Assets.Scripts.Learning
             this.Bt_4.TabIndex = 3;
             this.Bt_4.Text = "4";
             this.Bt_4.UseVisualStyleBackColor = true;
-            this.Bt_4.Visible = false;
+            this.Bt_4.Enabled = false;
             this.Bt_4.Click += new System.EventHandler(this.Bt_4_Click);
             // 
             // Bt_5
@@ -159,7 +173,7 @@ namespace Assets.Scripts.Learning
             this.Bt_5.TabIndex = 4;
             this.Bt_5.Text = "5";
             this.Bt_5.UseVisualStyleBackColor = true;
-            this.Bt_5.Visible = false;
+            this.Bt_5.Enabled = false;
             this.Bt_5.Click += new System.EventHandler(this.Bt_5_Click);
             // 
             // label1
@@ -217,35 +231,75 @@ namespace Assets.Scripts.Learning
             this.form_Feedback.Name = "Ratings";
             this.form_Feedback.Text = "Ratings";
             this.form_Feedback.ResumeLayout(false);
+            this.form_Feedback.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FeedbackForm_FormClosing);
+            //this.form_Feedback.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.form_Feedback.PerformLayout();
 
         }
 
+        //private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        //{
+        //    System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+        //    messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
+        //    messageBoxCS.AppendLine();
+        //    messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.CloseReason);
+        //    messageBoxCS.AppendLine();
+        //    MessageBox.Show(messageBoxCS.ToString(), "Form1_FormClosed Event");
+        //}
 
         private void Bt_1_Click(object sender, EventArgs e)
         {
             WriteJSON("", "BT1");
+
+            ButtonsDesactivation();
         }
 
         private void Bt_2_Click(object sender, EventArgs e)
         {
             WriteJSON("", "BT2");
+            ButtonsDesactivation();
         }
 
         private void Bt_3_Click(object sender, EventArgs e)
         {
             WriteJSON("", "BT3");
+            ButtonsDesactivation();
         }
 
         private void Bt_4_Click(object sender, EventArgs e)
         {
             WriteJSON("", "BT4");
+            ButtonsDesactivation();
         }
 
         private void Bt_5_Click(object sender, EventArgs e)
         {
             WriteJSON("", "BT5");
+            ButtonsDesactivation();
         }
+
+        private void ButtonsDesactivation()
+        {
+            Bt_1.Enabled = false;
+            Bt_2.Enabled = false;
+            Bt_3.Enabled = false;
+            Bt_4.Enabled = false;
+            Bt_5.Enabled = false;
+
+            label1.Text = "Feedback Ratings";
+
+            Bt_1.BackColor = System.Drawing.SystemColors.Control;
+            Bt_2.BackColor = System.Drawing.SystemColors.Control;
+            Bt_3.BackColor = System.Drawing.SystemColors.Control;
+            Bt_4.BackColor = System.Drawing.SystemColors.Control;
+            Bt_5.BackColor = System.Drawing.SystemColors.Control;
+        }
+
+        private void FeedbackForm_FormClosing(System.Object sender, FormClosingEventArgs e)
+        {
+
+        }
+
 
         private void WriteJSON(string timestamp, string info)
         {
@@ -265,7 +319,7 @@ namespace Assets.Scripts.Learning
                 Console.WriteLine(ex.Message);
             }
 
-            
+
             string fileName = null;
             if (fileName == null)
             {

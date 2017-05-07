@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using UnityEngine.UI;
-using Assets.Scripts.Exp3;
-using Assets.Scripts.Learning;
+
 
 public class LoadOnClick : MonoBehaviour {
 	
@@ -14,9 +12,11 @@ public class LoadOnClick : MonoBehaviour {
 	public Sprite soundSprite;
     public Button playButton;
     public InputField inputName;
+    
 
     int previousLevel = 1;
     string playerName;
+    bool loadForm = true;
 
 	void Start() 
 	{
@@ -33,6 +33,13 @@ public class LoadOnClick : MonoBehaviour {
             playButton.interactable = true;
         else if (Application.loadedLevelName == "Start" && !GameState.Instance.playButtonInteractable)
             playButton.interactable = false;
+
+
+        if (loadForm)
+        {
+            Therapist.Instance.RatingsFeedback.form_Feedback.Show();
+            loadForm = false;
+        }
     }
 
 	public void LoadScene(int level)
@@ -48,15 +55,9 @@ public class LoadOnClick : MonoBehaviour {
         GameManager.Instance.playerName = playerName;
         Application.LoadLevel(1);
 
-        Ratings r = new Ratings();
-        r.form_Feedback.ShowDialog();
+      
         Therapist.Instance.BeginFirstGame();
-        r.Button_1.Visible = true;
-        r.Button_2.Visible = true;
-        r.Button_3.Visible = true;
-        r.Button_4.Visible = true;
-        r.Button_5.Visible = true;
-        r.form_Feedback.ShowDialog();
+       
     }
 
     public void SavePlayerName()
@@ -85,5 +86,8 @@ public class LoadOnClick : MonoBehaviour {
         previousLevel = 1;
 
         Application.LoadLevel(2);
+       
+        
+
     }
 }
