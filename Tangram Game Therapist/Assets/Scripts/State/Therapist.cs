@@ -436,7 +436,9 @@ Ratings ratingsFeedback = new Ratings();
                 ratingsFeedback.Button_3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
                 ratingsFeedback.Button_4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
                 ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-             
+
+                ratingsFeedback.ActionNumber1 = AlgorithmUCB_.Action;
+                
                 ratingsFeedback.form_Feedback.Show();
                 give_Feedback = false;
             }

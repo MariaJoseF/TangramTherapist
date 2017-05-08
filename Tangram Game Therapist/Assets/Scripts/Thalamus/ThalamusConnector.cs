@@ -949,8 +949,8 @@ public class ThalamusConnector : ITMessages
             Debug.Log("pgivingrotate exception finally");
         }
     }
+     public void WriteJSON(string timestamp, string info)
 
-    public void WriteJSON(string timestamp, string info)
     {
         try
         {

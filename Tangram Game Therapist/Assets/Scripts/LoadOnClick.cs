@@ -87,7 +87,5 @@ public class LoadOnClick : MonoBehaviour {
 
         Application.LoadLevel(2);
        
-        
-
     }
 }

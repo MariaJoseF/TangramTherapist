@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Assets.Scripts.Learning;
 
 public class GameManager : MonoBehaviour {
 	private static GameManager instance = null;

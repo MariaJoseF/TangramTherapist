@@ -101,7 +101,7 @@ namespace Assets.Scripts.UCB
             return actionSelected;
         }
 
-        private void UpdateReward(int action, int reward_rating)
+        public void UpdateReward(int action, int reward_rating)
         {
             int A = 1, B = 5;
             float res_reward = 0.0f;
@@ -162,7 +162,6 @@ namespace Assets.Scripts.UCB
 
         private void WriteJSON(string timestamp, string info)
         {
-
             string filePath = @"c:\Developer\Logs\UCB\";
             Console.WriteLine(filePath);
             try
