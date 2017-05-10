@@ -4,6 +4,7 @@ using System;
 
 public class PlayState : State
 {
+    private string prompt;
 
     public PlayState()
     {
@@ -145,4 +146,8 @@ public class PlayState : State
         Therapist.Instance.HardCluePrompt();
     }
 
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
+    }
 }

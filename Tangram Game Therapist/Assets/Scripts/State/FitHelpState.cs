@@ -6,6 +6,7 @@ public class FitHelpState : State
 {
     int nHelpRequests;
     DateTime lastHelpTime;
+    private string prompt;
 
     public FitHelpState()
     {
@@ -166,5 +167,10 @@ public class FitHelpState : State
 
     public void HardCluePrompt()
     {
+    }
+
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
     }
 }

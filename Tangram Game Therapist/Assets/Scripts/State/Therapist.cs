@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
-using Assets.Scripts.Exp3;
 using Assets.Scripts.UCB;
 using Assets.Scripts.Learning;
 
@@ -151,42 +149,49 @@ public class Therapist : MonoBehaviour
 
     public void FirstIdlePrompt()
     {
+        currentState.Prompt("");
         currentState.FirstIdlePrompt();
 
     }
 
     public void FirstAnglePrompt()
     {
+        currentState.Prompt("");
         currentState.FirstAnglePrompt();
 
     }
 
     public void FirstPlacePrompt()
     {
+        currentState.Prompt("");
         currentState.FirstPlacePrompt();
 
     }
 
     public void SecondAnglePrompt()
     {
+        currentState.Prompt(action_name);
         currentState.SecondAnglePrompt();
 
     }
 
     public void SecondPrompt()
     {
+        currentState.Prompt(action_name);
         currentState.SecondPrompt();
 
     }
 
     public void ThirdAnglePrompt()
     {
+        currentState.Prompt("");
         currentState.ThirdAnglePrompt();
 
     }
 
     public void ThirdPrompt()
     {
+        currentState.Prompt("");
         currentState.ThirdPrompt();
 
     }
@@ -194,6 +199,7 @@ public class Therapist : MonoBehaviour
 
     public void HardCluePrompt()
     {
+        currentState.Prompt("");
         currentState.HardCluePrompt();
 
     }
@@ -210,14 +216,14 @@ public class Therapist : MonoBehaviour
             {
                 case 0:// -> motor_help
                     Console.WriteLine("motor_help");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HelpMotor");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HelpMotor -> Current State ->" + currentState);
                     HelpMotor();
                     give_Feedback = true;
                     action_name = "Motor Help prompt";
                     break;
                 case 1:// -> close_help
                     Console.WriteLine("close_help");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HelpAdjustingPiece");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HelpAdjustingPiece -> Current State ->" + currentState);
 
                     HelpAdjustingPiece();
                     give_Feedback = true;
@@ -241,7 +247,7 @@ public class Therapist : MonoBehaviour
                 //    break;
                 case 2:// -> first angle prompt
                     Console.WriteLine("first angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstAnglePrompt -> Current State ->" + currentState);
 
                     FirstAnglePrompt();
                     give_Feedback = true;
@@ -249,7 +255,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 3:// -> first finger angle prompt
                     Console.WriteLine("first finger angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstFingerAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstFingerAnglePrompt -> Current State ->" + currentState);
 
                     FirstAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     give_Feedback = true;
@@ -257,7 +263,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 4:// -> first button angle prompt
                     Console.WriteLine("first button angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstButtonAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstButtonAnglePrompt -> Current State ->" + currentState);
 
                     FirstAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     give_Feedback = true;
@@ -265,10 +271,11 @@ public class Therapist : MonoBehaviour
                     break;
                 case 5:// -> second angle prompt
                     Console.WriteLine("second angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondAnglePrompt -> Current State ->" + currentState);
 
                     // tenho que saber qual é a peça que está selecionada neste momento está a enviar null :s
 
+                    action_name = "SecondAnglePrompt";
 
                     SecondAnglePrompt();
                     give_Feedback = true;
@@ -276,7 +283,9 @@ public class Therapist : MonoBehaviour
                     break;
                 case 6:// -> second finger angle prompt
                     Console.WriteLine("second finger angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondFingerAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondFingerAnglePrompt -> Current State ->" + currentState);
+
+                    action_name = "SecondAnglePromptFinger";
 
                     SecondAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     give_Feedback = true;
@@ -284,7 +293,9 @@ public class Therapist : MonoBehaviour
                     break;
                 case 7:// -> second button angle prompt
                     Console.WriteLine("second button angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondButtonAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondButtonAnglePrompt -> Current State ->" + currentState);
+
+                    action_name = "SecondAnglePromptButton";
 
                     SecondAnglePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     give_Feedback = true;
@@ -292,7 +303,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 8:// -> third angle prompt
                     Console.WriteLine(" third angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdAnglePrompt -> Current State ->" + currentState);
 
                     ThirdAnglePrompt();
                     give_Feedback = true;
@@ -300,7 +311,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 9:// -> stop angle prompt
                     Console.WriteLine("stop angle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> StopAnglePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> StopAnglePrompt -> Current State ->" + currentState);
 
                     if (currentPiece == null)
                     {
@@ -314,7 +325,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 10:// -> idle prompt
                     Console.WriteLine("idle prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstIdlePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstIdlePrompt -> Current State ->" + currentState);
 
                     FirstIdlePrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     give_Feedback = true;
@@ -322,7 +333,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 11:// -> place prompt
                     Console.WriteLine("place prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstPlacePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstPlacePrompt -> Current State ->" + currentState);
 
                     FirstPlacePrompt();
                     give_Feedback = true;
@@ -330,14 +341,14 @@ public class Therapist : MonoBehaviour
                     break;
                 case 12:// -> sec_1position prompt
                     Console.WriteLine("sec_1position prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> Sec_1PositionPrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> Sec_1PositionPrompt -> Current State ->" + currentState);
 
 
                     // currentPiece;
 
                     //tenho que adicionar a peça que estou a usar
 
-
+                    action_name = "SecondPrompt1Position";
 
                     SecondPrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     give_Feedback = true;
@@ -345,13 +356,14 @@ public class Therapist : MonoBehaviour
                     break;
                 case 13:// -> sec_2position prompt
                     Console.WriteLine("sec_2position prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> Sec_2PositionPrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> Sec_2PositionPrompt -> Current State ->" + currentState);
 
 
                     // currentPiece;
 
                     //tenho que adicionar a peça que estou a usar
 
+                    action_name = "SecondPrompt2Position";
 
                     SecondPrompt();//ver se é mesmo assim, possívelmente tenho que adicionar mais qualquer coisa antes
                     give_Feedback = true;
@@ -359,7 +371,9 @@ public class Therapist : MonoBehaviour
                     break;
                 case 14:// -> sec_place prompt
                     Console.WriteLine("sec_place prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecPlacePrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecPlacePrompt -> Current State ->" + currentState);
+
+                    action_name = "SecondPromptPlace";
 
                     SecondPrompt();
                     give_Feedback = true;
@@ -367,7 +381,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 15:// -> third prompt
                     Console.WriteLine("third prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdPrompt");
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdPrompt -> Current State ->" + currentState);
 
                     if (currentPiece == null)
                     {
@@ -383,8 +397,7 @@ public class Therapist : MonoBehaviour
                     break;
                 case 16:// -> hard_clue prompt
                     Console.WriteLine("hard_clue prompt");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HardClue");
-
+                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HardClue -> Current State ->" + currentState);
 
                     if (currentPiece == null)
                     {

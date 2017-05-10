@@ -9,6 +9,7 @@ public class FirstPlacePromptState : State
     public int nPrompts;
     bool repeatHardClue = false, repeatPrompt = false;
     Piece currentPiece;
+    private string prompt;
 
     public FirstPlacePromptState()
     {
@@ -299,5 +300,10 @@ public class FirstPlacePromptState : State
 
     public void HardCluePrompt()
     {
+    }
+
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
     }
 }

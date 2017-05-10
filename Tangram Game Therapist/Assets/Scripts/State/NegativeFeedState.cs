@@ -162,4 +162,9 @@ public class NegativeFeedState : State {
     public void HardCluePrompt()
     {
     }
+
+    void State.Prompt(string prompt_name)
+    {
+      
+    }
 }

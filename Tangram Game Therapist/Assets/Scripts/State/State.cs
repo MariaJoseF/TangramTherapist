@@ -36,4 +36,6 @@ public interface State {
 	void Update();
 
     void HardCluePrompt();//acrescentei
+
+    void Prompt(string prompt_name);//acrescentei
 }

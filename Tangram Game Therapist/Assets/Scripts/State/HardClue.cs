@@ -137,4 +137,9 @@ public class HardClueState : State
     public void StartedMoving(bool correctAngle)
     {
     }
+
+    void State.Prompt(string prompt_name)
+    {
+       
+    }
 }

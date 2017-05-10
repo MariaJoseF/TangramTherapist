@@ -180,4 +180,8 @@ public class PositiveFeedState : State
     {
     }
 
+    void State.Prompt(string prompt_name)
+    {
+       
+    }
 }

@@ -273,8 +273,6 @@ public class GameState : MonoBehaviour
             Therapist.Instance.Feedback();
             ///old version Therapist.Instance.HelpMotor();
             ///////////// ///////////// ///////////// 
-
-            UtterancesManager.Instance.WriteJSON("HELP MOTOR");
         }
         stopped = DateTime.Now;
         dragging = false;

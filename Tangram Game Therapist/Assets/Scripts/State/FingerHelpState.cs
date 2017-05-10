@@ -4,6 +4,7 @@ using System;
 
 public class FingerHelpState : State
 {
+    private string prompt;
 
     public FingerHelpState()
     {
@@ -168,5 +169,10 @@ public class FingerHelpState : State
 
     public void HardCluePrompt()
     {
+    }
+
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
     }
 }

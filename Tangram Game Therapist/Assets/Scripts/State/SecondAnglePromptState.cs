@@ -15,6 +15,7 @@ public class SecondAnglePromptState : State
     Piece currentPiece;
     SceneProperties.RotationMode rotationMode;
     string rotationDirection;
+    private string prompt;
 
     public SecondAnglePromptState()
     {
@@ -68,7 +69,7 @@ public class SecondAnglePromptState : State
             else
             {
                 InitializeParameters();
-                if (repeatPrompt || (UnityEngine.Random.Range(0, 3) == 0 && !repeatAngleHelp))
+                if (repeatPrompt || (UnityEngine.Random.Range(0, 3) == 0 && !repeatAngleHelp) || (prompt == "SecondAnglePrompt"))
                 {
                     repeatPrompt = false;
                     repeatAngleHelp = false;
@@ -85,7 +86,7 @@ public class SecondAnglePromptState : State
                 else
                 {
                     repeatAngleHelp = false;
-                    if (rotationMode == SceneProperties.RotationMode.button)
+                    if (rotationMode == SceneProperties.RotationMode.button || (prompt == "SecondAnglePromptButton"))
                     {
                         //  if (!UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks)))
                         if (!UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks)))
@@ -100,7 +101,7 @@ public class SecondAnglePromptState : State
                             repeatAngleHelp = false;
                         }
                     }
-                    else
+                    else//|| (prompt == "SecondAnglePromptFinger")
                     {
                         //  if (!UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection))
                         if (!UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(currentPiece.name), rotationDirection))
@@ -485,5 +486,10 @@ public class SecondAnglePromptState : State
 
     public void HardCluePrompt()
     {
+    }
+
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
     }
 }

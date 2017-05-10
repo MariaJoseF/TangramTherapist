@@ -9,6 +9,7 @@ public class FirstIdlePromptState : State
     public int nPrompts;
     bool vibratePiece = false, repeatPrompt = false, repeatHardClue = false;
     Piece currentPiece;
+    private string prompt;
 
     public FirstIdlePromptState()
     {
@@ -292,4 +293,8 @@ public class FirstIdlePromptState : State
     {
     }
 
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
+    }
 }

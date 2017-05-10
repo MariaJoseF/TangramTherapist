@@ -313,4 +313,7 @@ public class ThirdAnglePromptState : State
     {
     }
 
+    public void Prompt(string prompt_name)
+    {
+    }
 }

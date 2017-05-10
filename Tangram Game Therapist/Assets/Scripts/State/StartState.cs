@@ -65,4 +65,9 @@ public class StartState : State {
     public void HardCluePrompt()
     {
     }
+
+    public void Prompt(string prompt_name)
+    {
+        
+    }
 }

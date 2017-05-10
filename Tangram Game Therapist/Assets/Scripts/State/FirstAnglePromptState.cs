@@ -9,6 +9,7 @@ public class FirstAnglePromptState : State
     public int nPrompts;
     bool repeatPrompt = false, repeatHardClue = false, repeatAngleHelp = false, rightAnglePiece = false;
     Piece currentPiece;
+    private string prompt;
 
     public FirstAnglePromptState()
     {
@@ -406,5 +407,10 @@ public class FirstAnglePromptState : State
 
     public void HardCluePrompt()
     {
+    }
+
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
     }
 }

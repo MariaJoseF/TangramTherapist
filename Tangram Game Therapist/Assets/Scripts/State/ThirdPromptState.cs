@@ -307,4 +307,8 @@ public class ThirdPromptState : State
     {
     }
 
+    public void Prompt(string prompt_name)
+    {
+        
+    }
 }

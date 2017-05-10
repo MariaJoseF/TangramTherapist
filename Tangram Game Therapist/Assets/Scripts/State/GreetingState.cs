@@ -59,4 +59,9 @@ public class GreetingState : State {
     public void HardCluePrompt()
     {
     }
+
+    void State.Prompt(string prompt_name)
+    {
+        
+    }
 }

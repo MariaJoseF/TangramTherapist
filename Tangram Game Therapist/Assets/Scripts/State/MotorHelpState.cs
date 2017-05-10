@@ -5,6 +5,7 @@ using System;
 public class MotorHelpState : State
 {
     int nHelpRequests;
+    private string prompt;
 
     public MotorHelpState()
     {
@@ -159,5 +160,10 @@ public class MotorHelpState : State
 
     public void HardCluePrompt()
     {
+    }
+
+    void State.Prompt(string prompt_name)
+    {
+        prompt = prompt_name;
     }
 }
