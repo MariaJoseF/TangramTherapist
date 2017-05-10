@@ -41,19 +41,18 @@ public class Therapist : MonoBehaviour
     public bool showedHardClue = false;
     DateTime gameEndedTime;
 
-    
+
 
     /// 
     /// //////////////////////
     /// 
     static float[] rewards = { 0.2f, 0.2f,
-        0.5f, 0.0f,
         0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f,
         0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f};
 
-    Exp3 AlgorithmEXP3 = new Exp3(19, rewards, 0.07f);
-    UCB AlgorithmUCB = new UCB(19, rewards);
-Ratings ratingsFeedback = new Ratings();
+    //Exp3 AlgorithmEXP3 = new Exp3(17, rewards, 0.07f);
+    UCB AlgorithmUCB = new UCB(17, rewards);
+    Ratings ratingsFeedback = new Ratings();
     String action_name = "";
 
     // public Piece lastPieceUsed;
@@ -224,23 +223,23 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Close Help prompt";
                     break;
-                case 2:// -> positive feedback
-                    Console.WriteLine("positive feedback");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> PositiveFeedback");
+                //case 2:// -> positive feedback
+                //    Console.WriteLine("positive feedback");
+                //    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> PositiveFeedback");
 
-                    GivePositiveFeedback();
-                    give_Feedback = true;
-                    action_name = "Positive prompt";
-                    break;
-                case 3:// -> negative feedback
-                    Console.WriteLine("negative feedback");
-                    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> NegativeFeedback");
+                //    GivePositiveFeedback();
+                //    give_Feedback = true;
+                //    action_name = "Positive prompt";
+                //    break;
+                //case 3:// -> negative feedback
+                //    Console.WriteLine("negative feedback");
+                //    UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> NegativeFeedback");
 
-                    GiveNegativeFeedback();
-                    give_Feedback = true;
-                    action_name = "Negative prompt";
-                    break;
-                case 4:// -> first angle prompt
+                //    GiveNegativeFeedback();
+                //    give_Feedback = true;
+                //    action_name = "Negative prompt";
+                //    break;
+                case 2:// -> first angle prompt
                     Console.WriteLine("first angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstAnglePrompt");
 
@@ -248,7 +247,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "First Angle prompt";
                     break;
-                case 5:// -> first finger angle prompt
+                case 3:// -> first finger angle prompt
                     Console.WriteLine("first finger angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstFingerAnglePrompt");
 
@@ -256,7 +255,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "First Finger Angle prompt";
                     break;
-                case 6:// -> first button angle prompt
+                case 4:// -> first button angle prompt
                     Console.WriteLine("first button angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstButtonAnglePrompt");
 
@@ -264,7 +263,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "First Button Angle prompt";
                     break;
-                case 7:// -> second angle prompt
+                case 5:// -> second angle prompt
                     Console.WriteLine("second angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondAnglePrompt");
 
@@ -275,7 +274,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Second Angle prompt";
                     break;
-                case 8:// -> second finger angle prompt
+                case 6:// -> second finger angle prompt
                     Console.WriteLine("second finger angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondFingerAnglePrompt");
 
@@ -283,7 +282,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Second Finger Angle prompt";
                     break;
-                case 9:// -> second button angle prompt
+                case 7:// -> second button angle prompt
                     Console.WriteLine("second button angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecondButtonAnglePrompt");
 
@@ -291,7 +290,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Second Button Angle prompt";
                     break;
-                case 10:// -> third angle prompt
+                case 8:// -> third angle prompt
                     Console.WriteLine(" third angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdAnglePrompt");
 
@@ -299,32 +298,21 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Third Angle prompt";
                     break;
-                case 11:// -> stop angle prompt
+                case 9:// -> stop angle prompt
                     Console.WriteLine("stop angle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> StopAnglePrompt");
-
-
-                    //if (currentPiece == null)
-                    //{
-                    //    UtterancesManager.Instance.StopAnglePrompt(lastPieceUsed.ToString());
-                    //}
-                    //else
-                    //{
-                    //    UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
-                    //}
 
                     if (currentPiece == null)
                     {
                         Piece piece = GameState.Instance.FindNewPiece();
                         currentPiece = piece;
-
                     }
 
                     UtterancesManager.Instance.StopAnglePrompt(currentPiece.ToString());
                     give_Feedback = true;
                     action_name = "Stop Angle prompt";
                     break;
-                case 12:// -> idle prompt
+                case 10:// -> idle prompt
                     Console.WriteLine("idle prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstIdlePrompt");
 
@@ -332,7 +320,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Idle prompt";
                     break;
-                case 13:// -> place prompt
+                case 11:// -> place prompt
                     Console.WriteLine("place prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> FirstPlacePrompt");
 
@@ -340,7 +328,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Place prompt";
                     break;
-                case 14:// -> sec_1position prompt
+                case 12:// -> sec_1position prompt
                     Console.WriteLine("sec_1position prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> Sec_1PositionPrompt");
 
@@ -355,7 +343,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Second 1 Position prompt";
                     break;
-                case 15:// -> sec_2position prompt
+                case 13:// -> sec_2position prompt
                     Console.WriteLine("sec_2position prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> Sec_2PositionPrompt");
 
@@ -369,7 +357,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Second 2 Position prompt";
                     break;
-                case 16:// -> sec_place prompt
+                case 14:// -> sec_place prompt
                     Console.WriteLine("sec_place prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> SecPlacePrompt");
 
@@ -377,7 +365,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Second Place prompt";
                     break;
-                case 17:// -> third prompt
+                case 15:// -> third prompt
                     Console.WriteLine("third prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> ThirdPrompt");
 
@@ -393,7 +381,7 @@ Ratings ratingsFeedback = new Ratings();
                     give_Feedback = true;
                     action_name = "Third prompt";
                     break;
-                case 18:// -> hard_clue prompt
+                case 16:// -> hard_clue prompt
                     Console.WriteLine("hard_clue prompt");
                     UtterancesManager.Instance.WriteJSON("--- NEW FEEDBACK -> HardClue");
 
@@ -438,7 +426,7 @@ Ratings ratingsFeedback = new Ratings();
                 ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 
                 ratingsFeedback.ActionNumber1 = AlgorithmUCB_.Action;
-                
+
                 ratingsFeedback.form_Feedback.Show();
                 give_Feedback = false;
             }
@@ -457,14 +445,14 @@ Ratings ratingsFeedback = new Ratings();
                 ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.Control;
             }
 
-            AlgorithmEXP3_.Action = -1;
+            AlgorithmUCB_.Action = -1;
             action_name = "";
 
         }
         catch (Exception e)
         {
             Debug.Log("Error : " + e.Message);
-            UtterancesManager.Instance.WriteJSON("Error : " + e.Message + " action = " + AlgorithmEXP3_.Action);
+            UtterancesManager.Instance.WriteJSON("Error : " + e.Message + " action = " + AlgorithmUCB_.Action);
         }
         finally
         {
@@ -694,18 +682,18 @@ Ratings ratingsFeedback = new Ratings();
         }
     }
 
-    internal Exp3 AlgorithmEXP3_
-    {
-        get
-        {
-            return AlgorithmEXP3;
-        }
+    //internal Exp3 AlgorithmEXP3_
+    //{
+    //    get
+    //    {
+    //        return AlgorithmEXP3;
+    //    }
 
-        set
-        {
-            AlgorithmEXP3 = value;
-        }
-    }
+    //    set
+    //    {
+    //        AlgorithmEXP3 = value;
+    //    }
+    //}
 
     internal UCB AlgorithmUCB_
     {

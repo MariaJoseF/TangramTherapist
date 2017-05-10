@@ -48,8 +48,8 @@ public class FirstIdlePromptState : State
         }
     }
 
-    public void RepeatPrompt()
-    {//não devia ser public
+    private void RepeatPrompt()
+    {
         lastPromptTime = DateTime.Now;
 
         if (repeatHardClue || (Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
@@ -107,12 +107,14 @@ public class FirstIdlePromptState : State
             {
                 if (repeatHardClue || repeatPrompt || nPrompts < 2)
                 {
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> RepeatPrompt FristIdlePrompt");
                     CallFeedback();
-                    RepeatPrompt();
+                    // RepeatPrompt();
                 }
                 else if (nPrompts >= 2)
                 {
                     Debug.Log("1st idle -> vai para o segundo estado");
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> SecondPrompt");
                     CallFeedback();
                     // SecondPrompt();
                     return;
@@ -120,12 +122,14 @@ public class FirstIdlePromptState : State
             }
             if (Therapist.Instance.nFailedTries >= 2)
             {
+                UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstPlacePrompt");
                 CallFeedback();
                 //FirstPlacePrompt();
                 return;
             }
             if (Therapist.Instance.nWrongAngleTries >= 2)
             {
+                UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstAnglePrompt");
                 CallFeedback();
                 // FirstAnglePrompt();
                 return;
@@ -133,6 +137,7 @@ public class FirstIdlePromptState : State
         }
         else if (repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4)
         {
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstIdlePrompt");
             CallFeedback();
             // FirstIdlePrompt();
         }

@@ -21,16 +21,6 @@ public class FirstAnglePromptState : State
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
 
-
-        //if (Therapist.Instance.currentPiece == null)
-        //{
-        //    currentPiece = Therapist.Instance.lastPieceUsed;
-        //}
-        //else
-        //{
-        //    currentPiece = Therapist.Instance.currentPiece;
-        //}
-
         /////////////////////////////////////////////////////
 
         if (Therapist.Instance.currentPiece == null)
@@ -91,7 +81,7 @@ public class FirstAnglePromptState : State
         Therapist.Instance.previousState = null;
     }
 
-    public void RepeatPrompt()//não é suposto ter public aqui
+    private void RepeatPrompt()
     {
         Therapist.Instance.nWrongAngleTries = 0;
         lastPromptTime = DateTime.Now;
@@ -171,14 +161,6 @@ public class FirstAnglePromptState : State
 
     void ChangedPiece()
     {
-        //if (Therapist.Instance.currentPiece == null)
-        //{
-        //    currentPiece = Therapist.Instance.lastPieceUsed;
-        //}
-        //else
-        //{
-        //    currentPiece = Therapist.Instance.currentPiece;
-        //}
 
         /////////////////////////////////////////////////////
 
@@ -221,13 +203,15 @@ public class FirstAnglePromptState : State
             {
                 if (repeatAngleHelp || repeatHardClue || repeatPrompt || nPrompts < 1)
                 {
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> RepeatPrompt FirstAnglePrompt");
                     CallFeedback();
-                    RepeatPrompt();
+                    //RepeatPrompt();
                     return;
                 }
                 else if (!rightAnglePiece && nPrompts >= 1)
                 {
                     Debug.Log("1st angle -> vai para o segundo estado");
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> SecondAnglePrompt");
                     CallFeedback();
                     //SecondAnglePrompt();
                     return;
@@ -236,6 +220,7 @@ public class FirstAnglePromptState : State
         }
         else if ((repeatHardClue || repeatPrompt) && (DateTime.Now - repeatPromptTime).TotalSeconds > 4)
         {
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstAnglePrompt");
             CallFeedback();
             // FirstAnglePrompt();
         }
@@ -246,9 +231,9 @@ public class FirstAnglePromptState : State
         }
         if ((rightAnglePiece && (DateTime.Now - lastPromptTime).TotalSeconds > 5) || Therapist.Instance.nFailedTries > 3)
         {
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstPlacePrompt");
             CallFeedback();
-
-            // FirstPlacePrompt();
+            //FirstPlacePrompt();
         }
 
     }

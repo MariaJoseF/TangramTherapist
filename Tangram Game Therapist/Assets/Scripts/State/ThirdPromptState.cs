@@ -25,15 +25,6 @@ public class ThirdPromptState : State
         if (nPrompts == 0)
         {
 
-            //if (Therapist.Instance.currentPiece == null)
-            //{
-            //    currentPiece = Therapist.Instance.lastPieceUsed;
-            //}
-            //else
-            //{
-            //    currentPiece = Therapist.Instance.currentPiece;
-            //}
-
             /////////////////////////////////////////////////////
 
             if (Therapist.Instance.currentPiece == null)
@@ -66,8 +57,8 @@ public class ThirdPromptState : State
         }
     }
 
-    public void RepeatPrompt()
-    {//não devia ser public
+    private void RepeatPrompt()
+    {
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
@@ -138,7 +129,9 @@ public class ThirdPromptState : State
             if (Therapist.Instance.nWrongAngleTries >= 2 || (nIncorrectAngle > 0 && (DateTime.Now - incorrectAngleTime).TotalSeconds > 12)
                 || (goToSecondAnglePrompt && (DateTime.Now - goToSecondAnglePromptTime).TotalSeconds > 5))
             {
-                SecondAnglePrompt();
+                UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> SecondAnglePrompt");
+                CallFeedback();
+                //SecondAnglePrompt();
                 Debug.Log(Therapist.Instance.nWrongAngleTries + " Third -> 2Angle " + Therapist.Instance.currentPiece + " " + nIncorrectAngle);
                 return;
             }
@@ -147,7 +140,9 @@ public class ThirdPromptState : State
             {
                 if (repeatPrompt || nPrompts < 3)
                 {
-                    RepeatPrompt();
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> RepeatPrompt ThirdPrompt");
+                    CallFeedback();
+                    //RepeatPrompt();
                     return;
                 }
                 else if (nPrompts >= 3)
@@ -161,7 +156,9 @@ public class ThirdPromptState : State
         }
         else if ((repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4))
         {
-            ThirdPrompt();
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> ThirdPrompt");
+            CallFeedback();
+            //ThirdPrompt();
         }
         else if (finalPrompt && (DateTime.Now - lastPromptTime).TotalSeconds > 20)
         {
@@ -176,6 +173,13 @@ public class ThirdPromptState : State
             currentPiece = Therapist.Instance.currentPiece;
             InitializeParameters();
         }
+    }
+
+    private void CallFeedback()
+    {
+        // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+        Therapist.Instance.AlgorithmUCB_.RunUCB();
+        Therapist.Instance.Feedback();
     }
 
     public void GiveNegativeFeedback()

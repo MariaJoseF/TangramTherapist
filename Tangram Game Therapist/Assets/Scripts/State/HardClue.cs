@@ -28,8 +28,8 @@ public class HardClueState : State
     }
 
 
-    public void RepeatPrompt()
-    {//não devia ser public
+    private void RepeatPrompt()
+    {
 
     }
 

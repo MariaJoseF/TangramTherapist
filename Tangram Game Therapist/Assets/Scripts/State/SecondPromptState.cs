@@ -30,15 +30,6 @@ public class SecondPromptState : State
         lastPromptTime = DateTime.Now;
         nPrompts = 0;
 
-        //if (Therapist.Instance.currentPiece == null)
-        //{
-        //    currentPiece = Therapist.Instance.lastPieceUsed;
-        //}
-        //else
-        //{
-        //    currentPiece = Therapist.Instance.currentPiece;
-        //}
-
         /////////////////////////////////////////////////////
 
         if (Therapist.Instance.currentPiece == null)
@@ -84,8 +75,8 @@ public class SecondPromptState : State
         }
     }
 
-    public void RepeatPrompt()
-    {//não devia ser public
+    private void RepeatPrompt()
+    {
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nWrongAngleTries = 0;
         Therapist.Instance.nFailedTries = 0;
@@ -117,8 +108,6 @@ public class SecondPromptState : State
 
     void InitializeParameters()
     {
-
-
 
         if (Therapist.Instance.currentPiece == null)
         {
@@ -266,10 +255,9 @@ public class SecondPromptState : State
             if (Therapist.Instance.nWrongAngleTries >= 2 || (nIncorrectAngle > 0 && (DateTime.Now - incorrectAngleTime).TotalSeconds > 12)
                 || (goToSecondAnglePrompt && (DateTime.Now - goToSecondAnglePromptTime).TotalSeconds > 5))
             {
-                SecondAnglePrompt();
-
-
-
+                UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> SecondAnglePrompt");
+                CallFeedback();
+                //SecondAnglePrompt();
                 Debug.Log("2nd prompt -> 2ndAngle");
                 return;
             }
@@ -278,29 +266,39 @@ public class SecondPromptState : State
             {
                 if (repeatRelativePosition || repeatHardClue || repeatPrompt || nPrompts < 3)
                 {
-                    RepeatPrompt();
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> RepeatPrompt SecondPrompt");
+                    CallFeedback();
+                    //RepeatPrompt();
                     return;
                 }
                 else if (nPrompts >= 2)
                 {
                     Debug.Log("2nd prompt -> vai para o terceiro estado");
-
-
-
-                    ThirdPrompt();
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> ThirdPrompt");
+                    CallFeedback();
+                    //ThirdPrompt();
                     return;
                 }
             }
         }
         else if (((repeatRelativePosition || repeatHardClue || repeatPrompt) && (DateTime.Now - repeatPromptTime).TotalSeconds > 4))
         {
-            SecondPrompt();
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> SecondPrompt");
+            CallFeedback();
+            //SecondPrompt();
         }
         if (Therapist.Instance.currentPiece != currentPiece)
         {
             currentPiece = Therapist.Instance.currentPiece;
             InitializeParameters();
         }
+    }
+
+    private void CallFeedback()
+    {
+        // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+        Therapist.Instance.AlgorithmUCB_.RunUCB();
+        Therapist.Instance.Feedback();
     }
 
     public void EndGame()

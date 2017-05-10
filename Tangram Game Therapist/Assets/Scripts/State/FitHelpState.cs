@@ -18,6 +18,7 @@ public class FitHelpState : State
 
         if (nHelpRequests > 5 || nHelpRequests == 0 || (DateTime.Now - lastHelpTime).TotalSeconds > 100)
         {
+
             UtterancesManager.Instance.CloseHelp();
 
             lastHelpTime = DateTime.Now;
@@ -160,10 +161,6 @@ public class FitHelpState : State
 
 
     public void Update()
-    {
-    }
-
-    public void RepeatPrompt()//não existia acrescentei
     {
     }
 

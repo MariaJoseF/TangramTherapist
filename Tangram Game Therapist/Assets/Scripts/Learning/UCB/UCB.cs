@@ -19,6 +19,7 @@ namespace Assets.Scripts.UCB
         private int iterations = 1;
         private int number_actions;
         private float[] reward_actions;
+        private int[] random_actions;
 
         public int Action
         {
@@ -43,11 +44,16 @@ namespace Assets.Scripts.UCB
         {
             if (iterations == 1)
             {
-                Console.WriteLine("All numbers between 0 and 20 in random order:");
-                foreach (int i in UniqueRandom(0, 20))
+                random_actions = new int[number_actions];
+                int id = 0;
+                Console.WriteLine("All numbers between 0 and 17 in random order:");
+                foreach (int i in UniqueRandom(0, (number_actions - 1)))
                 {
                     Console.WriteLine(i);
+                    random_actions[id] = i;
+                    id++;
                 }
+
 
                 for (int i = 0; i < number_actions; i++)
                 {
@@ -56,46 +62,63 @@ namespace Assets.Scripts.UCB
                 }
             }
 
-            for (int i = 0; i < number_actions; i++)
+            if (iterations <= number_actions)// run all the actions once
             {
-                double aux_1 = 2 * Math.Log(iterations);
-                Elements play_action = PlayedActions.Find(x => (x.Action == i));
-                Elements avgReward = AvgReceivedRewards.Find(x => (x.Action == i));
+                Console.WriteLine(random_actions[iterations - 1]);
+                actionSelected = random_actions[iterations - 1];
 
-
-                // a(t) = argmax ^ri + Sqrt(2 ln t/ ti)
-                double A_t_aux = Math.Sqrt(aux_1 / play_action.Value) + (avgReward.Value / play_action.Value);
-                A_t.Add(new Elements(iterations, i, A_t_aux));
-            }
-
-            //find the argmax action
-            double[] aux_max = new double[2];
-
-            foreach (Elements item in A_t)
-            {
-                if (item.Time_index == iterations)
+                if (iterations == 1)
                 {
-                    if (item.Action == 0 || (item.Value >= aux_max[1]))
+                    WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;UCB;AVG_REWARD;PLAYED_ACTIONS;SELECTED_ACTION");
+                }
+
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";-" + ";" + iterations + ";-" + ";-"  + ";-"  + ";" + actionSelected);
+
+
+            }
+            else // all actions were already run once, know they can be run acording the algorithm selection
+            {
+
+                for (int i = 0; i < number_actions; i++)
+                {
+                    double aux_1 = 2 * Math.Log(iterations);
+                    Elements play_action = PlayedActions.Find(x => (x.Action == i));
+                    Elements avgReward = AvgReceivedRewards.Find(x => (x.Action == i));
+
+
+                    // a(t) = argmax ^ri + Sqrt(2 ln t/ ti)
+                    double A_t_aux = Math.Sqrt(aux_1 / play_action.Value) + (avgReward.Value / play_action.Value);
+                    A_t.Add(new Elements(iterations, i, A_t_aux));
+                }
+
+                //find the argmax action
+                double[] aux_max = new double[2];
+
+                foreach (Elements item in A_t)
+                {
+                    if (item.Time_index == iterations)
                     {
-                        aux_max[0] = item.Action;
-                        aux_max[1] = item.Value;
+                        if (item.Action == 0 || (item.Value >= aux_max[1]))
+                        {
+                            aux_max[0] = item.Action;
+                            aux_max[1] = item.Value;
+                        }
                     }
                 }
+
+                actionSelected = Convert.ToInt32(aux_max[0]);
+
+                //update number of times action i was played
+                Elements _action = PlayedActions.Find(x => (x.Action == actionSelected));
+                _action.Value = _action.Value + 1;
+
+                //update average reward of action i
+                Elements _reward = AvgReceivedRewards.Find(x => (x.Action == actionSelected));
+                _reward.Value = _reward.Value + reward_actions[actionSelected];
+                SaveData();
             }
 
-            actionSelected = Convert.ToInt32(aux_max[0]);
-
-            //update number of times action i was played
-            Elements _action = PlayedActions.Find(x => (x.Action == actionSelected));
-            _action.Value = _action.Value + 1;
-
-            //update average reward of action i
-            Elements _reward = AvgReceivedRewards.Find(x => (x.Action == actionSelected));
-            _reward.Value = _reward.Value + reward_actions[actionSelected];
-
-
-
-            SaveData();
+           
             //update to next iteration
             iterations++;
             return actionSelected;
@@ -124,7 +147,7 @@ namespace Assets.Scripts.UCB
 
         private void SaveData()
         {
-            if (iterations == 1)
+            if (iterations == number_actions + 1)
             {
                 WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;UCB;AVG_REWARD;PLAYED_ACTIONS;SELECTED_ACTION");
             }

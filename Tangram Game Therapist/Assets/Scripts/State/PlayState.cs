@@ -15,18 +15,21 @@ public class PlayState : State
         {
             Debug.Log("PLAY -> 1st idle");
             // FirstIdlePrompt();
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstIdlePrompt");
             CallFeedback();
         }
         if (Therapist.Instance.nFailedTries >= 2)
         {
             Debug.Log(Therapist.Instance.nFailedTries + " tentativas erradas");
             //FirstPlacePrompt();
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstPlacePrompt");
             CallFeedback();
         }
         if (Therapist.Instance.nWrongAngleTries >= 2)
         {
             Debug.Log(Therapist.Instance.nWrongAngleTries + " x angulo erradas");
             //FirstAnglePrompt();
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> FirstAnglePrompt");
             CallFeedback();
         }
     }
@@ -134,10 +137,6 @@ public class PlayState : State
     {
         Therapist.Instance.currentState = Therapist.Instance.ThirdAnglePromptState;
         Therapist.Instance.ThirdAnglePrompt();
-    }
-
-    public void RepeatPrompt()//não existia acrescentei
-    {
     }
 
     public void HardCluePrompt()

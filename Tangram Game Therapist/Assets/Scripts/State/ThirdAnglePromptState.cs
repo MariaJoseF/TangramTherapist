@@ -21,15 +21,6 @@ public class ThirdAnglePromptState : State
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
 
-        //if (Therapist.Instance.currentPiece == null)
-        //{
-        //    currentPiece = Therapist.Instance.lastPieceUsed;
-        //}
-        //else
-        //{
-        //    currentPiece = Therapist.Instance.currentPiece;
-        //}
-
         /////////////////////////////////////////////////////
 
         if (Therapist.Instance.currentPiece == null)
@@ -64,8 +55,8 @@ public class ThirdAnglePromptState : State
         }
     }
 
-    public void RepeatPrompt()
-    {//não é suposto ser public
+    private void RepeatPrompt()
+    {
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
@@ -112,7 +103,9 @@ public class ThirdAnglePromptState : State
             {
                 if (repeatPrompt || nPrompts < 3)
                 {
-                    RepeatPrompt();
+                    UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> RepeatPrompt ThirdAnglePrompt");
+                    CallFeedback();
+                    //RepeatPrompt();
                     return;
                 }
                 else if (!rightAnglePiece && nPrompts >= 3)
@@ -127,7 +120,9 @@ public class ThirdAnglePromptState : State
         }
         else if ((repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4))
         {
-            ThirdAnglePrompt();
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> ThirdAnglePrompt");
+            CallFeedback();
+            //ThirdAnglePrompt();
         }
         else if (finalPrompt && (DateTime.Now - lastPromptTime).TotalSeconds > 20)
         {
@@ -143,20 +138,22 @@ public class ThirdAnglePromptState : State
             ChangedPiece();
         }
         if ((rightAnglePiece && (DateTime.Now - lastPromptTime).TotalSeconds > 5) || Therapist.Instance.nFailedTries > 3)
-            SecondPrompt();
+        {
+            UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> SecondPrompt");
+            CallFeedback();
+            //SecondPrompt();
+        }
+    }
+
+    private void CallFeedback()
+    {
+        // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+        Therapist.Instance.AlgorithmUCB_.RunUCB();
+        Therapist.Instance.Feedback();
     }
 
     void ChangedPiece()
     {
-
-        //if (Therapist.Instance.currentPiece == null)
-        //{
-        //    currentPiece = Therapist.Instance.lastPieceUsed;
-        //}
-        //else
-        //{
-        //    currentPiece = Therapist.Instance.currentPiece;
-        //}
 
         /////////////////////////////////////////////////////
 
@@ -315,4 +312,5 @@ public class ThirdAnglePromptState : State
     public void HardCluePrompt()
     {
     }
+
 }
