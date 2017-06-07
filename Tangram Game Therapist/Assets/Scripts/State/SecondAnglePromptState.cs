@@ -336,6 +336,20 @@ public class SecondAnglePromptState : State
     private void CallFeedback()
     {
         // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+
+        int previous_ActionRatings = Therapist.Instance.RatingsFeedback.previousAction;
+        int previous_ActionsTherapist = Therapist.Instance.previousAction;
+        if ((previous_ActionsTherapist != previous_ActionRatings) && previous_ActionsTherapist != -1)
+        {
+            Therapist.Instance.RatingsFeedback.FileHeader();
+            Therapist.Instance.RatingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previous_ActionsTherapist + ";" + "3;1");
+            Therapist.Instance.RatingsFeedback.header = false;
+
+            Therapist.Instance.AlgorithmUCB_.UpdateReward(previous_ActionsTherapist, 3);
+            Therapist.Instance.RatingsFeedback.previousAction = previous_ActionsTherapist;
+            Therapist.Instance.RatingsFeedback.previousFeedback = 3;
+        }
+
         Therapist.Instance.AlgorithmUCB_.RunUCB();
         Therapist.Instance.Feedback();
     }

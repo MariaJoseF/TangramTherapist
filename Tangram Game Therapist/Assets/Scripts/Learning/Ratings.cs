@@ -20,7 +20,10 @@ namespace Assets.Scripts.Learning
         private int ActionNumber;
         private string fileName = null;
         public Form form_Feedback;
-        private bool header = true;
+        internal bool header = true;
+
+        public int previousAction = -1;
+        public int previousFeedback = -1;
 
         public Button Button_1
         {
@@ -117,6 +120,7 @@ namespace Assets.Scripts.Learning
         {
             form_Feedback = new Form();
             InitializeComponent();
+            ActionNumber = -1;
         }
 
         private void InitializeComponent()
@@ -247,9 +251,26 @@ namespace Assets.Scripts.Learning
             this.form_Feedback.Name = "Ratings";
             this.form_Feedback.Text = "Ratings";
             this.form_Feedback.ResumeLayout(false);
-            this.form_Feedback.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FeedbackForm_FormClosing);
-            //this.form_Feedback.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            //this.form_Feedback.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FeedbackForm_FormClosing);
+            this.form_Feedback.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.form_Feedback.PerformLayout();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+            DialogResult dialogResult = MessageBox.Show("The game will be closed, are you sure?", "Exit Game", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                System.Windows.Forms.Application.Exit();
+                UnityEngine.Application.Quit();
+
+                Debug.Log("Game is exiting");
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                Debug.Log("Try to exit Game");
+            }
         }
 
         //private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -266,50 +287,60 @@ namespace Assets.Scripts.Learning
         {
             //WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), "1");
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "1");
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "1;0");
             ButtonsDesactivation();
             header = false;
             Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 1);
+             previousAction = ActionNumber;
+             previousFeedback = 1;
         }
 
         private void Bt_2_Click(object sender, EventArgs e)
         {
             //WriteJSON("", "BT2");
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "2");
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "2;0");
             ButtonsDesactivation();
             header = false;
             Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 2);
+            previousAction = ActionNumber;
+            previousFeedback = 2;
         }
 
         private void Bt_3_Click(object sender, EventArgs e)
         {
             //WriteJSON("", "BT3");
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "3");
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "3;0");
             ButtonsDesactivation();
             header = false;
             Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 3);
+            previousAction = ActionNumber;
+            previousFeedback = 3;
         }
 
         private void Bt_4_Click(object sender, EventArgs e)
         {
             //WriteJSON("", "BT4");
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "4");
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "4;0");
             ButtonsDesactivation();
             header = false;
             Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 4);
+            previousAction = ActionNumber;
+            previousFeedback = 4;
         }
 
         private void Bt_5_Click(object sender, EventArgs e)
         {
             //WriteJSON("", "BT5");
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "5");
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "5;0");
             ButtonsDesactivation();
             header = false;
             Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 5);
+            previousAction = ActionNumber;
+            previousFeedback = 5;
         }
 
         private void ButtonsDesactivation()
@@ -329,21 +360,16 @@ namespace Assets.Scripts.Learning
             Bt_5.BackColor = System.Drawing.SystemColors.Control;
         }
 
-        private void FeedbackForm_FormClosing(System.Object sender, FormClosingEventArgs e)
-        {
-
-        }
-
         public void FileHeader()
         {
             if (header)
             {
-                WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;FEEDBACK_ID");
+                WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;FEEDBACK_ID;DEFAULT");
             }
            
         }
 
-        private void WriteJSON(string timestamp, string info)
+        internal void WriteJSON(string timestamp, string info)
         {
 
             string filePath = @"c:\Developer\Logs\Feedback\";

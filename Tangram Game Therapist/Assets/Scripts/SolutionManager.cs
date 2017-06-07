@@ -119,6 +119,21 @@ public class SolutionManager : MonoBehaviour
         else if (notFound)
         {
             //Therapist.Instance.AlgorithmEXP3_.RunExp3();
+
+
+            int previous_ActionRatings = Therapist.Instance.RatingsFeedback.previousAction;
+            int previous_ActionsTherapist = Therapist.Instance.previousAction;
+            if ((previous_ActionsTherapist != previous_ActionRatings) && previous_ActionsTherapist != -1)
+            {
+                Therapist.Instance.RatingsFeedback.FileHeader();
+                Therapist.Instance.RatingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previous_ActionsTherapist + ";" + "3;1");
+                Therapist.Instance.RatingsFeedback.header = false;
+
+                Therapist.Instance.AlgorithmUCB_.UpdateReward(previous_ActionsTherapist, 3);
+                Therapist.Instance.RatingsFeedback.previousAction = previous_ActionsTherapist;
+                Therapist.Instance.RatingsFeedback.previousFeedback = 3;
+            }
+
             Therapist.Instance.AlgorithmUCB_.RunUCB();
             GameState.Instance.NotFoundTheRightSpot(piece, notFoundPlace, notFoundDistance);
             //GameState.Instance.RunExp(piece, 2, notFoundPlace, notFoundDistance);
@@ -127,6 +142,20 @@ public class SolutionManager : MonoBehaviour
         else if (incorrectAngle)
         {
             // Therapist.Instance.AlgorithmEXP3_.RunExp3();.
+
+            int previous_ActionRatings = Therapist.Instance.RatingsFeedback.previousAction;
+            int previous_ActionsTherapist = Therapist.Instance.previousAction;
+            if ((previous_ActionsTherapist != previous_ActionRatings) && previous_ActionsTherapist != -1)
+            {
+                Therapist.Instance.RatingsFeedback.FileHeader();
+                Therapist.Instance.RatingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previous_ActionsTherapist + ";" + "3;1");
+                Therapist.Instance.RatingsFeedback.header = false;
+
+                Therapist.Instance.AlgorithmUCB_.UpdateReward(previous_ActionsTherapist, 3);
+                Therapist.Instance.RatingsFeedback.previousAction = previous_ActionsTherapist;
+                Therapist.Instance.RatingsFeedback.previousFeedback = 3;
+            }
+
             Therapist.Instance.AlgorithmUCB_.RunUCB();
 
             GameState.Instance.IncorrectAngle(piece, incorrectAnglePlace);
@@ -149,6 +178,21 @@ public class SolutionManager : MonoBehaviour
         if (pieceSolutions.Count > 0)
         {
             //Therapist.Instance.AlgorithmEXP3_.RunExp3();
+
+
+            int previous_ActionRatings = Therapist.Instance.RatingsFeedback.previousAction;
+            int previous_ActionsTherapist = Therapist.Instance.previousAction;
+            if ((previous_ActionsTherapist != previous_ActionRatings) && previous_ActionsTherapist != -1)
+            {
+                Therapist.Instance.RatingsFeedback.FileHeader();
+                Therapist.Instance.RatingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previous_ActionsTherapist + ";" + "3;1");
+                Therapist.Instance.RatingsFeedback.header = false;
+
+                Therapist.Instance.AlgorithmUCB_.UpdateReward(previous_ActionsTherapist, 3);
+                Therapist.Instance.RatingsFeedback.previousAction = previous_ActionsTherapist;
+                Therapist.Instance.RatingsFeedback.previousFeedback = 3;
+            }
+
             Therapist.Instance.AlgorithmUCB_.RunUCB();
 
             GameState.Instance.FoundTheRightSpot(piece);
@@ -197,6 +241,21 @@ public class SolutionManager : MonoBehaviour
                     gameObject.GetComponent<SpriteRenderer>().sprite = s;
                     gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     UtterancesManager.Instance.WriteJSON("SHOW HARD CLUE");
+
+
+                    int previous_ActionRatings = Therapist.Instance.RatingsFeedback.previousAction;
+                    int previous_ActionsTherapist = Therapist.Instance.previousAction;
+                    if ((previous_ActionsTherapist != previous_ActionRatings) && previous_ActionsTherapist != -1)
+                    {
+                        Therapist.Instance.RatingsFeedback.FileHeader();
+                        Therapist.Instance.RatingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previous_ActionsTherapist + ";" + "3;1");
+                        Therapist.Instance.RatingsFeedback.header = false;
+
+                        Therapist.Instance.AlgorithmUCB_.UpdateReward(previous_ActionsTherapist, 3);
+                        Therapist.Instance.RatingsFeedback.previousAction = previous_ActionsTherapist;
+                        Therapist.Instance.RatingsFeedback.previousFeedback = 3;
+                    }
+
 
                     Therapist.Instance.AlgorithmUCB_.RunUCB();
 

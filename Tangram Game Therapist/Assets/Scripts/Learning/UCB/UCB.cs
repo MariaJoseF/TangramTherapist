@@ -126,14 +126,14 @@ namespace Assets.Scripts.UCB
 
         public void UpdateReward(int action, int reward_rating)
         {
-            int A = 1, B = 5;
+            float A = 1f, B = 5f;
             float res_reward = 0.0f;
 
-            if (reward_rating < A)
+            if (reward_rating <= A)
             {
                 res_reward = 0.1f;
             }
-            else if (reward_rating >= A && reward_rating < B)
+            else if (reward_rating > A && reward_rating < B)
             {
                 res_reward = (reward_rating - A) / (B - A);
             }

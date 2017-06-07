@@ -39,7 +39,7 @@ public class Therapist : MonoBehaviour
     public bool showedHardClue = false;
     DateTime gameEndedTime;
 
-
+    public int previousAction = -1;
 
     /// 
     /// //////////////////////
@@ -420,6 +420,8 @@ public class Therapist : MonoBehaviour
                     break;
 
             }
+
+            previousAction = AlgorithmUCB_.Action;
 
             if (give_Feedback)
             {
