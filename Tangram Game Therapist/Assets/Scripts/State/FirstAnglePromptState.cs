@@ -251,6 +251,7 @@ public class FirstAnglePromptState : State
             Therapist.Instance.RatingsFeedback.FileHeader();
             Therapist.Instance.RatingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previous_ActionsTherapist + ";" + "3;1");
             Therapist.Instance.RatingsFeedback.header = false;
+            Therapist.Instance.RatingsFeedback.ButtonsDesactivation();
 
             Therapist.Instance.AlgorithmUCB_.UpdateReward(previous_ActionsTherapist, 3);
             Therapist.Instance.RatingsFeedback.previousAction = previous_ActionsTherapist;

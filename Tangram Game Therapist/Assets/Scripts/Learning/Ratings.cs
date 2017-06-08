@@ -262,10 +262,10 @@ namespace Assets.Scripts.Learning
             DialogResult dialogResult = MessageBox.Show("The game will be closed, are you sure?", "Exit Game", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                UtterancesManager.Instance.WriteJSON("Feedback form was closed by user/rating person and the game was forced to be finished.");
+                Debug.Log("Game is exiting");
                 System.Windows.Forms.Application.Exit();
                 UnityEngine.Application.Quit();
-
-                Debug.Log("Game is exiting");
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -343,7 +343,7 @@ namespace Assets.Scripts.Learning
             previousFeedback = 5;
         }
 
-        private void ButtonsDesactivation()
+        internal void ButtonsDesactivation()
         {
             Bt_1.Enabled = false;
             Bt_2.Enabled = false;
