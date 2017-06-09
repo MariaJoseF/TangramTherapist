@@ -24,7 +24,55 @@ public class GameManager : MonoBehaviour {
 	int nButtonGames;
 	int nSimpleGames;
 
-	public static GameManager Instance {
+    /// <summary>
+    /// /////////////////
+    /// </summary>
+    /// 
+
+
+    public string CurrentPuzzle
+    {
+        get
+        {
+            return currentPuzzle;
+        }
+
+    }
+
+    public float DistanceThreshold
+    {
+        get
+        {
+            return distanceThreshold;
+        }
+
+    }
+
+    public string RotationMode_
+    {
+        get
+        {
+            return rotationMode.ToString();
+        }
+
+    }
+
+    public string Difficulty_
+    {
+        get
+        {
+            return difficulty.ToString();
+        }
+
+    }
+
+
+    /// <summary>
+    /// ///////////////////
+    /// </summary>
+    /// 
+
+    public static GameManager Instance {
 		get { 
 			return instance; 
 		}
