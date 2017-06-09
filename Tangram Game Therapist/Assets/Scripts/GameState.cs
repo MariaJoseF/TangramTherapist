@@ -229,10 +229,10 @@ public class GameState : MonoBehaviour
         //Piece close with the right spot
         if (distance < 1.7)
         {
-            UtterancesManager.Instance.WriteJSON("CLOSE TRY " + piece.name);
 
             if (Therapist.Instance.nFailedTries >= 2)
             {
+                UtterancesManager.Instance.WriteJSON("CLOSE TRY " + piece.name);
                 GameManager.Instance.closeTries++;
                 UtterancesManager.Instance.WriteJSON("--- OLD FEEDBACK -> HelpAdjustingPiece");
 
@@ -242,6 +242,17 @@ public class GameState : MonoBehaviour
                 Therapist.Instance.Feedback();
                 ///old version Therapist.Instance.HelpAdjustingPiece();
                 ///////////// ///////////// ///////////// 
+            }
+            else
+            {
+                //give negative feedback
+
+                Therapist.Instance.nFailedTries++;
+                print(Therapist.Instance.nFailedTries + " feed negativo");
+                UtterancesManager.Instance.WriteJSON("CLOSE/WRONG TRY " + Therapist.Instance.nFailedTries + " " + piece.name);
+
+                Therapist.Instance.GiveNegativeFeedback();
+              
             }
         }
         //Piece in the wrong spot

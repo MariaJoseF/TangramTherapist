@@ -177,23 +177,28 @@ public class SecondPromptState : State
             if (repeatPrompt || (!repeatRelativePosition && availableAdjacentPieces.Count > 0 && ((prompedRelativePosition && !prompedRelativePieces) || random == 1)) || (prompt == "SecondPromptPlace"))
             {
                 repeatRelativePosition = false;
-                int pieceId = GameState.Instance.RandomKeys(availableAdjacentPieces).First();
-                string piece = SolutionManager.Instance.FindMatchIdName(pieceId);
-                string relativePosition = availableAdjacentPieces[pieceId];
-                Debug.Log("id " + pieceId + " relative position " + relativePosition + " piece " + piece);
-                //   if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
-                if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
+
+                //if there is no pieces already in the right place availableAdjacentPieces.Count = 0
+                if (availableAdjacentPieces.Count > 0)
                 {
-                    repeatPrompt = true;
-                    repeatPromptTime = DateTime.Now;
-                    return;
-                }
-                else
-                {
-                    repeatPrompt = false;
-                    adjacentPieces.Remove(pieceId);
-                    availableAdjacentPieces.Remove(pieceId);
-                    prompedRelativePieces = true;
+                    int pieceId = GameState.Instance.RandomKeys(availableAdjacentPieces).First();
+                    string piece = SolutionManager.Instance.FindMatchIdName(pieceId);
+                    string relativePosition = availableAdjacentPieces[pieceId];
+                    Debug.Log("id " + pieceId + " relative position " + relativePosition + " piece " + piece);
+                    //   if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
+                    if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
+                    {
+                        repeatPrompt = true;
+                        repeatPromptTime = DateTime.Now;
+                        return;
+                    }
+                    else
+                    {
+                        repeatPrompt = false;
+                        adjacentPieces.Remove(pieceId);
+                        availableAdjacentPieces.Remove(pieceId);
+                        prompedRelativePieces = true;
+                    }
                 }
             }
             else
