@@ -82,11 +82,4 @@ public class FinalState : State {
 	public void ThirdAnglePrompt(){
 	}
 
-    public void HardCluePrompt()
-    {
-    }
-
-    void State.Prompt(string prompt_name)
-    {
-    }
 }

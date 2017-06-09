@@ -43,8 +43,6 @@ public class Piece : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-
-
 		if (SceneProperties.Instance.rotationMode == SceneProperties.RotationMode.finger)
 			EnableTouchMode ();
 		else if (SceneProperties.Instance.rotationMode == SceneProperties.RotationMode.button)

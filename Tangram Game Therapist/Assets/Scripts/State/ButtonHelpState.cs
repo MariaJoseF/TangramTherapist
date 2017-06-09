@@ -64,13 +64,4 @@ public class ButtonHelpState : State {
 
 	public void Update(){		
 	}
-
-    public void HardCluePrompt()
-    {
-    }
-
-    void State.Prompt(string prompt_name)
-    {
-       
-    }
 }

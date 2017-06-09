@@ -61,13 +61,4 @@ public class StartState : State {
 
 	public void Update(){		
 	}
-
-    public void HardCluePrompt()
-    {
-    }
-
-    public void Prompt(string prompt_name)
-    {
-        
-    }
 }

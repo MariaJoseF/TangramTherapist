@@ -4,8 +4,6 @@ using System;
 
 public class InitialHelpState : State {
 
-
-
 	public InitialHelpState () {
 	}
 
@@ -87,13 +85,4 @@ public class InitialHelpState : State {
 
 	public void Update(){		
 	}
-
-    public void HardCluePrompt()
-    {
-    }
-
-    void State.Prompt(string prompt_name)
-    {
-        
-    }
 }

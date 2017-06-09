@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System;
 using UnityEngine.UI;
-
 
 public class LoadOnClick : MonoBehaviour {
 	
@@ -12,11 +12,9 @@ public class LoadOnClick : MonoBehaviour {
 	public Sprite soundSprite;
     public Button playButton;
     public InputField inputName;
-    
 
     int previousLevel = 1;
     string playerName;
-    bool loadForm = true;
 
 	void Start() 
 	{
@@ -25,7 +23,6 @@ public class LoadOnClick : MonoBehaviour {
 			soundButton.image.sprite = muteSprite;
 			muted = true;
 		}
-
 	}
 
     void Update() {
@@ -33,13 +30,6 @@ public class LoadOnClick : MonoBehaviour {
             playButton.interactable = true;
         else if (Application.loadedLevelName == "Start" && !GameState.Instance.playButtonInteractable)
             playButton.interactable = false;
-
-
-        if (loadForm)
-        {
-            Therapist.Instance.RatingsFeedback.form_Feedback.Show();
-            loadForm = false;
-        }
     }
 
 	public void LoadScene(int level)
@@ -54,10 +44,7 @@ public class LoadOnClick : MonoBehaviour {
     {
         GameManager.Instance.playerName = playerName;
         Application.LoadLevel(1);
-
-      
         Therapist.Instance.BeginFirstGame();
-       
     }
 
     public void SavePlayerName()
@@ -84,8 +71,6 @@ public class LoadOnClick : MonoBehaviour {
     public void PlayButton() { 
         GameManager.Instance.BeginGame(muted);
         previousLevel = 1;
-
         Application.LoadLevel(2);
-       
     }
 }
