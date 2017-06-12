@@ -46,7 +46,7 @@ namespace Assets.Scripts.UCB
             {
                 random_actions = new int[number_actions];
                 int id = 0;
-                Console.WriteLine("All numbers between 0 and 17 in random order:");
+                Console.WriteLine("All numbers between 0 and 16 in random order:");
                 foreach (int i in UniqueRandom(0, (number_actions - 1)))
                 {
                     Console.WriteLine(i);
@@ -72,7 +72,7 @@ namespace Assets.Scripts.UCB
                     WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;UCB;AVG_REWARD;PLAYED_ACTIONS;SELECTED_ACTION");
                 }
 
-                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";-" + ";" + iterations + ";-" + ";-"  + ";-"  + ";" + actionSelected);
+                WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";-" + ";" + iterations + ";-" + ";-" + ";-" + ";" + actionSelected);
 
 
             }
@@ -112,18 +112,18 @@ namespace Assets.Scripts.UCB
                 Elements _action = PlayedActions.Find(x => (x.Action == actionSelected));
                 _action.Value = _action.Value + 1;
 
-                //update average reward of action i
-                Elements _reward = AvgReceivedRewards.Find(x => (x.Action == actionSelected));
-                _reward.Value = _reward.Value + reward_actions[actionSelected];
+                //observe
+
                 SaveData();
             }
 
-           
             //update to next iteration
             iterations++;
             return actionSelected;
         }
 
+
+        // Observe the reward and update the empirical mean for the chosen action.
         public void UpdateReward(int action, int reward_rating)
         {
             float A = 1f, B = 5f;
@@ -143,6 +143,27 @@ namespace Assets.Scripts.UCB
             }
 
             reward_actions[action] = res_reward;
+
+
+            //update average reward of action i
+            UpdateAvgReward(actionSelected);
+        }
+
+        private void UpdateAvgReward(int action)
+        {
+            ///////
+
+
+            Elements avgReward = AvgReceivedRewards.Find(x => (x.Action == action));
+            //update the action reward
+            Elements played_action = PlayedActions.Find(x => (x.Action == actionSelected));
+
+            //   avgReward = old_avg + (newval - old_avg)/numplayactions
+            //https://math.stackexchange.com/questions/106700/incremental-averageing
+
+            double aux = (avgReward.Value + ((reward_actions[action] - avgReward.Value) / played_action.Value));
+
+            avgReward.Value = aux;
         }
 
         private void SaveData()
@@ -204,8 +225,7 @@ namespace Assets.Scripts.UCB
             {
                 fileName = filePath + @"ucb_" + String.Format("{0:dd-MM-yyyy hh-mm-ss}", DateTime.Now) + ".txt";
                 Console.WriteLine(filePath + @"\" + String.Format("{0:dd-MM-yyyy hh-mm-ss}", DateTime.Now) + ".txt");
-                using (System.IO.StreamWriter file =
-                    new System.IO.StreamWriter(fileName))
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName))
                 {
 
                     file.WriteLine(timestamp + " " + info);
