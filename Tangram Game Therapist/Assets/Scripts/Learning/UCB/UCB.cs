@@ -46,19 +46,12 @@ namespace Assets.Scripts.UCB
             {
                 random_actions = new int[number_actions];
                 int id = 0;
-                Console.WriteLine("All numbers between 0 and 16 in random order:");
+                Console.WriteLine("All numbers between 0 and 4 in random order:");
                 foreach (int i in UniqueRandom(0, (number_actions - 1)))
                 {
                     Console.WriteLine(i);
                     random_actions[id] = i;
                     id++;
-                }
-
-
-                for (int i = 0; i < number_actions; i++)
-                {
-                    PlayedActions.Add(new Elements(i, 1.0f));
-                    AvgReceivedRewards.Add(new Elements(i, reward_actions[i]));
                 }
             }
 
@@ -67,6 +60,8 @@ namespace Assets.Scripts.UCB
                 Console.WriteLine(random_actions[iterations - 1]);
                 actionSelected = random_actions[iterations - 1];
 
+                PlayedActions.Add(new Elements(actionSelected, 1.0f));
+
                 if (iterations == 1)
                 {
                     WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;UCB;AVG_REWARD;PLAYED_ACTIONS;SELECTED_ACTION");
@@ -74,7 +69,7 @@ namespace Assets.Scripts.UCB
 
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";-" + ";" + iterations + ";-" + ";-" + ";-" + ";" + actionSelected);
 
-
+                Console.WriteLine("------------------- iterations = " + iterations + ", actionSelected = "+ actionSelected + " -------------------");
             }
             else // all actions were already run once, know they can be run acording the algorithm selection
             {

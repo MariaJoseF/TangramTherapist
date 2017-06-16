@@ -9,7 +9,11 @@ public class ThirdPromptState : State {
     bool finalPrompt, repeatPrompt = false, goToSecondAnglePrompt = false;
     Piece currentPiece;
 
-	public ThirdPromptState () {
+    private bool firstPrompt = true;
+    private bool secondPrompt = true;
+    private bool thirdPrompt = true;
+
+    public ThirdPromptState () {
 		nPrompts = 0;
 		nIncorrectAngle = 0;
 	}
@@ -19,8 +23,24 @@ public class ThirdPromptState : State {
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
-		if (nPrompts == 0) {
-            if (!UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name))){
+
+        firstPrompt = Therapist.Instance.First_Prompt;
+        secondPrompt = Therapist.Instance.Second_Prompt;
+        thirdPrompt = Therapist.Instance.Third_Prompt;
+
+        bool utterance = false;
+
+        if (nPrompts == 0) {
+
+            Debug.Log("3rd prompt");
+            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
+            if (thirdPrompt)
+            {
+                utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+            }
+
+            if (!utterance)
+            {
                 repeatPrompt = true;
                 repeatPromptTime = DateTime.Now;
                 nPrompts = 0;
@@ -38,7 +58,16 @@ public class ThirdPromptState : State {
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
 
-        if (!UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name))){
+        Debug.Log("3rd prompt -> Repeat");
+        bool utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
+
+        if (thirdPrompt)
+        {
+            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+            }
+
+        if (!utterance)
+        {
             repeatPrompt = true;
             repeatPromptTime = DateTime.Now;
         }
@@ -92,11 +121,14 @@ public class ThirdPromptState : State {
                     return;
 				}
 				else if (nPrompts >= 3){
+                    Debug.Log("3rd prompt -> Quit");
                     UtterancesManager.Instance.Quit();
                     nPrompts = 0;
 					finalPrompt = true;
 					lastPromptTime = DateTime.Now;
-				}
+
+                    Therapist.Instance.SetPrompts();
+                }
 			}
 		}
         else if ((repeatPrompt && (DateTime.Now - repeatPromptTime).TotalSeconds > 4)) {
@@ -104,6 +136,7 @@ public class ThirdPromptState : State {
         }
         else if (finalPrompt && (DateTime.Now - lastPromptTime).TotalSeconds > 20)
         {
+            Debug.Log("3rd prompt -> End Game");
             lastPromptTime = DateTime.Now;
             GameState.Instance.quit = true;
             GameManager.Instance.quit = true;

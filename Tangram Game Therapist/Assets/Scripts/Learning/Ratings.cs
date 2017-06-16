@@ -271,6 +271,7 @@ namespace Assets.Scripts.Learning
             {
                 Debug.Log("Try to exit Game");
             }
+
         }
 
         //private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -290,7 +291,7 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "1;0");
             ButtonsDesactivation();
             header = false;
-      //      Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 1);
+            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 1);
              previousAction = ActionNumber;
              previousFeedback = 1;
         }
@@ -302,7 +303,7 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "2;0");
             ButtonsDesactivation();
             header = false;
-       //     Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 2);
+            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 2);
             previousAction = ActionNumber;
             previousFeedback = 2;
         }
@@ -314,7 +315,7 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "3;0");
             ButtonsDesactivation();
             header = false;
-       //     Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 3);
+            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 3);
             previousAction = ActionNumber;
             previousFeedback = 3;
         }
@@ -326,7 +327,7 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "4;0");
             ButtonsDesactivation();
             header = false;
-    //        Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 4);
+            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 4);
             previousAction = ActionNumber;
             previousFeedback = 4;
         }
@@ -338,7 +339,7 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "5;0");
             ButtonsDesactivation();
             header = false;
-     //       Therapist.Instance.AlgorithmUCB_.UpdateReward(ActionNumber, 5);
+            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 5);
             previousAction = ActionNumber;
             previousFeedback = 5;
         }

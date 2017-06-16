@@ -4,39 +4,60 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-public class SecondPromptState : State {
+public class SecondPromptState : State
+{
 
     public DateTime lastPromptTime, incorrectAngleTime, repeatPromptTime, goToSecondAnglePromptTime;
-	public int nPrompts, nIncorrectAngle;
+    public int nPrompts, nIncorrectAngle;
     bool prompedRelativePosition = false, prompedRelativePieces = false, alreadyPromped = false,
         repeatHardClue = false, repeatPrompt = false, repeatRelativePosition = false, goToSecondAnglePrompt = false;
-	public Dictionary<int,string> adjacentPieces = new Dictionary<int, string>();
-	public Dictionary<int,string> availableAdjacentPieces = new Dictionary<int, string>();
-	PieceSolution currentPlace;
+    public Dictionary<int, string> adjacentPieces = new Dictionary<int, string>();
+    public Dictionary<int, string> availableAdjacentPieces = new Dictionary<int, string>();
+    PieceSolution currentPlace;
     Piece currentPiece;
     int random;
 
-	public SecondPromptState () {
-		nPrompts = 0;
-		nIncorrectAngle = 0;
-	}
+    private bool firstPrompt = true;
+    private bool secondPrompt = true;
+    private bool thirdPrompt = true;
 
-	public void SecondPrompt(){
+    public SecondPromptState()
+    {
+        nPrompts = 0;
+        nIncorrectAngle = 0;
+    }
+
+    public void SecondPrompt()
+    {
         Therapist.Instance.nWrongAngleTries = 0;
         Therapist.Instance.nFailedTries = 0;
-		lastPromptTime = DateTime.Now;
+        lastPromptTime = DateTime.Now;
         nPrompts = 0;
         currentPiece = Therapist.Instance.currentPiece;
 
-		if (nPrompts == 0) {
-			random = UnityEngine.Random.Range(0, 3);
+        firstPrompt = Therapist.Instance.First_Prompt;
+        secondPrompt = Therapist.Instance.Second_Prompt;
+        thirdPrompt = Therapist.Instance.Third_Prompt;
+        bool utterance = false;
+
+        if (nPrompts == 0)
+        {
+            random = UnityEngine.Random.Range(0, 3);
             if (repeatHardClue || random == 0 && Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
                 && !Therapist.Instance.showedHardClue)
             {
                 repeatHardClue = false;
                 repeatPrompt = false;
                 repeatRelativePosition = false;
-                if (!UtterancesManager.Instance.HardClue(4.0f))
+
+                Debug.Log("2nd prompt ");
+                utterance = UtterancesManager.Instance.HardClue(4.0f, 1);
+                if (secondPrompt)
+                {
+                    utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
+                }
+
+                if (!utterance)
                 {
                     repeatHardClue = true;
                     repeatPromptTime = DateTime.Now;
@@ -54,14 +75,17 @@ public class SecondPromptState : State {
                 InitializeParameters();
                 HelpWithRelativePosition();
             }
-		}
-	}
-	
-	void RepeatPrompt(){
-		lastPromptTime = DateTime.Now;
+        }
+    }
+
+    void RepeatPrompt()
+    {
+        lastPromptTime = DateTime.Now;
         Therapist.Instance.nWrongAngleTries = 0;
         Therapist.Instance.nFailedTries = 0;
-		random = UnityEngine.Random.Range(0, 3);
+        random = UnityEngine.Random.Range(0, 3);
+
+        bool utterance = false;
 
         if (repeatHardClue || (random == 0 && Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
             && !Therapist.Instance.showedHardClue))
@@ -69,7 +93,15 @@ public class SecondPromptState : State {
             repeatHardClue = false;
             repeatPrompt = false;
             repeatRelativePosition = false;
-            if (!UtterancesManager.Instance.HardClue(4.0f))
+
+            Debug.Log("2nd prompt -> RepeatPrompt ");
+            utterance = UtterancesManager.Instance.HardClue(4.0f, 1);
+            if (secondPrompt)
+            {
+                utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
+            }
+
+            if (!utterance)
             {
                 repeatHardClue = true;
                 repeatPromptTime = DateTime.Now;
@@ -85,9 +117,10 @@ public class SecondPromptState : State {
             nPrompts++;
             HelpWithRelativePosition();
         }
-	}
+    }
 
-    void InitializeParameters() {
+    void InitializeParameters()
+    {
         currentPlace = GameState.Instance.FindTheCorrectPlace(Therapist.Instance.currentPiece);
         Therapist.Instance.currentPlace = currentPlace;
 
@@ -105,11 +138,16 @@ public class SecondPromptState : State {
         }
     }
 
-	void HelpWithRelativePosition(){
+    void HelpWithRelativePosition()
+    {
         repeatHardClue = false;
-		if (!alreadyPromped) {
+
+        bool utterance = false;
+
+        if (!alreadyPromped)
+        {
             InitializeParameters();
-		}
+        }
 
         if (currentPlace != null)
         {
@@ -119,8 +157,15 @@ public class SecondPromptState : State {
                 int pieceId = GameState.Instance.RandomKeys(availableAdjacentPieces).First();
                 string piece = SolutionManager.Instance.FindMatchIdName(pieceId);
                 string relativePosition = availableAdjacentPieces[pieceId];
-                Debug.Log("id " + pieceId + " relative position " + relativePosition + " piece " + piece);
-                if (!UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)))
+                Debug.Log("2nd prompt -> HelpWithRelativePosition -> id " + pieceId + " relative position " + relativePosition + " piece " + piece);
+
+                utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece), 1);
+                if (secondPrompt)
+                {
+                    utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece), 0);
+                }
+
+                if (!utterance)
                 {
                     repeatPrompt = true;
                     repeatPromptTime = DateTime.Now;
@@ -139,8 +184,15 @@ public class SecondPromptState : State {
                 repeatPrompt = false;
                 if (currentPlace.relPos.pos1 == null)
                 {
-                    Debug.Log("id " + currentPlace.name + " position " + currentPlace.relPos.pos2);
-                    if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2))
+                    Debug.Log("2nd prompt -> id " + currentPlace.name + " position " + currentPlace.relPos.pos2);
+
+                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2, 1);
+                    if (secondPrompt)
+                    {
+                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2, 0);
+                    }
+
+                    if (!utterance)
                     {
                         repeatRelativePosition = true;
                         repeatPromptTime = DateTime.Now;
@@ -151,8 +203,15 @@ public class SecondPromptState : State {
                 }
                 else if (currentPlace.relPos.pos2 == null)
                 {
-                    Debug.Log("id " + currentPlace.name + " position " + currentPlace.relPos.pos1);
-                    if (!UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1))
+                    Debug.Log("2nd prompt -> id " + currentPlace.name + " position " + currentPlace.relPos.pos1);
+
+                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, 1);
+                    if (secondPrompt)
+                    {
+                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, 0);
+                    }
+
+                    if (!utterance)
                     {
                         repeatRelativePosition = true;
                         repeatPromptTime = DateTime.Now;
@@ -163,8 +222,15 @@ public class SecondPromptState : State {
                 }
                 else
                 {
-                    Debug.Log("id " + currentPlace.name + " position1 " + currentPlace.relPos.pos1 + " position2 " + currentPlace.relPos.pos2);
-                    if (!UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2))
+                    Debug.Log("2nd prompt -> id " + currentPlace.name + " position1 " + currentPlace.relPos.pos1 + " position2 " + currentPlace.relPos.pos2);
+
+                    utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2, 1);
+                    if (secondPrompt)
+                    {
+                        utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2, 0);
+                    }
+
+                    if (!utterance)
                     {
                         repeatRelativePosition = true;
                         repeatPromptTime = DateTime.Now;
@@ -177,164 +243,190 @@ public class SecondPromptState : State {
                 prompedRelativePosition = true;
             }
         }
-	}
+    }
 
-	Dictionary<int, string> IntersectDictionaries(Dictionary<int, string> dic1, Dictionary<int, Piece> dic2){
-		Dictionary<int, string> result = new Dictionary<int, string> ();
-		IEnumerable<int> commonKeys = dic1.Keys.Intersect (dic2.Keys);
-		foreach(int i in commonKeys) {
-			result.Add(i, dic1[i]);
-		}
-		return result;
-	}
+    Dictionary<int, string> IntersectDictionaries(Dictionary<int, string> dic1, Dictionary<int, Piece> dic2)
+    {
+        Dictionary<int, string> result = new Dictionary<int, string>();
+        IEnumerable<int> commonKeys = dic1.Keys.Intersect(dic2.Keys);
+        foreach (int i in commonKeys)
+        {
+            result.Add(i, dic1[i]);
+        }
+        return result;
+    }
 
-	public void StartedMoving (bool correctAngle){
-		//lastPromptTime = DateTime.Now;
+    public void StartedMoving(bool correctAngle)
+    {
+        //lastPromptTime = DateTime.Now;
 
-		if (!GameState.Instance.dragging) {
-			if (!correctAngle) {
-				nIncorrectAngle++;
-				incorrectAngleTime = DateTime.Now;
-			} else {
-				nIncorrectAngle = 0;
-				Therapist.Instance.nWrongAngleTries = 0;
-			}
-		}
-	}
-	
-	public void Update(){
-		if (nPrompts > 0) {
-			if (Therapist.Instance.nWrongAngleTries >= 2 || (nIncorrectAngle > 0 && (DateTime.Now - incorrectAngleTime).TotalSeconds > 12)
-                || (goToSecondAnglePrompt && (DateTime.Now - goToSecondAnglePromptTime).TotalSeconds > 5)) {
-				SecondAnglePrompt ();	
-				Debug.Log ("2nd prompt -> 2ndAngle");
+        if (!GameState.Instance.dragging)
+        {
+            if (!correctAngle)
+            {
+                nIncorrectAngle++;
+                incorrectAngleTime = DateTime.Now;
+            }
+            else
+            {
+                nIncorrectAngle = 0;
+                Therapist.Instance.nWrongAngleTries = 0;
+            }
+        }
+    }
+
+    public void Update()
+    {
+        if (nPrompts > 0)
+        {
+            if (Therapist.Instance.nWrongAngleTries >= 2 || (nIncorrectAngle > 0 && (DateTime.Now - incorrectAngleTime).TotalSeconds > 12)
+                || (goToSecondAnglePrompt && (DateTime.Now - goToSecondAnglePromptTime).TotalSeconds > 5))
+            {
+                SecondAnglePrompt();
+                Debug.Log("2nd prompt -> 2ndAngle");
                 return;
-			}
-            else if (((repeatRelativePosition || repeatHardClue || repeatPrompt) && (DateTime.Now - repeatPromptTime).TotalSeconds > 4) 
+            }
+            else if (((repeatRelativePosition || repeatHardClue || repeatPrompt) && (DateTime.Now - repeatPromptTime).TotalSeconds > 4)
                 || (DateTime.Now - lastPromptTime).TotalSeconds > 20 || Therapist.Instance.nFailedTries >= 2)
             {
-				if (repeatRelativePosition || repeatHardClue || repeatPrompt || nPrompts < 3) {
-					RepeatPrompt();
+                if (repeatRelativePosition || repeatHardClue || repeatPrompt || nPrompts < 3)
+                {
+                    RepeatPrompt();
                     return;
-				}
-				else if (nPrompts >= 2){
-					Debug.Log ("2nd prompt -> vai para o terceiro estado");
-					ThirdPrompt();
+                }
+                else if (nPrompts >= 2)
+                {
+                    Debug.Log("2nd prompt -> vai para o terceiro estado");
+                    ThirdPrompt();
                     return;
-				}
-			}
-		}
+                }
+            }
+        }
         else if (((repeatRelativePosition || repeatHardClue || repeatPrompt) && (DateTime.Now - repeatPromptTime).TotalSeconds > 4))
         {
             SecondPrompt();
         }
-        if (Therapist.Instance.currentPiece != currentPiece) {
+        if (Therapist.Instance.currentPiece != currentPiece)
+        {
             currentPiece = Therapist.Instance.currentPiece;
             InitializeParameters();
         }
-	}
+    }
 
-	public void EndGame(){
-		nPrompts = 0;
-		alreadyPromped = false;
-		prompedRelativePosition = false;
-		prompedRelativePieces = false;
+    public void EndGame()
+    {
+        nPrompts = 0;
+        alreadyPromped = false;
+        prompedRelativePosition = false;
+        prompedRelativePieces = false;
         repeatHardClue = false;
         repeatPrompt = false;
         repeatRelativePosition = false;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
-		Therapist.Instance.showedHardClue = false;;
-		Therapist.Instance.currentState = Therapist.Instance.FinalState;
-		Therapist.Instance.EndGame ();
-	}
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
+        Therapist.Instance.showedHardClue = false; ;
+        Therapist.Instance.currentState = Therapist.Instance.FinalState;
+        Therapist.Instance.EndGame();
+    }
 
-	public void HelpMotor(){
+    public void HelpMotor()
+    {
         repeatHardClue = false;
         repeatPrompt = false;
         repeatRelativePosition = false;
-		Therapist.Instance.nFailedTries = 0;
-		lastPromptTime = DateTime.Now;
-		Therapist.Instance.previousState = Therapist.Instance.currentState;
-		Therapist.Instance.currentState = Therapist.Instance.MotorHelpState;
-		Therapist.Instance.HelpMotor ();
-	}
-	
-	public void HelpAdjustingPiece() {
+        Therapist.Instance.nFailedTries = 0;
+        lastPromptTime = DateTime.Now;
+        Therapist.Instance.previousState = Therapist.Instance.currentState;
+        Therapist.Instance.currentState = Therapist.Instance.MotorHelpState;
+        Therapist.Instance.HelpMotor();
+    }
+
+    public void HelpAdjustingPiece()
+    {
         repeatHardClue = false;
         repeatPrompt = false;
         repeatRelativePosition = false;
-		Therapist.Instance.nFailedTries = 0;
-		lastPromptTime = DateTime.Now;
-		Therapist.Instance.previousState = Therapist.Instance.currentState;
-		Therapist.Instance.currentState = Therapist.Instance.FitHelpState;
-		Therapist.Instance.HelpAdjustingPiece ();
-	}
+        Therapist.Instance.nFailedTries = 0;
+        lastPromptTime = DateTime.Now;
+        Therapist.Instance.previousState = Therapist.Instance.currentState;
+        Therapist.Instance.currentState = Therapist.Instance.FitHelpState;
+        Therapist.Instance.HelpAdjustingPiece();
+    }
 
-	public void GivePositiveFeedback() {
+    public void GivePositiveFeedback()
+    {
         repeatHardClue = false;
         repeatPrompt = false;
         repeatRelativePosition = false;
-		nPrompts = 0;
-		alreadyPromped = false;
-		prompedRelativePosition = false;
-		prompedRelativePieces = false;
-		Therapist.Instance.currentState = Therapist.Instance.PositiveFeedState;
-		Therapist.Instance.GivePositiveFeedback ();
-	}
-	
-	public void GiveNegativeFeedback() {
-		Therapist.Instance.previousState = Therapist.Instance.SecondPromptState;
-		Therapist.Instance.currentState = Therapist.Instance.NegativeFeedState;
-		Debug.Log("2promp state-> neg feed");
-		Therapist.Instance.GiveNegativeFeedback ();
-	}
+        nPrompts = 0;
+        alreadyPromped = false;
+        prompedRelativePosition = false;
+        prompedRelativePieces = false;
+        Therapist.Instance.currentState = Therapist.Instance.PositiveFeedState;
+        Therapist.Instance.GivePositiveFeedback();
+    }
 
-	public void ThirdPrompt(){
+    public void GiveNegativeFeedback()
+    {
+        Therapist.Instance.previousState = Therapist.Instance.SecondPromptState;
+        Therapist.Instance.currentState = Therapist.Instance.NegativeFeedState;
+        Debug.Log("2promp state-> neg feed");
+        Therapist.Instance.GiveNegativeFeedback();
+    }
+
+    public void ThirdPrompt()
+    {
         repeatHardClue = false;
         repeatPrompt = false;
         repeatRelativePosition = false;
-		nPrompts = 0;
-		alreadyPromped = false;
-		prompedRelativePosition = false;
-		prompedRelativePieces = false;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
-		Therapist.Instance.showedHardClue = false;
-		Therapist.Instance.currentState = Therapist.Instance.ThirdPromptState;
-		Therapist.Instance.ThirdPrompt ();	
-	}
+        nPrompts = 0;
+        alreadyPromped = false;
+        prompedRelativePosition = false;
+        prompedRelativePieces = false;
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
+        Therapist.Instance.showedHardClue = false;
+        Therapist.Instance.currentState = Therapist.Instance.ThirdPromptState;
+        Therapist.Instance.ThirdPrompt();
+    }
 
-	public void SecondAnglePrompt(){
+    public void SecondAnglePrompt()
+    {
         repeatHardClue = false;
         repeatPrompt = false;
         repeatRelativePosition = false;
-		nPrompts = 0;
-		alreadyPromped = false;
-		prompedRelativePosition = false;
-		prompedRelativePieces = false;
-		Therapist.Instance.nFailedTries = 0;
-		Therapist.Instance.nWrongAngleTries = 0;
-		Therapist.Instance.showedHardClue = false;
-		Therapist.Instance.currentState = Therapist.Instance.SecondAnglePromptState;
-		Therapist.Instance.SecondAnglePrompt ();	
-	}
-	
-	public void BeginFirstGame(){
-	}
-	
-	public void BeginNextGame(){
-	}
+        nPrompts = 0;
+        alreadyPromped = false;
+        prompedRelativePosition = false;
+        prompedRelativePieces = false;
+        Therapist.Instance.nFailedTries = 0;
+        Therapist.Instance.nWrongAngleTries = 0;
+        Therapist.Instance.showedHardClue = false;
+        Therapist.Instance.currentState = Therapist.Instance.SecondAnglePromptState;
+        Therapist.Instance.SecondAnglePrompt();
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){
-	}
-	
-	public void FirstPlacePrompt(){
-	}
+    public void BeginFirstGame()
+    {
+    }
 
-	public void ThirdAnglePrompt(){
-	}
+    public void BeginNextGame()
+    {
+    }
+
+    public void FirstIdlePrompt()
+    {
+    }
+
+    public void FirstAnglePrompt()
+    {
+    }
+
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
 }

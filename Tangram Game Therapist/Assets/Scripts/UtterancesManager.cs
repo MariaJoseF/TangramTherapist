@@ -378,7 +378,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class UtterancesManager : MonoBehaviour {
+public class UtterancesManager : MonoBehaviour
+{
     private static UtterancesManager instance = null;
     StateConnector s;
     string currentUtterance = null;
@@ -386,7 +387,8 @@ public class UtterancesManager : MonoBehaviour {
     public float hardClueSeconds;
     public static UtterancesManager Instance { get { return instance; } }
 
-    void Awake() {
+    void Awake()
+    {
         //Check if instance already exists
         if (instance == null)
             instance = this;
@@ -590,7 +592,7 @@ public class UtterancesManager : MonoBehaviour {
 
     public bool NegativeFeedback()
     {
-        if(currentUtterance == null)
+        if (currentUtterance == null)
         {
             s.NegativeFeedback();
             return true;
@@ -599,77 +601,99 @@ public class UtterancesManager : MonoBehaviour {
             return false;
     }
 
-    public bool FirstAnglePrompt(string piece)
+    public bool FirstAnglePrompt(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.FirstAnglePrompt(piece);
+            if (no_voice == 0)
+            {
+s.FirstAnglePrompt(piece);
+            }
+                
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstAnglePromptFinger(string piece)
+    public bool FirstAnglePromptFinger(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.FirstAnglePromptFinger(piece);
+            if (no_voice == 0)
+            {
+                s.FirstAnglePromptFinger(piece);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstAnglePromptButton(string piece)
+    public bool FirstAnglePromptButton(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.FirstAnglePromptButton(piece);
+            if (no_voice == 0)
+            {
+                s.FirstAnglePromptButton(piece);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePrompt(string piece)
+    public bool SecondAnglePrompt(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.SecondAnglePrompt(piece);
+            if (no_voice == 0)
+            {
+                s.SecondAnglePrompt(piece);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePromptFinger(string piece, string direction)
+    public bool SecondAnglePromptFinger(string piece, string direction, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.SecondAnglePromptFinger(piece, direction);
+            if (no_voice == 0)
+            {
+                s.SecondAnglePromptFinger(piece, direction);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePromptButton(string piece, string nClicks)
+    public bool SecondAnglePromptButton(string piece, string nClicks, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.SecondAnglePromptButton(piece, nClicks);
+            if (no_voice == 0)
+            {
+                s.SecondAnglePromptButton(piece, nClicks);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool ThirdAnglePrompt(string piece)
+    public bool ThirdAnglePrompt(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.ThirdAnglePrompt(piece);
+            if (no_voice == 0)
+            {
+                s.ThirdAnglePrompt(piece);
+            }
             return true;
         }
         else
@@ -695,78 +719,100 @@ public class UtterancesManager : MonoBehaviour {
         s.StopAnglePrompt(piece);
     }
 
-    public bool FirstIdlePrompt(string piece)
+    public bool FirstIdlePrompt(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.FirstIdlePrompt(piece);
+            if (no_voice == 0)
+            {
+                s.FirstIdlePrompt(piece);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstPlacePrompt(string piece)
+    public bool FirstPlacePrompt(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.FirstPlacePrompt(piece);
+            if (no_voice == 0)
+            {
+                s.FirstPlacePrompt(piece);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPrompt1Position(string piece, string pos)
+    public bool SecondPrompt1Position(string piece, string pos, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.SecondPrompt1Position(piece, pos);
+            if (no_voice == 0)
+            {
+                s.SecondPrompt1Position(piece, pos);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPrompt2Position(string piece, string pos1, string pos2)
+    public bool SecondPrompt2Position(string piece, string pos1, string pos2, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.SecondPrompt2Position(piece, pos1, pos2);
+            if (no_voice == 0)
+            {
+                s.SecondPrompt2Position(piece, pos1, pos2);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPromptPlace(string piece, string pos, string relativePiece)
+    public bool SecondPromptPlace(string piece, string pos, string relativePiece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.SecondPromptPlace(piece, pos, relativePiece);
+            if (no_voice == 0)
+            {
+                s.SecondPromptPlace(piece, pos, relativePiece);
+                }
             return true;
         }
         else
             return false;
     }
 
-    public bool ThirdPrompt(string piece)
+    public bool ThirdPrompt(string piece, int no_voice)
     {
         if (currentUtterance == null)
         {
-            s.ThirdPrompt(piece);
+            if (no_voice == 0)
+            {
+                s.ThirdPrompt(piece);
+            }
             return true;
         }
         else
             return false;
     }
 
-    public bool HardClue(float seconds)
+    public bool HardClue(float seconds, int no_voice)
     {
         if (currentUtterance == null)
         {
-            hardClueSeconds = seconds;
-            s.HardClue();
+            if (no_voice == 0)
+            {
+                hardClueSeconds = seconds;
+                s.HardClue();
+            }
+
             return true;
         }
         else
