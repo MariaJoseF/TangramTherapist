@@ -722,7 +722,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("pchildturn exception finally");
+            //  Debug.Log("pchildturn exception finally");
         }
     }
 
@@ -738,7 +738,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("probotturn exception finally");
+            //  Debug.Log("probotturn exception finally");
         }
     }
 
@@ -754,7 +754,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("probotfrag exception finally");
+            // Debug.Log("probotfrag exception finally");
         }
     }
 
@@ -770,7 +770,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("probotrotdrag exception finally");
+            //  Debug.Log("probotrotdrag exception finally");
         }
     }
 
@@ -786,7 +786,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("probotwin exception finally");
+            //  Debug.Log("probotwin exception finally");
         }
     }
 
@@ -802,7 +802,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("probotreminder exception finally");
+            //  Debug.Log("probotreminder exception finally");
         }
     }
 
@@ -818,7 +818,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("paskingplace exception finally");
+            // Debug.Log("paskingplace exception finally");
         }
     }
 
@@ -834,7 +834,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("paskingrotate exception finally");
+            //   Debug.Log("paskingrotate exception finally");
         }
     }
 
@@ -850,7 +850,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("paskingplacewin exception finally");
+            //  Debug.Log("paskingplacewin exception finally");
         }
     }
 
@@ -866,7 +866,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("paskingrotatewin exception finally");
+            // Debug.Log("paskingrotatewin exception finally");
         }
     }
 
@@ -882,7 +882,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("paskingplacewrong exception finally");
+            //  Debug.Log("paskingplacewrong exception finally");
         }
     }
 
@@ -898,7 +898,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("paskingrotatewrong exception finally");
+            //  Debug.Log("paskingrotatewrong exception finally");
         }
     }
 
@@ -914,7 +914,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("paskingquit exception finally");
+            //  Debug.Log("paskingquit exception finally");
         }
     }
 
@@ -930,7 +930,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("pgivingplace exception finally");
+            // Debug.Log("pgivingplace exception finally");
         }
     }
 
@@ -946,10 +946,10 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("pgivingrotate exception finally");
+            //  Debug.Log("pgivingrotate exception finally");
         }
     }
-     public void WriteJSON(string timestamp, string info)
+    public void WriteJSON(string timestamp, string info)
 
     {
         try
@@ -962,7 +962,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("writejson exception finally");
+            // Debug.Log("writejson exception finally");
         }
     }
 
@@ -978,7 +978,7 @@ public class ThalamusConnector : ITMessages
         }
         finally
         {
-            Debug.Log("CancelUtterance exception finally");
+            // Debug.Log("CancelUtterance exception finally");
         }
     }
 

@@ -2,6 +2,7 @@
 using System;
 using Assets.Scripts.Learning;
 using Assets.Scripts.UCB;
+using System.Collections.Generic;
 
 public class Therapist : MonoBehaviour
 {
@@ -48,16 +49,13 @@ public class Therapist : MonoBehaviour
     //Exp3 AlgorithmEXP3 = new Exp3(17, rewards, 0.07f);
     internal UCB AlgorithmUCB = new UCB(5, rewards);
     internal Ratings ratingsFeedback = new Ratings();
+    List<int> vec_ratings = new List<int>(); 
     String action_name = "";
 
 
     /// 
     /// ///////////////
     /// 
-
-
-
-
 
 
     public struct GameSettings
@@ -73,7 +71,7 @@ public class Therapist : MonoBehaviour
     private bool firstPrompt = true;
     private bool secondPrompt = true;
     private bool thirdPrompt = true;
-    private int previousAction;
+    private int previousAction = -1;
 
     public static Therapist Instance
     {
@@ -131,9 +129,6 @@ public class Therapist : MonoBehaviour
 
     public void GivePositiveFeedback()
     {
-
-
-
         nFailedTries = 0;
         nWrongAngleTries = 0;
         showedHardClue = false;
@@ -151,7 +146,6 @@ public class Therapist : MonoBehaviour
         {
             positive_feedback = true;
             // Debug.Log("Positive = " + poaitive_feedback);
-
         }
 
     }
@@ -270,9 +264,16 @@ public class Therapist : MonoBehaviour
         SetPrompts();
     }
 
+
     internal void SetPrompts()
     {
+    
+        //Calculate the average ratings for the utterances presented for the previous action selected and update the UCB algorithm reward
+       AVG_Ratings();
+
         AlgorithmUCB.RunUCB();
+
+
 
         switch (AlgorithmUCB.Action)
         {
@@ -331,27 +332,50 @@ public class Therapist : MonoBehaviour
             ratingsFeedback.ActionNumber1 = AlgorithmUCB.Action;
 
             ratingsFeedback.form_Feedback.Show();
-            //give_Feedback = false;
-        //}
-        //else
-        //{
-        //    ratingsFeedback.Button_1.Enabled = false;
-        //    ratingsFeedback.Button_2.Enabled = false;
-        //    ratingsFeedback.Button_3.Enabled = false;
-        //    ratingsFeedback.Button_4.Enabled = false;
-        //    ratingsFeedback.Button_5.Enabled = false;
 
-        //    ratingsFeedback.Button_1.BackColor = System.Drawing.SystemColors.Control;
-        //    ratingsFeedback.Button_2.BackColor = System.Drawing.SystemColors.Control;
-        //    ratingsFeedback.Button_3.BackColor = System.Drawing.SystemColors.Control;
-        //    ratingsFeedback.Button_4.BackColor = System.Drawing.SystemColors.Control;
-        //    ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.Control;
-        //}
-
-        AlgorithmUCB.Action = -1;
+        vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
         action_name = "";
 
         Console.WriteLine("firstPrompt = " + firstPrompt + " secondPrompt = " + secondPrompt + " thirdPrompt = " + thirdPrompt);
+    }
+
+    private void AVG_Ratings(int avg)
+    {
+        int previous_ActionRatings = ratingsFeedback.previousAction;
+
+        if ((previousAction != previous_ActionRatings) && previousAction != -1)
+        {
+           // AlgorithmUCB.UpdateReward(previousAction, 3);
+            ratingsFeedback.previousAction = previousAction;
+            ratingsFeedback.feedback_val = 3;
+
+        }
+
+        if (ratingsFeedback.default_form == 1)
+        {
+            ratingsFeedback.FileHeader();
+            ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1");
+            ratingsFeedback.header = false;
+            ratingsFeedback.ButtonsDesactivation();
+
+        }
+
+        if (avg == 1)//calculate the average reward for the presented forms
+        {
+            int aux = 0;
+            for (int i = 0; i < vec_ratings.Capacity; i++)
+            {
+                aux = aux + vec_ratings.IndexOf(i);
+            }
+
+            aux = (aux / vec_ratings.Capacity);
+
+            AlgorithmUCB.UpdateReward(previousAction, aux);
+        }
+        else //update the vec_ratings
+        {
+
+        }
     }
 
     public State CurrentState

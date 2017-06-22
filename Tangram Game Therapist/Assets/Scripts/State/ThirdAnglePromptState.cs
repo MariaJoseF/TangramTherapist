@@ -52,6 +52,15 @@ public class ThirdAnglePromptState : State
                 repeatPrompt = false;
                 nPrompts = 1;
             }
+
+            if (!thirdPrompt && utterance)//do piece animation when is not supposed to say the utterance, 
+                //code is the same as the one in UtterancesManager when this prompt is supposed to be showned to user
+            {
+                Therapist.Instance.nFailedTries = 0;
+                Therapist.Instance.nWrongAngleTries = 0;
+                GameState.Instance.showCluePiece = Therapist.Instance.currentPlace;
+                GameState.Instance.showClue = true;
+            }
         }
     }
 

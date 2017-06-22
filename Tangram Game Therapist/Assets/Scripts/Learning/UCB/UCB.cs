@@ -37,7 +37,7 @@ namespace Assets.Scripts.UCB
         public UCB(int numAct, float[] reward_actions_)
         {
             number_actions = numAct;
-            reward_actions = reward_actions_;
+            reward_actions = new float[numAct];
         }
 
         public int RunUCB()
@@ -69,7 +69,7 @@ namespace Assets.Scripts.UCB
 
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";-" + ";" + iterations + ";-" + ";-" + ";-" + ";" + actionSelected);
 
-                Console.WriteLine("------------------- iterations = " + iterations + ", actionSelected = "+ actionSelected + " -------------------");
+                Console.WriteLine("------------------- iterations = " + iterations + ", actionSelected = " + actionSelected + " -------------------");
             }
             else // all actions were already run once, know they can be run acording the algorithm selection
             {
@@ -83,7 +83,8 @@ namespace Assets.Scripts.UCB
 
                     // a(t) = argmax ^ri + Sqrt(2 ln t/ ti)
                     double A_t_aux = Math.Sqrt(aux_1 / play_action.Value) + (avgReward.Value / play_action.Value);
-                    A_t.Add(new Elements(iterations, i, A_t_aux));
+                    //Math.Round(A_t_aux, 4); // convert double into 4 decimal places
+                    A_t.Add(new Elements(iterations, i, Math.Round(A_t_aux, 4)));
                 }
 
                 //find the argmax action
@@ -141,7 +142,7 @@ namespace Assets.Scripts.UCB
 
 
             //update average reward of action i
-            UpdateAvgReward(actionSelected);
+            UpdateAvgReward(action);
         }
 
         private void UpdateAvgReward(int action)
@@ -151,19 +152,28 @@ namespace Assets.Scripts.UCB
 
             Elements avgReward = AvgReceivedRewards.Find(x => (x.Action == action));
             //update the action reward
-            Elements played_action = PlayedActions.Find(x => (x.Action == actionSelected));
+            Elements played_action = PlayedActions.Find(x => (x.Action == action));
 
             //   avgReward = old_avg + (newval - old_avg)/numplayactions
             //https://math.stackexchange.com/questions/106700/incremental-averageing
 
-            double aux = (avgReward.Value + ((reward_actions[action] - avgReward.Value) / played_action.Value));
-
-            avgReward.Value = aux;
+            double aux;
+            if (avgReward == null)//receives the first reward
+            {
+                aux = reward_actions[action];
+                AvgReceivedRewards.Add(new Elements(action, aux));
+            }
+            else
+            {
+                aux = (avgReward.Value + ((reward_actions[action] - avgReward.Value) / played_action.Value));
+                //Math.Round(aux, 2); // convert double into 2 decimal places
+                avgReward.Value = Math.Round(aux, 4); 
+            }
         }
 
         private void SaveData()
         {
-            if (iterations == number_actions + 1)
+            if (iterations == number_actions)
             {
                 WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;UCB;AVG_REWARD;PLAYED_ACTIONS;SELECTED_ACTION");
             }

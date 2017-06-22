@@ -23,7 +23,8 @@ namespace Assets.Scripts.Learning
         internal bool header = true;
 
         public int previousAction = -1;
-        public int previousFeedback = -1;
+        internal int feedback_val = 3;
+        internal int default_form = 1;
 
         public Button Button_1
         {
@@ -291,9 +292,10 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "1;0");
             ButtonsDesactivation();
             header = false;
-            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 1);
+            //Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 1);
              previousAction = ActionNumber;
-             previousFeedback = 1;
+             feedback_val = 1;
+            default_form = 0;
         }
 
         private void Bt_2_Click(object sender, EventArgs e)
@@ -303,9 +305,10 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "2;0");
             ButtonsDesactivation();
             header = false;
-            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 2);
+            //Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 2);
             previousAction = ActionNumber;
-            previousFeedback = 2;
+            feedback_val = 2;
+            default_form = 0;
         }
 
         private void Bt_3_Click(object sender, EventArgs e)
@@ -315,9 +318,10 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "3;0");
             ButtonsDesactivation();
             header = false;
-            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 3);
+            //Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 3);
             previousAction = ActionNumber;
-            previousFeedback = 3;
+            feedback_val = 3;
+            default_form = 0;
         }
 
         private void Bt_4_Click(object sender, EventArgs e)
@@ -327,9 +331,10 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "4;0");
             ButtonsDesactivation();
             header = false;
-            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 4);
+            //Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 4);
             previousAction = ActionNumber;
-            previousFeedback = 4;
+            feedback_val = 4;
+            default_form = 0;
         }
 
         private void Bt_5_Click(object sender, EventArgs e)
@@ -339,9 +344,10 @@ namespace Assets.Scripts.Learning
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "5;0");
             ButtonsDesactivation();
             header = false;
-            Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 5);
+            //Therapist.Instance.AlgorithmUCB.UpdateReward(ActionNumber, 5);
             previousAction = ActionNumber;
-            previousFeedback = 5;
+            feedback_val = 5;
+            default_form = 0;
         }
 
         internal void ButtonsDesactivation()
