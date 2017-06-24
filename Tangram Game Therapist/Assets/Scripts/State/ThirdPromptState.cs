@@ -32,6 +32,8 @@ public class ThirdPromptState : State
         thirdPrompt = Therapist.Instance.Third_Prompt;
 
         bool utterance = false;
+        Therapist.Instance.promt_Type = 3;
+        UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (nPrompts == 0)
         {
@@ -53,6 +55,18 @@ public class ThirdPromptState : State
             {
                 repeatPrompt = false;
                 nPrompts = 1;
+
+                ///
+                /// update the average reward if the last feedback wasnt given
+                /// Call the form for the next utterance
+                ///
+
+                Therapist.Instance.utt_count++;
+                Therapist.Instance.AVG_Ratings(0);
+                Therapist.Instance.ShowFormRatings();
+
+                ///
+                ///
             }
         }
     }
@@ -65,6 +79,8 @@ public class ThirdPromptState : State
 
         Debug.Log("3rd prompt -> Repeat");
         bool utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
+        Therapist.Instance.promt_Type = 3;
+        UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (thirdPrompt)
         {
@@ -80,6 +96,18 @@ public class ThirdPromptState : State
         {
             repeatPrompt = false;
             nPrompts++;
+
+            ///
+            /// update the average reward if the last feedback wasnt given
+            /// Call the form for the next utterance
+            ///
+
+            Therapist.Instance.utt_count++;
+            Therapist.Instance.AVG_Ratings(0);
+            Therapist.Instance.ShowFormRatings();
+
+            ///
+            ///
         }
 
         if (!thirdPrompt && utterance)//do piece animation when is not supposed to say the utterance, 
@@ -153,7 +181,11 @@ public class ThirdPromptState : State
                     finalPrompt = true;
                     lastPromptTime = DateTime.Now;
 
+                    //needs to give feedback to the previous utterance presented to the user before moving to a new set of prompts
+                    Therapist.Instance.AVG_Ratings(0);
+
                     Therapist.Instance.SetPrompts();
+                    Therapist.Instance.lastActionMade = false;
                 }
             }
         }

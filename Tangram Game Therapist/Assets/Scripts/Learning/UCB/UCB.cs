@@ -18,7 +18,7 @@ namespace Assets.Scripts.UCB
         private string fileName = null;
         private int iterations = 1;
         private int number_actions;
-        private float[] reward_actions;
+        private double[] reward_actions;
         private int[] random_actions;
 
         public int Action
@@ -37,7 +37,7 @@ namespace Assets.Scripts.UCB
         public UCB(int numAct, float[] reward_actions_)
         {
             number_actions = numAct;
-            reward_actions = new float[numAct];
+            reward_actions = new double[numAct];
         }
 
         public int RunUCB()
@@ -120,10 +120,10 @@ namespace Assets.Scripts.UCB
 
 
         // Observe the reward and update the empirical mean for the chosen action.
-        public void UpdateReward(int action, int reward_rating)
+        public void UpdateReward(int action, double reward_rating)
         {
             float A = 1f, B = 5f;
-            float res_reward = 0.0f;
+            double res_reward = 0.0f;
 
             if (reward_rating <= A)
             {

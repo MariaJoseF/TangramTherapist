@@ -39,7 +39,7 @@ public class Therapist : MonoBehaviour
     public bool showedHardClue = false;
     DateTime gameEndedTime;
 
-
+    internal int promt_Type = -1;
 
     /// 
     /// //////////////////////
@@ -49,9 +49,17 @@ public class Therapist : MonoBehaviour
     //Exp3 AlgorithmEXP3 = new Exp3(17, rewards, 0.07f);
     internal UCB AlgorithmUCB = new UCB(5, rewards);
     internal Ratings ratingsFeedback = new Ratings();
-    List<int> vec_ratings = new List<int>(); 
-    String action_name = "";
-
+    internal List<int> vec_ratings = new List<int>();
+    internal String action_name = "";
+    public GameSettings currentGame;
+    private bool positive_feedback = false;
+    private bool firstPrompt = true;
+    private bool secondPrompt = true;
+    private bool thirdPrompt = true;
+    private int previousAction = -1;
+    internal int utt_ratings = 0;
+    internal int utt_count = 0;
+    internal bool lastActionMade = true;
 
     /// 
     /// ///////////////
@@ -66,12 +74,7 @@ public class Therapist : MonoBehaviour
         public float distanceThreshold;
     }
 
-    public GameSettings currentGame;
-    private bool positive_feedback = false;
-    private bool firstPrompt = true;
-    private bool secondPrompt = true;
-    private bool thirdPrompt = true;
-    private int previousAction = -1;
+
 
     public static Therapist Instance
     {
@@ -140,6 +143,7 @@ public class Therapist : MonoBehaviour
         {
             positive_feedback = false;
             SetPrompts();
+            lastActionMade = false;
             // Debug.Log("Positive = " + poaitive_feedback);
         }
         else
@@ -261,19 +265,21 @@ public class Therapist : MonoBehaviour
             BeginNextGame();
         else BeginFirstGame();
 
-        SetPrompts();
+        if (lastActionMade)
+        {
+            SetPrompts();
+        }
+
     }
 
 
     internal void SetPrompts()
     {
-    
+
         //Calculate the average ratings for the utterances presented for the previous action selected and update the UCB algorithm reward
-       AVG_Ratings();
+        AVG_Ratings(1);
 
         AlgorithmUCB.RunUCB();
-
-
 
         switch (AlgorithmUCB.Action)
         {
@@ -312,69 +318,88 @@ public class Therapist : MonoBehaviour
 
         previousAction = AlgorithmUCB.Action;
 
-        //if (give_Feedback)
-        //{
+        ratingsFeedback.Label1.Text = "Feedback " + action_name;
 
-            ratingsFeedback.Button_1.Enabled = true;
-            ratingsFeedback.Button_2.Enabled = true;
-            ratingsFeedback.Button_3.Enabled = true;
-            ratingsFeedback.Button_4.Enabled = true;
-            ratingsFeedback.Button_5.Enabled = true;
+        ratingsFeedback.form_Feedback.Show();
+        ratingsFeedback.ButtonsDesactivation();
+        ratingsFeedback.feedback_val = -2;
+        ratingsFeedback.default_form = 1;
 
-            ratingsFeedback.Label1.Text = "Feedback " + action_name;
 
-            ratingsFeedback.Button_1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            ratingsFeedback.Button_2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            ratingsFeedback.Button_3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            ratingsFeedback.Button_4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-
-            ratingsFeedback.ActionNumber1 = AlgorithmUCB.Action;
-
-            ratingsFeedback.form_Feedback.Show();
 
         vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
-        action_name = "";
+        utt_count = 0;//reset the utterances presented to user
+        utt_ratings = 0;//reset the ratings given to utterances presented to user
 
         Console.WriteLine("firstPrompt = " + firstPrompt + " secondPrompt = " + secondPrompt + " thirdPrompt = " + thirdPrompt);
     }
 
-    private void AVG_Ratings(int avg)
+    internal void ShowFormRatings()
+    {
+        ratingsFeedback.Button_1.Enabled = true;
+        ratingsFeedback.Button_2.Enabled = true;
+        ratingsFeedback.Button_3.Enabled = true;
+        ratingsFeedback.Button_4.Enabled = true;
+        ratingsFeedback.Button_5.Enabled = true;
+
+        ratingsFeedback.Label1.Text = "Feedback " + action_name;
+
+        ratingsFeedback.Button_1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        ratingsFeedback.Button_2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        ratingsFeedback.Button_3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        ratingsFeedback.Button_4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+
+        ratingsFeedback.ActionNumber1 = AlgorithmUCB.Action;
+
+        ratingsFeedback.feedback_val = -2;
+        ratingsFeedback.default_form = 1;
+
+        ratingsFeedback.form_Feedback.Show();
+    }
+
+    internal void AVG_Ratings(int avg)
     {
         int previous_ActionRatings = ratingsFeedback.previousAction;
+        int feedback = ratingsFeedback.feedback_val;
 
-        if ((previousAction != previous_ActionRatings) && previousAction != -1)
+        if ((utt_ratings == utt_count - 2 || utt_ratings == utt_count - 1) && utt_count > 1) //form presented but did not receive ratings
         {
-           // AlgorithmUCB.UpdateReward(previousAction, 3);
             ratingsFeedback.previousAction = previousAction;
             ratingsFeedback.feedback_val = 3;
+            feedback = 3;
+            vec_ratings.Add(3);
 
-        }
-
-        if (ratingsFeedback.default_form == 1)
-        {
             ratingsFeedback.FileHeader();
-            ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1");
+            ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1;" + promt_Type);
             ratingsFeedback.header = false;
-            ratingsFeedback.ButtonsDesactivation();
 
+            utt_ratings++;
         }
 
         if (avg == 1)//calculate the average reward for the presented forms
         {
-            int aux = 0;
-            for (int i = 0; i < vec_ratings.Capacity; i++)
+            if (vec_ratings.Count > 0)
             {
-                aux = aux + vec_ratings.IndexOf(i);
+                double aux = 0.0f;
+                for (int i = 0; i < vec_ratings.Count; i++)
+                {
+                    aux = aux + vec_ratings[i];
+
+                }
+
+                aux = (aux / vec_ratings.Count);
+
+                AlgorithmUCB.UpdateReward(previousAction, Math.Round(aux, 0));
             }
+            else if (previousAction != -1 && vec_ratings.Count == 0)//last action did not present any prompts to the user
+            {
+                ratingsFeedback.FileHeader();
+                ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1;" + promt_Type);
+                ratingsFeedback.header = false;
 
-            aux = (aux / vec_ratings.Capacity);
-
-            AlgorithmUCB.UpdateReward(previousAction, aux);
-        }
-        else //update the vec_ratings
-        {
-
+                AlgorithmUCB.UpdateReward(previousAction, 3);
+            }
         }
     }
 

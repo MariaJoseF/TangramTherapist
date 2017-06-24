@@ -19,6 +19,7 @@ public class FirstAnglePromptState : State
         nPrompts = 0;
     }
 
+ 
     public void FirstAnglePrompt()
     {
         lastPromptTime = DateTime.Now;
@@ -31,6 +32,9 @@ public class FirstAnglePromptState : State
         thirdPrompt = Therapist.Instance.Third_Prompt;
 
         bool utterance = false;
+
+        Therapist.Instance.promt_Type = 1;
+        UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> AnglePrompt");
         if (nPrompts == 0)
@@ -60,6 +64,20 @@ public class FirstAnglePromptState : State
                     else
                     {
                         nPrompts = 1;
+
+                        ///
+                        /// update the average reward if the last feedback wasnt given
+                        /// Call the form for the next utterance
+                        ///
+
+                        Therapist.Instance.lastActionMade = true;
+                        Therapist.Instance.utt_count++;
+                        Therapist.Instance.AVG_Ratings(0);
+                        Therapist.Instance.ShowFormRatings();
+
+                        ///
+                        ///
+
                     }
                 }
                 else
@@ -81,6 +99,19 @@ public class FirstAnglePromptState : State
                     }
                     else
                         nPrompts = 1;
+
+                    ///
+                    /// update the average reward if the last feedback wasnt given
+                    /// Call the form for the next utterance
+                    ///
+
+                    Therapist.Instance.lastActionMade = true;
+                    Therapist.Instance.utt_count++;
+                    Therapist.Instance.AVG_Ratings(0);
+                    Therapist.Instance.ShowFormRatings();
+
+                    ///
+                    ///
                 }
             }
             else
@@ -96,6 +127,7 @@ public class FirstAnglePromptState : State
         lastPromptTime = DateTime.Now;
 
         bool utterance = false;
+        Therapist.Instance.promt_Type = 1;
 
         Debug.Log("1st prompt -> RepeatPrompt");
         if (repeatHardClue || (Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
@@ -119,6 +151,19 @@ public class FirstAnglePromptState : State
             else
             {
                 nPrompts++;
+
+                ///
+                /// update the average reward if the last feedback wasnt given
+                /// Call the form for the next utterance
+                ///
+
+                Therapist.Instance.lastActionMade = true;
+                Therapist.Instance.utt_count++;
+                Therapist.Instance.AVG_Ratings(0);
+                Therapist.Instance.ShowFormRatings();
+
+                ///
+                ///
             }
         }
         else
@@ -145,6 +190,19 @@ public class FirstAnglePromptState : State
                 {
                     nPrompts++;
                     repeatPrompt = false;
+
+                    ///
+                    /// update the average reward if the last feedback wasnt given
+                    /// Call the form for the next utterance
+                    ///
+
+                    Therapist.Instance.lastActionMade = true;
+                    Therapist.Instance.utt_count++;
+                    Therapist.Instance.AVG_Ratings(0);
+                    Therapist.Instance.ShowFormRatings();
+
+                    ///
+                    ///
                 }
             }
             else
@@ -169,6 +227,19 @@ public class FirstAnglePromptState : State
                     {
                         nPrompts++;
                         repeatAngleHelp = false;
+
+                        ///
+                        /// update the average reward if the last feedback wasnt given
+                        /// Call the form for the next utterance
+                        ///
+
+                        Therapist.Instance.lastActionMade = true;
+                        Therapist.Instance.utt_count++;
+                        Therapist.Instance.AVG_Ratings(0);
+                        Therapist.Instance.ShowFormRatings();
+
+                        ///
+                        ///
                     }
                 }
                 else
@@ -190,6 +261,19 @@ public class FirstAnglePromptState : State
                     {
                         nPrompts++;
                         repeatAngleHelp = false;
+
+                        ///
+                        /// update the average reward if the last feedback wasnt given
+                        /// Call the form for the next utterance
+                        ///
+
+                        Therapist.Instance.lastActionMade = true;
+                        Therapist.Instance.utt_count++;
+                        Therapist.Instance.AVG_Ratings(0);
+                        Therapist.Instance.ShowFormRatings();
+
+                        ///
+                        ///
                     }
                 }
             }

@@ -65,8 +65,9 @@ public class PlayState : State {
 	public void GiveNegativeFeedback() {
 		Therapist.Instance.previousState = Therapist.Instance.currentState;
 		Therapist.Instance.currentState = Therapist.Instance.NegativeFeedState;
-		Therapist.Instance.GiveNegativeFeedback ();
-	}
+        Debug.Log("Play state-> neg feed");
+        Therapist.Instance.GiveNegativeFeedback ();
+    }
 
 	public void FirstIdlePrompt(){
 		Therapist.Instance.currentState = Therapist.Instance.FirstIdlePromptState;

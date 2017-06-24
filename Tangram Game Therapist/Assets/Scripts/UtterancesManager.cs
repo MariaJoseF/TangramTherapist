@@ -967,5 +967,15 @@ s.FirstAnglePrompt(piece);
     public void Dispose()
     {
         Instance.Dispose();
+        
+    }
+
+    internal void CheckUtteranceFinish()
+    {
+        if (currentUtterance != null)
+        {
+            Console.WriteLine();
+            s.CancelUtterance(currentUtterance);
+        }
     }
 }
