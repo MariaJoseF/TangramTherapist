@@ -44,6 +44,13 @@ public class ThirdPromptState : State
             {
                 utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
             }
+            else
+            {
+                if (utterance)
+                {
+                    UtterancesManager.Instance.WriteJSON("ROBOT: ThirdPrompt NOT SPOKEN");
+                }
+            }
 
             if (!utterance)
             {
@@ -85,6 +92,13 @@ public class ThirdPromptState : State
         if (thirdPrompt)
         {
             utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+        }
+        else
+        {
+            if (utterance)
+            {
+                UtterancesManager.Instance.WriteJSON("ROBOT: ThirdPrompt NOT SPOKEN");
+            }
         }
 
         if (!utterance)
@@ -182,7 +196,7 @@ public class ThirdPromptState : State
                     lastPromptTime = DateTime.Now;
 
                     //needs to give feedback to the previous utterance presented to the user before moving to a new set of prompts
-                    Therapist.Instance.AVG_Ratings(0);
+                    Therapist.Instance.AVG_Ratings(2);
 
                     Therapist.Instance.SetPrompts();
                     Therapist.Instance.lastActionMade = false;

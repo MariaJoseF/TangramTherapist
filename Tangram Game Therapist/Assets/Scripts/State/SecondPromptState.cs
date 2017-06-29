@@ -59,6 +59,13 @@ public class SecondPromptState : State
                 {
                     utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
                 }
+                else
+                {
+                    if (utterance)
+                    {
+                        UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt hard clue NOT SPOKEN");
+                    }
+                }
 
                 if (!utterance)
                 {
@@ -116,6 +123,13 @@ public class SecondPromptState : State
             if (secondPrompt)
             {
                 utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
+            }
+            else
+            {
+                if (utterance)
+                {
+                    UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt hard clue NOT SPOKEN");
+                }
             }
 
             if (!utterance)
@@ -195,6 +209,14 @@ public class SecondPromptState : State
                 {
                     utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece), 0);
                 }
+                else
+                {
+                    if (utterance)
+                    {
+                        UtterancesManager.Instance.WriteJSON("ROBOT: SecondPromptPlace NOT SPOKEN");
+                    }
+
+                }
 
                 if (!utterance)
                 {
@@ -234,6 +256,13 @@ public class SecondPromptState : State
                     {
                         utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2, 0);
                     }
+                    else
+                    {
+                        if (utterance)
+                        {
+                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt1Position NOT SPOKEN");
+                        }
+                    }
 
                     if (!utterance)
                     {
@@ -268,6 +297,13 @@ public class SecondPromptState : State
                     {
                         utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, 0);
                     }
+                    else
+                    {
+                        if (utterance)
+                        {
+                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt1Position NOT SPOKEN");
+                        }
+                    }
 
                     if (!utterance)
                     {
@@ -301,6 +337,13 @@ public class SecondPromptState : State
                     if (secondPrompt)
                     {
                         utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2, 0);
+                    }
+                    else
+                    {
+                        if (utterance)
+                        {
+                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt2Position NOT SPOKEN");
+                        }
                     }
 
                     if (!utterance)

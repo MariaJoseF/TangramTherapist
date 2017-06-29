@@ -363,7 +363,7 @@ public class Therapist : MonoBehaviour
         int previous_ActionRatings = ratingsFeedback.previousAction;
         int feedback = ratingsFeedback.feedback_val;
 
-        if ((utt_ratings == utt_count - 2 || utt_ratings == utt_count - 1) && utt_count > 1) //form presented but did not receive ratings
+        if ((utt_ratings == utt_count - 2 || (utt_ratings == utt_count - 1 && avg!=0 )) && utt_count >= 1) //form presented but did not receive ratings
         {
             ratingsFeedback.previousAction = previousAction;
             ratingsFeedback.feedback_val = 3;
@@ -395,7 +395,7 @@ public class Therapist : MonoBehaviour
             else if (previousAction != -1 && vec_ratings.Count == 0)//last action did not present any prompts to the user
             {
                 ratingsFeedback.FileHeader();
-                ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1;" + promt_Type);
+                ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;-1;" + promt_Type);
                 ratingsFeedback.header = false;
 
                 AlgorithmUCB.UpdateReward(previousAction, 3);

@@ -607,9 +607,9 @@ public class UtterancesManager : MonoBehaviour
         {
             if (no_voice == 0)
             {
-s.FirstAnglePrompt(piece);
+                s.FirstAnglePrompt(piece);
             }
-                
+
             return true;
         }
         else
@@ -700,7 +700,7 @@ s.FirstAnglePrompt(piece);
             return false;
     }
 
-    public void StopAnglePrompt(string piece)
+    public bool StopAnglePrompt(string piece, int no_voice)
     {
         if (currentUtterance != null)
         {
@@ -716,7 +716,17 @@ s.FirstAnglePrompt(piece);
                 doubleCanceling = true;
             }
         }
-        s.StopAnglePrompt(piece);
+
+        if (currentUtterance == null)
+        {
+            if (no_voice == 0)
+            {
+                s.ThirdAnglePrompt(piece);
+            }
+            return true;
+        }
+        else
+            return false;
     }
 
     public bool FirstIdlePrompt(string piece, int no_voice)
@@ -782,7 +792,7 @@ s.FirstAnglePrompt(piece);
             if (no_voice == 0)
             {
                 s.SecondPromptPlace(piece, pos, relativePiece);
-                }
+            }
             return true;
         }
         else
@@ -967,7 +977,7 @@ s.FirstAnglePrompt(piece);
     public void Dispose()
     {
         Instance.Dispose();
-        
+
     }
 
     internal void CheckUtteranceFinish()

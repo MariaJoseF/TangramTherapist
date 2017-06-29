@@ -42,6 +42,13 @@ public class ThirdAnglePromptState : State
             {
                 utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
             }
+            else
+            {
+                if (utterance)
+                {
+                    UtterancesManager.Instance.WriteJSON("ROBOT: ThirdAnglePrompt NOT SPOKEN");
+                }
+            }
 
             if (!utterance)
             {
@@ -68,7 +75,7 @@ public class ThirdAnglePromptState : State
             }
 
             if (!thirdPrompt && utterance)//do piece animation when is not supposed to say the utterance, 
-                //code is the same as the one in UtterancesManager when this prompt is supposed to be showned to user
+                                          //code is the same as the one in UtterancesManager when this prompt is supposed to be showned to user
             {
                 Therapist.Instance.nFailedTries = 0;
                 Therapist.Instance.nWrongAngleTries = 0;
@@ -90,6 +97,13 @@ public class ThirdAnglePromptState : State
         if (thirdPrompt)
         {
             utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+        }
+        else
+        {
+            if (utterance)
+            {
+                UtterancesManager.Instance.WriteJSON("ROBOT: ThirdAnglePrompt NOT SPOKEN");
+            }
         }
 
         if (!utterance)
@@ -127,8 +141,35 @@ public class ThirdAnglePromptState : State
         }
         if (correctAngle)
         {
+
             Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
-            UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+
+            bool utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
+            if (thirdPrompt)
+            {
+                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+            }
+            else
+            {
+                if (utterance)
+                {
+                    UtterancesManager.Instance.WriteJSON("ROBOT: ThirdAnglePrompt - StopAnglePrompt NOT SPOKEN");
+                }
+            }
+
+            ///
+            /// update the average reward if the last feedback wasnt given
+            /// Call the form for the next utterance
+            ///
+
+            Therapist.Instance.utt_count++;
+            Therapist.Instance.AVG_Ratings(0);
+            Therapist.Instance.ShowFormRatings();
+
+            ///
+            ///
+
+
             Therapist.Instance.previousState = Therapist.Instance.currentState;
             Therapist.Instance.nFailedTries = 0;
             Therapist.Instance.nWrongAngleTries = 0;
@@ -158,7 +199,7 @@ public class ThirdAnglePromptState : State
                     lastPromptTime = DateTime.Now;
 
                     //needs to give feedback to the previous utterance presented to the user before moving to a new set of prompts
-                    Therapist.Instance.AVG_Ratings(0);
+                    Therapist.Instance.AVG_Ratings(2);
 
                     Therapist.Instance.SetPrompts();
                     Therapist.Instance.lastActionMade = false;

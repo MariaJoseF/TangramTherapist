@@ -48,6 +48,13 @@ public class FirstIdlePromptState : State
             {
                 utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
             }
+            else
+            {
+                if (utterance)
+                {
+                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstIdlePrompt NOT SPOKEN");
+                }
+            }
 
             if (!utterance)
             {
@@ -99,6 +106,13 @@ public class FirstIdlePromptState : State
             {
                 utterance = UtterancesManager.Instance.HardClue(2f, 0);
             }
+            else
+            {
+                if (utterance)
+                {
+                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstIdlePrompt hard clue NOT SPOKEN");
+                }
+            }
 
             if (!utterance)
             {
@@ -140,6 +154,13 @@ public class FirstIdlePromptState : State
             {
                 utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
             }
+            else
+            {
+                if (utterance)
+                {
+                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstIdlePrompt NOT SPOKEN");
+                }
+            }
 
             if (!utterance)
             {
@@ -157,6 +178,7 @@ public class FirstIdlePromptState : State
                 /// update the average reward if the last feedback wasnt given
                 /// Call the form for the next utterance
                 ///
+
 
                 Therapist.Instance.lastActionMade = true;
                 Therapist.Instance.utt_count++;
