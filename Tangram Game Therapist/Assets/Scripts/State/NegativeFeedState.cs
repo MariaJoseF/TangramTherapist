@@ -2,67 +2,90 @@
 using System.Collections;
 using System;
 
-public class NegativeFeedState : State {
-	DateTime lastNegativeFeedTime;
+public class NegativeFeedState : State
+{
+    DateTime lastNegativeFeedTime;
     int nNegativeFeed;
 
-	public NegativeFeedState () {
-		lastNegativeFeedTime = DateTime.Now;
+    public NegativeFeedState()
+    {
+        lastNegativeFeedTime = DateTime.Now;
         nNegativeFeed = 0;
-	}
+    }
 
-	public void GiveNegativeFeedback() {
+    public void GiveNegativeFeedback()
+    {
         nNegativeFeed++;
-		if (nNegativeFeed >= 3 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15) {
-            if(UtterancesManager.Instance.NegativeFeedback()){
+        //if (nNegativeFeed >= 3 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15) {
+        if (nNegativeFeed >= 1 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15)
+        {
+            UtterancesManager.Instance.CheckUtteranceFinish();
+
+            if (UtterancesManager.Instance.NegativeFeedback())
+            {
                 nNegativeFeed = 0;
-			    lastNegativeFeedTime = DateTime.Now;
+                lastNegativeFeedTime = DateTime.Now;
             }
-		}
-	}
+        }
+    }
 
-	public void BeginFirstGame(){
-	}
+    public void BeginFirstGame()
+    {
+    }
 
-	public void BeginNextGame(){
-	}
+    public void BeginNextGame()
+    {
+    }
 
-	public void EndGame(){
-	}
+    public void EndGame()
+    {
+    }
 
-	public void HelpMotor(){
-	}
-	
-	public void HelpAdjustingPiece() {
-	}
+    public void HelpMotor()
+    {
+    }
 
-	public void GivePositiveFeedback() {
-	}
+    public void HelpAdjustingPiece()
+    {
+    }
 
-	public void StartedMoving (bool correctAngle){
-	}
+    public void GivePositiveFeedback()
+    {
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){
-	}
-	
-	public void FirstPlacePrompt(){
-	}
+    public void StartedMoving(bool correctAngle)
+    {
+    }
 
-	public void SecondPrompt(){
-	}
-	
-	public void ThirdPrompt(){	
-	}
+    public void FirstIdlePrompt()
+    {
+    }
 
-	public void SecondAnglePrompt(){	
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void FirstAnglePrompt()
+    {
+    }
 
-	public void Update(){		
-	}
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void SecondPrompt()
+    {
+    }
+
+    public void ThirdPrompt()
+    {
+    }
+
+    public void SecondAnglePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
+
+    public void Update()
+    {
+    }
 }

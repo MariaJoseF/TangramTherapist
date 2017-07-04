@@ -76,8 +76,8 @@ public class FirstPlacePromptState : State
                     UtterancesManager.Instance.WriteJSON("ROBOT: FirsPlacePrompt NOT SPOKEN");
 
                     Therapist.Instance.lastActionMade = true;
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -118,8 +118,8 @@ public class FirstPlacePromptState : State
                     ///
 
                     Therapist.Instance.lastActionMade = true;
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -141,6 +141,7 @@ public class FirstPlacePromptState : State
 
         bool utterance = false;
         Therapist.Instance.promt_Type = 1;
+        UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> RepeatPrompt");
         if (repeatHardClue || (Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
@@ -178,8 +179,8 @@ public class FirstPlacePromptState : State
                 ///
 
                 Therapist.Instance.lastActionMade = true;
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -219,8 +220,8 @@ public class FirstPlacePromptState : State
                 ///
 
                 Therapist.Instance.lastActionMade = true;
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///

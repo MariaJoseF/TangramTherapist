@@ -10,7 +10,9 @@ public class InitialHelpState : State {
 	public void BeginFirstGame(){
         Debug.Log("1 initial help " + SolutionManager.Instance.puzzleNamept);
 
-		if (Therapist.Instance.firstTimeFinger == 1) {
+        UtterancesManager.Instance.CheckUtteranceFinish();
+
+        if (Therapist.Instance.firstTimeFinger == 1) {
             UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
 			Therapist.Instance.currentState = Therapist.Instance.FingerHelpState;
 			Therapist.Instance.BeginFirstGame ();
@@ -27,6 +29,8 @@ public class InitialHelpState : State {
 
 	public void BeginNextGame(){
         Debug.Log("2 initial help " + SolutionManager.Instance.puzzleNamept);
+
+        UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (Therapist.Instance.firstTimeFinger == 1) {
             UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);

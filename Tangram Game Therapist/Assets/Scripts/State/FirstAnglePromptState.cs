@@ -78,8 +78,8 @@ public class FirstAnglePromptState : State
                         ///
 
                         Therapist.Instance.lastActionMade = true;
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///
@@ -120,8 +120,8 @@ public class FirstAnglePromptState : State
                     ///
 
                     Therapist.Instance.lastActionMade = true;
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -142,6 +142,7 @@ public class FirstAnglePromptState : State
 
         bool utterance = false;
         Therapist.Instance.promt_Type = 1;
+        UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> RepeatPrompt");
         if (repeatHardClue || (Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
@@ -179,8 +180,8 @@ public class FirstAnglePromptState : State
                 ///
 
                 Therapist.Instance.lastActionMade = true;
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -225,8 +226,8 @@ public class FirstAnglePromptState : State
                     ///
 
                     Therapist.Instance.lastActionMade = true;
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -269,8 +270,8 @@ public class FirstAnglePromptState : State
                         ///
 
                         Therapist.Instance.lastActionMade = true;
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///
@@ -310,8 +311,8 @@ public class FirstAnglePromptState : State
                         ///
 
                         Therapist.Instance.lastActionMade = true;
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///
@@ -382,7 +383,7 @@ public class FirstAnglePromptState : State
         {
 
             Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
-
+            UtterancesManager.Instance.CheckUtteranceFinish();
             bool utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
             if (firstPrompt)
             {
@@ -401,8 +402,8 @@ public class FirstAnglePromptState : State
             /// Call the form for the next utterance
             ///
 
-            Therapist.Instance.utt_count++;
-            Therapist.Instance.AVG_Ratings(0);
+            //Therapist.Instance.utt_count++;
+            //Therapist.Instance.AVG_Ratings(0);
             Therapist.Instance.ShowFormRatings();
 
             ///

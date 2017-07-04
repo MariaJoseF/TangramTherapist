@@ -14,6 +14,8 @@ public class StartState : State {
         if(!GameState.Instance.quit)
         {
             Debug.Log("QUERES JOGAR UM NOVO JOGO??");
+            UtterancesManager.Instance.CheckUtteranceFinish();
+
             UtterancesManager.Instance.NextGame();
         }
 

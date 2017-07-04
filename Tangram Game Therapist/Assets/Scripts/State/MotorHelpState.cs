@@ -12,6 +12,8 @@ public class MotorHelpState : State {
 	public void HelpMotor(){
 		nHelpRequests++;
 		if (nHelpRequests >= 3) {
+            UtterancesManager.Instance.CheckUtteranceFinish();
+
             UtterancesManager.Instance.MotorHelp();
 
 			nHelpRequests = 0;

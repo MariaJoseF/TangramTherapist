@@ -66,8 +66,8 @@ public class ThirdAnglePromptState : State
                 /// Call the form for the next utterance
                 ///
 
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -91,6 +91,7 @@ public class ThirdAnglePromptState : State
         Therapist.Instance.nFailedTries = 0;
         Therapist.Instance.nWrongAngleTries = 0;
 
+        UtterancesManager.Instance.CheckUtteranceFinish();
         bool utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
         Therapist.Instance.promt_Type = 3;
 
@@ -121,8 +122,8 @@ public class ThirdAnglePromptState : State
             /// Call the form for the next utterance
             ///
 
-            Therapist.Instance.utt_count++;
-            Therapist.Instance.AVG_Ratings(0);
+            //Therapist.Instance.utt_count++;
+            //Therapist.Instance.AVG_Ratings(0);
             Therapist.Instance.ShowFormRatings();
 
             ///
@@ -143,7 +144,7 @@ public class ThirdAnglePromptState : State
         {
 
             Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
-
+            UtterancesManager.Instance.CheckUtteranceFinish();
             bool utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
             if (thirdPrompt)
             {
@@ -162,8 +163,8 @@ public class ThirdAnglePromptState : State
             /// Call the form for the next utterance
             ///
 
-            Therapist.Instance.utt_count++;
-            Therapist.Instance.AVG_Ratings(0);
+            //Therapist.Instance.utt_count++;
+            //Therapist.Instance.AVG_Ratings(0);
             Therapist.Instance.ShowFormRatings();
 
             ///
@@ -192,6 +193,7 @@ public class ThirdAnglePromptState : State
                 }
                 else if (!rightAnglePiece && nPrompts >= 3)
                 {
+                    UtterancesManager.Instance.CheckUtteranceFinish();
                     UtterancesManager.Instance.Quit();
                     Therapist.Instance.nFailedTries = 0;
                     Therapist.Instance.nWrongAngleTries = 0;
@@ -199,7 +201,7 @@ public class ThirdAnglePromptState : State
                     lastPromptTime = DateTime.Now;
 
                     //needs to give feedback to the previous utterance presented to the user before moving to a new set of prompts
-                    Therapist.Instance.AVG_Ratings(2);
+                    //Therapist.Instance.AVG_Ratings(2);
 
                     Therapist.Instance.SetPrompts();
                     Therapist.Instance.lastActionMade = false;

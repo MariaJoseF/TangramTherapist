@@ -68,8 +68,8 @@ public class ThirdPromptState : State
                 /// Call the form for the next utterance
                 ///
 
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -116,8 +116,8 @@ public class ThirdPromptState : State
             /// Call the form for the next utterance
             ///
 
-            Therapist.Instance.utt_count++;
-            Therapist.Instance.AVG_Ratings(0);
+            //Therapist.Instance.utt_count++;
+            //Therapist.Instance.AVG_Ratings(0);
             Therapist.Instance.ShowFormRatings();
 
             ///
@@ -190,13 +190,14 @@ public class ThirdPromptState : State
                 else if (nPrompts >= 3)
                 {
                     Debug.Log("3rd prompt -> Quit");
+                    UtterancesManager.Instance.CheckUtteranceFinish();
                     UtterancesManager.Instance.Quit();
                     nPrompts = 0;
                     finalPrompt = true;
                     lastPromptTime = DateTime.Now;
 
                     //needs to give feedback to the previous utterance presented to the user before moving to a new set of prompts
-                    Therapist.Instance.AVG_Ratings(2);
+                    //Therapist.Instance.AVG_Ratings(2);
 
                     Therapist.Instance.SetPrompts();
                     Therapist.Instance.lastActionMade = false;

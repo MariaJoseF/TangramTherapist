@@ -984,8 +984,9 @@ public class UtterancesManager : MonoBehaviour
     {
         if (currentUtterance != null)
         {
-            Console.WriteLine();
+            Console.WriteLine("Canceled ");
             s.CancelUtterance(currentUtterance);
+            currentUtterance = null;
         }
     }
 }

@@ -144,12 +144,11 @@ public class Therapist : MonoBehaviour
             positive_feedback = false;
             SetPrompts();
             lastActionMade = false;
-            // Debug.Log("Positive = " + poaitive_feedback);
         }
         else
         {
             positive_feedback = true;
-            // Debug.Log("Positive = " + poaitive_feedback);
+            ratingsFeedback.ButtonsDesactivation();
         }
 
     }
@@ -277,7 +276,7 @@ public class Therapist : MonoBehaviour
     {
 
         //Calculate the average ratings for the utterances presented for the previous action selected and update the UCB algorithm reward
-        AVG_Ratings(1);
+        AVG_Ratings(/*1*/);
 
         AlgorithmUCB.RunUCB();
 
@@ -358,27 +357,27 @@ public class Therapist : MonoBehaviour
         ratingsFeedback.form_Feedback.Show();
     }
 
-    internal void AVG_Ratings(int avg)
+    internal void AVG_Ratings(/*int avg*/)
     {
-        int previous_ActionRatings = ratingsFeedback.previousAction;
-        int feedback = ratingsFeedback.feedback_val;
+        //int previous_ActionRatings = ratingsFeedback.previousAction;
+        //int feedback = ratingsFeedback.feedback_val;
 
-        if ((utt_ratings == utt_count - 2 || (utt_ratings == utt_count - 1 && avg!=0 )) && utt_count >= 1) //form presented but did not receive ratings
-        {
-            ratingsFeedback.previousAction = previousAction;
-            ratingsFeedback.feedback_val = 3;
-            feedback = 3;
-            vec_ratings.Add(3);
+        //if ((utt_ratings == utt_count - 2 || (utt_ratings == utt_count - 1 && avg!=0 )) && utt_count >= 1) //form presented but did not receive ratings
+        //{
+        //    ratingsFeedback.previousAction = previousAction;
+        //    ratingsFeedback.feedback_val = 3;
+        //    feedback = 3;
+        //    vec_ratings.Add(3);
 
-            ratingsFeedback.FileHeader();
-            ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1;" + promt_Type);
-            ratingsFeedback.header = false;
+        //    ratingsFeedback.FileHeader();
+        //    ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1;" + promt_Type);
+        //    ratingsFeedback.header = false;
 
-            utt_ratings++;
-        }
+        //    utt_ratings++;
+        //}
 
-        if (avg == 1)//calculate the average reward for the presented forms
-        {
+    //    if (avg == 1)//calculate the average reward for the presented forms
+     //   {
             if (vec_ratings.Count > 0)
             {
                 double aux = 0.0f;
@@ -390,17 +389,17 @@ public class Therapist : MonoBehaviour
 
                 aux = (aux / vec_ratings.Count);
 
-                AlgorithmUCB.UpdateReward(previousAction, Math.Round(aux, 0));
+                AlgorithmUCB.UpdateReward(previousAction, Math.Round(aux, 2));
             }
-            else if (previousAction != -1 && vec_ratings.Count == 0)//last action did not present any prompts to the user
-            {
-                ratingsFeedback.FileHeader();
-                ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;-1;" + promt_Type);
-                ratingsFeedback.header = false;
+            //else if (previousAction != -1 && vec_ratings.Count == 0)//last action did not present any prompts to the user
+            //{
+            //    ratingsFeedback.FileHeader();
+            //    ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;-1;" + promt_Type);
+            //    ratingsFeedback.header = false;
 
-                AlgorithmUCB.UpdateReward(previousAction, 3);
-            }
-        }
+            //    AlgorithmUCB.UpdateReward(previousAction, 3);
+            //}
+        //}
     }
 
     public State CurrentState

@@ -20,6 +20,7 @@ namespace Assets.Scripts.UCB
         private int number_actions;
         private double[] reward_actions;
         private int[] random_actions;
+        int id = 0;
 
         public int Action
         {
@@ -45,7 +46,7 @@ namespace Assets.Scripts.UCB
             if (iterations == 1)
             {
                 random_actions = new int[number_actions];
-                int id = 0;
+                id = 0;
                 Console.WriteLine("All numbers between 0 and 4 in random order:");
                 foreach (int i in UniqueRandom(0, (number_actions - 1)))
                 {
@@ -53,14 +54,23 @@ namespace Assets.Scripts.UCB
                     random_actions[id] = i;
                     id++;
                 }
+                id = 0;
             }
 
-            if (iterations <= number_actions)// run all the actions once
-            {
-                Console.WriteLine(random_actions[iterations - 1]);
-                actionSelected = random_actions[iterations - 1];
 
-                PlayedActions.Add(new Elements(actionSelected, 1.0f));
+            if (random_actions.Length > 0)// run all the actions once and update the all rewards before move for the algorithm generation
+            {
+                // Console.WriteLine(random_actions[iterations - 1]);
+                if (id >= random_actions.Length)//did all actions once but some did not received feedback show them again
+                {
+                    id = 0;
+                }
+
+                actionSelected = random_actions[id];
+
+                id++;
+
+                UpdateActionPlayed(actionSelected);
 
                 if (iterations == 1)
                 {
@@ -105,8 +115,7 @@ namespace Assets.Scripts.UCB
                 actionSelected = Convert.ToInt32(aux_max[0]);
 
                 //update number of times action i was played
-                Elements _action = PlayedActions.Find(x => (x.Action == actionSelected));
-                _action.Value = _action.Value + 1;
+                UpdateActionPlayed(actionSelected);
 
                 //observe
 
@@ -116,6 +125,20 @@ namespace Assets.Scripts.UCB
             //update to next iteration
             iterations++;
             return actionSelected;
+        }
+
+        private void UpdateActionPlayed(int actionSelected)
+        {
+            Elements _action = PlayedActions.Find(x => (x.Action == actionSelected));
+            if (_action == null)
+            {
+                PlayedActions.Add(new Elements(actionSelected, 1.0f));
+            }
+            else
+            {
+                _action.Value = _action.Value + 1;
+            }
+
         }
 
 
@@ -138,17 +161,38 @@ namespace Assets.Scripts.UCB
                 res_reward = 0.9f;
             }
 
-            reward_actions[action] = res_reward;
-
+            reward_actions[action] = Math.Round(res_reward, 2);
 
             //update average reward of action i
             UpdateAvgReward(action);
+
+            if (random_actions.Length > 0)
+            {
+                //remove elements from the array with the initial random_actions that received feedback
+                random_actions = RemoveElement(action);
+            }
+
+        }
+
+        private int[] RemoveElement(int action)
+        {
+            int[] aux = new int[random_actions.Length - 1];
+            int ids = 0;
+            for (int i = 0; i < random_actions.Length; i++)
+            {
+                if (random_actions[i] != action)
+                {
+                    aux[ids] = random_actions[i];
+                    ids++;
+                }
+            }
+
+            return aux;
         }
 
         private void UpdateAvgReward(int action)
         {
             ///////
-
 
             Elements avgReward = AvgReceivedRewards.Find(x => (x.Action == action));
             //update the action reward
@@ -167,7 +211,7 @@ namespace Assets.Scripts.UCB
             {
                 aux = (avgReward.Value + ((reward_actions[action] - avgReward.Value) / played_action.Value));
                 //Math.Round(aux, 2); // convert double into 2 decimal places
-                avgReward.Value = Math.Round(aux, 4); 
+                avgReward.Value = Math.Round(aux, 4);
             }
         }
 

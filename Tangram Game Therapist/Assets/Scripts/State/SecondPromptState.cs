@@ -83,8 +83,8 @@ public class SecondPromptState : State
                     /// Call the form for the next utterance
                     ///
 
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -147,8 +147,8 @@ public class SecondPromptState : State
                 /// Call the form for the next utterance
                 ///
 
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -236,8 +236,8 @@ public class SecondPromptState : State
                     /// Call the form for the next utterance
                     ///
 
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -279,8 +279,8 @@ public class SecondPromptState : State
                         /// Call the form for the next utterance
                         ///
 
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///
@@ -320,8 +320,8 @@ public class SecondPromptState : State
                         /// Call the form for the next utterance
                         ///
 
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///
@@ -361,8 +361,8 @@ public class SecondPromptState : State
                         /// Call the form for the next utterance
                         ///
 
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///

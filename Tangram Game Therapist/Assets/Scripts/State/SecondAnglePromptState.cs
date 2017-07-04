@@ -80,8 +80,8 @@ public class SecondAnglePromptState : State
                     /// Call the form for the next utterance
                     ///
 
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -123,10 +123,8 @@ public class SecondAnglePromptState : State
                         /// Call the form for the next utterance
                         ///
 
-
-
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///
@@ -169,8 +167,8 @@ public class SecondAnglePromptState : State
                             /// Call the form for the next utterance
                             ///
 
-                            Therapist.Instance.utt_count++;
-                            Therapist.Instance.AVG_Ratings(0);
+                            //Therapist.Instance.utt_count++;
+                            //Therapist.Instance.AVG_Ratings(0);
                             Therapist.Instance.ShowFormRatings();
 
                             ///
@@ -209,8 +207,8 @@ public class SecondAnglePromptState : State
                             /// Call the form for the next utterance
                             ///
 
-                            Therapist.Instance.utt_count++;
-                            Therapist.Instance.AVG_Ratings(0);
+                            //Therapist.Instance.utt_count++;
+                            //Therapist.Instance.AVG_Ratings(0);
                             Therapist.Instance.ShowFormRatings();
 
                             ///
@@ -231,6 +229,7 @@ public class SecondAnglePromptState : State
 
         bool utterance = false;
         Therapist.Instance.promt_Type = 2;
+        UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("2nd prompt -> RepeatPrompt");
         if (repeatHardClue || (random == 0 && Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
@@ -268,8 +267,8 @@ public class SecondAnglePromptState : State
                 /// Call the form for the next utterance
                 ///
 
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -314,8 +313,8 @@ public class SecondAnglePromptState : State
                     /// Call the form for the next utterance
                     ///
 
-                    Therapist.Instance.utt_count++;
-                    Therapist.Instance.AVG_Ratings(0);
+                    //Therapist.Instance.utt_count++;
+                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
 
                     ///
@@ -357,8 +356,8 @@ public class SecondAnglePromptState : State
                         /// Call the form for the next utterance
                         ///
 
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
 
                         ///
@@ -395,9 +394,9 @@ public class SecondAnglePromptState : State
                         /// Call the form for the next utterance
                         ///
 
-                        Therapist.Instance.utt_count++;
-                        Therapist.Instance.AVG_Ratings(0);
-                        Therapist.Instance.ShowFormRatings();
+                        //Therapist.Instance.utt_count++;
+                        //Therapist.Instance.AVG_Ratings(0);
+                        //Therapist.Instance.ShowFormRatings();
 
                         ///
                         ///
@@ -470,7 +469,7 @@ public class SecondAnglePromptState : State
         if (correctAngle)
         {
             Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
-
+            UtterancesManager.Instance.CheckUtteranceFinish();
             bool utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
             if (secondPrompt)
             {
@@ -489,8 +488,8 @@ public class SecondAnglePromptState : State
             /// Call the form for the next utterance
             ///
 
-            Therapist.Instance.utt_count++;
-            Therapist.Instance.AVG_Ratings(0);
+            //Therapist.Instance.utt_count++;
+            //Therapist.Instance.AVG_Ratings(0);
             Therapist.Instance.ShowFormRatings();
 
             ///

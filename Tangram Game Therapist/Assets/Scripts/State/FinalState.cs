@@ -11,6 +11,8 @@ public class FinalState : State {
 	public void EndGame(){
         endGameTime = DateTime.Now;
 
+        UtterancesManager.Instance.CheckUtteranceFinish();
+
         if (!GameState.Instance.quit)
         {
             if((float)(DateTime.Now - GameManager.Instance.beginGameTime).TotalSeconds < 80)

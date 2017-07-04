@@ -75,8 +75,8 @@ public class FirstIdlePromptState : State
                 ///
 
                 Therapist.Instance.lastActionMade = true;
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -130,8 +130,8 @@ public class FirstIdlePromptState : State
                 ///
 
                 Therapist.Instance.lastActionMade = true;
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///
@@ -181,8 +181,8 @@ public class FirstIdlePromptState : State
 
 
                 Therapist.Instance.lastActionMade = true;
-                Therapist.Instance.utt_count++;
-                Therapist.Instance.AVG_Ratings(0);
+                //Therapist.Instance.utt_count++;
+                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
 
                 ///

@@ -23,6 +23,11 @@ public class LoadOnClick : MonoBehaviour {
 			soundButton.image.sprite = muteSprite;
 			muted = true;
 		}
+
+        if (Application.loadedLevelName == "Name")
+        {
+            Therapist.Instance.ratingsFeedback.form_Feedback.Show();
+        }
 	}
 
     void Update() {

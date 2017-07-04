@@ -14,6 +14,8 @@ public class PositiveFeedState : State {
         if ((DateTime.Now - lastPositiveFeedTime).TotalSeconds > 3)
         {
             lastPositiveFeedTime = DateTime.Now;
+            UtterancesManager.Instance.CheckUtteranceFinish();
+
             UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count));
         }
         Therapist.Instance.currentState = Therapist.Instance.PlayState;
