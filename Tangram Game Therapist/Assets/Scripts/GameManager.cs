@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-public class GameManager : MonoBehaviour {
-	private static GameManager instance = null;
-	public List<string> puzzles = new List<string>();
-	public List<string> usedPuzzles;
-	string currentPuzzle;
-	public int numberOfGames;
-	public int closeTries;
+public class GameManager : MonoBehaviour
+{
+    private static GameManager instance = null;
+    public List<string> puzzles = new List<string>();
+    public List<string> usedPuzzles;
+    string currentPuzzle;
+    public int numberOfGames;
+    public int closeTries;
     public bool quit = false;
 
     float distanceThreshold, averagePlacedTime, previousGameTime;
-	SolutionManager.Difficulty difficulty;
-	SceneProperties.RotationMode rotationMode;
+    SolutionManager.Difficulty difficulty;
+    SceneProperties.RotationMode rotationMode;
     public string playerName;
     public DateTime beginGameTime;
 
-	public Dictionary<string, float> piecePlacedTimes = new Dictionary<string, float> ();
-	int nMediumTimes;
-	int nButtonGames;
-	int nSimpleGames;
+    public Dictionary<string, float> piecePlacedTimes = new Dictionary<string, float>();
+    int nMediumTimes;
+    int nButtonGames;
+    int nSimpleGames;
 
     /// <summary>
     /// /////////////////
@@ -72,33 +73,38 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     /// 
 
-    public static GameManager Instance {
-		get { 
-			return instance; 
-		}
-	}
-	
-	void Awake () {
-		DontDestroyOnLoad(gameObject);
+    public static GameManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
-		//Check if instance already exists
-		if (instance == null)
-			instance = this;
-		
-		else if (instance != this)
-			Destroy(gameObject); 
-	}
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
 
-	void Start () {
-		numberOfGames = 0;
-		nMediumTimes = 0;
-		nButtonGames = 0;
+        //Check if instance already exists
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        numberOfGames = 0;
+        nMediumTimes = 0;
+        nButtonGames = 0;
         nSimpleGames = 0;
-		usedPuzzles = new List<string> ();
-	}
+        usedPuzzles = new List<string>();
+    }
 
-	public void BeginGame(bool muted){
-		InitializeAll ();
+    public void BeginGame(bool muted)
+    {
+        InitializeAll();
 
         SceneProperties.Instance.difficulty = difficulty;
         SceneProperties.Instance.puzzle = currentPuzzle;
@@ -109,19 +115,23 @@ public class GameManager : MonoBehaviour {
         UtterancesManager.Instance.WriteJSON("-------------------- PLAYER: " + playerName + " PUZZLE: " + currentPuzzle + " DIFICULDADE: " + difficulty.ToString() + " MODO ROTAÇAO: " + rotationMode.ToString() + " THRESHOLD: " + distanceThreshold + " --------------------");
     }
 
-	void InitializeAll(){
-		if (puzzles.Count == 0)
-			puzzles = ReadJSON.Instance.GetListOfPuzzles ();
-		
-		if (numberOfGames == 0) {
-			currentPuzzle = RandomValue (puzzles);
-			distanceThreshold = 4;
-			difficulty = SolutionManager.Difficulty.easy;
-			rotationMode = SceneProperties.RotationMode.simple;
-			usedPuzzles.Add (currentPuzzle);
-			nSimpleGames++;
+    void InitializeAll()
+    {
+        if (puzzles.Count == 0)
+            puzzles = ReadJSON.Instance.GetListOfPuzzles();
 
-		} else {
+        if (numberOfGames == 0)
+        {
+            currentPuzzle = RandomValue(puzzles);
+            distanceThreshold = 4;
+            difficulty = SolutionManager.Difficulty.easy;
+            rotationMode = SceneProperties.RotationMode.simple;
+            usedPuzzles.Add(currentPuzzle);
+            nSimpleGames++;
+
+        }
+        else
+        {
             //The average time it takes to put a piece in the right place
             averagePlacedTime = piecePlacedTimes.Sum(x => x.Value) / piecePlacedTimes.Count;
             //The time it takes to complete the previous puzzle
@@ -147,24 +157,25 @@ public class GameManager : MonoBehaviour {
                 difficulty = DecideDifficulty();
                 rotationMode = DecideRotationMode();
             }
-		}
+        }
 
         piecePlacedTimes = new Dictionary<string, float>();
-		numberOfGames++;
-		closeTries = 0;
-	}
+        numberOfGames++;
+        closeTries = 0;
+    }
 
-	float DecideThreshold(){
-		float threshold;
+    float DecideThreshold()
+    {
+        float threshold;
         if (closeTries > 20 && distanceThreshold < 4)
             threshold = distanceThreshold + 1;
         else if (closeTries <= 15 && distanceThreshold > 1)
             threshold = distanceThreshold - 1;
-		else
+        else
             threshold = distanceThreshold;
 
-		return threshold;
-	}
+        return threshold;
+    }
 
     public SolutionManager.Difficulty DecideDifficulty()
     {
@@ -178,7 +189,15 @@ public class GameManager : MonoBehaviour {
                 nMediumTimes++;
             }
             else
+            {
                 currentDifficulty = SolutionManager.Difficulty.easy;
+                if (distanceThreshold == 1)
+                {
+                    nSimpleGames++;
+                    distanceThreshold = 2;
+                }
+            }
+
         }
         else if (difficulty == SolutionManager.Difficulty.medium)
         {
@@ -201,7 +220,14 @@ public class GameManager : MonoBehaviour {
                 nMediumTimes++;
             }
             else
+            {
                 currentDifficulty = SolutionManager.Difficulty.hard;
+                if (distanceThreshold == 1)
+                {
+                    distanceThreshold = 2;
+                }
+            }
+
         }
 
         return currentDifficulty;
@@ -213,7 +239,7 @@ public class GameManager : MonoBehaviour {
 
         if (rotationMode == SceneProperties.RotationMode.simple)
         {
-            if (averagePlacedTime <= 15)
+            if (averagePlacedTime <= 10)//averagePlacedTime <= 15
             {
                 rotation = SceneProperties.RotationMode.button;
                 Therapist.Instance.firstTimeButton = 0;
@@ -227,12 +253,12 @@ public class GameManager : MonoBehaviour {
         }
         else if (rotationMode == SceneProperties.RotationMode.button)
         {
-            if (averagePlacedTime <= 11 && nButtonGames >= 1)
+            if (averagePlacedTime <= 6 && nButtonGames >= 1) //averagePlacedTime <= 11
             {
                 rotation = SceneProperties.RotationMode.finger;
                 Therapist.Instance.firstTimeFinger = 0;
             }
-            else if (averagePlacedTime > 40 && nButtonGames >= 1)
+            else if (averagePlacedTime > 20 && nButtonGames >= 1)//averagePlacedTime > 40
             {
                 rotation = SceneProperties.RotationMode.simple;
                 nSimpleGames = 0;
@@ -245,7 +271,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            if (averagePlacedTime > 40)
+            if (averagePlacedTime > 20)//averagePlacedTime > 40
             {
                 rotation = SceneProperties.RotationMode.button;
                 Therapist.Instance.firstTimeButton = 0;
@@ -257,7 +283,7 @@ public class GameManager : MonoBehaviour {
         return rotation;
     }
 
-	/*public SolutionManager.Difficulty DecideDifficulty(){
+    /*public SolutionManager.Difficulty DecideDifficulty(){
 		SolutionManager.Difficulty currentDifficulty;
 
 		if (difficulty == SolutionManager.Difficulty.easy) {
@@ -326,7 +352,8 @@ public class GameManager : MonoBehaviour {
 		return rotation;
 	}*/
 
-    void Quit() {
+    void Quit()
+    {
         quit = false;
         nMediumTimes = 0;
         nButtonGames = 0;
@@ -337,11 +364,13 @@ public class GameManager : MonoBehaviour {
             distanceThreshold += 1;
 
         //Difficulty
-        if (difficulty == SolutionManager.Difficulty.hard) {
-		    difficulty = SolutionManager.Difficulty.medium;
-			nMediumTimes++;
-		} else 				
-			difficulty = SolutionManager.Difficulty.easy;
+        if (difficulty == SolutionManager.Difficulty.hard)
+        {
+            difficulty = SolutionManager.Difficulty.medium;
+            nMediumTimes++;
+        }
+        else
+            difficulty = SolutionManager.Difficulty.easy;
 
         //Rotation
         if (rotationMode == SceneProperties.RotationMode.finger)
@@ -372,9 +401,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-	public string RandomValue(List<string> list){
-		System.Random rand = new System.Random();
-		int r = rand.Next(list.Count);
-		return list[r];
-	}
+    public string RandomValue(List<string> list)
+    {
+        System.Random rand = new System.Random();
+        int r = rand.Next(list.Count);
+        return list[r];
+    }
 }

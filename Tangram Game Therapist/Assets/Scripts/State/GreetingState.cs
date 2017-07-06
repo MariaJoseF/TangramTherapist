@@ -2,57 +2,75 @@
 using System.Collections;
 using System;
 
-public class GreetingState : State {
+public class GreetingState : State
+{
 
-	public GreetingState () {
-	}
-	
-	public void BeginFirstGame(){
+    public GreetingState()
+    {
+    }
+
+    public void BeginFirstGame()
+    {
         UtterancesManager.Instance.Greeting();
-	}
+    }
 
-	public void BeginNextGame(){
-	}
+    public void BeginNextGame()
+    {
+    }
 
-	public void EndGame(){
-	}
+    public void EndGame()
+    {
+    }
 
-	public void HelpMotor(){
-	}
-	
-	public void HelpAdjustingPiece() {
-	}
+    public void HelpMotor()
+    {
+    }
 
-	public void GivePositiveFeedback() {
-	}
-	
-	public void GiveNegativeFeedback() {
-	}
+    public void HelpAdjustingPiece()
+    {
+    }
 
-	public void StartedMoving (bool correctAngle){
-	}
+    public void GivePositiveFeedback()
+    {
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){	
-	}
-	
-	public void FirstPlacePrompt(){	
-	}
+    public void GiveNegativeFeedback()
+    {
+    }
 
-	public void SecondPrompt(){	
-	}
-	
-	public void ThirdPrompt(){	
-	}
+    public void StartedMoving(bool correctAngle)
+    {
+    }
 
-	public void SecondAnglePrompt(){	
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void FirstIdlePrompt()
+    {
+    }
 
-	public void Update(){		
-	}
+    public void FirstAnglePrompt()
+    {
+    }
+
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void SecondPrompt()
+    {
+    }
+
+    public void ThirdPrompt()
+    {
+    }
+
+    public void SecondAnglePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
+
+    public void Update()
+    {
+    }
 }

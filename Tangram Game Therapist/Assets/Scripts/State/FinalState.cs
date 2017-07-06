@@ -2,20 +2,23 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class FinalState : State {
+public class FinalState : State
+{
     DateTime endGameTime;
 
-	public FinalState () {
-	}
+    public FinalState()
+    {
+    }
 
-	public void EndGame(){
+    public void EndGame()
+    {
         endGameTime = DateTime.Now;
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (!GameState.Instance.quit)
         {
-            if((float)(DateTime.Now - GameManager.Instance.beginGameTime).TotalSeconds < 80)
+            if ((float)(DateTime.Now - GameManager.Instance.beginGameTime).TotalSeconds < 80)
                 UtterancesManager.Instance.FastWin(SolutionManager.Instance.puzzleNamept);
             else
                 UtterancesManager.Instance.Win(SolutionManager.Instance.puzzleNamept);
@@ -29,11 +32,12 @@ public class FinalState : State {
             Application.LoadLevel(1);
             Therapist.Instance.BeginNextGame();
         }
-	}
+    }
 
     public void Update()
     {
-        if ((DateTime.Now - endGameTime).TotalSeconds > 8) {
+        if ((DateTime.Now - endGameTime).TotalSeconds > 8)
+        {
             Application.LoadLevel(1);
             Therapist.Instance.currentState = Therapist.Instance.StartState;
             Therapist.Instance.BeginNextGame();
@@ -48,40 +52,52 @@ public class FinalState : State {
     {
     }
 
-	public void HelpMotor(){
-	}
-	
-	public void HelpAdjustingPiece() {
-	}
+    public void HelpMotor()
+    {
+    }
 
-	public void GivePositiveFeedback() {
-	}
-	
-	public void GiveNegativeFeedback() {
-	}
+    public void HelpAdjustingPiece()
+    {
+    }
 
-	public void StartedMoving (bool correctAngle){
-	}
+    public void GivePositiveFeedback()
+    {
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){	
-	}
-	
-	public void FirstPlacePrompt(){
-	}
+    public void GiveNegativeFeedback()
+    {
+    }
 
-	public void SecondPrompt(){
-	}
-	
-	public void ThirdPrompt(){
-	}
+    public void StartedMoving(bool correctAngle)
+    {
+    }
 
-	public void SecondAnglePrompt(){	
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void FirstIdlePrompt()
+    {
+    }
+
+    public void FirstAnglePrompt()
+    {
+    }
+
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void SecondPrompt()
+    {
+    }
+
+    public void ThirdPrompt()
+    {
+    }
+
+    public void SecondAnglePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
 
 }

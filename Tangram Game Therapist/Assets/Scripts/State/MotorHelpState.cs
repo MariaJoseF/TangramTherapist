@@ -2,69 +2,88 @@
 using System.Collections;
 using System;
 
-public class MotorHelpState : State {
-	int nHelpRequests;
+public class MotorHelpState : State
+{
+    int nHelpRequests;
 
-	public MotorHelpState () {
+    public MotorHelpState()
+    {
         nHelpRequests = 0;
-	}
+    }
 
-	public void HelpMotor(){
-		nHelpRequests++;
-		if (nHelpRequests >= 3) {
+    public void HelpMotor()
+    {
+        nHelpRequests++;
+        if (nHelpRequests >= 3)
+        {
             UtterancesManager.Instance.CheckUtteranceFinish();
 
             UtterancesManager.Instance.MotorHelp();
 
-			nHelpRequests = 0;
-		}
-		Therapist.Instance.currentState = Therapist.Instance.previousState;
-		Therapist.Instance.previousState = null;
-	}
-	
-	public void Update(){		
-	}
-		
-	public void BeginFirstGame(){
-	}
-		
-	public void BeginNextGame(){
-	}
-		
-	public void EndGame(){
-	}
+            nHelpRequests = 0;
+        }
+        Therapist.Instance.currentState = Therapist.Instance.previousState;
+        Therapist.Instance.previousState = null;
+    }
 
-	public void HelpAdjustingPiece() {
-	}
+    public void Update()
+    {
+    }
 
-	public void GivePositiveFeedback() {
-	}
-	
-	public void GiveNegativeFeedback() {
-	}
+    public void BeginFirstGame()
+    {
+    }
 
-	public void StartedMoving (bool correctAngle){
-	}
+    public void BeginNextGame()
+    {
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){
-	}
-	
-	public void FirstPlacePrompt(){
-	}
+    public void EndGame()
+    {
+    }
 
-	public void SecondPrompt(){
-	}
-	
-	public void ThirdPrompt(){
-	}
+    public void HelpAdjustingPiece()
+    {
+    }
 
-	public void SecondAnglePrompt(){
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void GivePositiveFeedback()
+    {
+    }
+
+    public void GiveNegativeFeedback()
+    {
+    }
+
+    public void StartedMoving(bool correctAngle)
+    {
+    }
+
+    public void FirstIdlePrompt()
+    {
+    }
+
+    public void FirstAnglePrompt()
+    {
+    }
+
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void SecondPrompt()
+    {
+    }
+
+    public void ThirdPrompt()
+    {
+    }
+
+    public void SecondAnglePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
 
 }

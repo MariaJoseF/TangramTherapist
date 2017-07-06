@@ -58,9 +58,8 @@ namespace Assets.Scripts.UCB
             }
 
 
-            if (random_actions.Length > 0)// run all the actions once and update the all rewards before move for the algorithm generation
+            if (random_actions.Length > 0)// run all the actions once and update all the rewards before moving for the algorithm generation
             {
-                // Console.WriteLine(random_actions[iterations - 1]);
                 if (id >= random_actions.Length)//did all actions once but some did not received feedback show them again
                 {
                     id = 0;

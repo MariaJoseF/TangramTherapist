@@ -79,15 +79,7 @@ public class SecondPromptState : State
                     nPrompts = 1;
 
                     ///
-                    /// update the average reward if the last feedback wasnt given
-                    /// Call the form for the next utterance
-                    ///
-
-                    //Therapist.Instance.utt_count++;
-                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
-
-                    ///
                     ///
                 }
             }
@@ -143,15 +135,7 @@ public class SecondPromptState : State
                 repeatHardClue = false;
 
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
-
-                ///
                 ///
             }
         }
@@ -232,15 +216,7 @@ public class SecondPromptState : State
                     prompedRelativePieces = true;
 
                     ///
-                    /// update the average reward if the last feedback wasnt given
-                    /// Call the form for the next utterance
-                    ///
-
-                    //Therapist.Instance.utt_count++;
-                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
-
-                    ///
                     ///
                 }
             }
@@ -275,15 +251,7 @@ public class SecondPromptState : State
                         repeatRelativePosition = false;
 
                         ///
-                        /// update the average reward if the last feedback wasnt given
-                        /// Call the form for the next utterance
-                        ///
-
-                        //Therapist.Instance.utt_count++;
-                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
-
-                        ///
                         ///
                     }
 
@@ -316,15 +284,7 @@ public class SecondPromptState : State
                         repeatRelativePosition = false;
 
                         ///
-                        /// update the average reward if the last feedback wasnt given
-                        /// Call the form for the next utterance
-                        ///
-
-                        //Therapist.Instance.utt_count++;
-                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
-
-                        ///
                         ///
                     }
 
@@ -357,15 +317,7 @@ public class SecondPromptState : State
                         repeatRelativePosition = false;
 
                         ///
-                        /// update the average reward if the last feedback wasnt given
-                        /// Call the form for the next utterance
-                        ///
-
-                        //Therapist.Instance.utt_count++;
-                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
-
-                        ///
                         ///
                     }
 

@@ -19,7 +19,6 @@ public class FirstAnglePromptState : State
         nPrompts = 0;
     }
 
-
     public void FirstAnglePrompt()
     {
         lastPromptTime = DateTime.Now;
@@ -73,16 +72,8 @@ public class FirstAnglePromptState : State
                         nPrompts = 1;
 
                         ///
-                        /// update the average reward if the last feedback wasnt given
-                        /// Call the form for the next utterance
-                        ///
-
                         Therapist.Instance.lastActionMade = true;
-                        //Therapist.Instance.utt_count++;
-                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
-
-                        ///
                         ///
 
                     }
@@ -115,16 +106,8 @@ public class FirstAnglePromptState : State
                         nPrompts = 1;
 
                     ///
-                    /// update the average reward if the last feedback wasnt given
-                    /// Call the form for the next utterance
-                    ///
-
                     Therapist.Instance.lastActionMade = true;
-                    //Therapist.Instance.utt_count++;
-                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
-
-                    ///
                     ///
                 }
             }
@@ -175,16 +158,8 @@ public class FirstAnglePromptState : State
                 nPrompts++;
 
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
                 Therapist.Instance.lastActionMade = true;
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
-
-                ///
                 ///
             }
         }
@@ -221,16 +196,8 @@ public class FirstAnglePromptState : State
                     repeatPrompt = false;
 
                     ///
-                    /// update the average reward if the last feedback wasnt given
-                    /// Call the form for the next utterance
-                    ///
-
                     Therapist.Instance.lastActionMade = true;
-                    //Therapist.Instance.utt_count++;
-                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
-
-                    ///
                     ///
                 }
             }
@@ -265,16 +232,8 @@ public class FirstAnglePromptState : State
                         repeatAngleHelp = false;
 
                         ///
-                        /// update the average reward if the last feedback wasnt given
-                        /// Call the form for the next utterance
-                        ///
-
                         Therapist.Instance.lastActionMade = true;
-                        //Therapist.Instance.utt_count++;
-                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
-
-                        ///
                         ///
                     }
                 }
@@ -306,16 +265,8 @@ public class FirstAnglePromptState : State
                         repeatAngleHelp = false;
 
                         ///
-                        /// update the average reward if the last feedback wasnt given
-                        /// Call the form for the next utterance
-                        ///
-
                         Therapist.Instance.lastActionMade = true;
-                        //Therapist.Instance.utt_count++;
-                        //Therapist.Instance.AVG_Ratings(0);
                         Therapist.Instance.ShowFormRatings();
-
-                        ///
                         ///
                     }
                 }
@@ -398,15 +349,7 @@ public class FirstAnglePromptState : State
             }
 
             ///
-            /// update the average reward if the last feedback wasnt given
-            /// Call the form for the next utterance
-            ///
-
-            //Therapist.Instance.utt_count++;
-            //Therapist.Instance.AVG_Ratings(0);
             Therapist.Instance.ShowFormRatings();
-
-            ///
             ///
 
             Therapist.Instance.previousState = Therapist.Instance.currentState;

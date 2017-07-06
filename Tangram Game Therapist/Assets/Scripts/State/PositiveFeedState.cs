@@ -2,12 +2,14 @@
 using System.Collections;
 using System;
 
-public class PositiveFeedState : State {
+public class PositiveFeedState : State
+{
     DateTime lastPositiveFeedTime;
 
-	public PositiveFeedState () {
+    public PositiveFeedState()
+    {
         lastPositiveFeedTime = DateTime.Now;
-	}
+    }
 
     public void GivePositiveFeedback()
     {
@@ -33,48 +35,63 @@ public class PositiveFeedState : State {
         return number;
     }
 
-	public void BeginFirstGame(){
-	}
+    public void BeginFirstGame()
+    {
+    }
 
-	public void BeginNextGame(){
-	}
+    public void BeginNextGame()
+    {
+    }
 
-	public void EndGame(){
-	}
+    public void EndGame()
+    {
+    }
 
-	public void HelpMotor(){
-	}
-	
-	public void HelpAdjustingPiece() {
-	}
+    public void HelpMotor()
+    {
+    }
 
-	public void GiveNegativeFeedback() {
-	}
+    public void HelpAdjustingPiece()
+    {
+    }
 
-	public void StartedMoving (bool correctAngle){
-	}
+    public void GiveNegativeFeedback()
+    {
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){
-	}
-	
-	public void FirstPlacePrompt(){
-	}
+    public void StartedMoving(bool correctAngle)
+    {
+    }
 
-	public void SecondPrompt(){
-	}
-	
-	public void ThirdPrompt(){	
-	}
+    public void FirstIdlePrompt()
+    {
+    }
 
-	public void SecondAnglePrompt(){	
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void FirstAnglePrompt()
+    {
+    }
 
-	public void Update(){		
-	}
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void SecondPrompt()
+    {
+    }
+
+    public void ThirdPrompt()
+    {
+    }
+
+    public void SecondAnglePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
+
+    public void Update()
+    {
+    }
 }

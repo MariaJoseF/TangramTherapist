@@ -57,7 +57,7 @@ namespace Assets.Scripts.UCB
             value = val;
         }
 
-        public Elements( int act, double val)
+        public Elements(int act, double val)
         {
             action = act;
             value = val;

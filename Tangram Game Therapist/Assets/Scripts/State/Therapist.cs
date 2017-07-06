@@ -57,8 +57,6 @@ public class Therapist : MonoBehaviour
     private bool secondPrompt = true;
     private bool thirdPrompt = true;
     private int previousAction = -1;
-    internal int utt_ratings = 0;
-    internal int utt_count = 0;
     internal bool lastActionMade = true;
 
     /// 
@@ -137,6 +135,7 @@ public class Therapist : MonoBehaviour
         showedHardClue = false;
         currentPiece = null;
         previousState = null;
+
         currentState.GivePositiveFeedback();
 
         if (positive_feedback)
@@ -147,6 +146,7 @@ public class Therapist : MonoBehaviour
         }
         else
         {
+            UtterancesManager.Instance.CheckUtteranceFinish();
             positive_feedback = true;
             ratingsFeedback.ButtonsDesactivation();
         }
@@ -276,7 +276,7 @@ public class Therapist : MonoBehaviour
     {
 
         //Calculate the average ratings for the utterances presented for the previous action selected and update the UCB algorithm reward
-        AVG_Ratings(/*1*/);
+        AVG_Ratings();
 
         AlgorithmUCB.RunUCB();
 
@@ -314,7 +314,6 @@ public class Therapist : MonoBehaviour
                 break;
         }
 
-
         previousAction = AlgorithmUCB.Action;
 
         ratingsFeedback.Label1.Text = "Feedback " + action_name;
@@ -324,11 +323,7 @@ public class Therapist : MonoBehaviour
         ratingsFeedback.feedback_val = -2;
         ratingsFeedback.default_form = 1;
 
-
-
         vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
-        utt_count = 0;//reset the utterances presented to user
-        utt_ratings = 0;//reset the ratings given to utterances presented to user
 
         Console.WriteLine("firstPrompt = " + firstPrompt + " secondPrompt = " + secondPrompt + " thirdPrompt = " + thirdPrompt);
     }
@@ -357,49 +352,20 @@ public class Therapist : MonoBehaviour
         ratingsFeedback.form_Feedback.Show();
     }
 
-    internal void AVG_Ratings(/*int avg*/)
+    internal void AVG_Ratings()
     {
-        //int previous_ActionRatings = ratingsFeedback.previousAction;
-        //int feedback = ratingsFeedback.feedback_val;
-
-        //if ((utt_ratings == utt_count - 2 || (utt_ratings == utt_count - 1 && avg!=0 )) && utt_count >= 1) //form presented but did not receive ratings
-        //{
-        //    ratingsFeedback.previousAction = previousAction;
-        //    ratingsFeedback.feedback_val = 3;
-        //    feedback = 3;
-        //    vec_ratings.Add(3);
-
-        //    ratingsFeedback.FileHeader();
-        //    ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;1;" + promt_Type);
-        //    ratingsFeedback.header = false;
-
-        //    utt_ratings++;
-        //}
-
-    //    if (avg == 1)//calculate the average reward for the presented forms
-     //   {
-            if (vec_ratings.Count > 0)
+        if (vec_ratings.Count > 0)
+        {
+            double aux = 0.0f;
+            for (int i = 0; i < vec_ratings.Count; i++)
             {
-                double aux = 0.0f;
-                for (int i = 0; i < vec_ratings.Count; i++)
-                {
-                    aux = aux + vec_ratings[i];
-
-                }
-
-                aux = (aux / vec_ratings.Count);
-
-                AlgorithmUCB.UpdateReward(previousAction, Math.Round(aux, 2));
+                aux = aux + vec_ratings[i];
             }
-            //else if (previousAction != -1 && vec_ratings.Count == 0)//last action did not present any prompts to the user
-            //{
-            //    ratingsFeedback.FileHeader();
-            //    ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + previousAction + ";" + "3;-1;" + promt_Type);
-            //    ratingsFeedback.header = false;
 
-            //    AlgorithmUCB.UpdateReward(previousAction, 3);
-            //}
-        //}
+            aux = (aux / vec_ratings.Count);
+
+            AlgorithmUCB.UpdateReward(previousAction, Math.Round(aux, 2));
+        }
     }
 
     public State CurrentState

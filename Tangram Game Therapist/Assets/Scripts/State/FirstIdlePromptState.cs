@@ -68,18 +68,9 @@ public class FirstIdlePromptState : State
                 vibratePiece = true;
                 currentPiece = Therapist.Instance.currentPiece;
 
-
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
                 Therapist.Instance.lastActionMade = true;
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
-
-                ///
                 ///
             }
         }
@@ -125,16 +116,8 @@ public class FirstIdlePromptState : State
                 nPrompts++;
 
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
                 Therapist.Instance.lastActionMade = true;
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
-
-                ///
                 ///
             }
         }
@@ -175,17 +158,8 @@ public class FirstIdlePromptState : State
                 repeatPrompt = false;
 
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
-
                 Therapist.Instance.lastActionMade = true;
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
-
-                ///
                 ///
             }
         }

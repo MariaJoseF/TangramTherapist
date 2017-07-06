@@ -69,18 +69,8 @@ public class FirstPlacePromptState : State
                     nPrompts = 1;
 
                     ///
-                    /// update the average reward if the last feedback wasnt given
-                    /// Call the form for the next utterance
-                    ///
-
-                    UtterancesManager.Instance.WriteJSON("ROBOT: FirsPlacePrompt NOT SPOKEN");
-
                     Therapist.Instance.lastActionMade = true;
-                    //Therapist.Instance.utt_count++;
-                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
-
-                    ///
                     ///
                 }
             }
@@ -113,16 +103,8 @@ public class FirstPlacePromptState : State
                     nPrompts = 1;
 
                     ///
-                    /// update the average reward if the last feedback wasnt given
-                    /// Call the form for the next utterance
-                    ///
-
                     Therapist.Instance.lastActionMade = true;
-                    //Therapist.Instance.utt_count++;
-                    //Therapist.Instance.AVG_Ratings(0);
                     Therapist.Instance.ShowFormRatings();
-
-                    ///
                     ///
                 }
 
@@ -174,16 +156,8 @@ public class FirstPlacePromptState : State
                 nPrompts++;
 
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
                 Therapist.Instance.lastActionMade = true;
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
-
-                ///
                 ///
             }
         }
@@ -215,16 +189,8 @@ public class FirstPlacePromptState : State
                 nPrompts++;
 
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
                 Therapist.Instance.lastActionMade = true;
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
-
-                ///
                 ///
             }
 

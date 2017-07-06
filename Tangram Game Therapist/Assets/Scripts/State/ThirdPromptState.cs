@@ -64,16 +64,17 @@ public class ThirdPromptState : State
                 nPrompts = 1;
 
                 ///
-                /// update the average reward if the last feedback wasnt given
-                /// Call the form for the next utterance
-                ///
-
-                //Therapist.Instance.utt_count++;
-                //Therapist.Instance.AVG_Ratings(0);
                 Therapist.Instance.ShowFormRatings();
+                ///
+            }
 
-                ///
-                ///
+            if (!thirdPrompt && utterance)//do piece animation when is not supposed to say the utterance, 
+                                          //code is the same as the one in UtterancesManager when this prompt is supposed to be showned to user
+            {
+                Therapist.Instance.nFailedTries = 0;
+                Therapist.Instance.nWrongAngleTries = 0;
+                GameState.Instance.showCluePiece = Therapist.Instance.currentPlace;
+                GameState.Instance.showClue = true;
             }
         }
     }
@@ -112,15 +113,7 @@ public class ThirdPromptState : State
             nPrompts++;
 
             ///
-            /// update the average reward if the last feedback wasnt given
-            /// Call the form for the next utterance
-            ///
-
-            //Therapist.Instance.utt_count++;
-            //Therapist.Instance.AVG_Ratings(0);
             Therapist.Instance.ShowFormRatings();
-
-            ///
             ///
         }
 
@@ -195,9 +188,6 @@ public class ThirdPromptState : State
                     nPrompts = 0;
                     finalPrompt = true;
                     lastPromptTime = DateTime.Now;
-
-                    //needs to give feedback to the previous utterance presented to the user before moving to a new set of prompts
-                    //Therapist.Instance.AVG_Ratings(2);
 
                     Therapist.Instance.SetPrompts();
                     Therapist.Instance.lastActionMade = false;

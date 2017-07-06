@@ -2,91 +2,116 @@
 using System.Collections;
 using System;
 
-public class InitialHelpState : State {
+public class InitialHelpState : State
+{
 
-	public InitialHelpState () {
-	}
+    public InitialHelpState()
+    {
+    }
 
-	public void BeginFirstGame(){
+    public void BeginFirstGame()
+    {
         Debug.Log("1 initial help " + SolutionManager.Instance.puzzleNamept);
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
-        if (Therapist.Instance.firstTimeFinger == 1) {
+        if (Therapist.Instance.firstTimeFinger == 1)
+        {
             UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
-			Therapist.Instance.currentState = Therapist.Instance.FingerHelpState;
-			Therapist.Instance.BeginFirstGame ();
-		} else if (Therapist.Instance.firstTimeButton == 1) {
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
-			Therapist.Instance.currentState = Therapist.Instance.ButtonHelpState;
-			Therapist.Instance.BeginFirstGame ();
-		}
-		else{
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true);
-			Therapist.Instance.currentState = Therapist.Instance.PlayState;
+            Therapist.Instance.currentState = Therapist.Instance.FingerHelpState;
+            Therapist.Instance.BeginFirstGame();
         }
-	}
+        else if (Therapist.Instance.firstTimeButton == 1)
+        {
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
+            Therapist.Instance.currentState = Therapist.Instance.ButtonHelpState;
+            Therapist.Instance.BeginFirstGame();
+        }
+        else
+        {
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true);
+            Therapist.Instance.currentState = Therapist.Instance.PlayState;
+        }
+    }
 
-	public void BeginNextGame(){
+    public void BeginNextGame()
+    {
         Debug.Log("2 initial help " + SolutionManager.Instance.puzzleNamept);
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
-        if (Therapist.Instance.firstTimeFinger == 1) {
+        if (Therapist.Instance.firstTimeFinger == 1)
+        {
             UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
             Therapist.Instance.currentState = Therapist.Instance.FingerHelpState;
             Therapist.Instance.BeginNextGame();
         }
-        else if (Therapist.Instance.firstTimeButton == 1) {
+        else if (Therapist.Instance.firstTimeButton == 1)
+        {
             UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
             Therapist.Instance.currentState = Therapist.Instance.ButtonHelpState;
             Therapist.Instance.BeginNextGame();
         }
-        else{
+        else
+        {
             UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true);
             Therapist.Instance.currentState = Therapist.Instance.PlayState;
         }
-	}
+    }
 
-	public void EndGame(){
-	}
+    public void EndGame()
+    {
+    }
 
-	public void HelpMotor(){
-	}
-	
-	public void HelpAdjustingPiece() {
-	}
+    public void HelpMotor()
+    {
+    }
 
-	public void GivePositiveFeedback() {
-	}
-	
-	public void GiveNegativeFeedback() {
-	}
+    public void HelpAdjustingPiece()
+    {
+    }
 
-	public void StartedMoving (bool correctAngle){
-	}
+    public void GivePositiveFeedback()
+    {
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){
-	}
-	
-	public void FirstPlacePrompt(){
-	}
+    public void GiveNegativeFeedback()
+    {
+    }
 
-	public void SecondPrompt(){	
-	}
-	
-	public void ThirdPrompt(){
-	}
+    public void StartedMoving(bool correctAngle)
+    {
+    }
 
-	public void SecondAnglePrompt(){	
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void FirstIdlePrompt()
+    {
+    }
 
-	public void Update(){		
-	}
+    public void FirstAnglePrompt()
+    {
+    }
+
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void SecondPrompt()
+    {
+    }
+
+    public void ThirdPrompt()
+    {
+    }
+
+    public void SecondAnglePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
+
+    public void Update()
+    {
+    }
 }
