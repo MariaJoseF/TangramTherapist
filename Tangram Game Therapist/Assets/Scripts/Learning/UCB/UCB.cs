@@ -91,7 +91,7 @@ namespace Assets.Scripts.UCB
 
 
                     // a(t) = argmax ^ri + Sqrt(2 ln t/ ti)
-                    double A_t_aux = Math.Sqrt(aux_1 / play_action.Value) + (avgReward.Value / play_action.Value);
+                    double A_t_aux = Math.Sqrt(aux_1 / play_action.Value) + avgReward.Value;
                     //Math.Round(A_t_aux, 4); // convert double into 4 decimal places
                     A_t.Add(new Elements(iterations, i, Math.Round(A_t_aux, 4)));
                 }

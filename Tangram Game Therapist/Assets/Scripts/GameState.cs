@@ -204,6 +204,7 @@ public class GameState : MonoBehaviour
         Therapist.Instance.currentPlace = place;
         Therapist.Instance.GiveNegativeFeedback();
         Therapist.Instance.nWrongAngleTries++;
+        UtterancesManager.Instance.WriteJSON("WRONG ANGLE TRY " + Therapist.Instance.nWrongAngleTries + " " + piece.name);
         stopped = DateTime.Now;
         dragging = false;
     }
