@@ -26,7 +26,7 @@ namespace Assets.Scripts.Exp3
         /// 
 
         private int num_actions;
-        private float[] reward_actions;
+        private double[] reward_actions;
         private float gamma;
 
         public int Action
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Exp3
             }
         }
 
-        public Exp3(int num_actions_, float[] reward_actions_, float gamma_)
+        public Exp3(int num_actions_, double[] reward_actions_, float gamma_)
         {
             num_actions = num_actions_;
             reward_actions = reward_actions_;
@@ -66,7 +66,7 @@ namespace Assets.Scripts.Exp3
             }
 
 
-            float sum_weights = 0.0f;
+            double sum_weights = 0.0f;
             //At time step t -> for each round t
 
             //      WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), " ------ t = " + iterations + " ------");
@@ -74,7 +74,7 @@ namespace Assets.Scripts.Exp3
             sum_weights = SumWeights(num_actions, iterations);
             //for each action i, set
             Elements _weight;
-            float prob;
+            double prob;
             for (int i = 0; i < num_actions; i++)
             {
                 //pi(t) = (1-gamma) *[(Wi(t)/(Sum of i until n Wi(t))]+(gamma/n); 
@@ -180,7 +180,7 @@ namespace Assets.Scripts.Exp3
             float dou_ = (float)rnd.NextDouble();
             Debug.Log("         Random val = " + dou_);
 
-            float sum_prob = 0.0f;
+            double sum_prob = 0.0f;
             Elements _probabilities;
             for (int i = 0; i < actions_num; i++)
             {
@@ -197,9 +197,9 @@ namespace Assets.Scripts.Exp3
             return selected_action;
         }
 
-        private float SumWeights(int actions_num, int time_)
+        private double SumWeights(int actions_num, int time_)
         {
-            float sum_weights = 0.0f;
+            double sum_weights = 0.0f;
             Elements w;
             for (int i = 0; i < actions_num; i++)
             {
@@ -248,5 +248,29 @@ namespace Assets.Scripts.Exp3
                 }
             }
         }
+
+        internal void UpdateReward(int previousAction, double reward_rating)
+        {
+            float A = 1f, B = 5f;
+            double res_reward = 0.0f;
+
+            if (reward_rating <= A)
+            {
+                res_reward = 0.1f;
+            }
+            else if (reward_rating > A && reward_rating < B)
+            {
+                res_reward = (reward_rating - A) / (B - A);
+            }
+            else // reward_rating >= B
+            {
+                res_reward = 0.9f;
+            }
+
+            
+            reward_actions[action] = Math.Round(res_reward, 2);
+
+        }
+
     }
 }

@@ -9,7 +9,7 @@ namespace Assets.Scripts.Exp3
     {
         private int time_index;
         private int element;
-        private float value;
+        private double value;
 
         public int Time_index
         {
@@ -37,7 +37,7 @@ namespace Assets.Scripts.Exp3
             }
         }
 
-        public float Value
+        public double Value
         {
             get
             {
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Exp3
             }
         }
 
-        public Elements(int time, int elem, float val)
+        public Elements(int time, int elem, double val)
         {
             time_index = time;
             element = elem;

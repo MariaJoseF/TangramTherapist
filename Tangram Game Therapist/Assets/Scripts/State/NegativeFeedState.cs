@@ -17,8 +17,8 @@ public class NegativeFeedState : State
     {
         nNegativeFeed++;
         //if (nNegativeFeed >= 3 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15) {
-        if (nNegativeFeed >= 1 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15)
-        {
+        //if (nNegativeFeed >= 1 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15)
+        //{
             UtterancesManager.Instance.CheckUtteranceFinish();
 
             if (UtterancesManager.Instance.NegativeFeedback())
@@ -26,7 +26,7 @@ public class NegativeFeedState : State
                 nNegativeFeed = 0;
                 lastNegativeFeedTime = DateTime.Now;
             }
-        }
+       // }
     }
 
     public void BeginFirstGame()

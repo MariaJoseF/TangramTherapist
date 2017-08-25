@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Name.unity
+- path: Assets/Scenes/Tangram.unity
   isLoaded: 1
   isActive: 1

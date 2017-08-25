@@ -85,8 +85,6 @@
     <Compile Include="Assets\Scripts\Learning\Exp3\Elements.cs" />
     <Compile Include="Assets\Scripts\Learning\Exp3\Exp3.cs" />
     <Compile Include="Assets\Scripts\Learning\Ratings.cs" />
-    <Compile Include="Assets\Scripts\Learning\UCB\Elements.cs" />
-    <Compile Include="Assets\Scripts\Learning\UCB\UCB.cs" />
     <Compile Include="Assets\Scripts\LoadOnClick.cs" />
     <Compile Include="Assets\Scripts\Piece.cs" />
     <Compile Include="Assets\Scripts\PieceSolution.cs" />

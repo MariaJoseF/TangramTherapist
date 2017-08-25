@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using Assets.Scripts.Learning;
-using Assets.Scripts.UCB;
 using System.Collections.Generic;
+using Assets.Scripts.Exp3;
 
 public class Therapist : MonoBehaviour
 {
@@ -44,10 +44,9 @@ public class Therapist : MonoBehaviour
     /// 
     /// //////////////////////
     /// 
-    static float[] rewards = { };
+    static double[] rewards = { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f};
 
-    //Exp3 AlgorithmEXP3 = new Exp3(17, rewards, 0.07f);
-    internal UCB AlgorithmUCB = new UCB(5, rewards);
+    internal Exp3 AlgorithmEXP3 = new Exp3(5, rewards, 0.07f);
     internal Ratings ratingsFeedback = new Ratings();
     internal List<int> vec_ratings = new List<int>();
     internal String action_name = "";
@@ -278,9 +277,9 @@ public class Therapist : MonoBehaviour
         //Calculate the average ratings for the utterances presented for the previous action selected and update the UCB algorithm reward
         AVG_Ratings();
 
-        AlgorithmUCB.RunUCB();
+        AlgorithmEXP3.RunExp3();
 
-        switch (AlgorithmUCB.Action)
+        switch (AlgorithmEXP3.Action)
         {
             case 0://all prompts
                 firstPrompt = true;
@@ -314,7 +313,7 @@ public class Therapist : MonoBehaviour
                 break;
         }
 
-        previousAction = AlgorithmUCB.Action;
+        previousAction = AlgorithmEXP3.Action;
 
         ratingsFeedback.Label1.Text = "Feedback " + action_name;
 
@@ -344,7 +343,7 @@ public class Therapist : MonoBehaviour
         ratingsFeedback.Button_4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
         ratingsFeedback.Button_5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 
-        ratingsFeedback.ActionNumber1 = AlgorithmUCB.Action;
+        ratingsFeedback.ActionNumber1 = AlgorithmEXP3.Action;
 
         ratingsFeedback.feedback_val = -2;
         ratingsFeedback.default_form = 1;
@@ -364,7 +363,7 @@ public class Therapist : MonoBehaviour
 
             aux = (aux / vec_ratings.Count);
 
-            AlgorithmUCB.UpdateReward(previousAction, Math.Round(aux, 2));
+            AlgorithmEXP3.UpdateReward(previousAction, Math.Round(aux, 2));
         }
     }
 
