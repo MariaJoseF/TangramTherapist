@@ -18,6 +18,8 @@ public class PositiveFeedState : State
             lastPositiveFeedTime = DateTime.Now;
             UtterancesManager.Instance.CheckUtteranceFinish();
 
+            --its needed to put the rude robot here also
+
             UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count));
         }
         Therapist.Instance.currentState = Therapist.Instance.PlayState;

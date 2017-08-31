@@ -1,376 +1,4 @@
-﻿/*using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-
-public class UtterancesManager : MonoBehaviour {
-    private static UtterancesManager instance = null;
-    StateConnector s;
-    string currentUtterance = null;
-    bool withoutHelp = false, canceling = false, doubleCanceling = false;
-    public float hardClueSeconds;
-    public static UtterancesManager Instance { get { return instance; } }
-    Queue utterancesQueue = new Queue();
-
-    void Awake() {
-        //Check if instance already exists
-        if (instance == null)
-            instance = this;
-
-        else if (instance != this)
-            Destroy(gameObject);
-
-        s = new StateConnector(Instance);
-    }
-
-    public void UtteranceStarted(string id)
-    {
-        currentUtterance = id;
-        canceling = false;
-        print("COMEÇOU UTTERANCE " + id);
-        if (doubleCanceling)
-        {
-            s.CancelUtterance(id);
-            doubleCanceling = false;
-            canceling = true;
-        }
-
-    }
-
-    public void UtteranceFinished(string id)
-    {
-        if(!canceling)
-            currentUtterance = null;
-        print("ACABOU UTTERANCE " + id);
-
-        utterancesQueue.Dequeue();
-
-        if (id.Contains("fingerHelp") || id.Contains("buttonHelp") || (id.Contains("start") && withoutHelp))
-        {
-            GameState.Instance.haveToEnableAllPieces = true;
-        }
-        else if (id.Contains("greeting") || id.Contains("nextGame")) 
-        {
-            GameState.Instance.haveToEnablePlayButton = true;
-        }
-        else if (id.Contains("hardClue")) 
-        {
-            Therapist.Instance.nFailedTries = 0;
-            Therapist.Instance.nWrongAngleTries = 0;
-            GameState.Instance.showHardClue = true;
-        }
-        else if (id.Contains("thirdPrompt") || id.Contains("thirdAnglePrompt"))
-        {
-            Therapist.Instance.nFailedTries = 0;
-            Therapist.Instance.nWrongAngleTries = 0;
-            GameState.Instance.showCluePiece = Therapist.Instance.currentPlace;
-            GameState.Instance.showClue = true;
-        }
-        else if (id.Contains("firstAnglePrompt") || id.Contains("firstAnglePromptFinger") || id.Contains("firstAnglePromptButton")
-            || id.Contains("secondAnglePrompt") || id.Contains("secondAnglePromptFinger") || id.Contains("secondAnglePromptButton"))
-        {
-            Therapist.Instance.nWrongAngleTries = 0;
-        }
-        else if (id.Contains("firstPlacePrompt") || id.Contains("secondPrompt1Position") || id.Contains("secondPrompt2Position")
-            || id.Contains("secondPromptPlace") || id.Contains("closeHelp"))
-        {
-            Therapist.Instance.nFailedTries = 0;
-        }
-    }
-
-    void CancelingUtterance()
-    {
-        if (utterancesQueue.Count > 0)
-        {
-            if (!canceling)
-            {
-                print("CANCELAR " + currentUtterance);
-                s.CancelUtterance(currentUtterance);
-                canceling = true;
-            }
-            else
-            {
-                print("CANCELAR 2º vez " + currentUtterance);
-                doubleCanceling = true;
-            }
-        }
-    }
-
-    public void Greeting()
-    {
-        utterancesQueue.Enqueue("greeting");
-        s.Greeting();
-    }
-
-    public void GameStart(string puzzle, bool help)
-    {
-        utterancesQueue.Enqueue("start");
-        s.GameStart(puzzle);
-        withoutHelp = help;
-    }
-
-    public void NextGame()
-    {
-        utterancesQueue.Enqueue("nextGame");
-        s.NextGame();
-    }
-
-    public void FingerHelp()
-    {
-        utterancesQueue.Enqueue("fingerHelp");
-        s.FingerHelp();
-    }
-
-    public void ButtonHelp()
-    {
-        utterancesQueue.Enqueue("buttonHelp");
-        s.ButtonHelp();
-    }
-
-    public void Win(string puzzle)
-    {
-        CancelingUtterance();
-        utterancesQueue.Enqueue("win");
-        s.Win(puzzle);
-    }
-
-    public void FastWin(string puzzle)
-    {
-        CancelingUtterance();
-        utterancesQueue.Enqueue("fastWin");
-        s.FastWin(puzzle);
-    }
-
-    public void Quit()
-    {
-        CancelingUtterance();
-        utterancesQueue.Enqueue("quit");
-        s.Quit();
-    }
-
-    public void MotorHelp()
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("motorHelp");
-            s.MotorHelp();
-        }
-    }
-
-    public void CloseHelp()
-    {
-        CancelingUtterance();
-        utterancesQueue.Enqueue("closeHelp");
-        s.CloseHelp();
-    }
-
-    public void PositiveFeedback(string nPieces)
-    {
-        if (!currentUtterance.Contains("positiveFeedback"))
-            CancelingUtterance();
-        else
-            return;
-
-        utterancesQueue.Enqueue("positiveFeedback");
-        s.PositiveFeedback(nPieces);
-    }
-
-    public bool NegativeFeedback()
-    {
-        if(utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("negativeFeedback");
-            s.NegativeFeedback();
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool FirstAnglePrompt(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("firstAnglePrompt");
-            s.FirstAnglePrompt(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool FirstAnglePromptFinger(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("firstAnglePromptFinger");
-            s.FirstAnglePromptFinger(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool FirstAnglePromptButton(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("firstAnglePromptButton");
-            s.FirstAnglePromptButton(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool SecondAnglePrompt(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("secondAnglePrompt");
-            s.SecondAnglePrompt(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool SecondAnglePromptFinger(string piece, string direction)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("secondAnglePromptFinger");
-            s.SecondAnglePromptFinger(piece, direction);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool SecondAnglePromptButton(string piece, string nClicks)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("secondAnglePromptButton");
-            s.SecondAnglePromptButton(piece, nClicks);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool ThirdAnglePrompt(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("thirdAnglePrompt");
-            s.ThirdAnglePrompt(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public void StopAnglePrompt(string piece)
-    {
-        CancelingUtterance();
-        utterancesQueue.Enqueue("stopAnglePrompt");
-        s.StopAnglePrompt(piece);
-    }
-
-    public bool FirstIdlePrompt(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("firstIdlePrompt");
-            s.FirstIdlePrompt(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool FirstPlacePrompt(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("firstPlacePrompt");
-            s.FirstPlacePrompt(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool SecondPrompt1Position(string piece, string pos)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("secondPrompt1Position");
-            s.SecondPrompt1Position(piece, pos);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool SecondPrompt2Position(string piece, string pos1, string pos2)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("secondPrompt2Position");
-            s.SecondPrompt2Position(piece, pos1, pos2);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool SecondPromptPlace(string piece, string pos, string relativePiece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("secondPromptPlace");
-            s.SecondPromptPlace(piece, pos, relativePiece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool ThirdPrompt(string piece)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("thirdPrompt");
-            s.ThirdPrompt(piece);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public bool HardClue(float seconds)
-    {
-        if (utterancesQueue.Count == 0)
-        {
-            utterancesQueue.Enqueue("hardClue");
-            hardClueSeconds = seconds;
-            s.HardClue();
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public void Dispose()
-    {
-        Instance.Dispose();
-    }
-}*/
-
+﻿
 
 using System;
 using System.Collections.Generic;
@@ -601,14 +229,11 @@ public class UtterancesManager : MonoBehaviour
             return false;
     }
 
-    public bool FirstAnglePrompt(string piece, int no_voice)
+    public bool FirstAnglePrompt(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.FirstAnglePrompt(piece);
-            }
+            s.FirstAnglePrompt(piece);
 
             return true;
         }
@@ -616,91 +241,73 @@ public class UtterancesManager : MonoBehaviour
             return false;
     }
 
-    public bool FirstAnglePromptFinger(string piece, int no_voice)
+    public bool FirstAnglePromptFinger(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.FirstAnglePromptFinger(piece);
-            }
+            s.FirstAnglePromptFinger(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstAnglePromptButton(string piece, int no_voice)
+    public bool FirstAnglePromptButton(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.FirstAnglePromptButton(piece);
-            }
+            s.FirstAnglePromptButton(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePrompt(string piece, int no_voice)
+    public bool SecondAnglePrompt(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.SecondAnglePrompt(piece);
-            }
+            s.SecondAnglePrompt(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePromptFinger(string piece, string direction, int no_voice)
+    public bool SecondAnglePromptFinger(string piece, string direction)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.SecondAnglePromptFinger(piece, direction);
-            }
+            s.SecondAnglePromptFinger(piece, direction);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePromptButton(string piece, string nClicks, int no_voice)
+    public bool SecondAnglePromptButton(string piece, string nClicks)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.SecondAnglePromptButton(piece, nClicks);
-            }
+            s.SecondAnglePromptButton(piece, nClicks);
             return true;
         }
         else
             return false;
     }
 
-    public bool ThirdAnglePrompt(string piece, int no_voice)
+    public bool ThirdAnglePrompt(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.ThirdAnglePrompt(piece);
-            }
+            s.ThirdAnglePrompt(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool StopAnglePrompt(string piece, int no_voice)
+    public bool StopAnglePrompt(string piece)
     {
         if (currentUtterance != null)
         {
@@ -719,110 +326,85 @@ public class UtterancesManager : MonoBehaviour
 
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.ThirdAnglePrompt(piece);
-            }
+            s.ThirdAnglePrompt(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstIdlePrompt(string piece, int no_voice)
+    public bool FirstIdlePrompt(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.FirstIdlePrompt(piece);
-            }
+            s.FirstIdlePrompt(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstPlacePrompt(string piece, int no_voice)
+    public bool FirstPlacePrompt(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.FirstPlacePrompt(piece);
-            }
+            s.FirstPlacePrompt(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPrompt1Position(string piece, string pos, int no_voice)
+    public bool SecondPrompt1Position(string piece, string pos)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.SecondPrompt1Position(piece, pos);
-            }
+            s.SecondPrompt1Position(piece, pos);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPrompt2Position(string piece, string pos1, string pos2, int no_voice)
+    public bool SecondPrompt2Position(string piece, string pos1, string pos2)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.SecondPrompt2Position(piece, pos1, pos2);
-            }
+            s.SecondPrompt2Position(piece, pos1, pos2);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPromptPlace(string piece, string pos, string relativePiece, int no_voice)
+    public bool SecondPromptPlace(string piece, string pos, string relativePiece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.SecondPromptPlace(piece, pos, relativePiece);
-            }
+            s.SecondPromptPlace(piece, pos, relativePiece);
             return true;
         }
         else
             return false;
     }
 
-    public bool ThirdPrompt(string piece, int no_voice)
+    public bool ThirdPrompt(string piece)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                s.ThirdPrompt(piece);
-            }
+            s.ThirdPrompt(piece);
             return true;
         }
         else
             return false;
     }
 
-    public bool HardClue(float seconds, int no_voice)
+    public bool HardClue(float seconds)
     {
         if (currentUtterance == null)
         {
-            if (no_voice == 0)
-            {
-                hardClueSeconds = seconds;
-                s.HardClue();
-            }
-
+            hardClueSeconds = seconds;
+            s.HardClue();
             return true;
         }
         else

@@ -9,9 +9,7 @@ public class FirstPlacePromptState : State
     public int nPrompts;
     bool repeatHardClue = false, repeatPrompt = false;
 
-    private bool firstPrompt = true;
-    private bool secondPrompt = true;
-    private bool thirdPrompt = true;
+    private bool niceRobot = true;
 
 
     public FirstPlacePromptState()
@@ -25,9 +23,7 @@ public class FirstPlacePromptState : State
         Therapist.Instance.nFailedTries = 0;
         nPrompts = 0;
 
-        firstPrompt = Therapist.Instance.First_Prompt;
-        secondPrompt = Therapist.Instance.Second_Prompt;
-        thirdPrompt = Therapist.Instance.Third_Prompt;
+        niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
         Therapist.Instance.promt_Type = 1;
@@ -45,17 +41,13 @@ public class FirstPlacePromptState : State
                 repeatPrompt = false;
                 repeatHardClue = false;
 
-                utterance = UtterancesManager.Instance.HardClue(2f, 1);
-                if (firstPrompt)
+                if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.HardClue(2f, 0);
+                    utterance = UtterancesManager.Instance.HardClue(2f);
                 }
                 else
                 {
-                    if (utterance)
-                    {
-                        UtterancesManager.Instance.WriteJSON("ROBOT: FirstIdlePrompt hard clue NOT SPOKEN");
-                    }
+                    utterance = UtterancesManager.Instance.HardClue(2f); --rude robot
                 }
 
                 if (!utterance)
@@ -79,17 +71,14 @@ public class FirstPlacePromptState : State
                 repeatPrompt = false;
                 repeatHardClue = false;
 
-                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
-                if (firstPrompt)
+                if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+                    utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
                 }
                 else
                 {
-                    if (utterance)
-                    {
-                        UtterancesManager.Instance.WriteJSON("ROBOT: FirstPlacePrompt NOT SPOKEN");
-                    }
+                    utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
+
                 }
 
                 if (!utterance)
@@ -132,17 +121,13 @@ public class FirstPlacePromptState : State
             repeatPrompt = false;
             repeatHardClue = false;
 
-            utterance = UtterancesManager.Instance.HardClue(2f, 1);
-            if (firstPrompt)
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.HardClue(2f, 0);
+                utterance = UtterancesManager.Instance.HardClue(2f);
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstPlacePrompt hard clue NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.HardClue(2f); --rude robot
             }
 
             if (!utterance)
@@ -166,17 +151,14 @@ public class FirstPlacePromptState : State
             repeatPrompt = false;
             repeatHardClue = false;
 
-            utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
-            if (firstPrompt)
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstPlacePrompt NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
+
             }
 
             if (!utterance)

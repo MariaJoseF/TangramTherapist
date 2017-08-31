@@ -44,17 +44,15 @@ public class Therapist : MonoBehaviour
     /// 
     /// //////////////////////
     /// 
-    static double[] rewards = { 0.5f, 0.5f, 0.5f, 0.5f, 0.5f};
+    static double[] rewards = { 0.5f, 0.5f};
 
-    internal Exp3 AlgorithmEXP3 = new Exp3(5, rewards, 0.07f);
+    internal Exp3 AlgorithmEXP3 = new Exp3(2, rewards, 0.07f);
     internal Ratings ratingsFeedback = new Ratings();
     internal List<int> vec_ratings = new List<int>();
     internal String action_name = "";
     public GameSettings currentGame;
     private bool positive_feedback = false;
-    private bool firstPrompt = true;
-    private bool secondPrompt = true;
-    private bool thirdPrompt = true;
+    private bool niceRobot = true;
     private int previousAction = -1;
     internal bool lastActionMade = true;
 
@@ -279,37 +277,50 @@ public class Therapist : MonoBehaviour
 
         AlgorithmEXP3.RunExp3();
 
+        //switch (AlgorithmEXP3.Action)
+        //{
+        //    case 0://all prompts
+        //        firstPrompt = true;
+        //        secondPrompt = true;
+        //        thirdPrompt = true;
+        //        action_name = "All prompts";
+        //        break;
+        //    case 1://only first and second prompts
+        //        firstPrompt = true;
+        //        secondPrompt = true;
+        //        thirdPrompt = false;
+        //        action_name = "First and Second prompts";
+        //        break;
+        //    case 2://only first and third prompts
+        //        firstPrompt = true;
+        //        secondPrompt = false;
+        //        thirdPrompt = true;
+        //        action_name = "First and Third prompts";
+        //        break;
+        //    case 3://only second and third prompts
+        //        firstPrompt = false;
+        //        secondPrompt = true;
+        //        thirdPrompt = true;
+        //        action_name = "Second and Third prompts";
+        //        break;
+        //    case 4://no prompts
+        //        firstPrompt = false;
+        //        secondPrompt = false;
+        //        thirdPrompt = false;
+        //        action_name = "No prompts";
+        //        break;
+        //}
+
+
         switch (AlgorithmEXP3.Action)
         {
-            case 0://all prompts
-                firstPrompt = true;
-                secondPrompt = true;
-                thirdPrompt = true;
-                action_name = "All prompts";
+            case 0://not rude
+                niceRobot = true;
+                action_name = "Nice Robot";
                 break;
-            case 1://only first and second prompts
-                firstPrompt = true;
-                secondPrompt = true;
-                thirdPrompt = false;
-                action_name = "First and Second prompts";
-                break;
-            case 2://only first and third prompts
-                firstPrompt = true;
-                secondPrompt = false;
-                thirdPrompt = true;
-                action_name = "First and Third prompts";
-                break;
-            case 3://only second and third prompts
-                firstPrompt = false;
-                secondPrompt = true;
-                thirdPrompt = true;
-                action_name = "Second and Third prompts";
-                break;
-            case 4://no prompts
-                firstPrompt = false;
-                secondPrompt = false;
-                thirdPrompt = false;
-                action_name = "No prompts";
+            case 1://rude
+                niceRobot = false;
+                action_name = "Rude Robot";
                 break;
         }
 
@@ -324,7 +335,7 @@ public class Therapist : MonoBehaviour
 
         vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
 
-        Console.WriteLine("firstPrompt = " + firstPrompt + " secondPrompt = " + secondPrompt + " thirdPrompt = " + thirdPrompt);
+        Console.WriteLine("Rude Robot = " + niceRobot);
     }
 
     internal void ShowFormRatings()
@@ -524,42 +535,17 @@ public class Therapist : MonoBehaviour
         }
     }
 
-    public bool First_Prompt
+    public bool NiceRobot
     {
         get
         {
-            return firstPrompt;
+            return niceRobot;
         }
 
         set
         {
-            firstPrompt = value;
+            niceRobot = value;
         }
     }
 
-    public bool Second_Prompt
-    {
-        get
-        {
-            return secondPrompt;
-        }
-
-        set
-        {
-            secondPrompt = value;
-        }
-    }
-
-    public bool Third_Prompt
-    {
-        get
-        {
-            return thirdPrompt;
-        }
-
-        set
-        {
-            thirdPrompt = value;
-        }
-    }
 }

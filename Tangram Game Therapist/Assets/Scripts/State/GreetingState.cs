@@ -11,6 +11,8 @@ public class GreetingState : State
 
     public void BeginFirstGame()
     {
+
+        --its needed to put the rude robot here also
         UtterancesManager.Instance.Greeting();
     }
 

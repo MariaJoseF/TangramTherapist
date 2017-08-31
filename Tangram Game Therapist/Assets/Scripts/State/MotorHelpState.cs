@@ -20,6 +20,8 @@ public class MotorHelpState : State
 
             UtterancesManager.Instance.MotorHelp();
 
+            --its needed to put the rude robot here also
+
             nHelpRequests = 0;
         }
         Therapist.Instance.currentState = Therapist.Instance.previousState;

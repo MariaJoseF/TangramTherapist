@@ -20,6 +20,9 @@ public class ButtonHelpState : State
 
     public void BeginNextGame()
     {
+
+        --its needed to put the rude robot here also
+
         UtterancesManager.Instance.ButtonHelp();
         Debug.Log("2 ButtonHelp");
 

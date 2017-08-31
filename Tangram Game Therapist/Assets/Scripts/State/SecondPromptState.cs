@@ -17,9 +17,7 @@ public class SecondPromptState : State
     Piece currentPiece;
     int random;
 
-    private bool firstPrompt = true;
-    private bool secondPrompt = true;
-    private bool thirdPrompt = true;
+    private bool niceRobot = true;
 
     public SecondPromptState()
     {
@@ -35,9 +33,7 @@ public class SecondPromptState : State
         nPrompts = 0;
         currentPiece = Therapist.Instance.currentPiece;
 
-        firstPrompt = Therapist.Instance.First_Prompt;
-        secondPrompt = Therapist.Instance.Second_Prompt;
-        thirdPrompt = Therapist.Instance.Third_Prompt;
+        niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
         Therapist.Instance.promt_Type = 2;
@@ -54,17 +50,14 @@ public class SecondPromptState : State
                 repeatRelativePosition = false;
 
                 Debug.Log("2nd prompt ");
-                utterance = UtterancesManager.Instance.HardClue(4.0f, 1);
-                if (secondPrompt)
+
+                if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
+                    utterance = UtterancesManager.Instance.HardClue(4.0f);
                 }
                 else
                 {
-                    if (utterance)
-                    {
-                        UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt hard clue NOT SPOKEN");
-                    }
+                    utterance = UtterancesManager.Instance.HardClue(4.0f); --rude robot
                 }
 
                 if (!utterance)
@@ -111,17 +104,14 @@ public class SecondPromptState : State
             repeatRelativePosition = false;
 
             Debug.Log("2nd prompt -> RepeatPrompt ");
-            utterance = UtterancesManager.Instance.HardClue(4.0f, 1);
-            if (secondPrompt)
+
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
+                utterance = UtterancesManager.Instance.HardClue(4.0f);
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt hard clue NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.HardClue(4.0f); --rude robot
             }
 
             if (!utterance)
@@ -188,18 +178,13 @@ public class SecondPromptState : State
                 string relativePosition = availableAdjacentPieces[pieceId];
                 Debug.Log("2nd prompt -> HelpWithRelativePosition -> id " + pieceId + " relative position " + relativePosition + " piece " + piece);
 
-                utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece), 1);
-                if (secondPrompt)
+                if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece), 0);
+                    utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece));
                 }
                 else
                 {
-                    if (utterance)
-                    {
-                        UtterancesManager.Instance.WriteJSON("ROBOT: SecondPromptPlace NOT SPOKEN");
-                    }
-
+                    utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)); --rude robot
                 }
 
                 if (!utterance)
@@ -227,17 +212,13 @@ public class SecondPromptState : State
                 {
                     Debug.Log("2nd prompt -> id " + currentPlace.name + " position " + currentPlace.relPos.pos2);
 
-                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2, 1);
-                    if (secondPrompt)
+                    if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2, 0);
+                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2);
                     }
                     else
                     {
-                        if (utterance)
-                        {
-                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt1Position NOT SPOKEN");
-                        }
+                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2); --rude robot
                     }
 
                     if (!utterance)
@@ -260,17 +241,13 @@ public class SecondPromptState : State
                 {
                     Debug.Log("2nd prompt -> id " + currentPlace.name + " position " + currentPlace.relPos.pos1);
 
-                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, 1);
-                    if (secondPrompt)
+                    if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, 0);
+                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1);
                     }
                     else
                     {
-                        if (utterance)
-                        {
-                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt1Position NOT SPOKEN");
-                        }
+                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1); --rude robot
                     }
 
                     if (!utterance)
@@ -293,17 +270,13 @@ public class SecondPromptState : State
                 {
                     Debug.Log("2nd prompt -> id " + currentPlace.name + " position1 " + currentPlace.relPos.pos1 + " position2 " + currentPlace.relPos.pos2);
 
-                    utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2, 1);
-                    if (secondPrompt)
+                    if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2, 0);
+                        utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2);
                     }
                     else
                     {
-                        if (utterance)
-                        {
-                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondPrompt2Position NOT SPOKEN");
-                        }
+                        utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2); --rude robot
                     }
 
                     if (!utterance)

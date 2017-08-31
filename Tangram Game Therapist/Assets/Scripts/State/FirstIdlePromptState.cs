@@ -10,9 +10,8 @@ public class FirstIdlePromptState : State
     bool vibratePiece = false, repeatPrompt = false, repeatHardClue = false;
     Piece currentPiece;
 
-    private bool firstPrompt = true;
-    private bool secondPrompt = true;
-    private bool thirdPrompt = true;
+    private bool niceRobot = true;
+
 
     public FirstIdlePromptState()
     {
@@ -25,9 +24,8 @@ public class FirstIdlePromptState : State
         nPrompts = 0;
         repeatPrompt = false;
 
-        firstPrompt = Therapist.Instance.First_Prompt;
-        secondPrompt = Therapist.Instance.Second_Prompt;
-        thirdPrompt = Therapist.Instance.Third_Prompt;
+        niceRobot = Therapist.Instance.NiceRobot;
+
 
         bool utterance = false;
         Therapist.Instance.promt_Type = 1;
@@ -42,18 +40,15 @@ public class FirstIdlePromptState : State
                 Therapist.Instance.currentPiece = piece;
             }
 
-            utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
 
-            if (firstPrompt)
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstIdlePrompt NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
+
             }
 
             if (!utterance)
@@ -91,18 +86,15 @@ public class FirstIdlePromptState : State
             repeatPrompt = false;
             repeatHardClue = false;
 
-            utterance = UtterancesManager.Instance.HardClue(2f, 1);
 
-            if (firstPrompt)
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.HardClue(2f, 0);
+                utterance = UtterancesManager.Instance.HardClue(2f);
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstIdlePrompt hard clue NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.HardClue(2f); --rude robot
+
             }
 
             if (!utterance)
@@ -131,18 +123,14 @@ public class FirstIdlePromptState : State
                 Therapist.Instance.currentPiece = piece;
             }
 
-            utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
 
-            if (firstPrompt)
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: FirstIdlePrompt NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
             }
 
             if (!utterance)

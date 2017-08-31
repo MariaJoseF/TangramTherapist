@@ -16,9 +16,7 @@ public class SecondAnglePromptState : State
     SceneProperties.RotationMode rotationMode;
     string rotationDirection;
 
-    private bool firstPrompt = true;
-    private bool secondPrompt = true;
-    private bool thirdPrompt = true;
+    private bool niceRobot = true;
 
     public SecondAnglePromptState()
     {
@@ -33,9 +31,7 @@ public class SecondAnglePromptState : State
         nPrompts = 0;
         currentPiece = Therapist.Instance.currentPiece;
 
-        firstPrompt = Therapist.Instance.First_Prompt;
-        secondPrompt = Therapist.Instance.Second_Prompt;
-        thirdPrompt = Therapist.Instance.Third_Prompt;
+        niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
         Therapist.Instance.promt_Type = 2;
@@ -51,18 +47,15 @@ public class SecondAnglePromptState : State
                 repeatPrompt = false;
                 repeatAngleHelp = false;
                 Debug.Log("2nd prompt -> ");
-                utterance = UtterancesManager.Instance.HardClue(4.0f, 1);
 
-                if (secondPrompt)
+                if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
+                    utterance = UtterancesManager.Instance.HardClue(4.0f);
                 }
                 else
                 {
-                    if (utterance)
-                    {
-                        UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePrompt hard clue NOT SPOKEN");
-                    }
+                    utterance = UtterancesManager.Instance.HardClue(4.0f); --rude robot
+
                 }
 
                 if (!utterance)
@@ -88,17 +81,15 @@ public class SecondAnglePromptState : State
                     repeatPrompt = false;
                     repeatAngleHelp = false;
                     Debug.Log("2nd prompt -> SecondAnglePrompt");
-                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
-                    if (secondPrompt)
+
+                    if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+                        utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
                     }
                     else
                     {
-                        if (utterance)
-                        {
-                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePrompt NOT SPOKEN");
-                        }
+                        utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
+
                     }
 
                     if (!utterance)
@@ -123,17 +114,14 @@ public class SecondAnglePromptState : State
                     if (rotationMode == SceneProperties.RotationMode.button)
                     {
                         Debug.Log("2nd prompt -> SecondAnglePromptButton");
-                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), 1);
-                        if (secondPrompt)
+
+                        if (niceRobot)
                         {
-                            utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), 0);
+                            utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
                         }
                         else
                         {
-                            if (utterance)
-                            {
-                                UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePromptButton NOT SPOKEN");
-                            }
+                            utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks)); --rude robot
                         }
 
                         if (!utterance)
@@ -155,17 +143,14 @@ public class SecondAnglePromptState : State
                     else
                     {
                         Debug.Log("2nd prompt -> SecondAnglePromptFinger");
-                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, 1);
-                        if (secondPrompt)
+
+                        if (niceRobot)
                         {
-                            utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, 0);
+                            utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection);
                         }
                         else
                         {
-                            if (utterance)
-                            {
-                                UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePromptFinger NOT SPOKEN");
-                            }
+                            utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection); --rude robot
                         }
 
                         if (!utterance)
@@ -208,17 +193,14 @@ public class SecondAnglePromptState : State
             repeatPrompt = false;
             repeatAngleHelp = false;
 
-            utterance = UtterancesManager.Instance.HardClue(4.0f, 1);
-            if (secondPrompt)
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.HardClue(4.0f, 0);
+                utterance = UtterancesManager.Instance.HardClue(4.0f);
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePrompt har clue NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.HardClue(4.0f); --rude robot
+
             }
 
             if (!utterance)
@@ -246,17 +228,13 @@ public class SecondAnglePromptState : State
                 repeatPrompt = false;
                 repeatAngleHelp = false;
 
-                utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
-                if (secondPrompt)
+                if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
                 }
                 else
                 {
-                    if (utterance)
-                    {
-                        UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePrompt NOT SPOKEN");
-                    }
+                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
                 }
 
                 if (!utterance)
@@ -281,17 +259,13 @@ public class SecondAnglePromptState : State
                 repeatAngleHelp = false;
                 if (rotationMode == SceneProperties.RotationMode.button)
                 {
-                    utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), 1);
-                    if (secondPrompt)
+                    if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), 0);
+                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
                     }
                     else
                     {
-                        if (utterance)
-                        {
-                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePromptButton NOT SPOKEN");
-                        }
+                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks)); --rude robot
                     }
 
                     if (!utterance)
@@ -311,17 +285,13 @@ public class SecondAnglePromptState : State
                 }
                 else
                 {
-                    utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, 1);
-                    if (secondPrompt)
+                    if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, 0);
+                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection);
                     }
                     else
                     {
-                        if (utterance)
-                        {
-                            UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePromptFinger NOT SPOKEN");
-                        }
+                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection); --rude robot
                     }
 
                     if (!utterance)
@@ -407,17 +377,15 @@ public class SecondAnglePromptState : State
         {
             Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
             UtterancesManager.Instance.CheckUtteranceFinish();
-            bool utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 1);
-            if (secondPrompt)
+            bool utterance = false;
+
+            if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), 0);
+                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
             }
             else
             {
-                if (utterance)
-                {
-                    UtterancesManager.Instance.WriteJSON("ROBOT: SecondAnglePrompt - StopAnglePrompt NOT SPOKEN");
-                }
+                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
             }
 
             ///

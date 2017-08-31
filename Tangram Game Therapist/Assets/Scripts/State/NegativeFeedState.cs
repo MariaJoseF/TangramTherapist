@@ -21,6 +21,8 @@ public class NegativeFeedState : State
         //{
             UtterancesManager.Instance.CheckUtteranceFinish();
 
+        --its needed to put the rude robot here also
+
             if (UtterancesManager.Instance.NegativeFeedback())
             {
                 nNegativeFeed = 0;

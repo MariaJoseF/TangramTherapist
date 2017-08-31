@@ -15,6 +15,8 @@ public class InitialHelpState : State
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
+        --its needed to put the rude robot here also
+
         if (Therapist.Instance.firstTimeFinger == 1)
         {
             UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);

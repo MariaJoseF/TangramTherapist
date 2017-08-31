@@ -18,6 +18,8 @@ public class FitHelpState : State
 
         if (nHelpRequests > 5 || nHelpRequests == 0 || (DateTime.Now - lastHelpTime).TotalSeconds > 100)
         {
+
+            --its needed to put the rude robot here also
             UtterancesManager.Instance.CloseHelp();
 
             lastHelpTime = DateTime.Now;

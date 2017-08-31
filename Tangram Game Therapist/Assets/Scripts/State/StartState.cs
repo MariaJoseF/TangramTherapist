@@ -17,6 +17,7 @@ public class StartState : State {
             Debug.Log("QUERES JOGAR UM NOVO JOGO??");
             UtterancesManager.Instance.CheckUtteranceFinish();
 
+            --its needed to put the rude robot here also
             UtterancesManager.Instance.NextGame();
         }
 
