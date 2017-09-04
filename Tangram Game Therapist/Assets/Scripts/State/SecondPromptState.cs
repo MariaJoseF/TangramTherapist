@@ -51,14 +51,20 @@ public class SecondPromptState : State
 
                 Debug.Log("2nd prompt ");
 
+                /*NEW*/
+
                 if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.HardClue(4.0f);
+                    UtterancesManager.Instance.ChangeLibrary("Tangram");
                 }
                 else
                 {
-                    utterance = UtterancesManager.Instance.HardClue(4.0f); --rude robot
+                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                 }
+
+                /*NEW*/
+
+                utterance = UtterancesManager.Instance.HardClue(4.0f); 
 
                 if (!utterance)
                 {
@@ -105,14 +111,20 @@ public class SecondPromptState : State
 
             Debug.Log("2nd prompt -> RepeatPrompt ");
 
+            /*NEW*/
+
             if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.HardClue(4.0f);
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
             }
             else
             {
-                utterance = UtterancesManager.Instance.HardClue(4.0f); --rude robot
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
             }
+
+            /*NEW*/
+
+            utterance = UtterancesManager.Instance.HardClue(4.0f);
 
             if (!utterance)
             {
@@ -178,14 +190,20 @@ public class SecondPromptState : State
                 string relativePosition = availableAdjacentPieces[pieceId];
                 Debug.Log("2nd prompt -> HelpWithRelativePosition -> id " + pieceId + " relative position " + relativePosition + " piece " + piece);
 
+                /*NEW*/
+
                 if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece));
+                    UtterancesManager.Instance.ChangeLibrary("Tangram");
                 }
                 else
                 {
-                    utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece)); --rude robot
+                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                 }
+
+                /*NEW*/
+
+                utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece));
 
                 if (!utterance)
                 {
@@ -212,14 +230,20 @@ public class SecondPromptState : State
                 {
                     Debug.Log("2nd prompt -> id " + currentPlace.name + " position " + currentPlace.relPos.pos2);
 
+                    /*NEW*/
+
                     if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2);
+                        UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
                     else
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2); --rude robot
+                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                     }
+
+                    /*NEW*/
+
+                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2);
 
                     if (!utterance)
                     {
@@ -241,14 +265,20 @@ public class SecondPromptState : State
                 {
                     Debug.Log("2nd prompt -> id " + currentPlace.name + " position " + currentPlace.relPos.pos1);
 
+                    /*NEW*/
+
                     if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1);
+                        UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
                     else
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1); --rude robot
+                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                     }
+
+                    /*NEW*/
+
+                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1);
 
                     if (!utterance)
                     {
@@ -270,14 +300,18 @@ public class SecondPromptState : State
                 {
                     Debug.Log("2nd prompt -> id " + currentPlace.name + " position1 " + currentPlace.relPos.pos1 + " position2 " + currentPlace.relPos.pos2);
 
-                    if (niceRobot)
+                    /*NEW*/
+
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2);
+                        UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
                     else
                     {
-                        utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2); --rude robot
+                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                     }
+
+                    /*NEW*/
+                    utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2);
 
                     if (!utterance)
                     {

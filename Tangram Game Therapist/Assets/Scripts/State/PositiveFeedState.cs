@@ -16,9 +16,22 @@ public class PositiveFeedState : State
         if ((DateTime.Now - lastPositiveFeedTime).TotalSeconds > 3)
         {
             lastPositiveFeedTime = DateTime.Now;
-            UtterancesManager.Instance.CheckUtteranceFinish();
 
-            --its needed to put the rude robot here also
+
+            /*NEW*/
+
+            if (Therapist.Instance.NiceRobot)
+            {
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
+            }
+            else
+            {
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
+            }
+
+            /*NEW*/
+
+            UtterancesManager.Instance.CheckUtteranceFinish();
 
             UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count));
         }

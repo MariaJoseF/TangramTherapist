@@ -19,16 +19,29 @@ public class NegativeFeedState : State
         //if (nNegativeFeed >= 3 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15) {
         //if (nNegativeFeed >= 1 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15)
         //{
-            UtterancesManager.Instance.CheckUtteranceFinish();
 
-        --its needed to put the rude robot here also
 
-            if (UtterancesManager.Instance.NegativeFeedback())
-            {
-                nNegativeFeed = 0;
-                lastNegativeFeedTime = DateTime.Now;
-            }
-       // }
+        /*NEW*/
+
+        if (Therapist.Instance.NiceRobot)
+        {
+            UtterancesManager.Instance.ChangeLibrary("Tangram");
+        }
+        else
+        {
+            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
+        }
+
+        /*NEW*/
+
+        UtterancesManager.Instance.CheckUtteranceFinish();
+
+        if (UtterancesManager.Instance.NegativeFeedback())
+        {
+            nNegativeFeed = 0;
+            lastNegativeFeedTime = DateTime.Now;
+        }
+        // }
     }
 
     public void BeginFirstGame()

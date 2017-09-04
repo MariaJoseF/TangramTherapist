@@ -50,4 +50,17 @@ public interface ITPerceptions
     void PGivingPlace(string piece, string pos);
     void PGivingRotate(string piece);
     void CancelUtterance(string id);
+
+    void LibraryList(string[] libraries);
+    void LibraryChanged(string serialized_LibraryContents);
+    void Utterances(string library, string category, string subcategory, string[] utterances);
 }
+
+
+public interface ILibraryActions : IAction
+{
+    void ChangeLibrary(string newLibrary);
+    void GetLibraries();
+    void GetUtterances(string category, string subcategory);
+}
+

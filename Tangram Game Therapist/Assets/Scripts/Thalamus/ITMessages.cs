@@ -1,6 +1,11 @@
 using CookComputing.XmlRpc;
 
-public interface ITMessagesRpc : ITMessages, IXmlRpcProxy { }
+public interface ITMessagesRpc : ITMessages, IXmlRpcProxy
+{
+    void LibraryChanged(string serialized_LibraryContents);
+    void Utterances(string library, string category, string subcategory, string[] utterances);
+    void LibraryList(string[] libraries);
+}
 
 public interface ITMessages
 {
@@ -150,3 +155,33 @@ public interface ITMessages
     [XmlRpcMethod]
     void CancelUtterance(string id);
 }
+
+
+
+/* NEW */
+
+public interface ILibraryActionsRPC
+{
+    [XmlRpcMethod]
+    void ChangeLibrary(string newLibrary);
+
+    [XmlRpcMethod]
+    void GetLibraries();
+
+    [XmlRpcMethod]
+    void GetUtterances(string category, string subcategory);
+}
+
+public interface ILibraryEventsRPC
+{
+    [XmlRpcMethod]
+    void LibraryList(string[] libraries);
+
+    [XmlRpcMethod]
+    void LibraryChanged(string serialized_LibraryContents);
+
+    [XmlRpcMethod]
+    void Utterances(string library, string category, string subcategory, string[] utterances);
+}
+
+/* NEW */

@@ -57,10 +57,39 @@ public class StateConnector
         _thalamusConnector.FastWin(puzzle, GameManager.Instance.playerName);
     }
 
+    internal void GetUtterances(string category, string subcategory)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void LibraryList(string[] libraries)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void LibraryChanged(string serialized_LibraryContents)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void ChangeLibrary(string newLibrary)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void GetLibraries()
+    {
+        throw new NotImplementedException();
+    }
 
     public void Quit()
     {
         _thalamusConnector.Quit(GameManager.Instance.playerName);
+    }
+
+    internal void Utterances(string library, string category, string subcategory, string[] utterances)
+    {
+        throw new NotImplementedException();
     }
 
     public void MotorHelp()
@@ -262,4 +291,6 @@ public class StateConnector
     {
         _thalamusConnector.CancelUtterance(id);
     }
+
+
 }

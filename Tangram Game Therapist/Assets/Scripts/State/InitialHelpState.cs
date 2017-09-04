@@ -15,7 +15,18 @@ public class InitialHelpState : State
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
-        --its needed to put the rude robot here also
+        /*NEW*/
+
+        if (Therapist.Instance.NiceRobot)
+        {
+            UtterancesManager.Instance.ChangeLibrary("Tangram");
+        }
+        else
+        {
+            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
+        }
+
+        /*NEW*/
 
         if (Therapist.Instance.firstTimeFinger == 1)
         {

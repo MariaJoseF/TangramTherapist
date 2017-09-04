@@ -41,6 +41,41 @@ public class UtterancesManager : MonoBehaviour
         WriteJSON("ROBOT: " + id);
     }
 
+    internal void GetLibraries()
+    {
+        s.GetLibraries();
+    }
+
+    internal void GetUtterances(string category, string subcategory)
+    {
+        s.GetUtterances(category, subcategory);
+    }
+
+    internal void LibraryList(string[] libraries)
+    {
+        s.LibraryList(libraries);
+    }
+
+    internal void LibraryChanged(string serialized_LibraryContents)
+    {
+        s.LibraryChanged(serialized_LibraryContents);
+    }
+
+    internal void ChangeLibrary(string newLibrary)
+    {
+        s.ChangeLibrary(newLibrary);
+    }
+
+    internal void LibraryList(string serialized_LibraryContents)
+    {
+       // s.LibraryList(serialized_LibraryContents);
+    }
+
+    internal void Utterances(string library, string category, string subcategory, string[] utterances)
+    {
+        s.Utterances(library, category, subcategory, utterances);
+    }
+
     public void UtteranceFinished(string id)
     {
         if (id != null && id != string.Empty)
@@ -82,6 +117,11 @@ public class UtterancesManager : MonoBehaviour
                 Therapist.Instance.nFailedTries = 0;
             }
         }
+    }
+
+    internal void UtteranceStarted(string library, string category, string subcategory, string[] utterances)
+    {
+        throw new NotImplementedException();
     }
 
     public void Greeting()

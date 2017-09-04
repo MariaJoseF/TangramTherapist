@@ -12,7 +12,19 @@ public class GreetingState : State
     public void BeginFirstGame()
     {
 
-        --its needed to put the rude robot here also
+        /*NEW*/
+
+        if (Therapist.Instance.NiceRobot)
+        {
+            UtterancesManager.Instance.ChangeLibrary("Tangram");
+        }
+        else
+        {
+            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
+        }
+
+        /*NEW*/
+
         UtterancesManager.Instance.Greeting();
     }
 

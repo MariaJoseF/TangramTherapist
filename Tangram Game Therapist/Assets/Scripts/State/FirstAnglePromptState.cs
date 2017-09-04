@@ -43,15 +43,20 @@ public class FirstAnglePromptState : State
                     repeatPrompt = false;
                     repeatHardClue = false;
 
+                    /*NEW*/
+
                     if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.HardClue(2f);
+                        UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
                     else
                     {
-                        utterance = UtterancesManager.Instance.HardClue(2f); --rude robot
-
+                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                     }
+
+                    /*NEW*/
+
+                    utterance = UtterancesManager.Instance.HardClue(2f);
 
                     if (!utterance)
                     {
@@ -76,14 +81,20 @@ public class FirstAnglePromptState : State
                     repeatPrompt = false;
                     repeatHardClue = false;
 
+                    /*NEW*/
+
                     if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                        UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
                     else
                     {
-                        utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
+                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                     }
+
+                    /*NEW*/
+
+                    utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     if (!utterance)
                     {
@@ -124,14 +135,20 @@ public class FirstAnglePromptState : State
             repeatHardClue = false;
             repeatAngleHelp = false;
 
+            /*NEW*/
+
             if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.HardClue(2f);
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
             }
             else
             {
-                utterance = UtterancesManager.Instance.HardClue(2f); --rude robot
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
             }
+
+            /*NEW*/
+
+            utterance = UtterancesManager.Instance.HardClue(2f);
 
             if (!utterance)
             {
@@ -156,15 +173,21 @@ public class FirstAnglePromptState : State
                 repeatPrompt = false;
                 repeatHardClue = false;
 
+
+                /*NEW*/
+
                 if (niceRobot)
                 {
-                    utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                    UtterancesManager.Instance.ChangeLibrary("Tangram");
                 }
                 else
                 {
-                    utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
-
+                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                 }
+
+                /*NEW*/
+
+                utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                 if (!utterance)
                 {
@@ -188,15 +211,21 @@ public class FirstAnglePromptState : State
                 repeatAngleHelp = false;
                 if (Therapist.Instance.currentGame.rotationMode == SceneProperties.RotationMode.button)
                 {
+
+                    /*NEW*/
+
                     if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                        UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
                     else
                     {
-                        utterance = UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
-
+                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                     }
+
+                    /*NEW*/
+
+                    utterance = UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     if (!utterance)
                     {
@@ -218,15 +247,21 @@ public class FirstAnglePromptState : State
                 }
                 else
                 {
+
+                    /*NEW*/
+
                     if (niceRobot)
                     {
-                        utterance = UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                        UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
                     else
                     {
-                        utterance = UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-
+                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
                     }
+
+                    /*NEW*/
+
+                    utterance = UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     if (!utterance)
                     {
@@ -312,15 +347,21 @@ public class FirstAnglePromptState : State
             Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
             UtterancesManager.Instance.CheckUtteranceFinish();
             bool utterance = false;
+
+            /*NEW*/
+
             if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
             }
             else
             {
-                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
-
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
             }
+
+            /*NEW*/
+
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
             ///
             Therapist.Instance.ShowFormRatings();

@@ -40,16 +40,20 @@ public class FirstIdlePromptState : State
                 Therapist.Instance.currentPiece = piece;
             }
 
+            /*NEW*/
 
             if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
             }
             else
             {
-                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
-
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
             }
+
+            /*NEW*/
+
+            utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
             if (!utterance)
             {
@@ -87,15 +91,20 @@ public class FirstIdlePromptState : State
             repeatHardClue = false;
 
 
+            /*NEW*/
+
             if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.HardClue(2f);
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
             }
             else
             {
-                utterance = UtterancesManager.Instance.HardClue(2f); --rude robot
-
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
             }
+
+            /*NEW*/
+
+            utterance = UtterancesManager.Instance.HardClue(2f);
 
             if (!utterance)
             {
@@ -123,15 +132,20 @@ public class FirstIdlePromptState : State
                 Therapist.Instance.currentPiece = piece;
             }
 
+            /*NEW*/
 
             if (niceRobot)
             {
-                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
             }
             else
             {
-                utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
             }
+
+            /*NEW*/
+
+            utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
             if (!utterance)
             {

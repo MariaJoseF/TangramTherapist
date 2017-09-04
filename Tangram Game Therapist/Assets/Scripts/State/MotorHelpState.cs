@@ -18,9 +18,20 @@ public class MotorHelpState : State
         {
             UtterancesManager.Instance.CheckUtteranceFinish();
 
-            UtterancesManager.Instance.MotorHelp();
+            /*NEW*/
 
-            --its needed to put the rude robot here also
+            if (Therapist.Instance.NiceRobot)
+            {
+                UtterancesManager.Instance.ChangeLibrary("Tangram");
+            }
+            else
+            {
+                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
+            }
+
+            /*NEW*/
+
+            UtterancesManager.Instance.MotorHelp();
 
             nHelpRequests = 0;
         }

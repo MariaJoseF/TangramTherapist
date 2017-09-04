@@ -13,7 +13,8 @@ public interface IThalamusTActions
     void UtteranceFinished(string id);
 }
 
-public class ThalamusListener : XmlRpcListenerService, IThalamusTActions
+
+public class ThalamusListener : XmlRpcListenerService, IThalamusTActions, ILibraryActionsRPC, ILibraryEventsRPC
 {
     private readonly UtterancesManager _manager;
 
@@ -30,6 +31,36 @@ public class ThalamusListener : XmlRpcListenerService, IThalamusTActions
     public void UtteranceFinished(string id)
     {
         _manager.UtteranceFinished(id);
+    }
+
+    void ILibraryActionsRPC.ChangeLibrary(string newLibrary)
+    {
+        _manager.ChangeLibrary(newLibrary);
+    }
+
+    void ILibraryActionsRPC.GetLibraries()
+    {
+        _manager.GetLibraries();
+    }
+
+    void ILibraryActionsRPC.GetUtterances(string category, string subcategory)
+    {
+        _manager.GetUtterances(category, subcategory);
+    }
+
+    void ILibraryEventsRPC.LibraryList(string[] libraries)
+    {
+        _manager.LibraryList(libraries);
+    }
+
+    void ILibraryEventsRPC.LibraryChanged(string serialized_LibraryContents)
+    {
+        _manager.LibraryChanged(serialized_LibraryContents);
+    }
+
+    void ILibraryEventsRPC.Utterances(string library, string category, string subcategory, string[] utterances)
+    {
+        _manager.Utterances(library, category, subcategory, utterances);
     }
 }
 
@@ -995,5 +1026,47 @@ public class ThalamusConnector : ITMessages
 
     }*/
 
+    /*NEW*/
+
+    void LibraryList(string[] libraries)
+    {
+        try
+        {
+            Debug.Log("Sent to Unity: LibraryList");
+            _rpcProxy.LibraryList(libraries);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
+        }
+    }
+
+    void LibraryChanged(string serialized_LibraryContents)
+    {
+        try
+        {
+            Debug.Log("Sent to Unity: LibraryChanged");
+            _rpcProxy.LibraryChanged(serialized_LibraryContents);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
+        }
+    }
+
+    void Utterances(string library, string category, string subcategory, string[] utterances)
+    {
+        try
+        {
+            Debug.Log("Sent to Unity: Utterances");
+            _rpcProxy.Utterances(library, category, subcategory, utterances);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
+        }
+    }
+
+    /*NEW*/
 
 }
