@@ -152,6 +152,10 @@ namespace Assets.Scripts.Learning
             this.Bt_1.UseVisualStyleBackColor = true;
             this.Bt_1.Enabled = false;
             this.Bt_1.Click += new System.EventHandler(this.Bt_1_Click);
+
+            this.Bt_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bt_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // Bt_2
             // 
@@ -163,6 +167,10 @@ namespace Assets.Scripts.Learning
             this.Bt_2.UseVisualStyleBackColor = true;
             this.Bt_2.Enabled = false;
             this.Bt_2.Click += new System.EventHandler(this.Bt_2_Click);
+
+            this.Bt_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bt_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // Bt_3
             // 
@@ -174,6 +182,10 @@ namespace Assets.Scripts.Learning
             this.Bt_3.UseVisualStyleBackColor = true;
             this.Bt_3.Enabled = false;
             this.Bt_3.Click += new System.EventHandler(this.Bt_3_Click);
+
+            this.Bt_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bt_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // Bt_4
             // 
@@ -185,6 +197,10 @@ namespace Assets.Scripts.Learning
             this.Bt_4.UseVisualStyleBackColor = true;
             this.Bt_4.Enabled = false;
             this.Bt_4.Click += new System.EventHandler(this.Bt_4_Click);
+
+            this.Bt_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bt_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // Bt_5
             // 
@@ -196,6 +212,10 @@ namespace Assets.Scripts.Learning
             this.Bt_5.UseVisualStyleBackColor = true;
             this.Bt_5.Enabled = false;
             this.Bt_5.Click += new System.EventHandler(this.Bt_5_Click);
+
+            this.Bt_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bt_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // label1
             // 
@@ -206,6 +226,9 @@ namespace Assets.Scripts.Learning
             this.label1.TabIndex = 5;
             this.label1.Text = "Feedback Ratings";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             // 
             // label2
             // 
@@ -214,7 +237,12 @@ namespace Assets.Scripts.Learning
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(176, 25);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Very dissatisfied ";
+            this.label2.Text = "   Very badly (-) ";
+
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
             // 
             // label3
             // 
@@ -223,7 +251,11 @@ namespace Assets.Scripts.Learning
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(148, 25);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Very satisfied ";
+            this.label3.Text = "   Very well (+)";
+
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -233,6 +265,10 @@ namespace Assets.Scripts.Learning
             this.label4.Size = new System.Drawing.Size(81, 25);
             this.label4.TabIndex = 8;
             this.label4.Text = "Neither";
+
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Ratings
             // 
