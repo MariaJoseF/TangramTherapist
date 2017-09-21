@@ -302,6 +302,7 @@ public class SecondPromptState : State
 
                     /*NEW*/
 
+                    if (niceRobot)
                     {
                         UtterancesManager.Instance.ChangeLibrary("Tangram");
                     }
