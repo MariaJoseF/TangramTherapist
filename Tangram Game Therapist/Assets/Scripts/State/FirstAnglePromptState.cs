@@ -45,18 +45,10 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    if (niceRobot)
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram");
-                    }
-                    else
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                    }
+                    utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.HardClue(2f);
 
                     if (!utterance)
                     {
@@ -83,18 +75,10 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    if (niceRobot)
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram");
-                    }
-                    else
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                    }
+                    utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     if (!utterance)
                     {
@@ -137,18 +121,10 @@ public class FirstAnglePromptState : State
 
             /*NEW*/
 
-            if (niceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(2f);
 
             if (!utterance)
             {
@@ -176,18 +152,10 @@ public class FirstAnglePromptState : State
 
                 /*NEW*/
 
-                if (niceRobot)
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram");
-                }
-                else
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                }
+                utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                 if (!utterance)
                 {
@@ -214,18 +182,10 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    if (niceRobot)
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram");
-                    }
-                    else
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                    }
+                    utterance = UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     if (!utterance)
                     {
@@ -250,18 +210,10 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    if (niceRobot)
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram");
-                    }
-                    else
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                    }
+                    utterance = UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     if (!utterance)
                     {
@@ -350,18 +302,10 @@ public class FirstAnglePromptState : State
 
             /*NEW*/
 
-            if (niceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
             ///
             Therapist.Instance.ShowFormRatings();

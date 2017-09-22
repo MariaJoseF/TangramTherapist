@@ -11,7 +11,7 @@ public class ButtonHelpState : State
 
     public void BeginFirstGame()
     {
-        UtterancesManager.Instance.ButtonHelp();
+        UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot);
         Debug.Log("1 ButtonHelp");
 
         Therapist.Instance.firstTimeButton = 2;
@@ -23,18 +23,10 @@ public class ButtonHelpState : State
 
         /*NEW*/
 
-        if (Therapist.Instance.NiceRobot)
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram");
-        }
-        else
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-        }
+        UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot);
 
         /*NEW*/
 
-        UtterancesManager.Instance.ButtonHelp();
         Debug.Log("2 ButtonHelp");
 
         Therapist.Instance.firstTimeButton = 2;

@@ -34,14 +34,11 @@ public class ThirdAnglePromptState : State
         {
             Debug.Log("3rd Angle prompt");
 
-            if (niceRobot)
-            {
-                utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-            }
-            else
-            {
-                utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
-            }
+            /*NEW*/
+
+            utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+
+            /*NEW*/
 
             if (!utterance)
             {
@@ -81,14 +78,12 @@ public class ThirdAnglePromptState : State
         bool utterance = false;
         Therapist.Instance.promt_Type = 3;
 
-        if (niceRobot)
-        {
-            utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-        }
-        else
-        {
-            utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
-        }
+
+        /*NEW*/
+
+        utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+
+        /*NEW*/
 
         if (!utterance)
         {
@@ -130,14 +125,12 @@ public class ThirdAnglePromptState : State
             Debug.Log("BOA!!! não mexas mais, agora só falta coloca-la no sitio certo");
             UtterancesManager.Instance.CheckUtteranceFinish();
             bool utterance = false;
-            if (niceRobot)
-            {
-                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-            }
-            else
-            {
-                utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name)); --rude robot
-            }
+
+
+            /*NEW*/
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+
+            /*NEW*/
 
             ///
             Therapist.Instance.ShowFormRatings();
@@ -170,9 +163,12 @@ public class ThirdAnglePromptState : State
                     UtterancesManager.Instance.CheckUtteranceFinish();
                     Debug.Log("3rd Angle prompt-> quit");
 
-                    --its needed to put the rude robot here also
 
-                    UtterancesManager.Instance.Quit();
+                    /*NEW*/
+
+                    UtterancesManager.Instance.Quit(niceRobot);
+
+                    /*NEW*/
 
                     Therapist.Instance.nFailedTries = 0;
                     Therapist.Instance.nWrongAngleTries = 0;

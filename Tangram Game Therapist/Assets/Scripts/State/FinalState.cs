@@ -19,9 +19,9 @@ public class FinalState : State
         if (!GameState.Instance.quit)
         {
             if ((float)(DateTime.Now - GameManager.Instance.beginGameTime).TotalSeconds < 80)
-                UtterancesManager.Instance.FastWin(SolutionManager.Instance.puzzleNamept);
+                UtterancesManager.Instance.FastWin(SolutionManager.Instance.puzzleNamept, Therapist.Instance.NiceRobot);
             else
-                UtterancesManager.Instance.Win(SolutionManager.Instance.puzzleNamept);
+                UtterancesManager.Instance.Win(SolutionManager.Instance.puzzleNamept, Therapist.Instance.NiceRobot);
             GameState.Instance.playButtonInteractable = false;
         }
         else

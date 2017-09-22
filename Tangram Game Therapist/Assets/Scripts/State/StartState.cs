@@ -3,66 +3,87 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class StartState : State {
+public class StartState : State
+{
 
-	public StartState () {
-	}
+    public StartState()
+    {
+    }
 
-	public void BeginFirstGame(){
-	}
+    public void BeginFirstGame()
+    {
+    }
 
-	public void BeginNextGame(){
-        if(!GameState.Instance.quit)
+    public void BeginNextGame()
+    {
+        if (!GameState.Instance.quit)
         {
             Debug.Log("QUERES JOGAR UM NOVO JOGO??");
             UtterancesManager.Instance.CheckUtteranceFinish();
 
-            --its needed to put the rude robot here also
-            UtterancesManager.Instance.NextGame();
+            /*NEW*/
+
+            UtterancesManager.Instance.NextGame(Therapist.Instance.NiceRobot);
+
+            /*NEW*/
         }
 
         GameState.Instance.quit = false;
-	}
+    }
 
-	public void EndGame(){
-	}
+    public void EndGame()
+    {
+    }
 
-	public void HelpMotor(){
-	}
-	
-	public void HelpAdjustingPiece() {
-	}
+    public void HelpMotor()
+    {
+    }
 
-	public void GivePositiveFeedback() {
-	}
-	
-	public void GiveNegativeFeedback() {
-	}
+    public void HelpAdjustingPiece()
+    {
+    }
 
-	public void StartedMoving (bool correctAngle){
-	}
+    public void GivePositiveFeedback()
+    {
+    }
 
-	public void FirstIdlePrompt(){
-	}
-	
-	public void FirstAnglePrompt(){
-	}
-	
-	public void FirstPlacePrompt(){
-	}
+    public void GiveNegativeFeedback()
+    {
+    }
 
-	public void SecondPrompt(){	
-	}
-	
-	public void ThirdPrompt(){	
-	}
+    public void StartedMoving(bool correctAngle)
+    {
+    }
 
-	public void SecondAnglePrompt(){	
-	}
-	
-	public void ThirdAnglePrompt(){
-	}
+    public void FirstIdlePrompt()
+    {
+    }
 
-	public void Update(){		
-	}
+    public void FirstAnglePrompt()
+    {
+    }
+
+    public void FirstPlacePrompt()
+    {
+    }
+
+    public void SecondPrompt()
+    {
+    }
+
+    public void ThirdPrompt()
+    {
+    }
+
+    public void SecondAnglePrompt()
+    {
+    }
+
+    public void ThirdAnglePrompt()
+    {
+    }
+
+    public void Update()
+    {
+    }
 }

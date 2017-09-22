@@ -2,9 +2,9 @@ using CookComputing.XmlRpc;
 
 public interface ITMessagesRpc : ITMessages, IXmlRpcProxy
 {
-    void LibraryChanged(string serialized_LibraryContents);
+    //void LibraryChanged(string serialized_LibraryContents);
     void Utterances(string library, string category, string subcategory, string[] utterances);
-    void LibraryList(string[] libraries);
+    //void LibraryList(string[] libraries);
 }
 
 public interface ITMessages
@@ -12,142 +12,142 @@ public interface ITMessages
     void Dispose();
 
     [XmlRpcMethod]
-    void Greeting(string player);
+    void Greeting(string player, bool robotN);
 
     [XmlRpcMethod]
-    void GameStart(string puzzle);
+    void GameStart(string puzzle, bool robotN);
 
     [XmlRpcMethod]
-    void NextGame(string player);
+    void NextGame(string player, bool robotN);
 
     [XmlRpcMethod]
-    void FingerHelp();
+    void FingerHelp(bool robotN);
 
     [XmlRpcMethod]
-    void ButtonHelp();
+    void ButtonHelp(bool robotN);
 
     [XmlRpcMethod]
-    void Win(string puzzle, string player);
+    void Win(string puzzle, string player, bool robotN);
 
     [XmlRpcMethod]
-    void FastWin(string puzzle, string player);
+    void FastWin(string puzzle, string player, bool robotN);
 
     [XmlRpcMethod]
-    void Quit(string player);
+    void Quit(string player, bool robotN);
 
     [XmlRpcMethod]
-    void MotorHelp();
+    void MotorHelp(bool robotN);
 
     [XmlRpcMethod]
-    void CloseHelp();
+    void CloseHelp(bool robotN);
 
     [XmlRpcMethod]
-    void PositiveFeedback(string nPieces, string player);
+    void PositiveFeedback(string nPieces, string player, bool robotN);
 
     [XmlRpcMethod]
-    void NegativeFeedback();
+    void NegativeFeedback(bool robotN);
 
     [XmlRpcMethod]
-    void FirstAnglePrompt(string piece, string player);
+    void FirstAnglePrompt(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void FirstAnglePromptFinger(string piece, string player);
+    void FirstAnglePromptFinger(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void FirstAnglePromptButton(string piece, string player);
+    void FirstAnglePromptButton(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void SecondAnglePrompt(string piece, string player);
+    void SecondAnglePrompt(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void SecondAnglePromptFinger(string piece, string direction, string player);
+    void SecondAnglePromptFinger(string piece, string direction, string player, bool robotN);
 
     [XmlRpcMethod]
-    void SecondAnglePromptButton(string piece, string nClicks, string player);
+    void SecondAnglePromptButton(string piece, string nClicks, string player, bool robotN);
 
     [XmlRpcMethod]
-    void ThirdAnglePrompt(string piece, string player);
+    void ThirdAnglePrompt(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void StopAnglePrompt(string piece);
+    void StopAnglePrompt(string piece, bool robotN);
 
     [XmlRpcMethod]
-    void FirstIdlePrompt(string piece, string player);
+    void FirstIdlePrompt(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void FirstPlacePrompt(string piece, string player);
+    void FirstPlacePrompt(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void SecondPrompt1Position(string piece, string pos, string player);
+    void SecondPrompt1Position(string piece, string pos, string player, bool robotN);
 
     [XmlRpcMethod]
-    void SecondPrompt2Position(string piece, string pos1, string pos2, string player);
+    void SecondPrompt2Position(string piece, string pos1, string pos2, string player, bool robotN);
 
     [XmlRpcMethod]
-    void SecondPromptPlace(string piece, string pos, string relativePiece, string player);
+    void SecondPromptPlace(string piece, string pos, string relativePiece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void ThirdPrompt(string piece, string player);
+    void ThirdPrompt(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void HardClue(string player);
+    void HardClue(string player, bool robotN);
 
     [XmlRpcMethod]
-    void PGreeting(string player);
+    void PGreeting(string player, bool robotN);
 
     [XmlRpcMethod]
-    void PButtonHelp();
+    void PButtonHelp(bool robotN);
 
     [XmlRpcMethod]
-    void PFingerHelp();
+    void PFingerHelp(bool robotN);
 
     [XmlRpcMethod]
-    void PWin(string puzzle, string player);
+    void PWin(string puzzle, string player, bool robotN);
 
     [XmlRpcMethod]
-    void PChildTurn(string player);
+    void PChildTurn(string player, bool robotN);
 
     [XmlRpcMethod]
-    void PRobotTurn();
+    void PRobotTurn(bool robotN);
 
     [XmlRpcMethod]
-    void PRobotDrag();
+    void PRobotDrag(bool robotN);
 
     [XmlRpcMethod]
-    void PRobotRotDrag();
+    void PRobotRotDrag(bool robotN);
 
     [XmlRpcMethod]
-    void PRobotWin(string nPieces, string player);
+    void PRobotWin(string nPieces, string player, bool robotN);
 
     [XmlRpcMethod]
-    void PRobotReminder();
+    void PRobotReminder(bool robotN);
 
     [XmlRpcMethod]
-    void PAskingPlace(string piece, string player);
+    void PAskingPlace(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void PAskingRotate(string piece, string player);
+    void PAskingRotate(string piece, string player, bool robotN);
 
     [XmlRpcMethod]
-    void PAskingPlaceWin(string player);
+    void PAskingPlaceWin(string player, bool robotN);
 
     [XmlRpcMethod]
-    void PAskingRotateWin(string player);
+    void PAskingRotateWin(string player, bool robotN);
 
     [XmlRpcMethod]
-    void PAskingPlaceWrong(string piece);
+    void PAskingPlaceWrong(string piece, bool robotN);
 
     [XmlRpcMethod]
-    void PAskingRotateWrong(string piece);
+    void PAskingRotateWrong(string piece, bool robotN);
 
     [XmlRpcMethod]
-    void PAskingQuit();
+    void PAskingQuit(bool robotN);
 
     [XmlRpcMethod]
-    void PGivingPlace(string piece, string pos);
+    void PGivingPlace(string piece, string pos, bool robotN);
 
     [XmlRpcMethod]
-    void PGivingRotate(string piece);
+    void PGivingRotate(string piece, bool robotN);
 
     [XmlRpcMethod]
     void WriteJSON(string timestamp, string info);
@@ -158,30 +158,30 @@ public interface ITMessages
 
 
 
-/* NEW */
+///* NEW */
 
-public interface ILibraryActionsRPC
-{
-    [XmlRpcMethod]
-    void ChangeLibrary(string newLibrary);
+//public interface ILibraryActionsRPC
+//{
+//    [XmlRpcMethod]
+//    void ChangeLibrary(string newLibrary);
 
-    [XmlRpcMethod]
-    void GetLibraries();
+//    [XmlRpcMethod]
+//    void GetLibraries();
 
-    [XmlRpcMethod]
-    void GetUtterances(string category, string subcategory);
-}
+//    [XmlRpcMethod]
+//    void GetUtterances(string category, string subcategory);
+//}
 
-public interface ILibraryEventsRPC
-{
-    [XmlRpcMethod]
-    void LibraryList(string[] libraries);
+//public interface ILibraryEventsRPC
+//{
+//    [XmlRpcMethod]
+//    void LibraryList(string[] libraries);
 
-    [XmlRpcMethod]
-    void LibraryChanged(string serialized_LibraryContents);
+//    [XmlRpcMethod]
+//    void LibraryChanged(string serialized_LibraryContents);
 
-    [XmlRpcMethod]
-    void Utterances(string library, string category, string subcategory, string[] utterances);
-}
+//    [XmlRpcMethod]
+//    void Utterances(string library, string category, string subcategory, string[] utterances);
+//}
 
-/* NEW */
+///* NEW */

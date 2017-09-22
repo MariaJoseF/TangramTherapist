@@ -20,18 +20,10 @@ public class MotorHelpState : State
 
             /*NEW*/
 
-            if (Therapist.Instance.NiceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            UtterancesManager.Instance.MotorHelp(Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
-            UtterancesManager.Instance.MotorHelp();
 
             nHelpRequests = 0;
         }

@@ -14,7 +14,7 @@ public interface IThalamusTActions
 }
 
 
-public class ThalamusListener : XmlRpcListenerService, IThalamusTActions, ILibraryActionsRPC, ILibraryEventsRPC
+public class ThalamusListener : XmlRpcListenerService, IThalamusTActions
 {
     private readonly UtterancesManager _manager;
 
@@ -33,35 +33,35 @@ public class ThalamusListener : XmlRpcListenerService, IThalamusTActions, ILibra
         _manager.UtteranceFinished(id);
     }
 
-    void ILibraryActionsRPC.ChangeLibrary(string newLibrary)
-    {
-        _manager.ChangeLibrary(newLibrary);
-    }
+    //void ILibraryActionsRPC.ChangeLibrary(string newLibrary)
+    //{
+    //    _manager.ChangeLibrary(newLibrary);
+    //}
 
-    void ILibraryActionsRPC.GetLibraries()
-    {
-        _manager.GetLibraries();
-    }
+    //void ILibraryActionsRPC.GetLibraries()
+    //{
+    //    _manager.GetLibraries();
+    //}
 
-    void ILibraryActionsRPC.GetUtterances(string category, string subcategory)
-    {
-        _manager.GetUtterances(category, subcategory);
-    }
+    //void ILibraryActionsRPC.GetUtterances(string category, string subcategory)
+    //{
+    //    _manager.GetUtterances(category, subcategory);
+    //}
 
-    void ILibraryEventsRPC.LibraryList(string[] libraries)
-    {
-        _manager.LibraryList(libraries);
-    }
+    //void ILibraryEventsRPC.LibraryList(string[] libraries)
+    //{
+    //    _manager.LibraryList(libraries);
+    //}
 
-    void ILibraryEventsRPC.LibraryChanged(string serialized_LibraryContents)
-    {
-        _manager.LibraryChanged(serialized_LibraryContents);
-    }
+    //void ILibraryEventsRPC.LibraryChanged(string serialized_LibraryContents)
+    //{
+    //    _manager.LibraryChanged(serialized_LibraryContents);
+    //}
 
-    void ILibraryEventsRPC.Utterances(string library, string category, string subcategory, string[] utterances)
-    {
-        _manager.Utterances(library, category, subcategory, utterances);
-    }
+    //void ILibraryEventsRPC.Utterances(string library, string category, string subcategory, string[] utterances)
+    //{
+    //    _manager.Utterances(library, category, subcategory, utterances);
+    //}
 }
 
 public class ThalamusConnector : ITMessages
@@ -245,11 +245,11 @@ public class ThalamusConnector : ITMessages
     #endregion
 
 
-    public void Greeting(string player)
+    public void Greeting(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.Greeting(player);
+            _rpcProxy.Greeting(player, robotN);
         }
         catch (Exception e)
         {
@@ -261,11 +261,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void GameStart(string puzzle)
+    public void GameStart(string puzzle, bool robotN)
     {
         try
         {
-            _rpcProxy.GameStart(puzzle);
+            _rpcProxy.GameStart(puzzle, robotN);
         }
         catch (Exception e)
         {
@@ -277,11 +277,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void NextGame(string player)
+    public void NextGame(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.NextGame(player);
+            _rpcProxy.NextGame(player, robotN);
         }
         catch (Exception e)
         {
@@ -293,11 +293,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void FingerHelp()
+    public void FingerHelp(bool robotN)
     {
         try
         {
-            _rpcProxy.FingerHelp();
+            _rpcProxy.FingerHelp(robotN);
         }
         catch (Exception e)
         {
@@ -309,11 +309,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void ButtonHelp()
+    public void ButtonHelp(bool robotN)
     {
         try
         {
-            _rpcProxy.ButtonHelp();
+            _rpcProxy.ButtonHelp(robotN);
         }
         catch (Exception e)
         {
@@ -325,11 +325,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void Win(string puzzle, string player)
+    public void Win(string puzzle, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.Win(puzzle, player);
+            _rpcProxy.Win(puzzle, player, robotN);
         }
         catch (Exception e)
         {
@@ -341,11 +341,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void FastWin(string puzzle, string player)
+    public void FastWin(string puzzle, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.FastWin(puzzle, player);
+            _rpcProxy.FastWin(puzzle, player, robotN);
         }
         catch (Exception e)
         {
@@ -357,11 +357,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void Quit(string player)
+    public void Quit(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.Quit(player);
+            _rpcProxy.Quit(player, robotN);
         }
         catch (Exception e)
         {
@@ -373,11 +373,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void MotorHelp()
+    public void MotorHelp(bool robotN)
     {
         try
         {
-            _rpcProxy.MotorHelp();
+            _rpcProxy.MotorHelp(robotN);
         }
         catch (Exception e)
         {
@@ -389,11 +389,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void CloseHelp()
+    public void CloseHelp(bool robotN)
     {
         try
         {
-            _rpcProxy.CloseHelp();
+            _rpcProxy.CloseHelp(robotN);
         }
         catch (Exception e)
         {
@@ -405,11 +405,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PositiveFeedback(string nPieces, string player)
+    public void PositiveFeedback(string nPieces, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PositiveFeedback(nPieces, player);
+            _rpcProxy.PositiveFeedback(nPieces, player, robotN);
         }
         catch (Exception e)
         {
@@ -421,11 +421,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void NegativeFeedback()
+    public void NegativeFeedback(bool robotN)
     {
         try
         {
-            _rpcProxy.NegativeFeedback();
+            _rpcProxy.NegativeFeedback(robotN);
         }
         catch (Exception e)
         {
@@ -437,11 +437,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void FirstAnglePrompt(string piece, string player)
+    public void FirstAnglePrompt(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.FirstAnglePrompt(piece, player);
+            _rpcProxy.FirstAnglePrompt(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -453,11 +453,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void FirstAnglePromptFinger(string piece, string player)
+    public void FirstAnglePromptFinger(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.FirstAnglePromptFinger(piece, player);
+            _rpcProxy.FirstAnglePromptFinger(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -469,11 +469,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void FirstAnglePromptButton(string piece, string player)
+    public void FirstAnglePromptButton(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.FirstAnglePromptButton(piece, player);
+            _rpcProxy.FirstAnglePromptButton(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -485,11 +485,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void SecondAnglePrompt(string piece, string player)
+    public void SecondAnglePrompt(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.SecondAnglePrompt(piece, player);
+            _rpcProxy.SecondAnglePrompt(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -501,11 +501,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void SecondAnglePromptFinger(string piece, string direction, string player)
+    public void SecondAnglePromptFinger(string piece, string direction, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.SecondAnglePromptFinger(piece, direction, player);
+            _rpcProxy.SecondAnglePromptFinger(piece, direction, player, robotN);
         }
         catch (Exception e)
         {
@@ -517,11 +517,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void SecondAnglePromptButton(string piece, string nClicks, string player)
+    public void SecondAnglePromptButton(string piece, string nClicks, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.SecondAnglePromptButton(piece, nClicks, player);
+            _rpcProxy.SecondAnglePromptButton(piece, nClicks, player, robotN);
         }
         catch (Exception e)
         {
@@ -533,11 +533,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void ThirdAnglePrompt(string piece, string player)
+    public void ThirdAnglePrompt(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.ThirdAnglePrompt(piece, player);
+            _rpcProxy.ThirdAnglePrompt(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -549,11 +549,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void StopAnglePrompt(string piece)
+    public void StopAnglePrompt(string piece, bool robotN)
     {
         try
         {
-            _rpcProxy.StopAnglePrompt(piece);
+            _rpcProxy.StopAnglePrompt(piece, robotN);
         }
         catch (Exception e)
         {
@@ -565,11 +565,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void FirstIdlePrompt(string piece, string player)
+    public void FirstIdlePrompt(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.FirstIdlePrompt(piece, player);
+            _rpcProxy.FirstIdlePrompt(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -581,11 +581,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void FirstPlacePrompt(string piece, string player)
+    public void FirstPlacePrompt(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.FirstPlacePrompt(piece, player);
+            _rpcProxy.FirstPlacePrompt(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -597,11 +597,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void SecondPrompt1Position(string piece, string pos, string player)
+    public void SecondPrompt1Position(string piece, string pos, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.SecondPrompt1Position(piece, pos, player);
+            _rpcProxy.SecondPrompt1Position(piece, pos, player, robotN);
         }
         catch (Exception e)
         {
@@ -613,11 +613,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void SecondPrompt2Position(string piece, string pos1, string pos2, string player)
+    public void SecondPrompt2Position(string piece, string pos1, string pos2, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.SecondPrompt2Position(piece, pos1, pos2, player);
+            _rpcProxy.SecondPrompt2Position(piece, pos1, pos2, player, robotN);
         }
         catch (Exception e)
         {
@@ -629,11 +629,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void SecondPromptPlace(string piece, string pos, string relativePiece, string player)
+    public void SecondPromptPlace(string piece, string pos, string relativePiece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.SecondPromptPlace(piece, pos, relativePiece, player);
+            _rpcProxy.SecondPromptPlace(piece, pos, relativePiece, player, robotN);
         }
         catch (Exception e)
         {
@@ -645,11 +645,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void ThirdPrompt(string piece, string player)
+    public void ThirdPrompt(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.ThirdPrompt(piece, player);
+            _rpcProxy.ThirdPrompt(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -661,11 +661,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void HardClue(string player)
+    public void HardClue(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.HardClue(player);
+            _rpcProxy.HardClue(player, robotN);
         }
         catch (Exception e)
         {
@@ -677,11 +677,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PGreeting(string player)
+    public void PGreeting(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PGreeting(player);
+            _rpcProxy.PGreeting(player, robotN);
         }
         catch (Exception e)
         {
@@ -693,11 +693,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PButtonHelp()
+    public void PButtonHelp(bool robotN)
     {
         try
         {
-            _rpcProxy.PButtonHelp();
+            _rpcProxy.PButtonHelp(robotN);
         }
         catch (Exception e)
         {
@@ -709,11 +709,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PFingerHelp()
+    public void PFingerHelp(bool robotN)
     {
         try
         {
-            _rpcProxy.PFingerHelp();
+            _rpcProxy.PFingerHelp(robotN);
         }
         catch (Exception e)
         {
@@ -725,11 +725,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PWin(string puzzle, string player)
+    public void PWin(string puzzle, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PWin(puzzle, player);
+            _rpcProxy.PWin(puzzle, player, robotN);
         }
         catch (Exception e)
         {
@@ -741,11 +741,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PChildTurn(string player)
+    public void PChildTurn(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PChildTurn(player);
+            _rpcProxy.PChildTurn(player, robotN);
         }
         catch (Exception e)
         {
@@ -757,11 +757,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PRobotTurn()
+    public void PRobotTurn(bool robotN)
     {
         try
         {
-            _rpcProxy.PRobotTurn();
+            _rpcProxy.PRobotTurn(robotN);
         }
         catch (Exception e)
         {
@@ -773,11 +773,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PRobotDrag()
+    public void PRobotDrag(bool robotN)
     {
         try
         {
-            _rpcProxy.PRobotDrag();
+            _rpcProxy.PRobotDrag(robotN);
         }
         catch (Exception e)
         {
@@ -789,11 +789,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PRobotRotDrag()
+    public void PRobotRotDrag(bool robotN)
     {
         try
         {
-            _rpcProxy.PRobotRotDrag();
+            _rpcProxy.PRobotRotDrag(robotN);
         }
         catch (Exception e)
         {
@@ -805,11 +805,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PRobotWin(string nPieces, string player)
+    public void PRobotWin(string nPieces, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PRobotWin(nPieces, player);
+            _rpcProxy.PRobotWin(nPieces, player, robotN);
         }
         catch (Exception e)
         {
@@ -821,11 +821,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PRobotReminder()
+    public void PRobotReminder(bool robotN)
     {
         try
         {
-            _rpcProxy.PRobotReminder();
+            _rpcProxy.PRobotReminder(robotN);
         }
         catch (Exception e)
         {
@@ -837,11 +837,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PAskingPlace(string piece, string player)
+    public void PAskingPlace(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PAskingPlace(piece, player);
+            _rpcProxy.PAskingPlace(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -853,11 +853,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PAskingRotate(string piece, string player)
+    public void PAskingRotate(string piece, string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PAskingRotate(piece, player);
+            _rpcProxy.PAskingRotate(piece, player, robotN);
         }
         catch (Exception e)
         {
@@ -869,11 +869,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PAskingPlaceWin(string player)
+    public void PAskingPlaceWin(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PAskingPlaceWin(player);
+            _rpcProxy.PAskingPlaceWin(player, robotN);
         }
         catch (Exception e)
         {
@@ -885,11 +885,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PAskingRotateWin(string player)
+    public void PAskingRotateWin(string player, bool robotN)
     {
         try
         {
-            _rpcProxy.PAskingRotateWin(player);
+            _rpcProxy.PAskingRotateWin(player, robotN);
         }
         catch (Exception e)
         {
@@ -901,11 +901,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PAskingPlaceWrong(string piece)
+    public void PAskingPlaceWrong(string piece, bool robotN)
     {
         try
         {
-            _rpcProxy.PAskingPlaceWrong(piece);
+            _rpcProxy.PAskingPlaceWrong(piece, robotN);
         }
         catch (Exception e)
         {
@@ -917,11 +917,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PAskingRotateWrong(string piece)
+    public void PAskingRotateWrong(string piece, bool robotN)
     {
         try
         {
-            _rpcProxy.PAskingRotateWrong(piece);
+            _rpcProxy.PAskingRotateWrong(piece, robotN);
         }
         catch (Exception e)
         {
@@ -933,11 +933,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PAskingQuit()
+    public void PAskingQuit(bool robotN)
     {
         try
         {
-            _rpcProxy.PAskingQuit();
+            _rpcProxy.PAskingQuit(robotN);
         }
         catch (Exception e)
         {
@@ -949,11 +949,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PGivingPlace(string piece, string pos)
+    public void PGivingPlace(string piece, string pos, bool robotN)
     {
         try
         {
-            _rpcProxy.PGivingPlace(piece, pos);
+            _rpcProxy.PGivingPlace(piece, pos, robotN);
         }
         catch (Exception e)
         {
@@ -965,11 +965,11 @@ public class ThalamusConnector : ITMessages
         }
     }
 
-    public void PGivingRotate(string piece)
+    public void PGivingRotate(string piece, bool robotN)
     {
         try
         {
-            _rpcProxy.PGivingRotate(piece);
+            _rpcProxy.PGivingRotate(piece, robotN);
         }
         catch (Exception e)
         {
@@ -1026,47 +1026,47 @@ public class ThalamusConnector : ITMessages
 
     }*/
 
-    /*NEW*/
+    ///*NEW*/
 
-    void LibraryList(string[] libraries)
-    {
-        try
-        {
-            Debug.Log("Sent to Unity: LibraryList");
-            _rpcProxy.LibraryList(libraries);
-        }
-        catch (Exception e)
-        {
-            Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
-        }
-    }
+    //void LibraryList(string[] libraries)
+    //{
+    //    try
+    //    {
+    //        Debug.Log("Sent to Unity: LibraryList");
+    //        _rpcProxy.LibraryList(libraries);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
+    //    }
+    //}
 
-    void LibraryChanged(string serialized_LibraryContents)
-    {
-        try
-        {
-            Debug.Log("Sent to Unity: LibraryChanged");
-            _rpcProxy.LibraryChanged(serialized_LibraryContents);
-        }
-        catch (Exception e)
-        {
-            Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
-        }
-    }
+    //void LibraryChanged(string serialized_LibraryContents)
+    //{
+    //    try
+    //    {
+    //        Debug.Log("Sent to Unity: LibraryChanged");
+    //        _rpcProxy.LibraryChanged(serialized_LibraryContents);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
+    //    }
+    //}
 
-    void Utterances(string library, string category, string subcategory, string[] utterances)
-    {
-        try
-        {
-            Debug.Log("Sent to Unity: Utterances");
-            _rpcProxy.Utterances(library, category, subcategory, utterances);
-        }
-        catch (Exception e)
-        {
-            Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
-        }
-    }
+    //void Utterances(string library, string category, string subcategory, string[] utterances)
+    //{
+    //    try
+    //    {
+    //        Debug.Log("Sent to Unity: Utterances");
+    //        _rpcProxy.Utterances(library, category, subcategory, utterances);
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : "")
+    //    }
+    //}
 
-    /*NEW*/
+    ///*NEW*/
 
 }

@@ -23,20 +23,12 @@ public class NegativeFeedState : State
 
         /*NEW*/
 
-        if (Therapist.Instance.NiceRobot)
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram");
-        }
-        else
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-        }
 
         /*NEW*/
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
-        if (UtterancesManager.Instance.NegativeFeedback())
+        if (UtterancesManager.Instance.NegativeFeedback(Therapist.Instance.NiceRobot))
         {
             nNegativeFeed = 0;
             lastNegativeFeedTime = DateTime.Now;

@@ -41,40 +41,40 @@ public class UtterancesManager : MonoBehaviour
         WriteJSON("ROBOT: " + id);
     }
 
-    internal void GetLibraries()
-    {
-        s.GetLibraries();
-    }
+    //internal void GetLibraries()
+    //{
+    //    s.GetLibraries();
+    //}
 
-    internal void GetUtterances(string category, string subcategory)
-    {
-        s.GetUtterances(category, subcategory);
-    }
+    //internal void GetUtterances(string category, string subcategory)
+    //{
+    //    s.GetUtterances(category, subcategory);
+    //}
 
-    internal void LibraryList(string[] libraries)
-    {
-        s.LibraryList(libraries);
-    }
+    //internal void LibraryList(string[] libraries)
+    //{
+    //    s.LibraryList(libraries);
+    //}
 
-    internal void LibraryChanged(string serialized_LibraryContents)
-    {
-        s.LibraryChanged(serialized_LibraryContents);
-    }
+    //internal void LibraryChanged(string serialized_LibraryContents)
+    //{
+    //    s.LibraryChanged(serialized_LibraryContents);
+    //}
 
-    internal void ChangeLibrary(string newLibrary)
-    {
-        s.ChangeLibrary(newLibrary);
-    }
+    //internal void ChangeLibrary(string newLibrary)
+    //{
+    //    s.ChangeLibrary(newLibrary);
+    //}
 
-    internal void LibraryList(string serialized_LibraryContents)
-    {
-       // s.LibraryList(serialized_LibraryContents);
-    }
+    //internal void LibraryList(string serialized_LibraryContents)
+    //{
+    //   // s.LibraryList(serialized_LibraryContents);
+    //}
 
-    internal void Utterances(string library, string category, string subcategory, string[] utterances)
-    {
-        s.Utterances(library, category, subcategory, utterances);
-    }
+    //internal void Utterances(string library, string category, string subcategory, string[] utterances)
+    //{
+    //    s.Utterances(library, category, subcategory, utterances);
+    //}
 
     public void UtteranceFinished(string id)
     {
@@ -119,57 +119,38 @@ public class UtterancesManager : MonoBehaviour
         }
     }
 
-    internal void UtteranceStarted(string library, string category, string subcategory, string[] utterances)
+    //internal void UtteranceStarted(string library, string category, string subcategory, string[] utterances)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    public void Greeting(bool robotN)
     {
-        throw new NotImplementedException();
+        s.Greeting(robotN);
     }
 
-    public void Greeting()
+    public void GameStart(string puzzle, bool help, bool robotN)
     {
-        s.Greeting();
-    }
-
-    public void GameStart(string puzzle, bool help)
-    {
-        s.GameStart(puzzle);
+        s.GameStart(puzzle, robotN);
         withoutHelp = help;
     }
 
-    public void NextGame()
+    public void NextGame(bool robotN)
     {
-        s.NextGame();
+        s.NextGame(robotN);
     }
 
-    public void FingerHelp()
+    public void FingerHelp(bool robotN)
     {
-        s.FingerHelp();
+        s.FingerHelp(robotN);
     }
 
-    public void ButtonHelp()
+    public void ButtonHelp(bool robotN)
     {
-        s.ButtonHelp();
+        s.ButtonHelp(robotN);
     }
 
-    public void Win(string puzzle)
-    {
-        if (currentUtterance != null)
-        {
-            if (!canceling)
-            {
-                print("CANCELAR " + currentUtterance);
-                s.CancelUtterance(currentUtterance);
-                canceling = true;
-            }
-            else
-            {
-                print("CANCELAR 2º vez " + currentUtterance);
-                doubleCanceling = true;
-            }
-        }
-        s.Win(puzzle);
-    }
-
-    public void FastWin(string puzzle)
+    public void Win(string puzzle, bool robotN)
     {
         if (currentUtterance != null)
         {
@@ -185,10 +166,10 @@ public class UtterancesManager : MonoBehaviour
                 doubleCanceling = true;
             }
         }
-        s.FastWin(puzzle);
+        s.Win(puzzle, robotN);
     }
 
-    public void Quit()
+    public void FastWin(string puzzle, bool robotN)
     {
         if (currentUtterance != null)
         {
@@ -204,18 +185,37 @@ public class UtterancesManager : MonoBehaviour
                 doubleCanceling = true;
             }
         }
-        s.Quit();
+        s.FastWin(puzzle, robotN);
     }
 
-    public void MotorHelp()
+    public void Quit(bool robotN)
+    {
+        if (currentUtterance != null)
+        {
+            if (!canceling)
+            {
+                print("CANCELAR " + currentUtterance);
+                s.CancelUtterance(currentUtterance);
+                canceling = true;
+            }
+            else
+            {
+                print("CANCELAR 2º vez " + currentUtterance);
+                doubleCanceling = true;
+            }
+        }
+        s.Quit(robotN);
+    }
+
+    public void MotorHelp(bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.MotorHelp();
+            s.MotorHelp(robotN);
         }
     }
 
-    public void CloseHelp()
+    public void CloseHelp(bool robotN)
     {
         if (currentUtterance != null)
         {
@@ -231,10 +231,10 @@ public class UtterancesManager : MonoBehaviour
                 doubleCanceling = true;
             }
         }
-        s.CloseHelp();
+        s.CloseHelp(robotN);
     }
 
-    public void PositiveFeedback(string nPieces)
+    public void PositiveFeedback(string nPieces, bool robotN)
     {
         if (currentUtterance != null)
         {
@@ -255,25 +255,25 @@ public class UtterancesManager : MonoBehaviour
             else
                 return;
         }
-        s.PositiveFeedback(nPieces);
+        s.PositiveFeedback(nPieces, robotN);
     }
 
-    public bool NegativeFeedback()
+    public bool NegativeFeedback(bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.NegativeFeedback();
+            s.NegativeFeedback(robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstAnglePrompt(string piece)
+    public bool FirstAnglePrompt(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.FirstAnglePrompt(piece);
+            s.FirstAnglePrompt(piece, robotN);
 
             return true;
         }
@@ -281,73 +281,73 @@ public class UtterancesManager : MonoBehaviour
             return false;
     }
 
-    public bool FirstAnglePromptFinger(string piece)
+    public bool FirstAnglePromptFinger(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.FirstAnglePromptFinger(piece);
+            s.FirstAnglePromptFinger(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstAnglePromptButton(string piece)
+    public bool FirstAnglePromptButton(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.FirstAnglePromptButton(piece);
+            s.FirstAnglePromptButton(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePrompt(string piece)
+    public bool SecondAnglePrompt(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.SecondAnglePrompt(piece);
+            s.SecondAnglePrompt(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePromptFinger(string piece, string direction)
+    public bool SecondAnglePromptFinger(string piece, string direction, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.SecondAnglePromptFinger(piece, direction);
+            s.SecondAnglePromptFinger(piece, direction, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondAnglePromptButton(string piece, string nClicks)
+    public bool SecondAnglePromptButton(string piece, string nClicks, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.SecondAnglePromptButton(piece, nClicks);
+            s.SecondAnglePromptButton(piece, nClicks, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool ThirdAnglePrompt(string piece)
+    public bool ThirdAnglePrompt(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.ThirdAnglePrompt(piece);
+            s.ThirdAnglePrompt(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool StopAnglePrompt(string piece)
+    public bool StopAnglePrompt(string piece, bool robotN)
     {
         if (currentUtterance != null)
         {
@@ -366,225 +366,225 @@ public class UtterancesManager : MonoBehaviour
 
         if (currentUtterance == null)
         {
-            s.ThirdAnglePrompt(piece);
+            s.ThirdAnglePrompt(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstIdlePrompt(string piece)
+    public bool FirstIdlePrompt(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.FirstIdlePrompt(piece);
+            s.FirstIdlePrompt(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool FirstPlacePrompt(string piece)
+    public bool FirstPlacePrompt(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.FirstPlacePrompt(piece);
+            s.FirstPlacePrompt(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPrompt1Position(string piece, string pos)
+    public bool SecondPrompt1Position(string piece, string pos, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.SecondPrompt1Position(piece, pos);
+            s.SecondPrompt1Position(piece, pos, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPrompt2Position(string piece, string pos1, string pos2)
+    public bool SecondPrompt2Position(string piece, string pos1, string pos2, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.SecondPrompt2Position(piece, pos1, pos2);
+            s.SecondPrompt2Position(piece, pos1, pos2, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool SecondPromptPlace(string piece, string pos, string relativePiece)
+    public bool SecondPromptPlace(string piece, string pos, string relativePiece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.SecondPromptPlace(piece, pos, relativePiece);
+            s.SecondPromptPlace(piece, pos, relativePiece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool ThirdPrompt(string piece)
+    public bool ThirdPrompt(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.ThirdPrompt(piece);
+            s.ThirdPrompt(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool HardClue(float seconds)
+    public bool HardClue(float seconds, bool robotN)
     {
         if (currentUtterance == null)
         {
             hardClueSeconds = seconds;
-            s.HardClue();
+            s.HardClue(robotN);
             return true;
         }
         else
             return false;
     }
 
-    public void PGreeting()
+    public void PGreeting(bool robotN)
     {
-        s.PGreeting();
+        s.PGreeting(robotN);
     }
 
-    public void PButtonHelp()
+    public void PButtonHelp(bool robotN)
     {
-        s.PButtonHelp();
+        s.PButtonHelp(robotN);
     }
 
-    public void PFingerHelp()
+    public void PFingerHelp(bool robotN)
     {
-        s.PFingerHelp();
+        s.PFingerHelp(robotN);
     }
 
-    public void PWin(string puzzle)
+    public void PWin(string puzzle, bool robotN)
     {
         if (currentUtterance != null)
         {
             s.CancelUtterance(currentUtterance);
         }
-        s.PWin(puzzle);
+        s.PWin(puzzle, robotN);
     }
 
-    public void PChildTurn()
+    public void PChildTurn(bool robotN)
     {
-        s.PChildTurn();
+        s.PChildTurn(robotN);
     }
 
-    public void PRobotTurn()
+    public void PRobotTurn(bool robotN)
     {
-        s.PRobotTurn();
+        s.PRobotTurn(robotN);
     }
 
-    public void PRobotWin(string nPieces)
+    public void PRobotWin(string nPieces, bool robotN)
     {
         if (currentUtterance != null)
         {
             s.CancelUtterance(currentUtterance);
         }
-        s.PRobotWin(nPieces);
+        s.PRobotWin(nPieces, robotN);
     }
 
-    public void PRobotReminder()
+    public void PRobotReminder(bool robotN)
     {
         if (currentUtterance == null)
-            s.PRobotTurn();
+            s.PRobotTurn(robotN);
     }
 
-    public bool PAskingPlace(string piece)
+    public bool PAskingPlace(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.PAskingPlace(piece);
+            s.PAskingPlace(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool PAskingRotate(string piece)
+    public bool PAskingRotate(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.PAskingRotate(piece);
+            s.PAskingRotate(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public void PAskingPlaceWin()
+    public void PAskingPlaceWin(bool robotN)
     {
         if (currentUtterance != null)
         {
             s.CancelUtterance(currentUtterance);
         }
-        s.PAskingPlaceWin();
+        s.PAskingPlaceWin(robotN);
     }
 
-    public void PAskingRotateWin()
+    public void PAskingRotateWin(bool robotN)
     {
         if (currentUtterance != null)
         {
             s.CancelUtterance(currentUtterance);
         }
-        s.PAskingRotateWin();
+        s.PAskingRotateWin(robotN);
     }
 
-    public void PAskingPlaceWrong(string piece)
+    public void PAskingPlaceWrong(string piece, bool robotN)
     {
         if (currentUtterance != null)
         {
             s.CancelUtterance(currentUtterance);
         }
-        s.PAskingPlaceWrong(piece);
+        s.PAskingPlaceWrong(piece, robotN);
     }
 
-    public bool PAskingRotateWrong(string piece)
+    public bool PAskingRotateWrong(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.PAskingRotateWrong(piece);
+            s.PAskingRotateWrong(piece, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public void PAskingQuit()
+    public void PAskingQuit(bool robotN)
     {
         if (currentUtterance != null)
         {
             s.CancelUtterance(currentUtterance);
         }
-        s.PAskingQuit();
+        s.PAskingQuit(robotN);
     }
 
-    public bool PGivingPlace(string piece, string pos)
+    public bool PGivingPlace(string piece, string pos, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.PGivingPlace(piece, pos);
+            s.PGivingPlace(piece, pos, robotN);
             return true;
         }
         else
             return false;
     }
 
-    public bool PGivingRotate(string piece)
+    public bool PGivingRotate(string piece, bool robotN)
     {
         if (currentUtterance == null)
         {
-            s.PGivingRotate(piece);
+            s.PGivingRotate(piece, robotN);
             return true;
         }
         else

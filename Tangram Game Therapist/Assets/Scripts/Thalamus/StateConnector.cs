@@ -22,264 +22,264 @@ public class StateConnector
         _thalamusConnector.Dispose();
     }
 
-    public void Greeting()
+    public void Greeting(bool robotN)
     {
-        _thalamusConnector.Greeting(GameManager.Instance.playerName);
+        _thalamusConnector.Greeting(GameManager.Instance.playerName, robotN);
     }
 
-    public void GameStart(string puzzle)
+    public void GameStart(string puzzle, bool robotN)
     {
-        _thalamusConnector.GameStart(puzzle);
+        _thalamusConnector.GameStart(puzzle, robotN);
     }
 
-    public void NextGame()
+    public void NextGame(bool robotN)
     {
-        _thalamusConnector.NextGame(GameManager.Instance.playerName);
+        _thalamusConnector.NextGame(GameManager.Instance.playerName, robotN);
     }
 
-    public void FingerHelp()
+    public void FingerHelp(bool robotN)
     {
-        _thalamusConnector.FingerHelp();
+        _thalamusConnector.FingerHelp(robotN);
     }
 
-    public void ButtonHelp()
+    public void ButtonHelp(bool robotN)
     {
-        _thalamusConnector.ButtonHelp();
+        _thalamusConnector.ButtonHelp(robotN);
     }
 
-    public void Win(string puzzle)
+    public void Win(string puzzle, bool robotN)
     {
-        _thalamusConnector.Win(puzzle, GameManager.Instance.playerName);
+        _thalamusConnector.Win(puzzle, GameManager.Instance.playerName, robotN);
     }
 
-    public void FastWin(string puzzle)
+    public void FastWin(string puzzle, bool robotN)
     {
-        _thalamusConnector.FastWin(puzzle, GameManager.Instance.playerName);
+        _thalamusConnector.FastWin(puzzle, GameManager.Instance.playerName, robotN);
     }
 
-    internal void GetUtterances(string category, string subcategory)
+    //internal void GetUtterances(string category, string subcategory)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    //internal void LibraryList(string[] libraries)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    //internal void LibraryChanged(string serialized_LibraryContents)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    //internal void ChangeLibrary(string newLibrary)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    //internal void GetLibraries()
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    public void Quit(bool robotN)
     {
-        throw new NotImplementedException();
+        _thalamusConnector.Quit(GameManager.Instance.playerName, robotN);
     }
 
-    internal void LibraryList(string[] libraries)
+    //internal void Utterances(string library, string category, string subcategory, string[] utterances)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    public void MotorHelp(bool robotN)
     {
-        throw new NotImplementedException();
+        _thalamusConnector.MotorHelp(robotN);
     }
 
-    internal void LibraryChanged(string serialized_LibraryContents)
+    public void CloseHelp(bool robotN)
     {
-        throw new NotImplementedException();
+        _thalamusConnector.CloseHelp(robotN);
     }
 
-    internal void ChangeLibrary(string newLibrary)
+    public void PositiveFeedback(string nPieces, bool robotN)
     {
-        throw new NotImplementedException();
+        _thalamusConnector.PositiveFeedback(nPieces, GameManager.Instance.playerName, robotN);
     }
 
-    internal void GetLibraries()
+    public void NegativeFeedback(bool robotN)
     {
-        throw new NotImplementedException();
+        _thalamusConnector.NegativeFeedback(robotN);
     }
 
-    public void Quit()
+    public void FirstAnglePrompt(string piece, bool robotN)
     {
-        _thalamusConnector.Quit(GameManager.Instance.playerName);
+        _thalamusConnector.FirstAnglePrompt(piece, GameManager.Instance.playerName, robotN);
     }
 
-    internal void Utterances(string library, string category, string subcategory, string[] utterances)
+    public void FirstAnglePromptFinger(string piece, bool robotN)
     {
-        throw new NotImplementedException();
+        _thalamusConnector.FirstAnglePromptFinger(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void MotorHelp()
+    public void FirstAnglePromptButton(string piece, bool robotN)
     {
-        _thalamusConnector.MotorHelp();
+        _thalamusConnector.FirstAnglePromptButton(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void CloseHelp()
+    public void SecondAnglePrompt(string piece, bool robotN)
     {
-        _thalamusConnector.CloseHelp();
+        _thalamusConnector.SecondAnglePrompt(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void PositiveFeedback(string nPieces)
+    public void SecondAnglePromptFinger(string piece, string direction, bool robotN)
     {
-        _thalamusConnector.PositiveFeedback(nPieces, GameManager.Instance.playerName);
+        _thalamusConnector.SecondAnglePromptFinger(piece, direction, GameManager.Instance.playerName, robotN);
     }
 
-    public void NegativeFeedback()
+    public void SecondAnglePromptButton(string piece, string nClicks, bool robotN)
     {
-        _thalamusConnector.NegativeFeedback();
+        _thalamusConnector.SecondAnglePromptButton(piece, nClicks, GameManager.Instance.playerName, robotN);
     }
 
-    public void FirstAnglePrompt(string piece)
+    public void ThirdAnglePrompt(string piece, bool robotN)
     {
-        _thalamusConnector.FirstAnglePrompt(piece, GameManager.Instance.playerName);
+        _thalamusConnector.ThirdAnglePrompt(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void FirstAnglePromptFinger(string piece)
+    public void StopAnglePrompt(string piece, bool robotN)
     {
-        _thalamusConnector.FirstAnglePromptFinger(piece, GameManager.Instance.playerName);
+        _thalamusConnector.StopAnglePrompt(piece, robotN);
     }
 
-    public void FirstAnglePromptButton(string piece)
+    public void FirstIdlePrompt(string piece, bool robotN)
     {
-        _thalamusConnector.FirstAnglePromptButton(piece, GameManager.Instance.playerName);
+        _thalamusConnector.FirstIdlePrompt(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void SecondAnglePrompt(string piece)
+    public void FirstPlacePrompt(string piece, bool robotN)
     {
-        _thalamusConnector.SecondAnglePrompt(piece, GameManager.Instance.playerName);
+        _thalamusConnector.FirstPlacePrompt(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void SecondAnglePromptFinger(string piece, string direction)
+    public void SecondPrompt1Position(string piece, string pos, bool robotN)
     {
-        _thalamusConnector.SecondAnglePromptFinger(piece, direction, GameManager.Instance.playerName);
+        _thalamusConnector.SecondPrompt1Position(piece, pos, GameManager.Instance.playerName, robotN);
     }
 
-    public void SecondAnglePromptButton(string piece, string nClicks)
+    public void SecondPrompt2Position(string piece, string pos1, string pos2, bool robotN)
     {
-        _thalamusConnector.SecondAnglePromptButton(piece, nClicks, GameManager.Instance.playerName);
+        _thalamusConnector.SecondPrompt2Position(piece, pos1, pos2, GameManager.Instance.playerName, robotN);
     }
 
-    public void ThirdAnglePrompt(string piece)
+    public void SecondPromptPlace(string piece, string pos, string relativePiece, bool robotN)
     {
-        _thalamusConnector.ThirdAnglePrompt(piece, GameManager.Instance.playerName);
+        _thalamusConnector.SecondPromptPlace(piece, pos, relativePiece, GameManager.Instance.playerName, robotN);
     }
 
-    public void StopAnglePrompt(string piece)
+    public void ThirdPrompt(string piece, bool robotN)
     {
-        _thalamusConnector.StopAnglePrompt(piece);
+        _thalamusConnector.ThirdPrompt(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void FirstIdlePrompt(string piece)
+    public void HardClue(bool robotN)
     {
-        _thalamusConnector.FirstIdlePrompt(piece, GameManager.Instance.playerName);
+        _thalamusConnector.HardClue(GameManager.Instance.playerName, robotN);
     }
 
-    public void FirstPlacePrompt(string piece)
+    public void PGreeting(bool robotN)
     {
-        _thalamusConnector.FirstPlacePrompt(piece, GameManager.Instance.playerName);
+        _thalamusConnector.PGreeting(GameManager.Instance.playerName, robotN);
     }
 
-    public void SecondPrompt1Position(string piece, string pos)
+    public void PButtonHelp(bool robotN)
     {
-        _thalamusConnector.SecondPrompt1Position(piece, pos, GameManager.Instance.playerName);
+        _thalamusConnector.PButtonHelp(robotN);
     }
 
-    public void SecondPrompt2Position(string piece, string pos1, string pos2)
+    public void PFingerHelp(bool robotN)
     {
-        _thalamusConnector.SecondPrompt2Position(piece, pos1, pos2, GameManager.Instance.playerName);
+        _thalamusConnector.PFingerHelp(robotN);
     }
 
-    public void SecondPromptPlace(string piece, string pos, string relativePiece)
+    public void PWin(string puzzle, bool robotN)
     {
-        _thalamusConnector.SecondPromptPlace(piece, pos, relativePiece, GameManager.Instance.playerName);
+        _thalamusConnector.PWin(puzzle, GameManager.Instance.playerName, robotN);
     }
 
-    public void ThirdPrompt(string piece)
+    public void PChildTurn(bool robotN)
     {
-        _thalamusConnector.ThirdPrompt(piece, GameManager.Instance.playerName);
+        _thalamusConnector.PChildTurn(GameManager.Instance.playerName, robotN);
     }
 
-    public void HardClue()
+    public void PRobotTurn(bool robotN)
     {
-        _thalamusConnector.HardClue(GameManager.Instance.playerName);
+        _thalamusConnector.PRobotTurn(robotN);
     }
 
-    public void PGreeting()
+    public void PRobotDrag(bool robotN)
     {
-        _thalamusConnector.PGreeting(GameManager.Instance.playerName);
+        _thalamusConnector.PRobotDrag(robotN);
     }
 
-    public void PButtonHelp()
+    public void PRobotRotDrag(bool robotN)
     {
-        _thalamusConnector.PButtonHelp();
+        _thalamusConnector.PRobotRotDrag(robotN);
     }
 
-    public void PFingerHelp()
+    public void PRobotWin(string nPieces, bool robotN)
     {
-        _thalamusConnector.PFingerHelp();
+        _thalamusConnector.PRobotWin(nPieces, GameManager.Instance.playerName, robotN);
     }
 
-    public void PWin(string puzzle)
+    public void PRobotReminder(bool robotN)
     {
-        _thalamusConnector.PWin(puzzle, GameManager.Instance.playerName);
+        _thalamusConnector.PRobotReminder(robotN);
     }
 
-    public void PChildTurn()
+    public void PAskingPlace(string piece, bool robotN)
     {
-        _thalamusConnector.PChildTurn(GameManager.Instance.playerName);
+        _thalamusConnector.PAskingPlace(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void PRobotTurn()
+    public void PAskingRotate(string piece, bool robotN)
     {
-        _thalamusConnector.PRobotTurn();
+        _thalamusConnector.PAskingRotate(piece, GameManager.Instance.playerName, robotN);
     }
 
-    public void PRobotDrag()
+    public void PAskingPlaceWin(bool robotN)
     {
-        _thalamusConnector.PRobotDrag();
+        _thalamusConnector.PAskingPlaceWin(GameManager.Instance.playerName, robotN);
     }
 
-    public void PRobotRotDrag()
+    public void PAskingRotateWin(bool robotN)
     {
-        _thalamusConnector.PRobotRotDrag();
+        _thalamusConnector.PAskingRotateWin(GameManager.Instance.playerName, robotN);
     }
 
-    public void PRobotWin(string nPieces)
+    public void PAskingPlaceWrong(string piece, bool robotN)
     {
-        _thalamusConnector.PRobotWin(nPieces, GameManager.Instance.playerName);
+        _thalamusConnector.PAskingPlaceWrong(piece, robotN);
     }
 
-    public void PRobotReminder()
+    public void PAskingRotateWrong(string piece, bool robotN)
     {
-        _thalamusConnector.PRobotReminder();
+        _thalamusConnector.PAskingRotateWrong(piece, robotN);
     }
 
-    public void PAskingPlace(string piece)
+    public void PAskingQuit(bool robotN)
     {
-        _thalamusConnector.PAskingPlace(piece, GameManager.Instance.playerName);
+        _thalamusConnector.PAskingQuit(robotN);
     }
 
-    public void PAskingRotate(string piece)
+    public void PGivingPlace(string piece, string pos, bool robotN)
     {
-        _thalamusConnector.PAskingRotate(piece, GameManager.Instance.playerName);
+        _thalamusConnector.PGivingPlace(piece, pos, robotN);
     }
 
-    public void PAskingPlaceWin()
+    public void PGivingRotate(string piece, bool robotN)
     {
-        _thalamusConnector.PAskingPlaceWin(GameManager.Instance.playerName);
-    }
-
-    public void PAskingRotateWin()
-    {
-        _thalamusConnector.PAskingRotateWin(GameManager.Instance.playerName);
-    }
-
-    public void PAskingPlaceWrong(string piece)
-    {
-        _thalamusConnector.PAskingPlaceWrong(piece);
-    }
-
-    public void PAskingRotateWrong(string piece)
-    {
-        _thalamusConnector.PAskingRotateWrong(piece);
-    }
-
-    public void PAskingQuit()
-    {
-        _thalamusConnector.PAskingQuit();
-    }
-
-    public void PGivingPlace(string piece, string pos)
-    {
-        _thalamusConnector.PGivingPlace(piece, pos);
-    }
-
-    public void PGivingRotate(string piece)
-    {
-        _thalamusConnector.PGivingRotate(piece);
+        _thalamusConnector.PGivingRotate(piece, robotN);
     }
 
     public void WriteJSON(string timestamp, string info)

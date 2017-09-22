@@ -14,18 +14,10 @@ public class GreetingState : State
 
         /*NEW*/
 
-        if (Therapist.Instance.NiceRobot)
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram");
-        }
-        else
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-        }
+        UtterancesManager.Instance.Greeting(Therapist.Instance.NiceRobot);
 
         /*NEW*/
 
-        UtterancesManager.Instance.Greeting();
     }
 
     public void BeginNextGame()

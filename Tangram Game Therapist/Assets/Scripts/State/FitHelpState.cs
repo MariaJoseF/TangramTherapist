@@ -21,18 +21,10 @@ public class FitHelpState : State
 
             /*NEW*/
 
-            if (Therapist.Instance.NiceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            UtterancesManager.Instance.CloseHelp(Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
-            UtterancesManager.Instance.CloseHelp();
 
             lastHelpTime = DateTime.Now;
             nHelpRequests = 0;

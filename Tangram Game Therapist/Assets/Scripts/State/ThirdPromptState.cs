@@ -37,14 +37,13 @@ public class ThirdPromptState : State
 
             Debug.Log("3rd prompt");
 
-            if (niceRobot)
-            {
-                utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-            }
-            else
-            {
-                utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));--rude robot
-            }
+
+            /*NEW*/
+
+
+            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+
+            /*NEW*/
 
             if (!utterance)
             {
@@ -84,14 +83,13 @@ public class ThirdPromptState : State
         Therapist.Instance.promt_Type = 3;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
-        if (niceRobot)
-        {
-            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
-        }
-        else
-        {
-            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));--rude robot
-        }
+
+        /*NEW*/
+
+        utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+
+        /*NEW*/
+
 
         if (!utterance)
         {
@@ -176,9 +174,15 @@ public class ThirdPromptState : State
                     Debug.Log("3rd prompt -> Quit");
                     UtterancesManager.Instance.CheckUtteranceFinish();
 
-                    --its needed to put the rude robot here also
+                    /*NEW*/
 
-                    UtterancesManager.Instance.Quit();
+
+                    UtterancesManager.Instance.Quit(niceRobot);
+
+                    /*NEW*/
+
+
+
                     nPrompts = 0;
                     finalPrompt = true;
                     lastPromptTime = DateTime.Now;

@@ -50,18 +50,10 @@ public class SecondAnglePromptState : State
 
                 /*NEW*/
 
-                if (niceRobot)
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram");
-                }
-                else
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                }
+                utterance = UtterancesManager.Instance.HardClue(4.0f, niceRobot);
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.HardClue(4.0f);
 
                 if (!utterance)
                 {
@@ -89,18 +81,11 @@ public class SecondAnglePromptState : State
 
                     /*NEW*/
 
-                    if (niceRobot)
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram");
-                    }
-                    else
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                    }
+                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                     if (!utterance)
                     {
@@ -127,18 +112,10 @@ public class SecondAnglePromptState : State
 
                         /*NEW*/
 
-                        if (niceRobot)
-                        {
-                            UtterancesManager.Instance.ChangeLibrary("Tangram");
-                        }
-                        else
-                        {
-                            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                        }
+                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), niceRobot);
 
                         /*NEW*/
 
-                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
 
                         if (!utterance)
                         {
@@ -162,19 +139,12 @@ public class SecondAnglePromptState : State
 
                         /*NEW*/
 
-                        if (niceRobot)
-                        {
-                            UtterancesManager.Instance.ChangeLibrary("Tangram");
-                        }
-                        else
-                        {
-                            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                        }
+                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, niceRobot);
+
 
                         /*NEW*/
 
 
-                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection);
 
                         if (!utterance)
                         {
@@ -218,18 +188,10 @@ public class SecondAnglePromptState : State
 
             /*NEW*/
 
-            if (niceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            utterance = UtterancesManager.Instance.HardClue(4.0f, niceRobot);
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(4.0f);
 
             if (!utterance)
             {
@@ -258,19 +220,11 @@ public class SecondAnglePromptState : State
 
                 /*NEW*/
 
-                if (niceRobot)
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram");
-                }
-                else
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                }
+                utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
                 /*NEW*/
 
 
-                utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                 if (!utterance)
                 {
@@ -296,18 +250,11 @@ public class SecondAnglePromptState : State
                 {
                     /*NEW*/
 
-                    if (niceRobot)
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram");
-                    }
-                    else
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                    }
+                    utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), niceRobot);
+
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks));
 
                     if (!utterance)
                     {
@@ -328,17 +275,10 @@ public class SecondAnglePromptState : State
                 {
                     /*NEW*/
 
-                    if (niceRobot)
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram");
-                    }
-                    else
-                    {
-                        UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                    }
+                    utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, niceRobot);
+
 
                     /*NEW*/
-                    utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection);
 
                     if (!utterance)
                     {
@@ -427,18 +367,11 @@ public class SecondAnglePromptState : State
 
             /*NEW*/
 
-            if (Therapist.Instance.NiceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
             ///
             Therapist.Instance.ShowFormRatings();
             ///

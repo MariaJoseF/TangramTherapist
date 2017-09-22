@@ -17,23 +17,13 @@ public class PositiveFeedState : State
         {
             lastPositiveFeedTime = DateTime.Now;
 
-
-            /*NEW*/
-
-            if (Therapist.Instance.NiceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
-
-            /*NEW*/
-
             UtterancesManager.Instance.CheckUtteranceFinish();
+            /*NEW*/
 
-            UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count));
+            UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count), Therapist.Instance.NiceRobot);
+
+            /*NEW*/
+
         }
         Therapist.Instance.currentState = Therapist.Instance.PlayState;
     }

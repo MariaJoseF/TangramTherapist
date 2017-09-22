@@ -43,18 +43,10 @@ public class FirstPlacePromptState : State
 
                 /*NEW*/
 
-                if (niceRobot)
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram");
-                }
-                else
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                }
+                utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.HardClue(2f);
 
                 if (!utterance)
                 {
@@ -79,18 +71,10 @@ public class FirstPlacePromptState : State
 
                 /*NEW*/
 
-                if (niceRobot)
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram");
-                }
-                else
-                {
-                    UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-                }
+                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
                 if (!utterance)
                 {
@@ -134,18 +118,10 @@ public class FirstPlacePromptState : State
 
             /*NEW*/
 
-            if (niceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(2f);
 
             if (!utterance)
             {
@@ -170,18 +146,10 @@ public class FirstPlacePromptState : State
 
             /*NEW*/
 
-            if (niceRobot)
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram");
-            }
-            else
-            {
-                UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-            }
+            utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name));
 
             if (!utterance)
             {

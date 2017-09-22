@@ -15,34 +15,21 @@ public class InitialHelpState : State
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
-        /*NEW*/
-
-        if (Therapist.Instance.NiceRobot)
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram");
-        }
-        else
-        {
-            UtterancesManager.Instance.ChangeLibrary("Tangram_Rude");
-        }
-
-        /*NEW*/
-
         if (Therapist.Instance.firstTimeFinger == 1)
         {
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
             Therapist.Instance.currentState = Therapist.Instance.FingerHelpState;
             Therapist.Instance.BeginFirstGame();
         }
         else if (Therapist.Instance.firstTimeButton == 1)
         {
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
             Therapist.Instance.currentState = Therapist.Instance.ButtonHelpState;
             Therapist.Instance.BeginFirstGame();
         }
         else
         {
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true, Therapist.Instance.NiceRobot);
             Therapist.Instance.currentState = Therapist.Instance.PlayState;
         }
     }
@@ -55,19 +42,19 @@ public class InitialHelpState : State
 
         if (Therapist.Instance.firstTimeFinger == 1)
         {
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
             Therapist.Instance.currentState = Therapist.Instance.FingerHelpState;
             Therapist.Instance.BeginNextGame();
         }
         else if (Therapist.Instance.firstTimeButton == 1)
         {
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
             Therapist.Instance.currentState = Therapist.Instance.ButtonHelpState;
             Therapist.Instance.BeginNextGame();
         }
         else
         {
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true, Therapist.Instance.NiceRobot);
             Therapist.Instance.currentState = Therapist.Instance.PlayState;
         }
     }
