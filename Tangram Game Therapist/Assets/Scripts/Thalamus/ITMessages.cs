@@ -3,7 +3,7 @@ using CookComputing.XmlRpc;
 public interface ITMessagesRpc : ITMessages, IXmlRpcProxy
 {
     //void LibraryChanged(string serialized_LibraryContents);
-    void Utterances(string library, string category, string subcategory, string[] utterances);
+    //void Utterances(string library, string category, string subcategory, string[] utterances);
     //void LibraryList(string[] libraries);
 }
 
