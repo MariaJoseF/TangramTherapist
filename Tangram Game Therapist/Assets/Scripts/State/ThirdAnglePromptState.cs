@@ -27,7 +27,6 @@ public class ThirdAnglePromptState : State
         niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 3;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (nPrompts == 0)
@@ -76,7 +75,6 @@ public class ThirdAnglePromptState : State
         UtterancesManager.Instance.CheckUtteranceFinish();
         Debug.Log("3rd Angle prompt");
         bool utterance = false;
-        Therapist.Instance.promt_Type = 3;
 
 
         /*NEW*/

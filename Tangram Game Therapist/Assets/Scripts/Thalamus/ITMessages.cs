@@ -150,7 +150,7 @@ public interface ITMessages
     void PGivingRotate(string piece, bool robotN);
 
     [XmlRpcMethod]
-    void WriteJSON(string timestamp, string info);
+    void WriteJSON(string timestamp, string info, string path_file, string aux_path);
 
     [XmlRpcMethod]
     void CancelUtterance(string id);

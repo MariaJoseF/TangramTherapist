@@ -28,7 +28,6 @@ public class FirstAnglePromptState : State
 
         bool utterance = false;
 
-        Therapist.Instance.promt_Type = 1;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> AnglePrompt");
@@ -108,7 +107,6 @@ public class FirstAnglePromptState : State
         lastPromptTime = DateTime.Now;
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 1;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> RepeatPrompt");

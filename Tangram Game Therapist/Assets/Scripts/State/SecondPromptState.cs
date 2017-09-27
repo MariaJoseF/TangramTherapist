@@ -36,7 +36,6 @@ public class SecondPromptState : State
         niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 2;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (nPrompts == 0)
@@ -91,7 +90,6 @@ public class SecondPromptState : State
         random = UnityEngine.Random.Range(0, 3);
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 2;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (repeatHardClue || (random == 0 && Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard
@@ -156,7 +154,6 @@ public class SecondPromptState : State
         repeatHardClue = false;
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 2;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (!alreadyPromped)

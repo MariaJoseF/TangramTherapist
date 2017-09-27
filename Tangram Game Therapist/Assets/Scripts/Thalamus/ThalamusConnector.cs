@@ -985,7 +985,7 @@ public class ThalamusConnector : ITMessages
     {
         try
         {
-            _rpcProxy.WriteJSON(timestamp, info);
+            _rpcProxy.WriteJSON(timestamp, info, @"c:\Developer\Logs\", @"Logs");
         }
         catch (Exception e)
         {
@@ -1010,6 +1010,23 @@ public class ThalamusConnector : ITMessages
         finally
         {
             // Debug.Log("CancelUtterance exception finally");
+        }
+    }
+
+    public void WriteJSON(string timestamp, string info, string path_file, string aux_path)
+    {
+        try
+        {
+            _rpcProxy.WriteJSON(timestamp, info, path_file, aux_path);
+
+        }
+        catch (Exception e)
+        {
+            if (_printExceptions) Debug.Log("Exception: " + e.Message + (e.InnerException != null ? ": " + e.InnerException : ""));
+        }
+        finally
+        {
+            // Debug.Log("writejson exception finally");
         }
     }
 

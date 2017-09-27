@@ -23,7 +23,7 @@ namespace Assets.Scripts.Learning
         internal bool header = true;
 
         public int previousAction = -1;
-        internal int feedback_val = -1;
+        internal double feedback_val = -1.0f;
         internal int default_form = 1;
 
         public Button Button_1
@@ -325,70 +325,76 @@ namespace Assets.Scripts.Learning
         private void Bt_1_Click(object sender, EventArgs e)
         {
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "1;0;" + Therapist.Instance.promt_Type);
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "1");
             ButtonsDesactivation();
             header = false;
             previousAction = ActionNumber;
-            feedback_val = 1;
+            feedback_val = 1.0f;
             default_form = 0;
 
-            Therapist.Instance.vec_ratings.Add(1);
+            //Therapist.Instance.vec_ratings.Add(1);
+            Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
         private void Bt_2_Click(object sender, EventArgs e)
         {
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "2;0;" + Therapist.Instance.promt_Type);
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "2");
             ButtonsDesactivation();
             header = false;
             previousAction = ActionNumber;
-            feedback_val = 2;
+            feedback_val = 2.0f;
             default_form = 0;
 
-            Therapist.Instance.vec_ratings.Add(2);
+            //Therapist.Instance.vec_ratings.Add(2);
+            Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
         private void Bt_3_Click(object sender, EventArgs e)
         {
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "3;0;" + Therapist.Instance.promt_Type);
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "3");
             ButtonsDesactivation();
             header = false;
             previousAction = ActionNumber;
-            feedback_val = 3;
+            feedback_val = 3.0f;
             default_form = 0;
 
-            Therapist.Instance.vec_ratings.Add(3);
+            //Therapist.Instance.vec_ratings.Add(3);
+            Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
         private void Bt_4_Click(object sender, EventArgs e)
         {
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "4;0;" + Therapist.Instance.promt_Type);
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "4");
             ButtonsDesactivation();
             header = false;
             previousAction = ActionNumber;
-            feedback_val = 4;
+            feedback_val = 4.0f;
             default_form = 0;
 
-            Therapist.Instance.vec_ratings.Add(4);
+            //Therapist.Instance.vec_ratings.Add(4);
+            Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
         private void Bt_5_Click(object sender, EventArgs e)
         {
             FileHeader();
-            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "5;0;" + Therapist.Instance.promt_Type);
+            WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "5");
             ButtonsDesactivation();
             header = false;
             previousAction = ActionNumber;
-            feedback_val = 5;
+            feedback_val = 5.0f;
             default_form = 0;
 
-            Therapist.Instance.vec_ratings.Add(5);
+           // Therapist.Instance.vec_ratings.Add(5);
+            Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
+            
         }
 
         internal bool CheckBts()
@@ -422,7 +428,7 @@ namespace Assets.Scripts.Learning
         {
             if (header)
             {
-                WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;FEEDBACK_ID;DEFAULT;TYPE_PROMPT");
+                WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;FEEDBACK_ID");
             }
 
         }

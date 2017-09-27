@@ -291,6 +291,4 @@ public class StateConnector
     {
         _thalamusConnector.CancelUtterance(id);
     }
-
-
 }

@@ -28,7 +28,6 @@ public class FirstIdlePromptState : State
 
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 1;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> IdlePrompt");
@@ -73,7 +72,6 @@ public class FirstIdlePromptState : State
 
         bool utterance = false;
         UtterancesManager.Instance.CheckUtteranceFinish();
-        Therapist.Instance.promt_Type = 1;
         Debug.Log("1st prompt -> RepeatPrompt");
 
         if (repeatHardClue || (Therapist.Instance.currentGame.difficulty == SolutionManager.Difficulty.hard

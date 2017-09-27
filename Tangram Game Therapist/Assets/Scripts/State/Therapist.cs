@@ -39,16 +39,14 @@ public class Therapist : MonoBehaviour
     public bool showedHardClue = false;
     DateTime gameEndedTime;
 
-    internal int promt_Type = -1;
-
     /// 
     /// //////////////////////
     /// 
-    static double[] rewards = { 0.5f, 0.5f};
+    static double[] rewards = { 0.5f, 0.5f };
 
     internal Exp3 AlgorithmEXP3 = new Exp3(2, rewards, 0.07f);
     internal Ratings ratingsFeedback = new Ratings();
-    internal List<int> vec_ratings = new List<int>();
+   // internal List<int> vec_ratings = new List<int>();
     internal String action_name = "";
     public GameSettings currentGame;
     private bool positive_feedback = false;
@@ -272,57 +270,21 @@ public class Therapist : MonoBehaviour
     internal void SetPrompts()
     {
 
-        //Calculate the average ratings for the utterances presented for the previous action selected and update the UCB algorithm reward
-        AVG_Ratings();
+      //  AVG_Ratings();
 
-        AlgorithmEXP3.RunExp3();
+        /*AlgorithmEXP3.RunExp3();*/
 
         //switch (AlgorithmEXP3.Action)
         //{
-        //    case 0://all prompts
-        //        firstPrompt = true;
-        //        secondPrompt = true;
-        //        thirdPrompt = true;
-        //        action_name = "All prompts";
+        //    case 0://not rude
+        //        niceRobot = true;
+        //        action_name = "Nice Robot";
         //        break;
-        //    case 1://only first and second prompts
-        //        firstPrompt = true;
-        //        secondPrompt = true;
-        //        thirdPrompt = false;
-        //        action_name = "First and Second prompts";
-        //        break;
-        //    case 2://only first and third prompts
-        //        firstPrompt = true;
-        //        secondPrompt = false;
-        //        thirdPrompt = true;
-        //        action_name = "First and Third prompts";
-        //        break;
-        //    case 3://only second and third prompts
-        //        firstPrompt = false;
-        //        secondPrompt = true;
-        //        thirdPrompt = true;
-        //        action_name = "Second and Third prompts";
-        //        break;
-        //    case 4://no prompts
-        //        firstPrompt = false;
-        //        secondPrompt = false;
-        //        thirdPrompt = false;
-        //        action_name = "No prompts";
+        //    case 1://rude
+        //        niceRobot = false;
+        //        action_name = "Rude Robot";
         //        break;
         //}
-
-
-        switch (AlgorithmEXP3.Action)
-        {
-            case 0://not rude
-                niceRobot = true;
-                action_name = "Nice Robot";
-                break;
-            case 1://rude
-                niceRobot = false;
-                action_name = "Rude Robot";
-                break;
-        }
 
         previousAction = AlgorithmEXP3.Action;
 
@@ -333,9 +295,9 @@ public class Therapist : MonoBehaviour
         ratingsFeedback.feedback_val = -2;
         ratingsFeedback.default_form = 1;
 
-        vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
+        //vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
 
-        Console.WriteLine("Rude Robot = " + niceRobot);
+        Console.WriteLine("Rude Robot = " + NiceRobot);
     }
 
     internal void ShowFormRatings()
@@ -362,21 +324,21 @@ public class Therapist : MonoBehaviour
         ratingsFeedback.form_Feedback.Show();
     }
 
-    internal void AVG_Ratings()
-    {
-        if (vec_ratings.Count > 0)
-        {
-            double aux = 0.0f;
-            for (int i = 0; i < vec_ratings.Count; i++)
-            {
-                aux = aux + vec_ratings[i];
-            }
+    //internal void AVG_Ratings()
+    //{
+    //    if (vec_ratings.Count > 0)
+    //    {
+    //        double aux = 0.0f;
+    //        for (int i = 0; i < vec_ratings.Count; i++)
+    //        {
+    //            aux = aux + vec_ratings[i];
+    //        }
 
-            aux = (aux / vec_ratings.Count);
+    //        aux = (aux / vec_ratings.Count);
 
-            AlgorithmEXP3.UpdateReward(previousAction, Math.Round(aux, 2));
-        }
-    }
+    //        AlgorithmEXP3.UpdateReward(previousAction, Math.Round(aux, 2));
+    //    }
+    //}
 
     public State CurrentState
     {
@@ -539,13 +501,35 @@ public class Therapist : MonoBehaviour
     {
         get
         {
+            ///talvez pôr aqui a chamada do algoritmo, faz todo o sentido??
+            AlgorithmEXP3.RunExp3();
+
+            switch (AlgorithmEXP3.Action)
+            {
+                case 0://not rude
+                    niceRobot = true;
+                    action_name = "Nice Robot";
+                    break;
+                case 1://rude
+                    niceRobot = false;
+                    action_name = "Rude Robot";
+                    break;
+            }
+
             return niceRobot;
         }
 
-        set
-        {
-            niceRobot = value;
-        }
+        //set
+        //{
+        //    niceRobot = value;
+        //}
     }
 
+    public bool NiceRobotGet
+    {
+        get
+        {
+            return niceRobot;
+        }
+    }
 }

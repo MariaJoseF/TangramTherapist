@@ -38,7 +38,15 @@ public class UtterancesManager : MonoBehaviour
             doubleCanceling = false;
             canceling = true;
         }
-        WriteJSON("ROBOT: " + id);
+        if (Therapist.Instance.NiceRobotGet)
+        {
+            WriteJSON("ROBOT NICE: " + id);
+        }
+        else
+        {
+            WriteJSON("ROBOT RUDE: " + id);
+        }
+        
     }
 
     //internal void GetLibraries()

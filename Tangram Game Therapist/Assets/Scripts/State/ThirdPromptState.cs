@@ -29,7 +29,6 @@ public class ThirdPromptState : State
 
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 3;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (nPrompts == 0)
@@ -80,7 +79,6 @@ public class ThirdPromptState : State
 
         Debug.Log("3rd prompt -> Repeat");
         bool utterance = false;
-        Therapist.Instance.promt_Type = 3;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
 

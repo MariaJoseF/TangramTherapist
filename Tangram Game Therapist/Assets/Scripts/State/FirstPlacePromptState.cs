@@ -26,7 +26,6 @@ public class FirstPlacePromptState : State
         niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 1;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> PlacePrompt");
@@ -106,7 +105,6 @@ public class FirstPlacePromptState : State
         repeatPrompt = false;
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 1;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("1st prompt -> RepeatPrompt");

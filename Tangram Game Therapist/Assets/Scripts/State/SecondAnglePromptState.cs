@@ -34,7 +34,6 @@ public class SecondAnglePromptState : State
         niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 2;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (nPrompts == 0)
@@ -175,7 +174,6 @@ public class SecondAnglePromptState : State
         int random = UnityEngine.Random.Range(0, 3);
 
         bool utterance = false;
-        Therapist.Instance.promt_Type = 2;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         Debug.Log("2nd prompt -> RepeatPrompt");
