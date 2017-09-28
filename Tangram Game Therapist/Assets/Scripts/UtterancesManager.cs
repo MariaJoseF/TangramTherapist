@@ -11,9 +11,11 @@ public class UtterancesManager : MonoBehaviour
     private static UtterancesManager instance = null;
     StateConnector s;
     string currentUtterance = null;
-    bool withoutHelp = false, canceling = false, doubleCanceling = false;
+    bool withoutHelp = false, canceling = false, doubleCanceling = false, writeRobot = false;
     public float hardClueSeconds;
     public static UtterancesManager Instance { get { return instance; } }
+
+    
 
     void Awake()
     {
@@ -38,51 +40,24 @@ public class UtterancesManager : MonoBehaviour
             doubleCanceling = false;
             canceling = true;
         }
+
+        /*NEW*/
+
+        writeRobot = false;
+
         if (Therapist.Instance.NiceRobotGet)
         {
             WriteJSON("ROBOT NICE: " + id);
+            writeRobot = true;
         }
         else
         {
             WriteJSON("ROBOT RUDE: " + id);
+            writeRobot = true;
         }
-        
+
+        /*NEW*/
     }
-
-    //internal void GetLibraries()
-    //{
-    //    s.GetLibraries();
-    //}
-
-    //internal void GetUtterances(string category, string subcategory)
-    //{
-    //    s.GetUtterances(category, subcategory);
-    //}
-
-    //internal void LibraryList(string[] libraries)
-    //{
-    //    s.LibraryList(libraries);
-    //}
-
-    //internal void LibraryChanged(string serialized_LibraryContents)
-    //{
-    //    s.LibraryChanged(serialized_LibraryContents);
-    //}
-
-    //internal void ChangeLibrary(string newLibrary)
-    //{
-    //    s.ChangeLibrary(newLibrary);
-    //}
-
-    //internal void LibraryList(string serialized_LibraryContents)
-    //{
-    //   // s.LibraryList(serialized_LibraryContents);
-    //}
-
-    //internal void Utterances(string library, string category, string subcategory, string[] utterances)
-    //{
-    //    s.Utterances(library, category, subcategory, utterances);
-    //}
 
     public void UtteranceFinished(string id)
     {
@@ -124,13 +99,28 @@ public class UtterancesManager : MonoBehaviour
             {
                 Therapist.Instance.nFailedTries = 0;
             }
+
+            /*NEW*/
+
+            //didint write on the log file when the utterance started
+            if (!writeRobot)
+            {
+                if (Therapist.Instance.NiceRobotGet)
+                {
+                    WriteJSON("ROBOT NICE: " + id);
+                    writeRobot = true;
+                }
+                else
+                {
+                    WriteJSON("ROBOT RUDE: " + id);
+                    writeRobot = true;
+                }
+            }
+
+            /*NEW*/
+
         }
     }
-
-    //internal void UtteranceStarted(string library, string category, string subcategory, string[] utterances)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
     public void Greeting(bool robotN)
     {
