@@ -10,9 +10,6 @@ public class FirstIdlePromptState : State
     bool vibratePiece = false, repeatPrompt = false, repeatHardClue = false;
     Piece currentPiece;
 
-    private bool niceRobot = true;
-
-
     public FirstIdlePromptState()
     {
         nPrompts = 0;
@@ -23,9 +20,6 @@ public class FirstIdlePromptState : State
         lastPromptTime = DateTime.Now;
         nPrompts = 0;
         repeatPrompt = false;
-
-        niceRobot = Therapist.Instance.NiceRobot;
-
 
         bool utterance = false;
         UtterancesManager.Instance.CheckUtteranceFinish();
@@ -59,7 +53,6 @@ public class FirstIdlePromptState : State
                 currentPiece = Therapist.Instance.currentPiece;
 
                 ///
-                Therapist.Instance.lastActionMade = true;
                 Therapist.Instance.ShowFormRatings();
                 ///
             }
@@ -83,7 +76,7 @@ public class FirstIdlePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
+            utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -99,7 +92,6 @@ public class FirstIdlePromptState : State
                 nPrompts++;
 
                 ///
-                Therapist.Instance.lastActionMade = true;
                 Therapist.Instance.ShowFormRatings();
                 ///
             }
@@ -116,7 +108,7 @@ public class FirstIdlePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+            utterance = UtterancesManager.Instance.FirstIdlePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -134,7 +126,6 @@ public class FirstIdlePromptState : State
                 repeatPrompt = false;
 
                 ///
-                Therapist.Instance.lastActionMade = true;
                 Therapist.Instance.ShowFormRatings();
                 ///
             }

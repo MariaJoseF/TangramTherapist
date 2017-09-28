@@ -15,6 +15,7 @@ public class GreetingState : State
         /*NEW*/
 
         UtterancesManager.Instance.Greeting(Therapist.Instance.NiceRobot);
+        Therapist.Instance.ShowFormRatings();
 
         /*NEW*/
 

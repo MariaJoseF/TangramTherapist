@@ -10,8 +10,6 @@ public class ThirdAnglePromptState : State
     bool finalPrompt = false, repeatPrompt = false, rightAnglePiece = false;
     Piece currentPiece;
 
-    private bool niceRobot = true;
-
     public ThirdAnglePromptState()
     {
     }
@@ -24,8 +22,6 @@ public class ThirdAnglePromptState : State
         nPrompts = 0;
         currentPiece = Therapist.Instance.currentPiece;
 
-        niceRobot = Therapist.Instance.NiceRobot;
-
         bool utterance = false;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
@@ -35,7 +31,7 @@ public class ThirdAnglePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+            utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -79,7 +75,7 @@ public class ThirdAnglePromptState : State
 
         /*NEW*/
 
-        utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+        utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
         /*NEW*/
 
@@ -126,14 +122,10 @@ public class ThirdAnglePromptState : State
 
 
             /*NEW*/
-            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+            Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
-
-            ///
-            Therapist.Instance.ShowFormRatings();
-            ///
-
 
             Therapist.Instance.previousState = Therapist.Instance.currentState;
             Therapist.Instance.nFailedTries = 0;
@@ -164,7 +156,7 @@ public class ThirdAnglePromptState : State
 
                     /*NEW*/
 
-                    UtterancesManager.Instance.Quit(niceRobot);
+                    UtterancesManager.Instance.Quit(Therapist.Instance.NiceRobot);
 
                     /*NEW*/
 
@@ -173,8 +165,6 @@ public class ThirdAnglePromptState : State
                     finalPrompt = true;
                     lastPromptTime = DateTime.Now;
 
-                    Therapist.Instance.SetPrompts();
-                    Therapist.Instance.lastActionMade = false;
                 }
             }
         }

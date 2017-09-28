@@ -10,8 +10,6 @@ public class ThirdPromptState : State
     bool finalPrompt, repeatPrompt = false, goToSecondAnglePrompt = false;
     Piece currentPiece;
 
-    private bool niceRobot = true;
-
     public ThirdPromptState()
     {
         nPrompts = 0;
@@ -25,9 +23,6 @@ public class ThirdPromptState : State
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
 
-        niceRobot = Therapist.Instance.NiceRobot;
-
-
         bool utterance = false;
         UtterancesManager.Instance.CheckUtteranceFinish();
 
@@ -40,7 +35,7 @@ public class ThirdPromptState : State
             /*NEW*/
 
 
-            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -84,7 +79,7 @@ public class ThirdPromptState : State
 
         /*NEW*/
 
-        utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+        utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
         /*NEW*/
 
@@ -174,19 +169,15 @@ public class ThirdPromptState : State
 
                     /*NEW*/
 
-
-                    UtterancesManager.Instance.Quit(niceRobot);
+                    UtterancesManager.Instance.Quit(Therapist.Instance.NiceRobot);
+                    Therapist.Instance.ShowFormRatings();
 
                     /*NEW*/
-
-
 
                     nPrompts = 0;
                     finalPrompt = true;
                     lastPromptTime = DateTime.Now;
 
-                    Therapist.Instance.SetPrompts();
-                    Therapist.Instance.lastActionMade = false;
                 }
             }
         }

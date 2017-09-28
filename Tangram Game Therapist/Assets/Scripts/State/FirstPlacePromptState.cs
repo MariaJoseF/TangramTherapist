@@ -9,9 +9,6 @@ public class FirstPlacePromptState : State
     public int nPrompts;
     bool repeatHardClue = false, repeatPrompt = false;
 
-    private bool niceRobot = true;
-
-
     public FirstPlacePromptState()
     {
         nPrompts = 0;
@@ -22,8 +19,6 @@ public class FirstPlacePromptState : State
         lastPromptTime = DateTime.Now;
         Therapist.Instance.nFailedTries = 0;
         nPrompts = 0;
-
-        niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
         UtterancesManager.Instance.CheckUtteranceFinish();
@@ -42,7 +37,7 @@ public class FirstPlacePromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
+                utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot);
 
                 /*NEW*/
 
@@ -58,7 +53,6 @@ public class FirstPlacePromptState : State
                     nPrompts = 1;
 
                     ///
-                    Therapist.Instance.lastActionMade = true;
                     Therapist.Instance.ShowFormRatings();
                     ///
                 }
@@ -70,7 +64,7 @@ public class FirstPlacePromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
                 /*NEW*/
 
@@ -86,7 +80,6 @@ public class FirstPlacePromptState : State
                     nPrompts = 1;
 
                     ///
-                    Therapist.Instance.lastActionMade = true;
                     Therapist.Instance.ShowFormRatings();
                     ///
                 }
@@ -116,7 +109,7 @@ public class FirstPlacePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
+            utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -132,7 +125,6 @@ public class FirstPlacePromptState : State
                 nPrompts++;
 
                 ///
-                Therapist.Instance.lastActionMade = true;
                 Therapist.Instance.ShowFormRatings();
                 ///
             }
@@ -144,7 +136,7 @@ public class FirstPlacePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+            utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -159,7 +151,6 @@ public class FirstPlacePromptState : State
                 nPrompts++;
 
                 ///
-                Therapist.Instance.lastActionMade = true;
                 Therapist.Instance.ShowFormRatings();
                 ///
             }

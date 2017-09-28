@@ -21,6 +21,7 @@ public class MotorHelpState : State
             /*NEW*/
 
             UtterancesManager.Instance.MotorHelp(Therapist.Instance.NiceRobot);
+            Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
 

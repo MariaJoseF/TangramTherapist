@@ -22,6 +22,7 @@ public class FitHelpState : State
             /*NEW*/
 
             UtterancesManager.Instance.CloseHelp(Therapist.Instance.NiceRobot);
+            Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
 

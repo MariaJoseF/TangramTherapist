@@ -16,8 +16,6 @@ public class SecondAnglePromptState : State
     SceneProperties.RotationMode rotationMode;
     string rotationDirection;
 
-    private bool niceRobot = true;
-
     public SecondAnglePromptState()
     {
         nPrompts = 0;
@@ -30,8 +28,6 @@ public class SecondAnglePromptState : State
         lastPromptTime = DateTime.Now;
         nPrompts = 0;
         currentPiece = Therapist.Instance.currentPiece;
-
-        niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
         UtterancesManager.Instance.CheckUtteranceFinish();
@@ -49,7 +45,7 @@ public class SecondAnglePromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.HardClue(4.0f, niceRobot);
+                utterance = UtterancesManager.Instance.HardClue(4.0f, Therapist.Instance.NiceRobot);
 
                 /*NEW*/
 
@@ -80,7 +76,7 @@ public class SecondAnglePromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+                    utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
 
                     /*NEW*/
@@ -111,7 +107,7 @@ public class SecondAnglePromptState : State
 
                         /*NEW*/
 
-                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), niceRobot);
+                        utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), Therapist.Instance.NiceRobot);
 
                         /*NEW*/
 
@@ -138,12 +134,9 @@ public class SecondAnglePromptState : State
 
                         /*NEW*/
 
-                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, niceRobot);
-
+                        utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, Therapist.Instance.NiceRobot);
 
                         /*NEW*/
-
-
 
                         if (!utterance)
                         {
@@ -186,7 +179,7 @@ public class SecondAnglePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(4.0f, niceRobot);
+            utterance = UtterancesManager.Instance.HardClue(4.0f, Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -218,11 +211,9 @@ public class SecondAnglePromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+                utterance = UtterancesManager.Instance.SecondAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
                 /*NEW*/
-
-
 
                 if (!utterance)
                 {
@@ -248,11 +239,9 @@ public class SecondAnglePromptState : State
                 {
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), niceRobot);
-
+                    utterance = UtterancesManager.Instance.SecondAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), StringNumberOfClicks(GameState.Instance.numberOfClicks), Therapist.Instance.NiceRobot);
 
                     /*NEW*/
-
 
                     if (!utterance)
                     {
@@ -273,8 +262,7 @@ public class SecondAnglePromptState : State
                 {
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, niceRobot);
-
+                    utterance = UtterancesManager.Instance.SecondAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), rotationDirection, Therapist.Instance.NiceRobot);
 
                     /*NEW*/
 
@@ -365,14 +353,10 @@ public class SecondAnglePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
-
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+            Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
-
-            ///
-            Therapist.Instance.ShowFormRatings();
-            ///
 
             Therapist.Instance.previousState = Therapist.Instance.currentState;
             nPrompts = 0;

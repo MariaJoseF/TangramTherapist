@@ -11,7 +11,13 @@ public class FingerHelpState : State
 
     public void BeginFirstGame()
     {
+        /*NEW*/
+
         UtterancesManager.Instance.FingerHelp(Therapist.Instance.NiceRobot);
+        Therapist.Instance.ShowFormRatings();
+
+        /*NEW*/
+
         Debug.Log("1 FingerHelp");
 
         Therapist.Instance.firstTimeFinger = 2;
@@ -20,7 +26,13 @@ public class FingerHelpState : State
 
     public void BeginNextGame()
     {
+        /*NEW*/
+
         UtterancesManager.Instance.FingerHelp(Therapist.Instance.NiceRobot);
+        Therapist.Instance.ShowFormRatings();
+
+        /*NEW*/
+
         Debug.Log("2 FingerHelp");
 
         Therapist.Instance.firstTimeFinger = 2;

@@ -52,7 +52,6 @@ public class Therapist : MonoBehaviour
     private bool positive_feedback = false;
     private bool niceRobot = true;
     private int previousAction = -1;
-    internal bool lastActionMade = true;
 
     /// 
     /// ///////////////
@@ -136,8 +135,6 @@ public class Therapist : MonoBehaviour
         if (positive_feedback)
         {
             positive_feedback = false;
-            SetPrompts();
-            lastActionMade = false;
         }
         else
         {
@@ -259,11 +256,6 @@ public class Therapist : MonoBehaviour
             BeginNextGame();
         else BeginFirstGame();
 
-        if (lastActionMade)
-        {
-            SetPrompts();
-        }
-
     }
 
 
@@ -288,7 +280,7 @@ public class Therapist : MonoBehaviour
 
         previousAction = AlgorithmEXP3.Action;
 
-        ratingsFeedback.Label1.Text = "Feedback " + action_name;
+        //ratingsFeedback.Label1.Text = "Feedback " + action_name;
 
         ratingsFeedback.form_Feedback.Show();
         ratingsFeedback.ButtonsDesactivation();
@@ -297,7 +289,7 @@ public class Therapist : MonoBehaviour
 
         //vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
 
-        Console.WriteLine("Rude Robot = " + NiceRobot);
+        Console.WriteLine("Rude Robot = " + NiceRobotGet);
     }
 
     internal void ShowFormRatings()
@@ -318,7 +310,7 @@ public class Therapist : MonoBehaviour
 
         ratingsFeedback.ActionNumber1 = AlgorithmEXP3.Action;
 
-        ratingsFeedback.feedback_val = -2;
+        ratingsFeedback.feedback_val = -2.0f;
         ratingsFeedback.default_form = 1;
 
         ratingsFeedback.form_Feedback.Show();
@@ -501,7 +493,15 @@ public class Therapist : MonoBehaviour
     {
         get
         {
-            ///talvez pôr aqui a chamada do algoritmo, faz todo o sentido??
+
+            if (ratingsFeedback.feedback_val == -2.0f)
+            {
+                ratingsFeedback.FileHeader();
+                ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + AlgorithmEXP3.Action + ";" + "-");
+            }
+
+            SetPrompts();
+
             AlgorithmEXP3.RunExp3();
 
             switch (AlgorithmEXP3.Action)
@@ -515,6 +515,8 @@ public class Therapist : MonoBehaviour
                     action_name = "Rude Robot";
                     break;
             }
+
+            ratingsFeedback.Label1.Text = "Feedback " + action_name;
 
             return niceRobot;
         }

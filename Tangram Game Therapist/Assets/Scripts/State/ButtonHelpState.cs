@@ -11,7 +11,13 @@ public class ButtonHelpState : State
 
     public void BeginFirstGame()
     {
+        /*NEW*/
+
         UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot);
+        Therapist.Instance.ShowFormRatings();
+
+        /*NEW*/
+
         Debug.Log("1 ButtonHelp");
 
         Therapist.Instance.firstTimeButton = 2;
@@ -24,6 +30,7 @@ public class ButtonHelpState : State
         /*NEW*/
 
         UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot);
+        Therapist.Instance.ShowFormRatings();
 
         /*NEW*/
 

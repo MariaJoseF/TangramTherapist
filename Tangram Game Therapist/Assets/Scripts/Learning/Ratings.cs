@@ -1,4 +1,4 @@
-﻿using System;
+﻿  using System;
 using UnityEngine;
 using System.Windows.Forms;
 using System.IO;
@@ -16,6 +16,8 @@ namespace Assets.Scripts.Learning
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+
+        private static Ratings instance = null;
 
         private int ActionNumber;
         private string fileName = null;
@@ -114,6 +116,19 @@ namespace Assets.Scripts.Learning
             set
             {
                 ActionNumber = value;
+            }
+        }
+
+        public static Ratings Instance
+        {
+            get
+            {
+                return instance;
+            }
+
+            set
+            {
+                instance = value;
             }
         }
 
@@ -301,6 +316,13 @@ namespace Assets.Scripts.Learning
             if (dialogResult == DialogResult.Yes)
             {
                 UtterancesManager.Instance.WriteJSON("Feedback form was closed by user/rating person and the game was forced to be finished.");
+
+                if (feedback_val == -2.0f)
+                {
+                    FileHeader();
+                    WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "-");
+                }
+
                 Debug.Log("Game is exiting");
                 System.Windows.Forms.Application.Exit();
                 UnityEngine.Application.Quit();
@@ -429,6 +451,7 @@ namespace Assets.Scripts.Learning
             if (header)
             {
                 WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;FEEDBACK_ID");
+                header = false;
             }
 
         }

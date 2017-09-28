@@ -10,8 +10,6 @@ public class FirstAnglePromptState : State
     bool repeatPrompt = false, repeatHardClue = false, repeatAngleHelp = false, rightAnglePiece = false;
     Piece currentPiece;
 
-    private bool niceRobot = true;
-
     public FirstAnglePromptState()
     {
         nPrompts = 0;
@@ -23,8 +21,6 @@ public class FirstAnglePromptState : State
         Therapist.Instance.nWrongAngleTries = 0;
         nPrompts = 0;
         currentPiece = Therapist.Instance.currentPiece;
-
-        niceRobot = Therapist.Instance.NiceRobot;
 
         bool utterance = false;
 
@@ -44,7 +40,7 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
+                    utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot);
 
                     /*NEW*/
 
@@ -61,7 +57,6 @@ public class FirstAnglePromptState : State
                         nPrompts = 1;
 
                         ///
-                        Therapist.Instance.lastActionMade = true;
                         Therapist.Instance.ShowFormRatings();
                         ///
 
@@ -74,7 +69,7 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+                    utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
                     /*NEW*/
 
@@ -89,7 +84,6 @@ public class FirstAnglePromptState : State
                         nPrompts = 1;
 
                     ///
-                    Therapist.Instance.lastActionMade = true;
                     Therapist.Instance.ShowFormRatings();
                     ///
                 }
@@ -119,7 +113,7 @@ public class FirstAnglePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(2f, niceRobot);
+            utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot);
 
             /*NEW*/
 
@@ -134,7 +128,6 @@ public class FirstAnglePromptState : State
                 nPrompts++;
 
                 ///
-                Therapist.Instance.lastActionMade = true;
                 Therapist.Instance.ShowFormRatings();
                 ///
             }
@@ -150,7 +143,7 @@ public class FirstAnglePromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+                utterance = UtterancesManager.Instance.FirstAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
                 /*NEW*/
 
@@ -167,7 +160,6 @@ public class FirstAnglePromptState : State
                     repeatPrompt = false;
 
                     ///
-                    Therapist.Instance.lastActionMade = true;
                     Therapist.Instance.ShowFormRatings();
                     ///
                 }
@@ -180,7 +172,7 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+                    utterance = UtterancesManager.Instance.FirstAnglePromptButton(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
                     /*NEW*/
 
@@ -198,7 +190,6 @@ public class FirstAnglePromptState : State
                         repeatAngleHelp = false;
 
                         ///
-                        Therapist.Instance.lastActionMade = true;
                         Therapist.Instance.ShowFormRatings();
                         ///
                     }
@@ -208,7 +199,7 @@ public class FirstAnglePromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+                    utterance = UtterancesManager.Instance.FirstAnglePromptFinger(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
 
                     /*NEW*/
 
@@ -226,7 +217,6 @@ public class FirstAnglePromptState : State
                         repeatAngleHelp = false;
 
                         ///
-                        Therapist.Instance.lastActionMade = true;
                         Therapist.Instance.ShowFormRatings();
                         ///
                     }
@@ -300,14 +290,10 @@ public class FirstAnglePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), niceRobot);
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+            Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
-
-
-            ///
-            Therapist.Instance.ShowFormRatings();
-            ///
 
             Therapist.Instance.previousState = Therapist.Instance.currentState;
             Therapist.Instance.nFailedTries = 0;

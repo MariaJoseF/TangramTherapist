@@ -20,16 +20,12 @@ public class NegativeFeedState : State
         //if (nNegativeFeed >= 1 && (DateTime.Now - lastNegativeFeedTime).TotalSeconds > 15)
         //{
 
-
-        /*NEW*/
-
-
-        /*NEW*/
-
         UtterancesManager.Instance.CheckUtteranceFinish();
 
         if (UtterancesManager.Instance.NegativeFeedback(Therapist.Instance.NiceRobot))
         {
+            Therapist.Instance.ShowFormRatings();
+
             nNegativeFeed = 0;
             lastNegativeFeedTime = DateTime.Now;
         }

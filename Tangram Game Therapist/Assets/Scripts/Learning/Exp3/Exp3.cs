@@ -267,8 +267,8 @@ namespace Assets.Scripts.Exp3
                 res_reward = 0.9f;
             }
 
-            
-            reward_actions[action] = Math.Round(res_reward, 2);
+            //reward_actions[action] = Math.Round(res_reward, 2);
+            reward_actions[previousAction] = Math.Round(res_reward, 2);
 
         }
 
