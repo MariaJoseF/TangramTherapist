@@ -19,7 +19,7 @@ public class InitialHelpState : State
         {
             /*NEW*/
 
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot("GameStart"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
@@ -31,7 +31,7 @@ public class InitialHelpState : State
         {
             /*NEW*/
 
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot("GameStart"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
@@ -43,7 +43,7 @@ public class InitialHelpState : State
         {
             /*NEW*/
 
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true, Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true, Therapist.Instance.NiceRobot("GameStart"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
@@ -62,7 +62,7 @@ public class InitialHelpState : State
         {
             /*NEW*/
 
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot("GameStart"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
@@ -74,7 +74,7 @@ public class InitialHelpState : State
         {
             /*NEW*/
 
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, false, Therapist.Instance.NiceRobot("GameStart"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
@@ -86,7 +86,7 @@ public class InitialHelpState : State
         {
             /*NEW*/
 
-            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true, Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.GameStart(SolutionManager.Instance.puzzleNamept, true, Therapist.Instance.NiceRobot("GameStart"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/

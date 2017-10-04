@@ -14,7 +14,8 @@ namespace Assets.Scripts.Exp3
         private List<Elements> Rewards = new List<Elements>();
         private int action = 0;
         private int iterations = 0;
-        private string fileName = null;
+        private string fileName = "";
+        private string utterance_name = "";
 
         /// <summary>
         /// 
@@ -50,8 +51,10 @@ namespace Assets.Scripts.Exp3
         }
 
 
-        public int RunExp3()
+        public int RunExp3(string name_utterance)
         {
+            utterance_name = name_utterance;
+
             //initialize all weights to 1
             //Wi(1)= 1, for i=1,....,n
             if (iterations == 0)
@@ -156,7 +159,7 @@ namespace Assets.Scripts.Exp3
         {
             if (iterations == 0)
             {
-                WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;WEIGHT;PROBABILITY;ESTIMATED_REWARD;SELECTED_ACTION");
+                WriteJSON("", "DATE/TIME;PLAYER;PUZZLE;DIFICULDADE;MODO_ROTAÇAO;THRESHOLD;ACTION;TIME_t;WEIGHT;PROBABILITY;ESTIMATED_REWARD;SELECTED_ACTION;UTTERANCE_NAME");
             }
 
             for (int i = 0; i < num_actions; i++)
@@ -166,7 +169,7 @@ namespace Assets.Scripts.Exp3
                 Elements estimeted_reward = EstimatedRewards.Find(x => (x.Time_index == iterations && x.Element == i));
 
                 WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" +
-                 i + ";" + iterations + ";" + weigth + ";" + probability + ";" + estimeted_reward + ";" + Action);
+                 i + ";" + iterations + ";" + weigth + ";" + probability + ";" + estimeted_reward + ";" + Action + ";" +utterance_name);
             }
         }
 

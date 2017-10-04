@@ -13,7 +13,7 @@ public class FingerHelpState : State
     {
         /*NEW*/
 
-        UtterancesManager.Instance.FingerHelp(Therapist.Instance.NiceRobot);
+        UtterancesManager.Instance.FingerHelp(Therapist.Instance.NiceRobot("FingerHelp"));
         Therapist.Instance.ShowFormRatings();
 
         /*NEW*/
@@ -28,7 +28,7 @@ public class FingerHelpState : State
     {
         /*NEW*/
 
-        UtterancesManager.Instance.FingerHelp(Therapist.Instance.NiceRobot);
+        UtterancesManager.Instance.FingerHelp(Therapist.Instance.NiceRobot("FingerHelp"));
         Therapist.Instance.ShowFormRatings();
 
         /*NEW*/

@@ -22,7 +22,7 @@ public class NegativeFeedState : State
 
         UtterancesManager.Instance.CheckUtteranceFinish();
 
-        if (UtterancesManager.Instance.NegativeFeedback(Therapist.Instance.NiceRobot))
+        if (UtterancesManager.Instance.NegativeFeedback(Therapist.Instance.NiceRobot("NegativeFeedback")))
         {
             Therapist.Instance.ShowFormRatings();
 

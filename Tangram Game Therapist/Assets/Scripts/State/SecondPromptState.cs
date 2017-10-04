@@ -48,7 +48,7 @@ public class SecondPromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.HardClue(4.0f, Therapist.Instance.NiceRobot);
+                utterance = UtterancesManager.Instance.HardClue(4.0f, Therapist.Instance.NiceRobot("HardClue"));
 
                 /*NEW*/
 
@@ -99,7 +99,7 @@ public class SecondPromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(4.0f, Therapist.Instance.NiceRobot);
+            utterance = UtterancesManager.Instance.HardClue(4.0f, Therapist.Instance.NiceRobot("HardClue"));
 
             /*NEW*/
 
@@ -169,7 +169,7 @@ public class SecondPromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece), Therapist.Instance.NiceRobot);
+                utterance = UtterancesManager.Instance.SecondPromptPlace(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), relativePosition, GameState.Instance.PieceInformation(piece), Therapist.Instance.NiceRobot("SecondPromptPlace"));
 
                 /*NEW*/
 
@@ -200,7 +200,7 @@ public class SecondPromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2, Therapist.Instance.NiceRobot);
+                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos2, Therapist.Instance.NiceRobot("SecondPrompt1Position"));
 
                     /*NEW*/
 
@@ -227,7 +227,7 @@ public class SecondPromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, Therapist.Instance.NiceRobot);
+                    utterance = UtterancesManager.Instance.SecondPrompt1Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, Therapist.Instance.NiceRobot("SecondPrompt1Position"));
 
                     /*NEW*/
 
@@ -254,7 +254,7 @@ public class SecondPromptState : State
 
                     /*NEW*/
 
-                    utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2, Therapist.Instance.NiceRobot);
+                    utterance = UtterancesManager.Instance.SecondPrompt2Position(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), currentPlace.relPos.pos1, currentPlace.relPos.pos2, Therapist.Instance.NiceRobot("SecondPrompt2Position"));
 
                     /*NEW*/
 

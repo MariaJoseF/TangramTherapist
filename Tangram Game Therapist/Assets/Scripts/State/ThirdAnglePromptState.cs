@@ -31,7 +31,7 @@ public class ThirdAnglePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+            utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot("ThirdAnglePrompt"));
 
             /*NEW*/
 
@@ -75,7 +75,7 @@ public class ThirdAnglePromptState : State
 
         /*NEW*/
 
-        utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+        utterance = UtterancesManager.Instance.ThirdAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot("ThirdAnglePrompt"));
 
         /*NEW*/
 
@@ -122,7 +122,7 @@ public class ThirdAnglePromptState : State
 
 
             /*NEW*/
-            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+            utterance = UtterancesManager.Instance.StopAnglePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot("StopAnglePrompt"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/
@@ -156,7 +156,7 @@ public class ThirdAnglePromptState : State
 
                     /*NEW*/
 
-                    UtterancesManager.Instance.Quit(Therapist.Instance.NiceRobot);
+                    UtterancesManager.Instance.Quit(Therapist.Instance.NiceRobot("Quit"));
 
                     /*NEW*/
 

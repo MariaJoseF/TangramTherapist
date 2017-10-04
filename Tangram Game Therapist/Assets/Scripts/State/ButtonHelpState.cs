@@ -13,7 +13,7 @@ public class ButtonHelpState : State
     {
         /*NEW*/
 
-        UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot);
+        UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot("ButtonHelp"));
         Therapist.Instance.ShowFormRatings();
 
         /*NEW*/
@@ -29,7 +29,7 @@ public class ButtonHelpState : State
 
         /*NEW*/
 
-        UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot);
+        UtterancesManager.Instance.ButtonHelp(Therapist.Instance.NiceRobot("ButtonHelp"));
         Therapist.Instance.ShowFormRatings();
 
         /*NEW*/

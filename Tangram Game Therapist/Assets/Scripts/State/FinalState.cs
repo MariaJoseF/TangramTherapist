@@ -19,9 +19,9 @@ public class FinalState : State
         if (!GameState.Instance.quit)
         {
             if ((float)(DateTime.Now - GameManager.Instance.beginGameTime).TotalSeconds < 80)
-                UtterancesManager.Instance.FastWin(SolutionManager.Instance.puzzleNamept, Therapist.Instance.NiceRobot);
+                UtterancesManager.Instance.FastWin(SolutionManager.Instance.puzzleNamept, Therapist.Instance.NiceRobot("FastWin"));
             else
-                UtterancesManager.Instance.Win(SolutionManager.Instance.puzzleNamept, Therapist.Instance.NiceRobot);
+                UtterancesManager.Instance.Win(SolutionManager.Instance.puzzleNamept, Therapist.Instance.NiceRobot("Win"));
 
             Therapist.Instance.ShowFormRatings();
 
@@ -36,8 +36,10 @@ public class FinalState : State
             if (Therapist.Instance.ratingsFeedback.feedback_val == -2.0f)
             {
                 Therapist.Instance.ratingsFeedback.FileHeader();
-                Therapist.Instance.ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + Therapist.Instance.AlgorithmEXP3.Action + ";" + "-");
+                Therapist.Instance.ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + Therapist.Instance.AlgorithmEXP3.Action + ";" + "-;quit after");
             }
+
+            Therapist.Instance.SetPrompts("");
 
             /*NEW*/
 

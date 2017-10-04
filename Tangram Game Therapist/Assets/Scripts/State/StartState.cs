@@ -23,7 +23,7 @@ public class StartState : State
 
             /*NEW*/
 
-            UtterancesManager.Instance.NextGame(Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.NextGame(Therapist.Instance.NiceRobot("NextGame"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/

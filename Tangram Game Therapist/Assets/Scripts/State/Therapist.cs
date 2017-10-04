@@ -132,16 +132,16 @@ public class Therapist : MonoBehaviour
 
         currentState.GivePositiveFeedback();
 
-        if (positive_feedback)
-        {
-            positive_feedback = false;
-        }
-        else
-        {
-            UtterancesManager.Instance.CheckUtteranceFinish();
-            positive_feedback = true;
-            ratingsFeedback.ButtonsDesactivation();
-        }
+        //if (positive_feedback)
+        //{
+        //    positive_feedback = false;
+        //}
+        //else
+        //{
+        //    UtterancesManager.Instance.CheckUtteranceFinish();
+        //    positive_feedback = true;
+        //   // ratingsFeedback.ButtonsDesactivation();
+        //}
 
     }
 
@@ -259,7 +259,7 @@ public class Therapist : MonoBehaviour
     }
 
 
-    internal void SetPrompts()
+    internal void SetPrompts(string utterance)
     {
 
       //  AVG_Ratings();
@@ -286,6 +286,7 @@ public class Therapist : MonoBehaviour
         ratingsFeedback.ButtonsDesactivation();
         ratingsFeedback.feedback_val = -2;
         ratingsFeedback.default_form = 1;
+        ratingsFeedback.name_utterance = utterance;
 
         //vec_ratings = new List<int>();//empty the previous vector of ratings for the new action prompt
 
@@ -489,20 +490,18 @@ public class Therapist : MonoBehaviour
         }
     }
 
-    public bool NiceRobot
+    public bool NiceRobot(string utterance_name)
     {
-        get
-        {
-
+       
             if (ratingsFeedback.feedback_val == -2.0f)
             {
                 ratingsFeedback.FileHeader();
-                ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + AlgorithmEXP3.Action + ";" + "-");
+            ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + AlgorithmEXP3.Action + ";" + "-;" + utterance_name);
             }
 
-            SetPrompts();
+            SetPrompts(utterance_name);
 
-            AlgorithmEXP3.RunExp3();
+            AlgorithmEXP3.RunExp3(utterance_name);
 
             switch (AlgorithmEXP3.Action)
             {
@@ -519,12 +518,6 @@ public class Therapist : MonoBehaviour
             ratingsFeedback.Label1.Text = "Feedback " + action_name;
 
             return niceRobot;
-        }
-
-        //set
-        //{
-        //    niceRobot = value;
-        //}
     }
 
     public bool NiceRobotGet

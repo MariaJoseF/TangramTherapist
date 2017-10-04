@@ -37,7 +37,7 @@ public class FirstPlacePromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot);
+                utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot("HardClue"));
 
                 /*NEW*/
 
@@ -64,7 +64,7 @@ public class FirstPlacePromptState : State
 
                 /*NEW*/
 
-                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+                utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot("FirstPlacePrompt"));
 
                 /*NEW*/
 
@@ -109,7 +109,7 @@ public class FirstPlacePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot);
+            utterance = UtterancesManager.Instance.HardClue(2f, Therapist.Instance.NiceRobot("HardClue"));
 
             /*NEW*/
 
@@ -136,7 +136,7 @@ public class FirstPlacePromptState : State
 
             /*NEW*/
 
-            utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+            utterance = UtterancesManager.Instance.FirstPlacePrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot("FirstPlacePrompt"));
 
             /*NEW*/
 

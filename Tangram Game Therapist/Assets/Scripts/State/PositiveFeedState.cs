@@ -20,7 +20,7 @@ public class PositiveFeedState : State
             UtterancesManager.Instance.CheckUtteranceFinish();
             /*NEW*/
 
-            UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count), Therapist.Instance.NiceRobot);
+            UtterancesManager.Instance.PositiveFeedback(StringNumberOfPieces(GameState.Instance.notPlacedPieces.Count), Therapist.Instance.NiceRobot("PositiveFeedback"));
             Therapist.Instance.ShowFormRatings();
 
             /*NEW*/

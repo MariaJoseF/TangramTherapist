@@ -41,6 +41,18 @@ public class LoadOnClick : MonoBehaviour {
 	{
         UtterancesManager.Instance.WriteJSON("HOME QUIT after " + (float)(DateTime.Now - GameManager.Instance.beginGameTime).TotalSeconds + " seconds");
 
+        /*NEW*/
+
+        if (Therapist.Instance.ratingsFeedback.feedback_val == -2.0f)
+        {
+            Therapist.Instance.ratingsFeedback.FileHeader();
+            Therapist.Instance.ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + Therapist.Instance.AlgorithmEXP3.Action + ";" + "-;home quit");
+        }
+
+        Therapist.Instance.SetPrompts("");
+
+        /*NEW*/
+
         Application.LoadLevel(previousLevel);
         Therapist.Instance.Quit();
 	}

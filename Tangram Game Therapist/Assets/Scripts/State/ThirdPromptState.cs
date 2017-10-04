@@ -35,7 +35,7 @@ public class ThirdPromptState : State
             /*NEW*/
 
 
-            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+            utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot("ThirdPrompt"));
 
             /*NEW*/
 
@@ -79,7 +79,7 @@ public class ThirdPromptState : State
 
         /*NEW*/
 
-        utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot);
+        utterance = UtterancesManager.Instance.ThirdPrompt(GameState.Instance.PieceInformation(Therapist.Instance.currentPiece.name), Therapist.Instance.NiceRobot("ThirdPrompt"));
 
         /*NEW*/
 
@@ -169,7 +169,7 @@ public class ThirdPromptState : State
 
                     /*NEW*/
 
-                    UtterancesManager.Instance.Quit(Therapist.Instance.NiceRobot);
+                    UtterancesManager.Instance.Quit(Therapist.Instance.NiceRobot("Quit"));
                     Therapist.Instance.ShowFormRatings();
 
                     /*NEW*/

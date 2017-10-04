@@ -15,7 +15,7 @@ public class UtterancesManager : MonoBehaviour
     public float hardClueSeconds;
     public static UtterancesManager Instance { get { return instance; } }
 
-    
+
 
     void Awake()
     {
@@ -34,6 +34,23 @@ public class UtterancesManager : MonoBehaviour
         currentUtterance = id;
         canceling = false;
         print("COMEÇOU UTTERANCE " + id);
+
+        /*NEW*/
+        writeRobot = false;
+
+        if (Therapist.Instance.NiceRobotGet)
+        {
+            WriteJSON("start ROBOT NICE " + id);
+            writeRobot = true;
+        }
+        else
+        {
+            WriteJSON("start ROBOT RUDE " + id);
+            writeRobot = true;
+        }
+
+        /*NEW*/
+
         if (doubleCanceling)
         {
             s.CancelUtterance(id);
@@ -41,22 +58,7 @@ public class UtterancesManager : MonoBehaviour
             canceling = true;
         }
 
-        /*NEW*/
 
-        writeRobot = false;
-
-        if (Therapist.Instance.NiceRobotGet)
-        {
-            WriteJSON("ROBOT NICE: " + id);
-            writeRobot = true;
-        }
-        else
-        {
-            WriteJSON("ROBOT RUDE: " + id);
-            writeRobot = true;
-        }
-
-        /*NEW*/
     }
 
     public void UtteranceFinished(string id)
@@ -102,18 +104,16 @@ public class UtterancesManager : MonoBehaviour
 
             /*NEW*/
 
-            //didint write on the log file when the utterance started
+            //didnt write on the log file when the utterance started
             if (!writeRobot)
             {
                 if (Therapist.Instance.NiceRobotGet)
                 {
-                    WriteJSON("ROBOT NICE: " + id);
-                    writeRobot = true;
+                    WriteJSON("end ROBOT NICE " + id);
                 }
                 else
                 {
-                    WriteJSON("ROBOT RUDE: " + id);
-                    writeRobot = true;
+                    WriteJSON("end ROBOT RUDE " + id);
                 }
             }
 
