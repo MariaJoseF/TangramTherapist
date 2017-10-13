@@ -1,4 +1,4 @@
-﻿  using System;
+﻿using System;
 using UnityEngine;
 using System.Windows.Forms;
 using System.IO;
@@ -16,6 +16,7 @@ namespace Assets.Scripts.Learning
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        //  private System.Windows.Forms.KeyPressEventHandler KeyPress;
 
         private static Ratings instance = null;
 
@@ -157,6 +158,9 @@ namespace Assets.Scripts.Learning
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+
+      //      this.form_Feedback.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyPressed);
+
             //  this.SuspendLayout();
             // 
             // Bt_1
@@ -168,7 +172,7 @@ namespace Assets.Scripts.Learning
             this.Bt_1.Text = "1";
             this.Bt_1.UseVisualStyleBackColor = true;
             this.Bt_1.Enabled = false;
-            this.Bt_1.Click += new System.EventHandler(this.Bt_1_Click);
+            // this.Bt_1.Click += new System.EventHandler(this.Bt_1_Click);
 
             this.Bt_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bt_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -183,7 +187,7 @@ namespace Assets.Scripts.Learning
             this.Bt_2.Text = "2";
             this.Bt_2.UseVisualStyleBackColor = true;
             this.Bt_2.Enabled = false;
-            this.Bt_2.Click += new System.EventHandler(this.Bt_2_Click);
+            //this.Bt_2.Click += new System.EventHandler(this.Bt_2_Click);
 
             this.Bt_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bt_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -198,7 +202,7 @@ namespace Assets.Scripts.Learning
             this.Bt_3.Text = "3";
             this.Bt_3.UseVisualStyleBackColor = true;
             this.Bt_3.Enabled = false;
-            this.Bt_3.Click += new System.EventHandler(this.Bt_3_Click);
+            //this.Bt_3.Click += new System.EventHandler(this.Bt_3_Click);
 
             this.Bt_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bt_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -213,7 +217,7 @@ namespace Assets.Scripts.Learning
             this.Bt_4.Text = "4";
             this.Bt_4.UseVisualStyleBackColor = true;
             this.Bt_4.Enabled = false;
-            this.Bt_4.Click += new System.EventHandler(this.Bt_4_Click);
+            //this.Bt_4.Click += new System.EventHandler(this.Bt_4_Click);
 
             this.Bt_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bt_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -228,7 +232,7 @@ namespace Assets.Scripts.Learning
             this.Bt_5.Text = "5";
             this.Bt_5.UseVisualStyleBackColor = true;
             this.Bt_5.Enabled = false;
-            this.Bt_5.Click += new System.EventHandler(this.Bt_5_Click);
+            //this.Bt_5.Click += new System.EventHandler(this.Bt_5_Click);
 
             this.Bt_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bt_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -304,11 +308,17 @@ namespace Assets.Scripts.Learning
             this.form_Feedback.Controls.Add(this.Bt_1);
             this.form_Feedback.Name = "Ratings";
             this.form_Feedback.Text = "Ratings";
-            this.form_Feedback.ResumeLayout(false);
-            //this.form_Feedback.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FeedbackForm_FormClosing);
+
             this.form_Feedback.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+
+           
+
+            this.form_Feedback.ResumeLayout(false);
             this.form_Feedback.PerformLayout();
+
+
         }
+
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -337,17 +347,7 @@ namespace Assets.Scripts.Learning
 
         }
 
-        //private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //    System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-        //    messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
-        //    messageBoxCS.AppendLine();
-        //    messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.CloseReason);
-        //    messageBoxCS.AppendLine();
-        //    MessageBox.Show(messageBoxCS.ToString(), "Form1_FormClosed Event");
-        //}
-
-        private void Bt_1_Click(object sender, EventArgs e)
+        internal void Bt_1_Click()
         {
             FileHeader();
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "1;" + name_utterance);
@@ -357,12 +357,11 @@ namespace Assets.Scripts.Learning
             feedback_val = 1.0f;
             default_form = 0;
 
-            //Therapist.Instance.vec_ratings.Add(1);
             Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
-        private void Bt_2_Click(object sender, EventArgs e)
+        internal void Bt_2_Click()
         {
             FileHeader();
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "2;" + name_utterance);
@@ -372,12 +371,11 @@ namespace Assets.Scripts.Learning
             feedback_val = 2.0f;
             default_form = 0;
 
-            //Therapist.Instance.vec_ratings.Add(2);
             Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
-        private void Bt_3_Click(object sender, EventArgs e)
+        internal void Bt_3_Click()
         {
             FileHeader();
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "3;" + name_utterance);
@@ -387,12 +385,11 @@ namespace Assets.Scripts.Learning
             feedback_val = 3.0f;
             default_form = 0;
 
-            //Therapist.Instance.vec_ratings.Add(3);
             Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
-        private void Bt_4_Click(object sender, EventArgs e)
+        internal void Bt_4_Click()
         {
             FileHeader();
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "4;" + name_utterance);
@@ -402,12 +399,11 @@ namespace Assets.Scripts.Learning
             feedback_val = 4.0f;
             default_form = 0;
 
-            //Therapist.Instance.vec_ratings.Add(4);
             Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
 
         }
 
-        private void Bt_5_Click(object sender, EventArgs e)
+        internal void Bt_5_Click()
         {
             FileHeader();
             WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + ActionNumber + ";" + "5;" + name_utterance);
@@ -417,9 +413,8 @@ namespace Assets.Scripts.Learning
             feedback_val = 5.0f;
             default_form = 0;
 
-           // Therapist.Instance.vec_ratings.Add(5);
             Therapist.Instance.AlgorithmEXP3.UpdateReward(previousAction, Math.Round(feedback_val, 2));
-            
+
         }
 
         internal bool CheckBts()

@@ -3,42 +3,70 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 
-public class LoadOnClick : MonoBehaviour {
-	
+public class LoadOnClick : MonoBehaviour
+{
+
     bool muted = false;
 
-	public Button soundButton;
-	public Sprite muteSprite;
-	public Sprite soundSprite;
+    public Button soundButton;
+    public Sprite muteSprite;
+    public Sprite soundSprite;
     public Button playButton;
     public InputField inputName;
 
     int previousLevel = 1;
     string playerName;
 
-	void Start() 
-	{
+    void Start()
+    {
         if (AudioListener.pause && (Application.loadedLevelName == "Main" || Application.loadedLevelName == "Start"))
         {
-			soundButton.image.sprite = muteSprite;
-			muted = true;
-		}
+            soundButton.image.sprite = muteSprite;
+            muted = true;
+        }
 
         if (Application.loadedLevelName == "Name")
         {
             Therapist.Instance.ratingsFeedback.form_Feedback.Show();
         }
-	}
+    }
 
-    void Update() {
+    void Update()
+    {
+
+        /**/
+
+        if (Input.GetKeyDown("1"))
+        {
+            Therapist.Instance.ratingsFeedback.Bt_1_Click();
+        }
+        else if (Input.GetKeyDown("2"))
+        {
+            Therapist.Instance.ratingsFeedback.Bt_2_Click();
+        }
+        else if (Input.GetKeyDown("3"))
+        {
+            Therapist.Instance.ratingsFeedback.Bt_3_Click();
+        }
+        else if (Input.GetKeyDown("4"))
+        {
+            Therapist.Instance.ratingsFeedback.Bt_4_Click();
+        }
+        else if (Input.GetKeyDown("5"))
+        {
+            Therapist.Instance.ratingsFeedback.Bt_5_Click();
+        }
+
+        /**/
+
         if (Application.loadedLevelName == "Start" && GameState.Instance.playButtonInteractable)
             playButton.interactable = true;
         else if (Application.loadedLevelName == "Start" && !GameState.Instance.playButtonInteractable)
             playButton.interactable = false;
     }
 
-	public void LoadScene(int level)
-	{
+    public void LoadScene(int level)
+    {
         UtterancesManager.Instance.WriteJSON("HOME QUIT after " + (float)(DateTime.Now - GameManager.Instance.beginGameTime).TotalSeconds + " seconds");
 
         /*NEW*/
@@ -55,7 +83,7 @@ public class LoadOnClick : MonoBehaviour {
 
         Application.LoadLevel(previousLevel);
         Therapist.Instance.Quit();
-	}
+    }
 
     public void LoadStartScene()
     {
@@ -69,23 +97,26 @@ public class LoadOnClick : MonoBehaviour {
         playerName = inputName.text;
     }
 
-	public void MuteListener(Button button) 
-	{
-		muted = !muted;
-		if (muted) {
-			AudioListener.pause = true;
-			AudioListener.volume = 0;
-			soundButton.image.sprite = muteSprite;
-		}
-		else {
-			AudioListener.pause = false;
-			AudioListener.volume = 1F;
-			soundButton.image.sprite = soundSprite;
-		}
+    public void MuteListener(Button button)
+    {
+        muted = !muted;
+        if (muted)
+        {
+            AudioListener.pause = true;
+            AudioListener.volume = 0;
+            soundButton.image.sprite = muteSprite;
+        }
+        else
+        {
+            AudioListener.pause = false;
+            AudioListener.volume = 1F;
+            soundButton.image.sprite = soundSprite;
+        }
 
-	}
+    }
 
-    public void PlayButton() { 
+    public void PlayButton()
+    {
         GameManager.Instance.BeginGame(muted);
         previousLevel = 1;
         Application.LoadLevel(2);

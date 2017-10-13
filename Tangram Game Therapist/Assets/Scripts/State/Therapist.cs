@@ -52,6 +52,7 @@ public class Therapist : MonoBehaviour
     private bool positive_feedback = false;
     private bool niceRobot = true;
     private int previousAction = -1;
+    private string name_utterance = "";
 
     /// 
     /// ///////////////
@@ -496,10 +497,11 @@ public class Therapist : MonoBehaviour
             if (ratingsFeedback.feedback_val == -2.0f)
             {
                 ratingsFeedback.FileHeader();
-            ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + AlgorithmEXP3.Action + ";" + "-;" + utterance_name);
+            ratingsFeedback.WriteJSON(DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm:ss"), ";" + GameManager.Instance.playerName + ";" + GameManager.Instance.CurrentPuzzle + ";" + GameManager.Instance.Difficulty_ + ";" + GameManager.Instance.RotationMode_ + ";" + GameManager.Instance.DistanceThreshold + ";" + AlgorithmEXP3.Action + ";" + "-;" + name_utterance);
             }
 
             SetPrompts(utterance_name);
+        name_utterance = utterance_name;
 
             AlgorithmEXP3.RunExp3(utterance_name);
 

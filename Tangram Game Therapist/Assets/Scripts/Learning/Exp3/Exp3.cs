@@ -14,8 +14,8 @@ namespace Assets.Scripts.Exp3
         private List<Elements> Rewards = new List<Elements>();
         private int action = 0;
         private int iterations = 0;
-        private string fileName = "";
-        private string utterance_name = "";
+        private string fileName = null;
+        private string utterance_name = null;
 
         /// <summary>
         /// 
